@@ -389,10 +389,23 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .spec ul{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .spec li{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.06em;padding:4px 7px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
 
-/* Hero panel — B · Live Proof (live preview only, fitted, no scroll) */
-.panel-hero{flex-direction:column;overflow:hidden;justify-content:center;align-items:center}
-.hero-grid{display:flex;justify-content:center;align-items:center;max-width:880px;width:100%;margin:0 auto;padding:8px 0;min-height:0;height:100%;max-height:calc(100dvh - var(--top-h) - 32px)}
-.hero-grid .hero-card--live{width:100%;max-width:780px;max-height:100%;display:flex;flex-direction:column;overflow:hidden}
+/* Hero panel — B · Live Proof (live preview + side picker, fills grid) */
+.panel-hero{flex-direction:column;overflow:hidden;justify-content:center;align-items:stretch}
+.hero-grid{display:grid;grid-template-columns:1.42fr .72fr;gap:16px;align-items:stretch;max-width:1160px;width:100%;margin:0 auto;padding:8px 0;min-height:0;height:100%;max-height:calc(100dvh - var(--top-h) - 28px)}
+.hero-grid .hero-card--live{width:100%;max-height:100%;display:flex;flex-direction:column;overflow:hidden;align-self:stretch}
+.hero-side{display:flex;flex-direction:column;gap:10px;min-width:0;overflow:hidden}
+.hero-side-head{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;padding:0 2px}
+.hero-side-list{display:grid;gap:8px;overflow:auto;scrollbar-width:none;flex:1;align-content:start;padding-right:2px}
+.hero-side-item{text-align:left;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--paper);cursor:pointer;display:grid;gap:6px;transition:.15s}
+.hero-side-item:hover{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.hero-side-item.active{border-color:var(--amber);background:var(--amber-wash);box-shadow:0 0 0 3px color-mix(in srgb, var(--amber) 12%, transparent)}
+.hero-side-item b{font-size:13px;line-height:1.25;letter-spacing:-.01em;display:block}
+.hero-side-item p{margin:0;font-size:11.8px;line-height:1.5;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hero-side-item small{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ink-soft);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.hero-side-item small i{font-style:normal;padding:3px 6px;border-radius:999px;background:var(--ground);border:1px solid var(--line);font-size:8.5px}
+.hero-side-item.active small i{border-color:var(--amber);background:var(--paper)}
+.hero-side-cta{margin-top:auto;display:flex;gap:8px}
+@media(max-width:1060px){.hero-grid{grid-template-columns:1fr;max-height:none;height:auto}.panel-hero{overflow:auto;scrollbar-width:none}.hero-side-list{overflow:visible}}
 .hero-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper);box-shadow:0 12px 32px rgba(0,0,0,.06);display:flex;flex-direction:column;align-self:center;position:relative;top:auto}
 .hero-card-top{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--ground)}
 .hero-card-body{padding:0;display:flex;flex-direction:column;gap:0;overflow:hidden;min-height:0;flex:1}
@@ -606,6 +619,33 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
                 <div class="hero-live-tags"><span>Make.com</span><span>Stripe</span><span>GHL</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span></div>
                 <div style="display:flex;gap:8px;margin-top:2px"><a class="btn-p" href="#" onclick="event.preventDefault(); openDrawer(projects[heroLiveIdx||0])" style="flex:1">Open zoom view →</a><a class="btn-g" href="#" data-go="work" style="flex:1">All 17 builds</a></div>
               </div>
+            </div>
+          </aside>
+          <aside class="hero-side" aria-label="Featured funnels">
+            <div class="hero-side-head"><span>Featured — Funnel builds</span><span style="color:var(--amber)">● 7 total</span></div>
+            <div class="hero-side-list" id="heroSideList">
+              <button class="hero-side-item active" data-i="0" onclick="setHeroLive(0)">
+                <small><i>01</i> FUNNEL <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
+                <b>FitCoach — Stripe to GHL</b>
+                <p>12-week program checkout with router (create vs update), Sheets roster + Slack ping. No double enrollments.</p>
+                <small><i>Make</i><i>Stripe</i><i>GHL</i></small>
+              </button>
+              <button class="hero-side-item" data-i="1" onclick="setHeroLive(1)">
+                <small><i>02</i> FUNNEL <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
+                <b>Legal Intake & Nurture — 4 steps + 9 workflows</b>
+                <p>Tag-gated nurture where booking and nurture suppress each other — no double-messaging, no-shows recycled.</p>
+                <small><i>GHL Workflows</i><i>Custom JS</i></small>
+              </button>
+              <button class="hero-side-item" data-i="2" onclick="setHeroLive(2)">
+                <small><i>04</i> FUNNEL</small>
+                <b>FlowFix Plumbing — Emergency Triage</b>
+                <p>Emergency keyword → priority queue · Missed-call text-back &lt;2m · Dormant reactivation.</p>
+                <small><i>GHL</i><i>Make</i><i>Slack</i></small>
+              </button>
+            </div>
+            <div class="hero-side-cta">
+              <a class="btn-p" href="#" data-go="work" style="flex:1">Explore all 17 →</a>
+              <a class="btn-g" href="#" data-go="contact" style="flex:1">Start a project</a>
             </div>
           </aside>
         </div>
@@ -830,9 +870,11 @@ const heroLiveDescs=["Stripe checkout → Make router (create vs update) → GHL
 function setHeroLive(i){
   window.heroLiveIdx=i;
   const track=document.getElementById('heroLiveTrack'); const dots=document.querySelectorAll('#heroLiveDots button');
+  const sideItems=document.querySelectorAll('#heroSideList .hero-side-item');
   const t=document.getElementById('heroLiveTitle'); const d=document.getElementById('heroLiveDesc');
   if(track) track.style.transform=`translateX(-${i*100}%)`;
   dots.forEach((b,idx)=> b.classList.toggle('active', idx===i));
+  sideItems.forEach((b,idx)=> b.classList.toggle('active', idx===i));
   if(t) t.textContent=heroLiveTitles[i]||heroLiveTitles[0];
   if(d) d.textContent=heroLiveDescs[i]||heroLiveDescs[0];
 }
