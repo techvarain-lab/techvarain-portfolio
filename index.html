@@ -616,7 +616,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
               <div class="hero-live-meta">
                 <h3 class="hero-live-title" id="heroLiveTitle">FitCoach Ecosystem — Stripe Payment to GHL</h3>
                 <p class="hero-live-desc" id="heroLiveDesc">Stripe checkout → Make router (create vs update) → GHL + Sheets roster + Slack ping. No double enrollments.</p>
-                <div class="hero-live-tags"><span>Make.com</span><span>Stripe</span><span>GHL</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span></div>
+                <div class="hero-live-tags" id="heroLiveTags"><span>Make.com</span><span>Stripe</span><span>GHL</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span></div>
                 <div style="display:flex;gap:8px;margin-top:2px"><a class="btn-p" href="#" onclick="event.preventDefault(); openDrawer(projects[heroLiveIdx||0])" style="flex:1">Open zoom view →</a><a class="btn-g" href="#" data-go="work" style="flex:1">All 17 builds</a></div>
               </div>
             </div>
@@ -867,16 +867,22 @@ if(location.hash){ const h=location.hash.replace('#',''); if(['hero','work','ser
 // hero live carousel — B · Live Proof (auto-cycle, pause on hover)
 window.heroLiveIdx=0; const heroLiveTitles=["FitCoach Ecosystem — Stripe Payment to GHL","Legal Consultation Intake & Nurture System","FlowFix Plumbing — Emergency Triage & Reactivation"];
 const heroLiveDescs=["Stripe checkout → Make router (create vs update) → GHL + Sheets roster + Slack ping. No double enrollments.","GHL-only 4-step funnel + 9 tag-gated workflows. Booking and nurture suppress each other — no double-messaging.","Emergency keyword → priority queue · Missed-call text-back <2m · Dormant drip reactivation."];
+const heroLiveStacks=[
+  '<span>Make.com</span><span>Stripe</span><span>GHL</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>',
+  '<span>GoHighLevel</span><span>GHL Workflows</span><span>Custom JS</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>',
+  '<span>GoHighLevel</span><span>Make.com</span><span>Slack</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>'
+];
 function setHeroLive(i){
   window.heroLiveIdx=i;
   const track=document.getElementById('heroLiveTrack'); const dots=document.querySelectorAll('#heroLiveDots button');
   const sideItems=document.querySelectorAll('#heroSideList .hero-side-item');
-  const t=document.getElementById('heroLiveTitle'); const d=document.getElementById('heroLiveDesc');
+  const t=document.getElementById('heroLiveTitle'); const d=document.getElementById('heroLiveDesc'); const tg=document.getElementById('heroLiveTags');
   if(track) track.style.transform=`translateX(-${i*100}%)`;
   dots.forEach((b,idx)=> b.classList.toggle('active', idx===i));
   sideItems.forEach((b,idx)=> b.classList.toggle('active', idx===i));
   if(t) t.textContent=heroLiveTitles[i]||heroLiveTitles[0];
   if(d) d.textContent=heroLiveDescs[i]||heroLiveDescs[0];
+  if(tg) tg.innerHTML=heroLiveStacks[i]||heroLiveStacks[0];
 }
 let heroLiveTimer=null; function startHeroLive(){ stopHeroLive(); heroLiveTimer=setInterval(()=> setHeroLive((window.heroLiveIdx+1)%3), 3600); } function stopHeroLive(){ if(heroLiveTimer) clearInterval(heroLiveTimer); }
 const heroLiveEl=document.getElementById('heroLive');
