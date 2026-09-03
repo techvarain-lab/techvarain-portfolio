@@ -117,6 +117,7 @@ button{font:inherit}
   flex-direction:column;
   gap:0;
   padding:18px 18px 14px;
+  justify-content:space-between;
   scrollbar-width:none;
 }
 .rail-scroll::-webkit-scrollbar{display:none}
@@ -175,27 +176,6 @@ button{font:inherit}
 .btn-rail-g:hover{border-color:rgba(255,255,255,.32);color:white;background:rgba(255,255,255,.06)}
 .rail-divider{height:1px;background:rgba(255,255,255,.08);margin:14px 0}
 
-/* bench in rail */
-.rail-bench{
-  border:1px solid rgba(255,255,255,.10);border-radius:14px;overflow:hidden;
-  background:rgba(255,255,255,.06);backdrop-filter:blur(8px);
-  display:flex;flex-direction:column;
-}
-.rail-bench-top{
-  padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);
-  display:flex;justify-content:space-between;align-items:center;
-  font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(244,244,237,.58);background:rgba(0,0,0,.12)
-}
-.rail-bench-body{padding:12px;display:grid;gap:10px}
-.rail-bench .sys{
-  border:1px solid rgba(255,255,255,.10);border-radius:10px;background:rgba(0,0,0,.18);padding:10px;overflow:hidden
-}
-.rail-bench .sys svg{width:100%;height:auto;display:block;max-height:118px}
-.rail-bench .sys svg text{fill:rgba(244,244,237,.9) !important}
-.rail-bench .sys svg text[fill="var(--ink-soft)"]{fill:rgba(244,244,237,.55) !important}
-.rail-bench .sys svg rect[fill="var(--paper)"]{fill:rgba(255,255,255,.10) !important}
-.rail-bench .sys svg rect[fill="var(--amber-wash)"]{fill:rgba(255,122,26,.18) !important}
 .stat2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .stat2 div{border:1px solid rgba(255,255,255,.10);border-radius:10px;background:rgba(0,0,0,.14);padding:8px;text-align:center}
 .stat2 b{font-family:'Instrument Serif',serif;font-size:18px;display:block;line-height:1;color:white}
@@ -212,9 +192,10 @@ button{font:inherit}
 }
 .rail-foot-rail{
   padding:12px 18px;border-top:1px solid rgba(255,255,255,.06);
-  display:flex;justify-content:space-between;gap:8px;align-items:center;
+  display:flex;justify-content:center;gap:8px;align-items:center;
   font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.06em;color:rgba(244,244,237,.42);
   position:relative;z-index:1;margin-top:auto;
+  text-align:center;
 }
 .rail-controls{
   display:flex;align-items:center;gap:8px
@@ -284,8 +265,8 @@ button{font:inherit}
   position:absolute;inset:0;
   display:none;
   overflow:hidden;
-  padding:14px;
-  gap:14px;
+  padding:16px;
+  gap:16px;
   min-height:0;
 }
 .panel.active{display:flex}
@@ -312,7 +293,7 @@ button{font:inherit}
   padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--ground);color:var(--ink-soft);margin-left:auto;white-space:nowrap
 }
 .workbench{
-  display:grid;grid-template-columns:1.42fr .92fr;gap:14px;align-items:stretch;min-height:0;flex:1;
+  display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:stretch;min-height:0;flex:1;
 }
 .table-wrap{
   border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);
@@ -354,7 +335,7 @@ button{font:inherit}
   background:var(--ground);
 }
 .preview-img{
-  flex:0 0 auto;max-height:44%;min-height:180px;
+  flex:1;min-height:220px;
   background:var(--ground);border-bottom:1px solid var(--line);overflow:auto;position:relative;padding:0;display:block;scrollbar-width:thin
 }
 .preview-img img{width:100%;height:auto;display:block;transition:transform .2s cubic-bezier(.16,1,.3,1);transform-origin:top center}
@@ -553,8 +534,7 @@ button{font:inherit}
       </div>
     </div>
     <div class="rail-foot-rail">
-      <span>© 2026 Rainier D. — Workbench E</span>
-      <span style="color:var(--amber)">● Single viewport</span>
+      <span>© 2026 Rainier D.</span>
     </div>
   </aside>
 
