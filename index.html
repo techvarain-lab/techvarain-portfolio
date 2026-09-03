@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rainier Dimasacat — Single Viewport · AI Automation / GHL</title>
+<meta name="description" content="Rainier Dimasacat — AI Automation / GHL Specialist. 17 builds, 2 families. Single-viewport workbench: Stripe → GHL → Sheets → Slack, logged, routed, documented.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@400;500;600&family=Fragment+Mono&family=Instrument+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* A · Warm Ink — restored editorial, burnt sienna pop */
+  --ground:#F2EFE8;
+  --ground-2:#EFE9E0;
+  --paper:#FFFDFA;
+  --ink:#1A1A18;
+  --ink-2:#3A3834;
+  --ink-soft:#8A8580;
+  --line:#E7DDD0;
+  --line-strong:#D8CCB8;
+  --amber:#B45309;
+  --amber-2:#92400E;
+  --amber-wash:#FFFBEB;
+  --amber-wash-2:#FFF8EE;
+  --sage:#7A8A7D;
+  --sage-wash:#E8EFE6;
+  --navy:#1A1A18;
+  --navy-2:#242424;
+  --cream:#F2EFE8;
+  --radius:10px;
+  --radius-lg:16px;
+  --grid:rgba(26,26,24,.04);
+  --rail-w:320px;
+  --top-h:52px;
+}
+[data-theme="dark"]{
+  --ground:#121110;
+  --ground-2:#1E1D1B;
+  --paper:#232019;
+  --ink:#F5F1EB;
+  --ink-2:#D8CFC0;
+  --ink-soft:#9A9590;
+  --line:#2E2B27;
+  --line-strong:#3A3632;
+  --amber:#E07A5F;
+  --amber-2:#C45A3A;
+  --amber-wash:#2A1F18;
+  --amber-wash-2:#2E2418;
+  --sage:#A8B5A0;
+  --sage-wash:#252924;
+  --navy:#1A1A18;
+  --cream:#070B14;
+  --grid:rgba(245,241,235,.06);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scrollbar-width:thin}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:'DM Sans',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow:hidden;
+  height:100dvh;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit}
+::selection{background:var(--amber);color:white}
+*{scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+*::-webkit-scrollbar{width:6px;height:6px}
+*::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:999px}
+*::-webkit-scrollbar-track{background:transparent}
+/* subtle grid texture only in main */
+.grid-bg{
+  position:fixed;inset:0;pointer-events:none;opacity:.9;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:32px 32px;
+  z-index:0
+}
+
+/* APP SHELL */
+.app{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns: var(--rail-w) 1fr;
+  height:100dvh;
+  overflow:hidden;
+  max-width:100vw;
+}
+
+/* RAIL — navy like BrewedOps, but warm detail */
+.rail{
+  background:var(--navy);
+  color:#F4F4ED;
+  border-right:1px solid rgba(255,255,255,.08);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  position:relative;
+}
+.rail::after{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(600px 400px at 20% 0%, rgba(180,83,9,.10), transparent 62%),
+             radial-gradient(520px 520px at 90% 90%, rgba(255,253,250,.04), transparent 60%),
+             linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%);
+  pointer-events:none;
+}
+.rail-scroll{
+  position:relative;z-index:1;
+  flex:1;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  padding:18px 18px 14px;
+  scrollbar-width:none;
+}
+.rail-scroll::-webkit-scrollbar{display:none}
+.rail-top{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:14px;
+}
+.brand-mini{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Instrument Serif',serif;font-size:18px;letter-spacing:-.02em;
+}
+.mark{
+  width:34px;height:34px;border-radius:9px;
+  background:white;color:var(--navy);
+  display:grid;place-items:center;
+  font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:.08em;font-weight:700;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
+}
+.brand-mini em{font-style:italic;color:var(--amber);font-weight:400}
+.rail-kicker{
+  font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(244,244,237,.62);display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap
+}
+.rail-kicker b{color:var(--amber)}
+.dot{width:7px;height:7px;border-radius:50%;background:#1DB954;box-shadow:0 0 0 6px color-mix(in srgb, #1DB954 16%, transparent)}
+.rail h1{
+  font-family:'Instrument Serif',serif;font-size:34px;line-height:.88;letter-spacing:-.04em;margin:0;font-weight:400
+}
+.rail h1 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
+.rail .rule{width:36px;height:2px;background:var(--amber);margin:12px 0;border-radius:999px}
+.rail-copy{font-size:12.6px;line-height:1.62;color:rgba(244,244,237,.78);margin:0}
+.rail-copy strong{color:#fff;font-weight:600}
+.rail-copy .sub{color:rgba(244,244,237,.56);display:block;margin-top:8px;font-size:11.8px}
+.rail-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pill-rail{
+  font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;
+  padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.08);color:rgba(244,244,237,.84);
+  backdrop-filter:blur(6px);
+}
+.pill-rail.amb{background:var(--amber);border-color:var(--amber);color:white}
+.rail-actions{display:flex;gap:8px;margin-top:12px}
+.btn-rail-p{
+  flex:1;background:var(--amber);color:white;border:1px solid var(--amber);
+  padding:10px 12px;border-radius:999px;
+  font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  text-align:center;transition:.15s;cursor:pointer
+}
+.btn-rail-p:hover{background:var(--amber-2);border-color:var(--amber-2)}
+.btn-rail-g{
+  padding:10px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);
+  font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(244,244,237,.72);text-align:center;transition:.15s
+}
+.btn-rail-g:hover{border-color:rgba(255,255,255,.32);color:white;background:rgba(255,255,255,.06)}
+.rail-divider{height:1px;background:rgba(255,255,255,.08);margin:14px 0}
+
+/* bench in rail */
+.rail-bench{
+  border:1px solid rgba(255,255,255,.10);border-radius:14px;overflow:hidden;
+  background:rgba(255,255,255,.06);backdrop-filter:blur(8px);
+  display:flex;flex-direction:column;
+}
+.rail-bench-top{
+  padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(244,244,237,.58);background:rgba(0,0,0,.12)
+}
+.rail-bench-body{padding:12px;display:grid;gap:10px}
+.rail-bench .sys{
+  border:1px solid rgba(255,255,255,.10);border-radius:10px;background:rgba(0,0,0,.18);padding:10px;overflow:hidden
+}
+.rail-bench .sys svg{width:100%;height:auto;display:block;max-height:118px}
+.rail-bench .sys svg text{fill:rgba(244,244,237,.9) !important}
+.rail-bench .sys svg text[fill="var(--ink-soft)"]{fill:rgba(244,244,237,.55) !important}
+.rail-bench .sys svg rect[fill="var(--paper)"]{fill:rgba(255,255,255,.10) !important}
+.rail-bench .sys svg rect[fill="var(--amber-wash)"]{fill:rgba(255,122,26,.18) !important}
+.stat2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.stat2 div{border:1px solid rgba(255,255,255,.10);border-radius:10px;background:rgba(0,0,0,.14);padding:8px;text-align:center}
+.stat2 b{font-family:'Instrument Serif',serif;font-size:18px;display:block;line-height:1;color:white}
+.stat2 span{font-family:'Fragment Mono',monospace;font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:rgba(244,244,237,.55)}
+.rail-note{
+  border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;
+  background:rgba(0,0,0,.12);font-size:11.6px;line-height:1.55;color:rgba(244,244,237,.78)
+}
+.rail-note small{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+.rail-foot{
+  padding:10px 14px;border-top:1px solid rgba(255,255,255,.06);
+  display:flex;justify-content:space-between;gap:8px;align-items:center;
+  font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:rgba(244,244,237,.42)
+}
+.rail-foot-rail{
+  padding:12px 18px;border-top:1px solid rgba(255,255,255,.06);
+  display:flex;justify-content:space-between;gap:8px;align-items:center;
+  font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.06em;color:rgba(244,244,237,.42);
+  position:relative;z-index:1;margin-top:auto;
+}
+.rail-controls{
+  display:flex;align-items:center;gap:8px
+}
+.theme{
+  width:42px;height:26px;border-radius:999px;border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.10);position:relative;cursor:pointer;display:flex;align-items:center;padding:2px;transition:.2s
+}
+.knob{width:20px;height:20px;border-radius:50%;background:white;color:var(--navy);display:grid;place-items:center;font-size:11px;transition:transform .3s}
+[data-theme="dark"] .knob{transform:translateX(16px)}
+
+/* MAIN */
+.main{
+  display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  background:var(--ground);
+  position:relative;
+}
+.main::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;z-index:0;
+}
+.topbar{
+  position:relative;z-index:5;
+  height:var(--top-h);min-height:var(--top-h);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:0 16px;
+  border-bottom:1px solid var(--line);
+  background:color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter:blur(12px) saturate(1.2);
+  flex-shrink:0;
+}
+.topbar-left{display:flex;align-items:center;gap:10px;min-width:0}
+.panel-tabs{display:flex;gap:6px;align-items:center;overflow:auto;scrollbar-width:none}
+.panel-tabs::-webkit-scrollbar{display:none}
+.ptab{
+  padding:9px 14px;border-radius:999px;border:1px solid var(--line);
+  background:var(--paper);color:var(--ink-soft);
+  font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;white-space:nowrap;display:flex;gap:6px;align-items:center;transition:.15s;flex-shrink:0
+}
+.ptab.active{background:var(--navy);color:white;border-color:var(--navy);box-shadow:0 4px 14px rgba(26,26,24,.18)}
+.ptab:hover{border-color:var(--line-strong)}
+.ptab .cnt{font-size:9px;padding:2px 6px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
+.ptab.active .cnt{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.14);color:white}
+.topbar-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.seg{display:flex;gap:6px;align-items:center}
+.seg button{width:36px;height:36px;border-radius:999px;border:1px solid var(--line);background:var(--paper);display:grid;place-items:center;cursor:pointer}
+.cta{
+  border:1px solid var(--ink);padding:9px 14px;border-radius:999px;
+  font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--ink);color:var(--ground);transition:.15s;white-space:nowrap
+}
+.cta:hover{background:var(--amber);border-color:var(--amber);color:white}
+.m-toggle{display:none}
+
+/* content viewport */
+.viewport{
+  position:relative;z-index:1;
+  flex:1;overflow:hidden;
+  display:block;min-height:0;
+}
+.panel{
+  position:absolute;inset:0;
+  display:none;
+  overflow:hidden;
+  padding:14px;
+  gap:14px;
+  min-height:0;
+}
+.panel.active{display:flex}
+.panel-anim{animation:panelIn .32s cubic-bezier(.16,1,.3,1)}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* WORK panel specifics */
+.panel-work{flex-direction:column}
+.work-toolbar{
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  padding:0 0 2px;flex-shrink:0;
+}
+.filter{
+  padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--paper);
+  font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-soft);cursor:pointer;display:flex;gap:6px;align-items:center;min-height:38px;transition:.15s;flex-shrink:0
+}
+.filter.active{background:var(--amber);color:white;border-color:var(--amber);box-shadow:0 6px 16px rgba(180,83,9,.18)}
+.filter:hover{border-color:var(--line-strong)}
+.chip{font-size:9px;padding:2px 6px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
+.filter.active .chip{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.18);color:white}
+.kbd{
+  font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.06em;
+  padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--ground);color:var(--ink-soft);margin-left:auto;white-space:nowrap
+}
+.workbench{
+  display:grid;grid-template-columns:1.42fr .92fr;gap:14px;align-items:stretch;min-height:0;flex:1;
+}
+.table-wrap{
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);
+  display:flex;flex-direction:column;min-height:0;box-shadow:0 8px 24px rgba(0,0,0,.04)
+}
+.th{
+  padding:10px 12px;border-bottom:1px solid var(--line);background:var(--ground);
+  display:grid;grid-template-columns:44px 1fr 104px 110px;
+  font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  flex-shrink:0;
+}
+.rows{flex:1;overflow:auto;min-height:0;display:block;align-content:start}
+.row{
+  display:grid;grid-template-columns:44px 1fr 104px 110px;gap:0;align-items:center;
+  padding:12px 12px;border-bottom:1px solid var(--line);cursor:pointer;transition:.14s;background:var(--paper);
+  text-align:left;
+}
+.row:last-child{border:0}
+.row:hover{background:var(--ground)}
+.row.active{background:var(--amber-wash);box-shadow:inset 3px 0 0 var(--amber)}
+.row b{font-family:'Instrument Serif',serif;font-size:16px;color:var(--ink-soft);font-weight:400}
+.row h4{margin:0;font-size:13.2px;line-height:1.28;letter-spacing:-.01em;font-weight:600;color:var(--ink)}
+.row p{margin:3px 0 0;font-size:11.8px;line-height:1.45;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.tag{font-family:'Fragment Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;border-radius:999px;border:1px solid var(--line);width:fit-content}
+.tag.auto{border-color:#C7E8D0;background:#EBF6EF;color:#1F5E2E}
+[data-theme="dark"] .tag.auto{border-color:#2A4A32;background:#1B2E1F;color:#A8D5B5}
+.tag.funnel{border-color:#E8D9C8;background:#FFF3E6;color:#7A4D1A}
+[data-theme="dark"] .tag.funnel{border-color:#4A3520;background:#2E2418;color:#E8C9A0}
+.stack-mini{font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Preview — fills height, inner scroll */
+.preview{
+  border:1px solid var(--line);border-radius:12px;background:var(--paper);overflow:hidden;
+  display:flex;flex-direction:column;min-height:0;box-shadow:0 8px 24px rgba(0,0,0,.04)
+}
+.preview-top{
+  padding:11px 12px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;
+  font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);flex-shrink:0;
+  background:var(--ground);
+}
+.preview-img{
+  flex:0 0 auto;max-height:44%;min-height:180px;
+  background:var(--ground);border-bottom:1px solid var(--line);overflow:auto;position:relative;padding:0;display:block;scrollbar-width:thin
+}
+.preview-img img{width:100%;height:auto;display:block;transition:transform .2s cubic-bezier(.16,1,.3,1);transform-origin:top center}
+.preview-body{padding:12px;overflow:auto;flex:1;min-height:0}
+.zoom-bar{
+  display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--line);
+  background:var(--ground);font-family:'Fragment Mono',monospace;font-size:10px;color:var(--ink);flex-shrink:0
+}
+.zoom-bar button{
+  width:38px;height:32px;border-radius:999px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);
+  display:grid;place-items:center;cursor:pointer;font-size:13px;line-height:1;font-weight:600;transition:.14s;min-width:38px
+}
+.zoom-bar button:hover{border-color:var(--amber);color:var(--amber);background:var(--amber-wash)}
+.zoom-bar button:active{transform:scale(.96)}
+.zoom-bar .zoom-label{min-width:38px;text-align:center;letter-spacing:.06em;color:var(--ink-2);font-weight:600}
+.preview-body h3{font-family:'Instrument Serif',serif;font-size:18px;line-height:1.08;margin:0 0 6px;font-weight:400;letter-spacing:-.02em}
+.preview-body p{margin:0;font-size:13px;line-height:1.6;color:var(--ink-2)}
+.bullets{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:7px}
+.bullets li{padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--ground);font-size:12.4px;line-height:1.5;color:var(--ink-2)}
+.preview-cta{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.btn-p{
+  background:var(--amber);color:white;border:1px solid var(--amber);padding:10px 14px;border-radius:999px;
+  font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.15s;text-align:center
+}
+.btn-p:hover{background:var(--amber-2);border-color:var(--amber-2)}
+.btn-g{
+  background:transparent;border:1px solid var(--line);padding:10px 14px;border-radius:999px;
+  font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);transition:.15s;cursor:pointer
+}
+.btn-g:hover{border-color:var(--ink);color:var(--ink)}
+
+/* Services panel — 2x2 bento fitting viewport */
+.panel-services{flex-direction:column;overflow:auto}
+.head{
+  display:flex;align-items:end;justify-content:space-between;gap:16px;
+  padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px;flex-shrink:0
+}
+.eyebrow{font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+.h2{font-family:'Instrument Serif',serif;font-size:34px;line-height:.95;letter-spacing:-.03em;margin:6px 0 0;font-weight:400}
+.h2 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
+.desc{max-width:36ch;font-size:13px;line-height:1.6;color:var(--ink-soft)}
+.specs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;flex:1;align-content:start}
+.spec{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px;display:flex;flex-direction:column;transition:.15s}
+.spec:hover{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.spec-top{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.spec-icon{width:28px;height:28px;border:1px solid var(--line);background:var(--ground);display:grid;place-items:center;border-radius:8px;font-size:12px}
+.spec h3{font-size:15px;margin:0 0 6px;letter-spacing:-.01em}
+.spec p{margin:0;font-size:13px;line-height:1.55;color:var(--ink-soft);flex:1}
+.spec ul{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.spec li{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.06em;padding:4px 7px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
+
+/* About panel */
+.panel-about{flex-direction:column;overflow:auto}
+.timeline2{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;align-content:start}
+.card{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px}
+.card h3{font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:0 0 12px}
+.entry{display:grid;grid-template-columns:100px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.entry:last-child{border:0}
+.entry time{font-family:'Fragment Mono',monospace;font-size:11px;color:var(--ink-soft)}
+.entry h4{margin:0;font-size:14px;font-weight:600}
+.entry p{margin:4px 0 0;font-size:12.6px;line-height:1.5;color:var(--ink-soft)}
+.entry small{font-family:'Fragment Mono',monospace;font-size:9.5px;color:var(--sage)}
+
+/* Contact panel */
+.panel-contact{flex-direction:column;overflow:auto;justify-content:center}
+.contact{border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1.08fr .92fr;background:var(--paper);max-width:980px;width:100%;margin:0 auto;box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.contact-left{padding:28px;border-right:1px solid var(--line);background:var(--ground)}
+.contact-left h2{font-family:'Instrument Serif',serif;font-size:42px;line-height:.9;letter-spacing:-.03em;margin:8px 0 12px;font-weight:400}
+.contact-left h2 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
+.contact-left p{color:var(--ink-soft);line-height:1.6;margin:0;max-width:42ch;font-size:14px}
+.contact-links{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.contact-links a{padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.06em;transition:.15s}
+.contact-links a:hover{border-color:var(--navy);background:var(--navy);color:white}
+.form{padding:22px;display:grid;gap:10px;background:var(--paper)}
+.field{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--ground);display:grid;gap:4px}
+.field label{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.field input,.field textarea,.field select{border:0;outline:0;background:transparent;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);width:100%}
+.field textarea{min-height:74px;resize:vertical}
+.field:focus-within{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-wash)}
+.submit{background:var(--amber);color:white;border:0;padding:13px;border-radius:999px;font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.15s}
+.submit:hover{background:var(--amber-2)}
+.pill{
+  font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2)
+}
+
+/* drawer & lightbox (above shell) */
+.overlay{position:fixed;inset:0;background:rgba(18,17,16,.42);backdrop-filter:blur(4px);display:none;z-index:40}
+.overlay.open{display:block}
+.drawer{
+  position:fixed;right:0;top:0;bottom:0;width:min(720px,100%);background:var(--paper);
+  border-left:1px solid var(--line);transform:translateX(100%);transition:.32s cubic-bezier(.16,1,.3,1);z-index:50;overflow:auto;display:flex;flex-direction:column
+}
+.drawer.open{transform:none}
+.drawer-head{position:sticky;top:0;background:var(--paper);padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;z-index:2;flex-shrink:0}
+.drawer-body{overflow:auto;flex:1;padding:18px}
+.loom-wrap{aspect-ratio:16/9;background:var(--ground);border:1px solid var(--line);border-radius:12px;overflow:hidden;position:relative;margin:14px 0}
+.loom-wrap iframe{width:100%;height:100%;border:0;display:block}
+.loom-play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.18)), var(--ground);border:0;cursor:pointer;padding:0;width:100%;height:100%}
+.loom-play:hover .loom-btn{transform:scale(1.04)}
+.loom-btn{width:56px;height:56px;border-radius:50%;background:var(--amber);color:white;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.18);transition:transform .15s;font-size:18px}
+.loom-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:white;background:rgba(18,17,16,.52);padding:6px 10px;border-radius:999px;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);white-space:nowrap}
+.loom-thumb{width:100%;height:100%;object-fit:cover;opacity:.92;display:block}
+.lightbox{position:fixed;inset:0;background:rgba(18,17,16,.88);backdrop-filter:blur(8px);z-index:80;display:none;overflow:auto;padding:32px 24px 24px}
+.lightbox.open{display:grid;place-items:start center}
+.lightbox img{max-width:min(1280px,96vw);height:auto;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.4);background:white;margin-top:4px}
+.lightbox-bar{position:sticky;top:12px;z-index:81;display:flex;gap:8px;justify-content:center;margin-bottom:20px;padding-top:4px}
+.lightbox-bar button{padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.14);color:white;font-family:'Fragment Mono',monospace;font-size:11px;cursor:pointer;backdrop-filter:blur(6px);transition:.15s}
+.lightbox-bar button:hover{border-color:rgba(255,255,255,.36);background:rgba(255,255,255,.22)}
+.funnel-drawer-img{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ground);max-height:62vh;overflow:auto}
+.funnel-drawer-img img{width:100%;height:auto;display:block;transition:transform .2s cubic-bezier(.16,1,.3,1);transform-origin:top center}
+
+/* Responsive: collapse to single column + re-enable page scroll */
+@media (max-width:1060px){
+  :root{--rail-w: 320px}
+  .workbench{grid-template-columns:1fr}
+  .preview{max-height:none}
+  .th,.row{grid-template-columns:44px 1fr 104px}
+  .stack-mini{display:none}
+  .specs{grid-template-columns:1fr 1fr}
+  .timeline2{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  body{overflow:auto;height:auto}
+  .app{grid-template-columns:1fr;height:auto;min-height:100dvh}
+  .rail{display:none}
+  .main::before{opacity:.5}
+  .topbar{position:sticky;top:0}
+  .viewport{overflow:visible;flex:none}
+  .panel{position:relative;display:none;padding:18px}
+  .panel.active{display:flex}
+  .workbench{grid-template-columns:1fr}
+  .m-toggle{display:grid;place-items:center;width:42px;height:42px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);flex-shrink:0}
+  .burger{display:grid;gap:4px;place-items:center;pointer-events:none}
+  .burger i{width:16px;height:2px;background:currentColor;border-radius:999px;display:block;transition:transform .2s, opacity .15s}
+  .m-toggle[aria-expanded="true"] .burger i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .m-toggle[aria-expanded="true"] .burger i:nth-child(2){opacity:0}
+  .m-toggle[aria-expanded="true"] .burger i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  .panel-tabs{gap:6px}
+  .kbd{display:none}
+  /* mobile rail drawer */
+  .mobile-rail{
+    display:block;position:fixed;inset:0;z-index:45;
+    background:rgba(18,17,16,.42);backdrop-filter:blur(4px);
+  }
+  .mobile-rail-panel{
+    position:absolute;left:0;top:0;bottom:0;width:min(360px,86vw);
+    background:var(--navy);color:#F4F4ED;overflow:auto;
+    padding:18px;display:flex;flex-direction:column;gap:14px;
+    animation:slideIn .28s cubic-bezier(.16,1,.3,1)
+  }
+  @keyframes slideIn{from{transform:translateX(-100%)}to{transform:none}}
+}
+@media (max-width:560px){
+  .specs{grid-template-columns:1fr}
+  .h2{font-size:28px}
+  .contact-left h2{font-size:34px}
+  .th,.row{grid-template-columns:44px 1fr 90px}
+}
+.mobile-rail{display:none}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<div class="app">
+  <!-- RAIL -->
+  <aside class="rail" aria-label="Primary rail">
+    <div class="rail-scroll">
+      <div class="rail-top">
+        <a class="brand-mini" href="#work"><span class="mark">RD</span> Rainier <em>D.</em></a>
+        <div class="rail-controls">
+          <button class="theme" id="themeBtn" aria-label="Toggle dark / light"><span class="knob">◐</span></button>
+        </div>
+      </div>
+      <div class="rail-kicker"><span class="dot"></span> <b>Operating</b> · Cavite, PH · 24h reply</div>
+      <h1>Rainier<br><i>Dimasacat Jr</i></h1>
+      <div class="rule"></div>
+      <p class="rail-copy">
+        <strong>AI Automation / GHL Specialist</strong> — I build no-code systems that don't leak. Missed-call → text-back, Stripe → GHL → Sheets → Slack.
+        <span class="sub">Warm in handoff, rigorous underneath. Honest log — concepts labeled, internships labeled.</span>
+      </p>
+      <div class="rail-meta">
+        <span class="pill-rail amb">● GoHighLevel snapshots</span>
+        <span class="pill-rail">Make · n8n · Zapier</span>
+        <span class="pill-rail">OpenAI · Vapi · Twilio</span>
+      </div>
+      <div class="rail-actions">
+        <a class="btn-rail-p" href="#" data-go="work">Open bench →</a>
+        <a class="btn-rail-g" href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      </div>
+      <div class="rail-divider"></div>
+      <div class="rail-bench">
+        <div class="rail-bench-top"><span>System Bench — live routing</span><span style="color:var(--amber)">● Live</span></div>
+        <div class="rail-bench-body">
+          <div class="sys">
+            <svg viewBox="0 0 420 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="12" y="28" width="84" height="42" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+              <text x="54" y="48" text-anchor="middle" font-family="Fragment Mono" font-size="8" fill="var(--ink-soft)">STRIPE</text>
+              <text x="54" y="60" text-anchor="middle" font-family="DM Sans" font-size="9" font-weight="600" fill="var(--ink)">Checkout</text>
+              <path d="M96 49 H128" stroke="var(--amber)" stroke-width="1.4" stroke-dasharray="4 4"/>
+              <polygon points="128,49 122,45 122,53" fill="var(--amber)"/>
+              <rect x="130" y="18" width="96" height="62" rx="8" fill="var(--amber-wash)" stroke="var(--amber)"/>
+              <text x="178" y="36" text-anchor="middle" font-family="Fragment Mono" font-size="7" fill="var(--amber)">MAKE · ROUTER</text>
+              <text x="178" y="52" text-anchor="middle" font-family="DM Sans" font-size="9" font-weight="600" fill="var(--ink)">Create vs Update</text>
+              <text x="178" y="66" text-anchor="middle" font-family="Fragment Mono" font-size="7" fill="var(--ink-soft)">GHL + Sheets + Slack</text>
+              <path d="M226 49 H258" stroke="var(--amber)" stroke-width="1.4"/>
+              <polygon points="258,49 252,45 252,53" fill="var(--amber)"/>
+              <rect x="260" y="28" width="84" height="42" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+              <text x="302" y="48" text-anchor="middle" font-family="Fragment Mono" font-size="8" fill="var(--ink-soft)">GHL</text>
+              <text x="302" y="60" text-anchor="middle" font-family="DM Sans" font-size="9" font-weight="600" fill="var(--ink)">CRM · Funnel</text>
+              <path d="M178 80 V112 H72 V98" stroke="var(--line-strong)" stroke-width="1"/>
+              <rect x="42" y="98" width="60" height="22" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+              <text x="72" y="112" text-anchor="middle" font-family="Fragment Mono" font-size="7" fill="var(--ink-soft)">SHEETS LOG</text>
+              <path d="M178 80 V112 H282 V98" stroke="var(--line-strong)" stroke-width="1"/>
+              <rect x="252" y="98" width="60" height="22" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+              <text x="282" y="112" text-anchor="middle" font-family="Fragment Mono" font-size="7" fill="var(--ink-soft)">SLACK ALERT</text>
+              <circle cx="72" cy="124" r="2" fill="var(--sage)"/><circle cx="282" cy="124" r="2" fill="var(--amber)"/>
+            </svg>
+          </div>
+          <div class="stat2">
+            <div><b>17</b><span>Builds</span></div>
+            <div><b>2</b><span>Families</span></div>
+            <div><b>24h</b><span>Reply</span></div>
+          </div>
+          <div class="rail-note"><small>How I hand over</small><br>Every build → GHL snapshot + Sheets audit + Slack alerts + Loom. No black box — even for concepts.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
+        <span class="pill-rail" style="font-size:9px">techva.rain@gmail.com</span>
+        <span class="pill-rail" style="font-size:9px">0995 146 2765</span>
+      </div>
+    </div>
+    <div class="rail-foot-rail">
+      <span>© 2026 Rainier D. — Workbench E</span>
+      <span style="color:var(--amber)">● Single viewport</span>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="m-toggle" id="menuBtn" aria-expanded="false" aria-label="Open menu"><span class="burger"><i></i><i></i><i></i></span></button>
+        <div class="panel-tabs" role="tablist" aria-label="Sections">
+          <button class="ptab active" data-panel="work" role="tab" aria-selected="true">Work <span class="cnt">17</span></button>
+          <button class="ptab" data-panel="services" role="tab">Services</button>
+          <button class="ptab" data-panel="about" role="tab">About</button>
+          <button class="ptab" data-panel="contact" role="tab">Contact</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <a class="cta" href="#" data-go="contact">Start a project →</a>
+      </div>
+    </div>
+
+    <div class="viewport" id="viewport">
+      <!-- WORK -->
+      <section class="panel panel-work active panel-anim" data-panel-id="work" role="tabpanel">
+        <div class="work-toolbar">
+          <button class="filter active" data-filter="all">All <span class="chip">17</span></button>
+          <button class="filter" data-filter="automation">Automation <span class="chip">10</span></button>
+          <button class="filter" data-filter="funnel">Funnel <span class="chip">7</span></button>
+          <span class="kbd" id="kbdHint">Hover to preview · Click to open</span>
+        </div>
+        <div class="workbench">
+          <div class="table-wrap">
+            <div class="th"><span>#</span><span>Build</span><span>Family</span><span>Stack</span></div>
+            <div class="rows" id="rows"></div>
+          </div>
+          <aside class="preview" id="preview">
+            <div class="preview-top"><span id="prevKicker">Preview — 01</span><span style="color:var(--amber)">● Live</span></div>
+            <div class="preview-img" id="prevImg"></div>
+            <div class="preview-body" id="prevBody"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="panel panel-services" data-panel-id="services" role="tabpanel">
+        <div class="head">
+          <div>
+            <div class="eyebrow">Workbench — spec sheet</div>
+            <h2 class="h2">What I <i>run reliably</i></h2>
+          </div>
+          <p class="desc">Specs, not slogans. Four capabilities, each with the actual tools behind them.</p>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-top"><span>01 · Routing</span><span class="spec-icon">◈</span></div><h3>Workflow Automation</h3><p>GHL, n8n, Make, Zapier — routers, retries, missed-call recovery with human fallback.</p><ul><li>GHL Snapshots</li><li>Routers</li><li>Missed-call</li></ul></div>
+          <div class="spec"><div class="spec-top"><span>02 · Intelligence</span><span class="spec-icon">✦</span></div><h3>AI & Prompts</h3><p>Assistants that follow your SOP — support, classification, content pipelines with Vector DB.</p><ul><li>OpenAI · Gemini</li><li>Vector DB</li><li>Prompt chains</li></ul></div>
+          <div class="spec"><div class="spec-top"><span>03 · Plumbing</span><span class="spec-icon">⟡</span></div><h3>API Integrations</h3><p>Stripe, Sheets, Slack, Xero, Asana, Drive — webhooks without the glue-code tax.</p><ul><li>Webhooks</li><li>CSV / Sheets</li><li>Slack</li></ul></div>
+          <div class="spec"><div class="spec-top"><span>04 · Shipping</span><span class="spec-icon">⬢</span></div><h3>No-Code / Low-Code</h3><p>OutSystems + GHL funnels. Fast like low-code, disciplined like engineering.</p><ul><li>OutSystems</li><li>GHL Funnels</li><li>POS · Booking</li></ul></div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="panel panel-about" data-panel-id="about" role="tabpanel">
+        <div class="head">
+          <div><div class="eyebrow">Background</div><h2 class="h2">Experience <i>& bench notes</i></h2></div>
+          <p class="desc">Low-code roots, frontend craft, integration obsession.</p>
+        </div>
+        <div class="timeline2">
+          <div class="card"><h3>Work Experience</h3>
+            <div class="entry"><time>2022 — 2024</time><div><h4>Software Developer (Low-Code) — Stratpoint</h4><p>OutSystems for client delivery. Scaffolding as product.</p><small>OutSystems · Agile</small></div></div>
+            <div class="entry"><time>Apr — Aug 2022</time><div><h4>Frontend Intern — Fligno Software PH</h4><p>Crowdsourcing platform — TypeScript + Next.js.</p><small>TypeScript · Next.js</small></div></div>
+            <div class="entry"><time>2021 — 2022</time><div><h4>Web Dev Intern — Ling Ling Restaurants</h4><p>Interbranch POS — React, real ops.</p><small>React · JavaScript</small></div></div>
+          </div>
+          <div class="card"><h3>Education & Handover</h3>
+            <div class="entry"><time>2022</time><div><h4>BS Computer Engineering — PUP</h4><p>Polytechnic University of the Philippines.</p><small>Manila · PH</small></div></div>
+            <div style="margin-top:10px;border:1px solid var(--line);border-radius:10px;background:var(--ground);padding:14px">
+              <div style="font-family:'Instrument Serif',serif;font-size:16px;margin-bottom:4px">How I hand over — warm & documented</div>
+              <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)">1. Map the real flow. 2. Build happy path + human fallback. 3. Log to Sheets, alert to Slack, leave a Loom.</p>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><span class="pill" style="font-size:9px">Loom</span><span class="pill" style="font-size:9px">Sheets</span><span class="pill" style="font-size:9px">Snapshot</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="panel panel-contact" data-panel-id="contact" role="tabpanel">
+        <div class="contact">
+          <div class="contact-left">
+            <div class="eyebrow">Contact — warm reply, fast loom</div>
+            <h2>Let’s make<br><i>ops lighter.</i></h2>
+            <p>Tell me the flow eating your week — I’ll map it and ship the first automation in days.</p>
+            <div class="contact-links"><a href="mailto:techva.rain@gmail.com">techva.rain@gmail.com</a><a href="tel:09951462765">0995 146 2765</a><a href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+            <p style="margin-top:12px;font-family:'Fragment Mono',monospace;font-size:10.5px;color:var(--ink-soft)">◎ Replies in 24h · Snapshots + Looms included</p>
+            <p style="margin-top:14px;font-family:'Fragment Mono',monospace;font-size:10px;color:var(--ink-soft);opacity:.6">Variant E · Single viewport · Chamois paper · 1px hairlines · 0 shadows · BrewedOps navy rail</p>
+          </div>
+          <form class="form" onsubmit="return handleSubmit(event)">
+            <div style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)">Send a brief</div>
+            <div class="field"><label>Name</label><input required placeholder="Your name"></div>
+            <div class="field"><label>Email</label><input type="email" required placeholder="you@company.com"></div>
+            <div class="field"><label>What to automate?</label><select><option>Lead routing & follow-up</option><option>Missed-call & review recovery</option><option>Booking & payment flow</option><option>Content / AI pipeline</option><option>Other</option></select></div>
+            <div class="field"><label>Message</label><textarea placeholder="The flow that hurts most…"></textarea></div>
+            <button class="submit" type="submit">Send brief →</button>
+            <div id="formOk" style="display:none;text-align:center;padding:10px;border:1px solid #C7E8D0;background:#EBF6EF;color:#1F5E2E;border-radius:8px;font-size:13px">Thanks! Opening your email client…</div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- mobile rail drawer -->
+<div class="mobile-rail" id="mobileRail" style="display:none" onclick="if(event.target===this) toggleMobileRail(false)">
+  <div class="mobile-rail-panel">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="font-family:'Instrument Serif',serif;font-size:18px">Rainier <i style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--amber)">D.</i></span>
+      <button onclick="toggleMobileRail(false)" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:white;cursor:pointer">✕</button>
+    </div>
+    <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,244,237,.5)"><span style="color:var(--amber)">●</span> Operating · 24h reply</div>
+    <div style="border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04);padding:14px">
+      <div style="font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,244,237,.5)">AI Automation / GHL Specialist</div>
+      <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(244,244,237,.78)">No-code systems that don't leak. Logged, routed, documented.</p>
+      <div style="display:flex;gap:8px;margin-top:12px"><a class="btn-rail-p" href="#" onclick="toggleMobileRail(false);switchPanel('work')">Open bench</a><a class="btn-rail-g" href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank">LinkedIn ↗</a></div>
+    </div>
+    <div style="display:grid;gap:8px">
+      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('work')">Work — 17</button>
+      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('services')">Services</button>
+      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('about')">About</button>
+      <button class="ptab" style="width:100%;justify-content:center;background:var(--amber);color:white;border-color:var(--amber)" onclick="toggleMobileRail(false);switchPanel('contact')">Start a project →</button>
+    </div>
+    <div style="margin-top:auto;font-family:'Fragment Mono',monospace;font-size:10px;color:rgba(244,244,237,.42)">techva.rain@gmail.com · 0995 146 2765</div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer"><div class="drawer-head"><span id="drawerKicker" style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)">Case study</span><button onclick="closeDrawer()" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--ground);cursor:pointer">✕</button></div><div class="drawer-body" id="drawerBody"></div></aside>
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()"><div style="width:min(1280px,96vw)"><div class="lightbox-bar"><button onclick="closeLightbox()">✕ Close</button><button onclick="document.getElementById('lightboxImg').style.transform=document.getElementById('lightboxImg').style.transform==='scale(1.5)'?'scale(1)':'scale(1.5)'" style="width:auto">Toggle 150%</button></div><img id="lightboxImg" src="" alt="Full view" style="width:100%;height:auto;display:block;transition:transform .2s;transform-origin:top center"></div></div>
+
+<script>
+const projects=[
+  {n:"01",cat:"funnel",title:"FitCoach Ecosystem — Stripe Payment to GHL",desc:"Stripe checkout for a 12-week program flows into GoHighLevel with router logic to update/create contacts, log roster, alert team.",img:"assets/funnel/fitcoach/thumb.webp",full:"assets/funnel/fitcoach/full.webp",sections:["assets/funnel/fitcoach/sec01.webp","assets/funnel/fitcoach/sec02.webp","assets/funnel/fitcoach/sec03.webp","assets/funnel/fitcoach/sec04.webp","assets/funnel/fitcoach/sec05.webp","assets/funnel/fitcoach/sec06.webp"],loom:"https://www.loom.com/embed/8613df569f7740c998a3a1f67d5dcdbb?hide_owner=true&hide_share=true&hide_title=true",stack:["Make.com","Stripe","GoHighLevel","Sheets","Slack"],bullets:["Stripe → Make router: create vs update","Checks existing GHL contact before upsert","Sheets roster + Slack ping","No double enrollments"]},
+  {n:"02",cat:"funnel",title:"Legal Consultation Intake & Nurture System — Immigration & Family Law",desc:"GHL-only 4-step funnel + 9-workflow tag-gated nurture loop where booking and nurture actively suppress each other — no double-messaging, no-shows recycled.",img:"assets/funnel/legal/thumb.webp",full:"assets/funnel/legal/full.webp",sections:["assets/funnel/legal/sec01.webp","assets/funnel/legal/sec02.webp","assets/funnel/legal/sec03.webp","assets/funnel/legal/sec04.webp","assets/funnel/legal/sec05.webp"],stack:["GoHighLevel","GHL Workflows","Custom HTML/CSS/JS"],bullets:["4-step funnel: Landing → Intake → Calendar → Confirmation (vanilla JS, no deps)","Tag taxonomy 14+ tags + 9 workflows with suppression gates + staff alerts","Nurture vs booking never conflict — provably one state at a time"],niche:"Immigration & Family Law Solo Practice",problem:"Solo/small law firms lose leads two different ways: cold inquiries that never convert into a booked consultation, and booked consultations that no-show or cancel without rebooking. Most funnel builds solve one side — a booking page or a nurture sequence — but treat them as separate systems where booking and nurture run blind to each other.",solution:"A 4-step GHL funnel (Landing → Intake Form → Calendar → Confirmation) feeding a 9-workflow automation backend built entirely on tag-based gating: cold leads nurtured 14-day drip; booked leads instantly pulled out of nurture; no-shows/cancels recycled into shortened nurture; every outcome (booked/completed/no-show/cancelled) triggers staff alert — single-platform, defensively gated.",build:["Tag taxonomy (built first): case-type-*, lead-source-*, consult-booked/completed/noshow/rescheduled, nurture-active/recycled/day3/7/14/exhausted, re-engage-sent","Funnel: Custom HTML/CSS/JS over GHL native form+calendar — hero, pain, how-it-works, credibility, FAQ accordion, UTM capture on hidden fields (data-q) + cross-page CTA href rewrite","9 Workflows: 1 New Inquiry→Nurture (suppressed if booked), 2 Booking Success→Kill Nurture, 3 No-show→Recycle, 4 Cancel→Recycle, 5 Completed→Thank-you, 6 Staff alerts per outcome, 7 Long-nurture drip (tag-gated), 8 Re-engage exhausted, 9 Cleanup"],outcome:"Provably one state at a time — nurture and booking never double-message. Booked leads exit nurture instantly, no-shows recycle, staff sees every transition in Slack + GHL — single snapshot, zero external code."},
+  {n:"03",cat:"funnel",title:"Real Estate Lead Automation — Buyer/Seller Routing",desc:"GHL lead system automating lead capture to appointment reminders for a real estate agency.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/8eff1e4c-cff2-4655-bf72-3acf0c61666f/work-realestate-ghl.png",loom:"https://www.loom.com/embed/fa05317c159f4dd38692c1186011f0ff?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel"],bullets:["Buyer vs seller intent routing","Nurturing + reminders","Single GHL snapshot"]},
+  {n:"04",cat:"funnel",title:"FlowFix Plumbing — Emergency Triage & Reactivation",desc:"Emergency-aware triage, missed-call recovery, dormant reactivation for a plumbing business.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/db328ede-0397-4b5d-ba3e-046bb4400b60/work-flowfix-triage.png",stack:["GoHighLevel","Make.com","Slack"],bullets:["Emergency keyword → priority queue","Missed-call text-back <2m","Dormant drip reactivation"]},
+  {n:"05",cat:"funnel",title:"Med Spa Reputation Firewall",desc:"Missed-call recovery + review gate routing unhappy clients privately vs to Google.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/51b0a9d8-1bc9-4d03-ae27-f79bffe5cb23/work-medspa-review-gate.png",loom:"https://www.loom.com/embed/adad4fff01bd48a5a871c3b1cb996c4d?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel","SMS","Surveys"],bullets:["Happy → Google, unhappy → owner","Missed-call SMS","Protects rating while fixing issue"]},
+  {n:"06",cat:"funnel",title:"Studio Lumina — Booking & Conflict-Check Automation",desc:"Photography studio booking routed by event type, checked vs confirmed bookings, locks after deposit.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/e20b8f08-623d-413a-a4f9-e053093576d7/work-studio-lumina.png",stack:["GoHighLevel","Make.com","Stripe","Sheets","Slack"],bullets:["Event-type routing + date conflict vs Sheets","Stripe deposit locks date","Confirmation + reminders"]},
+  {n:"07",cat:"automation",title:"AI Content Repurposing",desc:"Zap that transcribes media, generates blog posts, auto-publishes tailored to FB Pages + LinkedIn.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-zapier-content-OVsh9QQy.png",stack:["Zapier","Drive","AI","Facebook","LinkedIn"],bullets:["Drive → transcription → AI blog","Path routing per channel","No manual reformatting"]},
+  {n:"08",cat:"automation",title:"Leads Enrichment Automation",desc:"Webhook pipeline filtering by company size, Sheets log, Slack ping, AI outreach draft.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-zapier-leads-BtfJHQcL.png",stack:["Zapier","Webhooks","Sheets","Slack","AI"],bullets:["Webhook in → size filter","AI drafts outreach","Slack + Sheets"]},
+  {n:"09",cat:"automation",title:"Xero → Asana Transaction Sync",desc:"Make scenario exporting Xero transactions, iterator/router, CSV to Asana with Sheets logging.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-make-xero-CkNq8FiY.png",stack:["Make.com","Xero","Asana","Sheets"],bullets:["Xero export → iterator → router","CSV attachment to Asana","Sheets audit"]},
+  {n:"10",cat:"automation",title:"AI Powered Customer Support Bot",desc:"Webhook bot fetching ticket data, routing by status, generating AI responses via OpenAI assistants.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-ai-support-bot-DmCpIIAn.jpg",stack:["Make.com","Webhooks","OpenAI","Router"],bullets:["Fetch → status router","OpenAI per branch","Fallback to human"]},
+  {n:"11",cat:"automation",title:"Auto Sort Gmail Attachments on Drive",desc:"Watches Gmail, classifies with Gemini+OpenAI, files to Drive, logs Sheets, replies Gmail.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-gmail-drive-PffsaQzU.jpg",stack:["Make.com","Gmail","Gemini","OpenAI","Drive","Sheets"],bullets:["Gmail watch → Gemini + OpenAI","Auto-filed to Drive folders","Sheets log + Gmail reply"]},
+  {n:"12",cat:"funnel",title:"Interbranch POS System",desc:"Web POS enabling seamless ops across multiple restaurant branches.",img:"",stack:["React","JavaScript"],bullets:["Multi-branch sync","React front-end","Ling Ling internship"],letter:"POS"},
+  {n:"13",cat:"automation",title:"Crowdsourcing Platform",desc:"Collaborative platform connecting contributors with projects.",img:"",stack:["TypeScript","Next.js"],bullets:["Next.js + TypeScript","Contributor matching","Fligno internship"],letter:"CP"},
+  {n:"14",cat:"automation",title:"Enterprise Low-Code Solutions",desc:"Client solutions built with low-code for rapid delivery.",img:"",stack:["OutSystems"],bullets:["OutSystems","Enterprise clients","Rapid iteration"],letter:"LC"},
+  {n:"15",cat:"automation",title:"AI Customer Support Agent",desc:"Conversational AI trained on docs to handle inbound 24/7.",img:"",stack:["OpenAI","GHL","Vector DB"],bullets:["Trained on docs","Vector DB retrieval","GHL inbox"],letter:"AI"},
+  {n:"16",cat:"automation",title:"AI Content Generator",desc:"Prompt chains generating SEO blog + social copy at scale.",img:"",stack:["GPT-4","Prompt Engineering"],bullets:["SEO prompt chains","Blog + social variants","Consistent voice"],letter:"CG"},
+  {n:"17",cat:"automation",title:"Voice AI Appointment Booker",desc:"Inbound voice agent qualifying leads and booking calendar.",img:"",stack:["Vapi","Twilio","n8n"],bullets:["Vapi voice agent","Twilio telephony","n8n calendar"],letter:"VA"},
+];
+
+const rows=document.getElementById('rows');
+const prevKicker=document.getElementById('prevKicker');
+const prevImg=document.getElementById('prevImg');
+const prevBody=document.getElementById('prevBody');
+let active=projects[0];
+
+function render(filter='all'){
+  rows.innerHTML='';
+  const list = filter==='all'? projects : projects.filter(p=>p.cat===filter);
+  const isCoarse = window.matchMedia('(hover: none)').matches;
+  list.forEach(p=>{
+    const r=document.createElement('div');
+    r.className='row'+(p.n===active.n?' active':'');
+    r.tabIndex=0;
+    r.setAttribute('role','button');
+    r.setAttribute('aria-label', `Preview ${p.title}`);
+    r.innerHTML=`<b>${p.n}</b><div><h4>${p.title}</h4><p>${p.desc}</p></div><span class="tag ${p.cat}">${p.cat==='automation'?'Automation':'Funnel'}</span><span class="stack-mini">${p.stack.slice(0,3).join(' · ')}</span>`;
+    r.addEventListener('mouseenter',()=>{ if(!isCoarse) setPreview(p); });
+    r.addEventListener('focus',()=>setPreview(p));
+    r.addEventListener('click',()=>{
+      if(isCoarse){
+        if(active.n !== p.n){ setPreview(p); }
+        else { openDrawer(p); }
+      } else { openDrawer(p); }
+    });
+    r.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){ if(isCoarse && active.n !== p.n){ setPreview(p);} else openDrawer(p); }
+      if(e.key===' '){ e.preventDefault(); setPreview(p); }
+    });
+    rows.appendChild(r);
+  });
+  if(!list.find(x=>x.n===active.n)) setPreview(list[0]);
+  const kbd=document.getElementById('kbdHint');
+  if(kbd) kbd.textContent = window.matchMedia('(hover: none)').matches ? 'Tap to preview · Tap again to open' : 'Hover to preview · Click to open';
+}
+let prevZoomLevel=1, drawerZoomLevel=1;
+function prevZoom(d){ prevZoomLevel=Math.min(2,Math.max(0.6, prevZoomLevel+d)); const im=document.getElementById('prevZoomImg'); const lb=document.getElementById('prevZoomLabel'); if(im) im.style.transform=`scale(${prevZoomLevel})`; if(lb) lb.textContent=Math.round(prevZoomLevel*100)+'%'; }
+function drawerZoom(d){ drawerZoomLevel=Math.min(2,Math.max(0.6, drawerZoomLevel+d)); const im=document.getElementById('drawerZoomImg'); const lb=document.getElementById('drawerZoomLabel'); if(im) im.style.transform=`scale(${drawerZoomLevel})`; if(lb) lb.textContent=Math.round(drawerZoomLevel*100)+'%'; }
+function openLightbox(src){ const lb=document.getElementById('lightbox'); const im=document.getElementById('lightboxImg'); if(lb&&im){ im.src=src; lb.classList.add('open'); document.body.style.overflow='hidden'; } }
+function closeLightbox(){ const lb=document.getElementById('lightbox'); if(lb) lb.classList.remove('open'); document.body.style.overflow=''; if(window.innerWidth<=860) document.body.style.overflow='auto'; else document.body.style.overflow='hidden'; }
+window.closeLightbox=closeLightbox; window.prevZoom=prevZoom; window.drawerZoom=drawerZoom; window.openLightbox=openLightbox;
+function setPreview(p){
+  active=p;
+  document.querySelectorAll('.row').forEach(el=>el.classList.toggle('active', el.querySelector('b').textContent===p.n));
+  prevKicker.textContent=`Preview — ${p.n} · ${p.cat==='automation'?'Automation':'Funnel'}`;
+  if(p.sections && p.sections.length){
+    prevZoomLevel=1;
+    const secThumbs=p.sections.map((s,i)=>`<img src="${s}" alt="sec ${i+1}" style="width:64px;height:44px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:6px;cursor:pointer;flex-shrink:0" onclick="document.getElementById('prevScroll').scrollTop=${i}*260" loading="lazy">`).join('');
+    prevImg.innerHTML = `<div class="zoom-bar"><span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Sections · zoom & scroll</span><button onclick="prevZoom(-0.15)">−</button><span class="zoom-label" id="prevZoomLabel">100%</span><button onclick="prevZoom(0.15)">+</button><button onclick="openLightbox('${p.full||p.img}')" style="width:auto;padding:0 10px">⤢ Full</button></div><div style="overflow:auto;max-height:260px" id="prevScroll"><img id="prevZoomImg" src="${p.full||p.img}" alt="${p.title}" style="width:100%;height:auto;display:block" loading="eager"></div><div style="display:flex;gap:6px;padding:8px;background:var(--ground);border-top:1px solid var(--line);overflow:auto;align-items:center"><span style="font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft);white-space:nowrap">Sections · tap to jump:</span>${secThumbs}</div>`;
+  } else {
+    prevZoomLevel=1;
+    prevImg.innerHTML = p.img ? `<div class="zoom-bar"><span style="flex:1">${p.cat==='automation'?'Workflow':'Funnel'}</span><button onclick="prevZoom(-0.15)">−</button><span class="zoom-label" id="prevZoomLabel">100%</span><button onclick="prevZoom(0.15)">+</button><button onclick="openLightbox('${p.img}')" style="width:auto;padding:0 10px">⤢ Full</button></div><div style="overflow:auto;max-height:300px" id="prevScroll"><img id="prevZoomImg" src="${p.img}" alt="${p.title}" style="width:100%;height:auto;display:block" loading="lazy"></div>` : `<div style="width:100%;height:160px;border:1px dashed var(--line);border-radius:10px;display:grid;place-items:center;font-family:'Instrument Serif',serif;font-size:32px;color:var(--ink-soft)">${p.letter}</div>`;
+  }
+  prevBody.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${p.stack.map(s=>`<span class="pill" style="padding:5px 8px;font-size:9px">${s}</span>`).join('')}</div><ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul><div class="preview-cta"><button class="btn-p" onclick="openDrawerById('${p.n}')">Open zoom view →</button><button class="btn-g" onclick="switchPanel('contact')">Discuss this →</button></div>`;
+}
+function openDrawerById(n){ openDrawer(projects.find(x=>x.n===n)); }
+render(); setPreview(active);
+document.querySelectorAll('.filter').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    render(b.dataset.filter);
+  });
+});
+
+// panel switching — no scroll, just opacity
+function switchPanel(id){
+  document.querySelectorAll('.ptab').forEach(t=>{ const on=t.dataset.panel===id; t.classList.toggle('active', on); t.setAttribute('aria-selected', on?'true':'false'); });
+  document.querySelectorAll('.panel').forEach(p=>{
+    const on=p.dataset.panelId===id;
+    p.classList.toggle('active', on);
+    if(on){ p.classList.remove('panel-anim'); void p.offsetWidth; p.classList.add('panel-anim'); }
+  });
+  history.replaceState(null,'','#'+id);
+}
+document.querySelectorAll('.ptab').forEach(b=> b.addEventListener('click',()=> switchPanel(b.dataset.panel)));
+document.querySelectorAll('[data-go]').forEach(a=> a.addEventListener('click',e=>{ e.preventDefault(); switchPanel(a.dataset.go); }));
+// deep link
+if(location.hash){ const h=location.hash.replace('#',''); if(['work','services','about','contact'].includes(h)) switchPanel(h); }
+
+// theme
+
+const tBtn=document.getElementById('themeBtn');
+const saved=localStorage.getItem('rd-theme');
+if(saved) document.documentElement.setAttribute('data-theme',saved);
+else if(window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme','dark');
+tBtn.addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('rd-theme',next);
+});
+
+// drawer + lightbox
+const drawer=document.getElementById('drawer'), overlay=document.getElementById('overlay'), drawerBody=document.getElementById('drawerBody'), drawerKicker=document.getElementById('drawerKicker');
+function openDrawer(p){
+  drawerKicker.textContent=(p.cat==='automation'?'Automation':'Funnel')+' — '+p.n;
+  drawerZoomLevel=1;
+  let media='';
+  const labels = p.n==="02" ? ["Landing · Hero + Trust","Intake · Form + UTM","Calendar · Booking","Confirmation · Next steps","Nurture · Tag loop"] : ["Hero · Build the body","Problem · Pain","Program · 4 pillars","Proof · Testimonials","Pricing · $297","FAQ · No surprises"];
+  if(p.sections && p.sections.length){
+    const secStack=p.sections.map((s,i)=>`<img src="${s}" alt="sec ${i+1}" style="width:100%;height:auto;display:block;border-bottom:1px solid var(--line)" loading="lazy"><div style="font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft);padding:6px 10px;background:var(--ground);border-bottom:1px solid var(--line)">Section ${i+1} / ${p.sections.length} — ${labels[i]||"Section "+(i+1)}</div>`).join('');
+    media=`<div class="zoom-bar" style="position:sticky;top:0;z-index:2"><span style="flex:1">Zoom — every section stacked</span><button onclick="drawerZoom(-0.15)">−</button><span class="zoom-label" id="drawerZoomLabel">100%</span><button onclick="drawerZoom(0.15)">+</button><button onclick="openLightbox('${p.full||p.img}')" style="width:auto;padding:0 10px">⤢ Full</button></div><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ground);max-height:62vh;overflow:auto"><div id="drawerZoomImg" style="transition:transform .2s cubic-bezier(.16,1,.3,1);transform-origin:top center"><div style="display:grid">${secStack}</div><div style="padding:10px;background:white;border-top:1px solid var(--line)"><img src="${p.full||p.img}" alt="${p.title} full" style="width:100%;height:auto;display:block" loading="lazy"></div></div></div>`;
+  } else if(p.img){
+    media=`<div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ground);"><div class="zoom-bar"><span style="flex:1">Preview</span><button onclick="drawerZoom(-0.15)">−</button><span class="zoom-label" id="drawerZoomLabel">100%</span><button onclick="drawerZoom(0.15)">+</button><button onclick="openLightbox('${p.img}')" style="width:auto;padding:0 10px">⤢ Full</button></div><div style="max-height:62vh;overflow:auto"><img id="drawerZoomImg" src="${p.img}" alt="${p.title}" style="width:100%;height:auto;display:block" loading="lazy"></div></div>`;
+  } else {
+    media=`<div style="aspect-ratio:16/10;display:grid;place-items:center;font-size:32px;color:var(--ink-soft);border:1px dashed var(--line);border-radius:10px;background:var(--ground)">${p.letter}</div>`;
+  }
+  let caseStudy='';
+  if(p.problem){
+    caseStudy = `<div style="border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);margin:14px 0"><div style="padding:16px;display:grid;gap:14px">
+      <div><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px">Problem</div><p style="margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-2)">${p.problem}</p></div>
+      <div style="border-top:1px solid var(--line);padding-top:14px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px">Solution</div><p style="margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-2)">${p.solution}</p></div>
+      <div style="border-top:1px solid var(--line);padding-top:14px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px">Build</div><ul style="margin:0;padding:0;list-style:none;display:grid;gap:8px">${(p.build||[]).map(b=>`<li style="padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--ground);font-size:12.5px;line-height:1.5;color:var(--ink-2)">▸ ${b}</li>`).join('')}</ul></div>
+      <div style="border-top:1px solid var(--line);padding-top:14px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px">Outcome</div><p style="margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-2)">${p.outcome}</p></div>
+    </div></div>`;
+  }
+  let loomHtml='';
+  if(p.loom){
+    const thumb = p.img || (p.sections ? p.sections[0] : '');
+    const escTitle = p.title.replace(/"/g,'&quot;');
+    loomHtml = `<div class="loom-wrap" data-loom="${p.loom}" data-title="${escTitle}" style="margin:14px 0 0"><img class="loom-thumb" src="${thumb}" alt="${escTitle} — Loom thumbnail" loading="lazy"><button class="loom-play" onclick="playLoom(this)" aria-label="Play Loom walkthrough for ${escTitle}"><span class="loom-btn">▶</span></button><span class="loom-label">Click to play — Loom walkthrough</span></div>`;
+  }
+  drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${p.title}</h3><p style="color:var(--ink-soft);line-height:1.6;margin:0">${p.desc}</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0">${p.stack.map(s=>`<span class="pill">${s}</span>`).join('')}</div>${media}${loomHtml}${caseStudy}<ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul><div style="display:flex;gap:8px;margin-top:14px"><a class="btn-p" href="#" onclick="closeDrawer();switchPanel('contact');return false">Discuss this build →</a></div>`;
+  drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
+}
+function playLoom(btn){
+  const wrap = btn.closest('.loom-wrap');
+  if(!wrap) return;
+  const src = wrap.getAttribute('data-loom');
+  const title = wrap.getAttribute('data-title') || 'Loom';
+  wrap.innerHTML = `<iframe src="${src}&autoplay=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="${title} — Loom" style="width:100%;height:100%;border:0;display:block;aspect-ratio:16/9"></iframe>`;
+}
+function closeDrawer(){
+  drawerBody.querySelectorAll('iframe[src*="loom.com"]').forEach(f=>{ f.src='about:blank'; f.remove(); });
+  drawer.classList.remove('open');overlay.classList.remove('open');
+  if(window.innerWidth<=860) document.body.style.overflow='auto'; else document.body.style.overflow='hidden';
+}
+overlay.addEventListener('click',closeDrawer);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer(); closeLightbox();}});
+window.closeDrawer=closeDrawer; window.openDrawer=openDrawer; window.playLoom=playLoom;
+function handleSubmit(e){
+  e.preventDefault();
+  const name=e.target.querySelector('input').value||'there';
+  document.getElementById('formOk').style.display='block';
+  const subject=encodeURIComponent('Workbench inquiry — '+name);
+  const body=encodeURIComponent(e.target.querySelector('textarea').value||'Hi Rainier, let’s discuss an automation build.');
+  setTimeout(()=>location.href=`mailto:techva.rain@gmail.com?subject=${subject}&body=${body}`,400);
+  return false;
+}
+window.handleSubmit=handleSubmit;
+
+// mobile rail
+const menuBtn=document.getElementById('menuBtn');
+const mobileRail=document.getElementById('mobileRail');
+function toggleMobileRail(open){
+  mobileRail.style.display = open ? 'block' : 'none';
+  menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.style.overflow = open ? 'hidden' : (window.innerWidth<=860 ? 'auto' : 'hidden');
+}
+window.toggleMobileRail=toggleMobileRail;
+menuBtn.addEventListener('click',()=> toggleMobileRail(mobileRail.style.display==='none' || !mobileRail.style.display));
+</script>
+</body>
+</html>
