@@ -458,9 +458,15 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .form{padding:22px;display:grid;gap:10px;background:var(--paper)}
 .field{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--ground);display:grid;gap:4px}
 .field label{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
-.field input,.field textarea,.field select{border:0;outline:0;background:transparent;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);width:100%}
+.field input,.field textarea,.field select{border:0;outline:0;background:transparent;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);width:100%;appearance:none;-webkit-appearance:none}
+.field select{cursor:pointer;padding-right:20px;background-image:linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%), linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%);background-position:calc(100% - 14px) 50%, calc(100% - 9px) 50%;background-size:5px 5px, 5px 5px;background-repeat:no-repeat}
+.field select option{color:var(--ink);background:var(--paper);padding:10px 12px}
+.field select option:checked{color:white;background:var(--amber)}
+.field select:focus{color:var(--ink)}
 .field textarea{min-height:74px;resize:vertical}
 .field:focus-within{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-wash)}
+[data-theme="dark"] .field select option{color:var(--ink);background:var(--paper)}
+[data-theme="dark"] .field select{color:var(--ink)}
 .submit{background:var(--amber);color:white;border:0;padding:13px;border-radius:999px;font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.15s}
 .submit:hover{background:var(--amber-2)}
 .pill{
