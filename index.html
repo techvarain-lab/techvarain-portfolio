@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rainier Dimasacat — Single Viewport · AI Automation / GHL</title>
-<meta name="description" content="Rainier Dimasacat — AI Automation / GHL Specialist. 18 builds, 2 families. Single-viewport workbench: Stripe → GHL → Sheets → Slack, logged, routed, documented.">
+<title>Rainier Dimasacat — Single Viewport · GHL SPECIALIST / FUNNEL BUILDER</title>
+<meta name="description" content="Rainier Dimasacat — GHL SPECIALIST / FUNNEL BUILDER. 19 builds, 2 families. Single-viewport workbench: Stripe → GHL → Sheets → Slack, logged, routed, documented.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@400;500;600&family=Fragment+Mono&family=Instrument+Serif&display=swap" rel="stylesheet">
 <style>
@@ -125,7 +125,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .rail-scroll::-webkit-scrollbar{display:none}
 .rail-top{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
-  margin-bottom:14px;
+  margin-bottom:8px;
 }
 .brand-mini{
   display:flex;align-items:center;gap:10px;
@@ -142,17 +142,17 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .brand-mini em{font-style:italic;color:var(--amber);font-weight:400}
 .rail-kicker{
   font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(244,244,237,.62);display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap
+  color:rgba(244,244,237,.62);display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap
 }
 .rail-kicker b{color:var(--amber)}
 .dot{width:7px;height:7px;border-radius:50%;background:#1DB954;box-shadow:0 0 0 6px color-mix(in srgb, #1DB954 16%, transparent)}
 .rail h1{
-  font-family:'Instrument Serif',serif;font-size:42px;line-height:.82;letter-spacing:-.05em;margin:0;font-weight:400
+  font-family:'Instrument Serif',serif;font-size:50px;line-height:.78;letter-spacing:-.05em;margin:0;font-weight:400
 }
 .rail h1 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
 .rail-role-wrap{width:fit-content;max-width:100%;display:flex;flex-direction:column;gap:0}
-.rail .rule{width:100%;height:1.5px;background:var(--amber);margin:8px 0 6px;border-radius:999px;opacity:1}
-.rail-role{font-family:'Fragment Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#B8C8B8;line-height:1.2;margin:0 0 8px;font-weight:500}
+.rail .rule{width:100%;height:1px;background:var(--amber);margin:2px 0 6px;border-radius:999px;opacity:1;display:block}
+.rail-role{font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#B8C8B8;line-height:1.0;margin:0;padding:0;font-weight:500;white-space:nowrap}
 .rail-copy{font-size:13.5px;line-height:1.62;color:rgba(244,244,237,.78);margin:0}
 .rail-copy .sub{color:rgba(244,244,237,.56);display:block;margin-top:8px;font-size:12px;line-height:1.6}
 .rail-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
@@ -325,6 +325,8 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 [data-theme="dark"] .tag.auto{border-color:#2A4A32;background:#1B2E1F;color:#A8D5B5}
 .tag.funnel{border-color:#E8D9C8;background:#FFF3E6;color:#7A4D1A}
 [data-theme="dark"] .tag.funnel{border-color:#4A3520;background:#2E2418;color:#E8C9A0}
+.tag.hybrid{border-color:#D8C8E8;background:#F3EDFF;color:#5B2CB4}
+[data-theme="dark"] .tag.hybrid{border-color:#4A3568;background:#241E36;color:#C4B5FD}
 .stack-mini{font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* Preview — fills height, inner scroll */
@@ -370,25 +372,25 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 }
 .btn-g:hover{border-color:var(--ink);color:var(--ink)}
 
-/* Services panel — 2x2 bento fitting viewport */
-.panel-services{flex-direction:column;overflow:auto;scrollbar-width:none}
-.head{
-  display:flex;align-items:end;justify-content:space-between;gap:16px;
-  padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px;flex-shrink:0
+/* Services panel — 1-page fit, no scroll */
+.panel-services{flex-direction:column;overflow:hidden;scrollbar-width:none;height:100%;min-height:0;justify-content:stretch;padding:12px !important}
+.panel-services .head{
+  display:flex;align-items:end;justify-content:space-between;gap:12px;
+  padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:10px;flex-shrink:0
 }
-.eyebrow{font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
-.h2{font-family:'Instrument Serif',serif;font-size:34px;line-height:.95;letter-spacing:-.03em;margin:6px 0 0;font-weight:400}
-.h2 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
-.desc{max-width:36ch;font-size:13px;line-height:1.6;color:var(--ink-soft)}
-.specs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;flex:1;align-content:start}
-.spec{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px;display:flex;flex-direction:column;transition:.15s}
-.spec:hover{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
-.spec-top{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.spec-icon{width:28px;height:28px;border:1px solid var(--line);background:var(--ground);display:grid;place-items:center;border-radius:8px;font-size:12px}
-.spec h3{font-size:15px;margin:0 0 6px;letter-spacing:-.01em}
-.spec p{margin:0;font-size:13px;line-height:1.55;color:var(--ink-soft);flex:1}
-.spec ul{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
-.spec li{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.06em;padding:4px 7px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
+.panel-services .eyebrow{font-family:'Fragment Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+.panel-services .h2{font-family:'Instrument Serif',serif;font-size:38px;line-height:.95;letter-spacing:-.03em;margin:4px 0 0;font-weight:400}
+.panel-services .h2 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
+.panel-services .desc{max-width:38ch;font-size:13px;line-height:1.5;color:var(--ink-soft)}
+.panel-services .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;flex:1;min-height:0;height:100%;align-content:stretch;grid-template-rows:1fr 1fr 1fr;align-items:stretch}
+.panel-services .spec{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:8px 10px;display:flex;flex-direction:column;transition:.15s;min-height:0;overflow:hidden}
+.panel-services .spec:hover{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.panel-services .spec-top{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
+.panel-services .spec-icon{width:20px;height:20px;border:1px solid var(--line);background:var(--ground);display:grid;place-items:center;border-radius:6px;font-size:10px}
+.panel-services .spec h3{font-size:13.5px;margin:0 0 4px;letter-spacing:-.01em;line-height:1.2}
+.panel-services .spec p{margin:6px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft);flex:0 1 auto;overflow:hidden;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical}
+.panel-services .spec ul{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.panel-services .spec li{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.06em;padding:4px 8px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
 
 /* Hero panel — B · Live Proof (live preview + side picker, fills grid) */
 .panel-hero{flex-direction:column;overflow:hidden;justify-content:center;align-items:stretch}
@@ -485,6 +487,10 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .drawer.open{transform:none}
 .drawer-head{position:sticky;top:0;background:var(--paper);padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;z-index:2;flex-shrink:0}
 .drawer-body{overflow:auto;flex:1;padding:18px}
+.drawer-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);display:grid;place-items:center;cursor:pointer;font-size:14px;line-height:1;transition:border-color .15s,background .15s,color .15s,transform .1s;flex-shrink:0}
+.drawer-close:hover{border-color:var(--amber);color:var(--amber);background:var(--amber-wash)}
+.drawer-close:active{transform:scale(.96)}
+.drawer-close:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 .loom-wrap{aspect-ratio:16/9;background:var(--ground);border:1px solid var(--line);border-radius:12px;overflow:hidden;position:relative;margin:14px 0}
 .loom-wrap iframe{width:100%;height:100%;border:0;display:block}
 .loom-play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.18)), var(--ground);border:0;cursor:pointer;padding:0;width:100%;height:100%}
@@ -521,6 +527,8 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .viewport{overflow:visible;flex:none}
   .panel{position:relative;display:none;padding:18px}
   .panel.active{display:flex}
+  .panel-services{height:auto;min-height:0;overflow:auto}
+  .panel-services .specs{height:auto;min-height:0;grid-auto-rows:auto;align-content:start}
   .workbench{grid-template-columns:1fr}
   .m-toggle{display:grid;place-items:center;width:42px;height:42px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);flex-shrink:0}
   .burger{display:grid;gap:4px;place-items:center;pointer-events:none}
@@ -565,28 +573,28 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
           <button class="theme" id="themeBtn" aria-label="Toggle dark / light"><span class="knob">◐</span></button>
         </div>
       </div>
-      <div class="rail-kicker"><span class="dot"></span> <b>Operating</b> · Cavite, PH · 24h reply</div>
-      <h1>Rainier<br><i>Dimasacat Jr</i></h1>
-      <div class="rail-role-wrap">
-        <div class="rule"></div>
-        <div class="rail-role">AI Automation / GHL Specialist</div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <h1 style="margin:0">Rainier<br><i>Dimasacat Jr</i></h1>
+        <div class="rail-role-wrap" style="gap:10px">
+          <div class="rule" style="margin:0"></div>
+          <div class="rail-role" style="font-size:13px;letter-spacing:.07em;font-weight:700">GHL SPECIALIST / FUNNEL BUILDER</div>
+        </div>
       </div>
       <p class="rail-copy">
-        I build no-code systems that don't leak. Missed-call → text-back, Stripe → GHL → Sheets → Slack.
-        <span class="sub">Warm in handoff, rigorous underneath. Honest log — concepts labeled, internships labeled.</span>
+        GHL Specialist &amp; Funnel Builder — GHL main, plus Zapier, n8n and Make. I automate manual processes and build funnels in GHL or custom code — your choice.
       </p>
-      <div class="rail-meta">
-        <span class="pill-rail amb">● GoHighLevel snapshots</span>
-        <span class="pill-rail">Make · n8n · Zapier</span>
-        <span class="pill-rail">OpenAI · Vapi · Twilio</span>
+      <div class="rail-meta" style="display:grid;gap:8px;margin-top:12px">
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,244,237,.72)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:10px;flex-shrink:0">◈</span><span>Make · n8n · Zapier</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,244,237,.72)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:10px;flex-shrink:0">◐</span><span>GHL Funnels · Custom Code</span></div>
       </div>
-      <div class="rail-actions">
-        <a class="btn-rail-p" href="#" data-go="work">Open bench →</a>
-        <a class="btn-rail-g" href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      <div class="rail-actions" style="display:grid;gap:8px;margin-top:12px">
+        <a class="btn-rail-p" href="#" data-go="work" style="text-align:center">Open bench →</a>
+        <a href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer" style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,244,237,.62);text-align:center;padding:6px">LinkedIn ↗</a>
       </div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
-        <span class="pill-rail" style="font-size:9px">techva.rain@gmail.com</span>
-        <span class="pill-rail" style="font-size:9px">0995 146 2765</span>
+      <div style="display:grid;gap:6px;margin-top:10px">
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:rgba(244,244,237,.52)"><span style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;font-size:8px;flex-shrink:0">✉</span><span>techva.rain@gmail.com</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:rgba(244,244,237,.52)"><span style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;font-size:8px;flex-shrink:0">☎</span><span>0995 146 2765</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:rgba(244,244,237,.52)"><span style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;font-size:8px;flex-shrink:0">◎</span><span>Cavite, PH</span></div>
       </div>
     </div>
     <div class="rail-foot-rail">
@@ -601,7 +609,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
         <button class="m-toggle" id="menuBtn" aria-expanded="false" aria-label="Open menu"><span class="burger"><i></i><i></i><i></i></span></button>
         <div class="panel-tabs" role="tablist" aria-label="Sections">
           <button class="ptab active" data-panel="hero" role="tab" aria-selected="true">Home</button>
-          <button class="ptab" data-panel="work" role="tab" aria-selected="false">Work <span class="cnt">18</span></button>
+          <button class="ptab" data-panel="work" role="tab" aria-selected="false">Work <span class="cnt">19</span></button>
           <button class="ptab" data-panel="services" role="tab">Services</button>
           <button class="ptab" data-panel="about" role="tab">About</button>
           <button class="ptab" data-panel="contact" role="tab">Contact</button>
@@ -619,14 +627,16 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
           <aside class="hero-card hero-card--live">
             <div class="hero-card-top"><span>Funnel live preview · GHL</span><span style="color:var(--amber)">● Live</span></div>
             <div class="hero-card-body">
-              <div class="hero-live" id="heroLive" onclick="openDrawer(projects[heroLiveIdx||0])" role="button" tabindex="0" aria-label="Open funnel preview" onkeydown="if(event.key==='Enter')openDrawer(projects[heroLiveIdx||0])">
+              <div class="hero-live" id="heroLive" onclick="openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))" role="button" tabindex="0" aria-label="Open funnel preview" onkeydown="if(event.key==='Enter')openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))">
                 <div class="hero-live-track" id="heroLiveTrack">
                   <img src="assets/funnel/fitcoach/sec01.webp" srcset="assets/funnel/fitcoach/sec01.webp 1920w, assets/funnel/fitcoach/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="FitCoach — Stripe Payment to GHL" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='assets/funnel/fitcoach/full.webp'">
                   <img src="assets/funnel/legal/sec01.webp" srcset="assets/funnel/legal/sec01.webp 1920w, assets/funnel/legal/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Legal Consultation Intake & Nurture System" loading="lazy" decoding="async" onerror="this.src='assets/funnel/legal/full.webp'">
                   <img src="https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/db328ede-0397-4b5d-ba3e-046bb4400b60/work-flowfix-triage.png" alt="FlowFix Plumbing" loading="lazy" decoding="async">
+                  <img src="assets/funnel/haven/thumb.webp" srcset="assets/funnel/haven/thumb.webp 800w, assets/funnel/haven/full.webp 1200w" sizes="(max-width:880px) 100vw, 780px" alt="Haven Animal Care — AI-Qualified Booking" loading="lazy" decoding="async" onerror="this.src='assets/funnel/haven/full.webp'">
+                  <img src="assets/funnel/rubio/thumb.webp" srcset="assets/funnel/rubio/thumb.webp 800w, assets/funnel/rubio/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Rubio Roofing and Trusses — Industrial Funnel" loading="lazy" decoding="async" onerror="this.src='assets/funnel/rubio/full.webp'">
                 </div>
                 <div class="hero-live-overlay"><span class="hero-live-pill">Open build →</span><span class="hero-live-pill" style="background:var(--amber);color:white;border-color:var(--amber)">GHL · No overlay</span></div>
-                <div class="hero-live-dots" id="heroLiveDots"><button class="active" aria-label="Slide 1" onclick="event.stopPropagation(); setHeroLive(0)"></button><button aria-label="Slide 2" onclick="event.stopPropagation(); setHeroLive(1)"></button><button aria-label="Slide 3" onclick="event.stopPropagation(); setHeroLive(2)"></button></div>
+                <div class="hero-live-dots" id="heroLiveDots"><button class="active" aria-label="Slide 1" onclick="event.stopPropagation(); setHeroLive(0)"></button><button aria-label="Slide 2" onclick="event.stopPropagation(); setHeroLive(1)"></button><button aria-label="Slide 3" onclick="event.stopPropagation(); setHeroLive(2)"></button><button aria-label="Slide 4" onclick="event.stopPropagation(); setHeroLive(3)"></button><button aria-label="Slide 5" onclick="event.stopPropagation(); setHeroLive(4)"></button></div>
               </div>
               <div class="hero-live-meta">
                 <h3 class="hero-live-title" id="heroLiveTitle">FitCoach Ecosystem — Stripe Payment to GHL</h3>
@@ -636,7 +646,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
             </div>
           </aside>
           <aside class="hero-side" aria-label="Featured funnels">
-            <div class="hero-side-head"><span>Featured — Funnel builds</span><span style="color:var(--amber)">● 8 total</span></div>
+            <div class="hero-side-head"><span>Featured — Funnel builds</span><span style="color:var(--amber)">● 9 total</span></div>
             <div class="hero-side-list" id="heroSideList">
               <button class="hero-side-item active" data-i="0" onclick="setHeroLive(0)">
                 <small><i>01</i> FUNNEL <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
@@ -656,9 +666,21 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
                 <p>Emergency keyword → priority queue · Missed-call text-back &lt;2m · Dormant reactivation.</p>
                 <small><i>GHL</i><i>Make</i><i>Slack</i></small>
               </button>
+              <button class="hero-side-item" data-i="3" onclick="setHeroLive(3)">
+                <small><i>18</i> HYBRID <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
+                <b>Haven Animal Care — AI-Qualified Booking</b>
+                <p>Hard-gated emergency detection → business-hours routing + auto-booking. No missed emergency.</p>
+                <small><i>GHL</i><i>Conversation AI</i><i>Calendar</i></small>
+              </button>
+              <button class="hero-side-item" data-i="4" onclick="setHeroLive(4)">
+                <small><i>19</i> HYBRID <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
+                <b>Rubio Roofing — Industrial Construction Funnel</b>
+                <p>Hazard-stripe system, real-build proof (20+ photos), 5-tab gallery + GHL capture for Cavite &amp; Metro Manila.</p>
+                <small><i>GHL Funnels</i><i>Custom Code</i><i>Before/After</i></small>
+              </button>
             </div>
             <div class="hero-side-cta">
-              <a class="btn-p" href="#" data-go="work" style="flex:1">Explore all 18 →</a>
+              <a class="btn-p" href="#" data-go="work" style="flex:1">Explore all 19 →</a>
               <a class="btn-g" href="#" data-go="contact" style="flex:1">Start a project</a>
             </div>
           </aside>
@@ -667,14 +689,15 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <!-- WORK -->
       <section class="panel panel-work panel-anim" data-panel-id="work" role="tabpanel">
         <div class="work-toolbar">
-          <button class="filter active" data-filter="all">All <span class="chip">18</span></button>
-          <button class="filter" data-filter="automation">Automation <span class="chip">10</span></button>
-          <button class="filter" data-filter="funnel">Funnel <span class="chip">8</span></button>
+          <button class="filter active" data-filter="all">All <span class="chip">19</span></button>
+          <button class="filter" data-filter="funnel">Funnel <span class="chip">9</span></button>
+          <button class="filter" data-filter="automation">Automation <span class="chip">16</span></button>
+          <button class="filter" data-filter="hybrid">Hybrid <span class="chip">6</span></button>
           <span class="kbd" id="kbdHint">Hover to preview · Click to open</span>
         </div>
         <div class="workbench">
           <div class="table-wrap">
-            <div class="th"><span>#</span><span>Build</span><span>Family</span><span>Stack</span></div>
+            <div class="th"><span>#</span><span>Build</span><span>Type</span><span>Stack</span></div>
             <div class="rows" id="rows"></div>
           </div>
           <aside class="preview" id="preview">
@@ -692,13 +715,14 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
             <div class="eyebrow">Workbench — spec sheet</div>
             <h2 class="h2">What I <i>run reliably</i></h2>
           </div>
-          <p class="desc">Specs, not slogans. Four capabilities, each with the actual tools behind them.</p>
+          <p class="desc">Specs, not slogans. Five capabilities, each with the actual tools behind them.</p>
         </div>
         <div class="specs">
-          <div class="spec"><div class="spec-top"><span>01 · Routing</span><span class="spec-icon">◈</span></div><h3>Workflow Automation</h3><p>GHL, n8n, Make, Zapier — routers, retries, missed-call recovery with human fallback.</p><ul><li>GHL Snapshots</li><li>Routers</li><li>Missed-call</li></ul></div>
-          <div class="spec"><div class="spec-top"><span>02 · Intelligence</span><span class="spec-icon">✦</span></div><h3>AI & Prompts</h3><p>Assistants that follow your SOP — support, classification, content pipelines with Vector DB.</p><ul><li>OpenAI · Gemini</li><li>Vector DB</li><li>Prompt chains</li></ul></div>
-          <div class="spec"><div class="spec-top"><span>03 · Plumbing</span><span class="spec-icon">⟡</span></div><h3>API Integrations</h3><p>Stripe, Sheets, Slack, Xero, Asana, Drive — webhooks without the glue-code tax.</p><ul><li>Webhooks</li><li>CSV / Sheets</li><li>Slack</li></ul></div>
-          <div class="spec"><div class="spec-top"><span>04 · Shipping</span><span class="spec-icon">⬢</span></div><h3>No-Code / Low-Code</h3><p>OutSystems + GHL funnels. Fast like low-code, disciplined like engineering.</p><ul><li>OutSystems</li><li>GHL Funnels</li><li>POS · Booking</li></ul></div>
+          <div class="spec"><div class="spec-top"><span>01 · Routing</span><span class="spec-icon">◈</span></div><h3>Workflow Automation</h3><p>I map the real process, then design conditional routers with retries, idempotency and human fallback — every path has a next step and clear logs/alerts. You get deterministic flows that don’t leak and follow-up that happens without babysitting.</p><ul><li>GHL Snapshots</li><li>Routers</li><li>Missed-call</li></ul></div>
+          <div class="spec"><div class="spec-top"><span>02 · Funnels</span><span class="spec-icon">◐</span></div><h3>Funnel Building</h3><p>I build funnels natively in GoHighLevel — and when you need more customisability, I build custom with code (JS/HTML/CSS). You get a choice on preference, not a limit on what’s possible — either way, fast, mobile-first, and logged.</p><ul><li>GHL Funnels</li><li>Custom Code</li><li>Responsive</li></ul></div>
+          <div class="spec"><div class="spec-top"><span>03 · Intelligence</span><span class="spec-icon">✦</span></div><h3>AI & Prompts</h3><p>I use agentic tools to hasten automation builds and make them foolproof — generating and verifying every path before handoff so no unintended error or leak slips through. You get more reliable, repeatable builds in less time.</p><ul><li>Claude</li><li>Claude Code</li><li>Prompt chains</li></ul></div>
+          <div class="spec"><div class="spec-top"><span>04 · Plumbing</span><span class="spec-icon">⟡</span></div><h3>API Integrations</h3><p>I integrate apps natively in GoHighLevel where available — and when not, I wire APIs and webhooks (as long as they’re available) to connect them. I’m also familiar with Make, Zapier and n8n, but GHL is my main. You get a single synced stack without glue-code, with a logged audit.</p><ul><li>API</li><li>Webhooks</li><li>GHL</li></ul></div>
+          <div class="spec"><div class="spec-top"><span>05 · Shipping</span><span class="spec-icon">⬢</span></div><h3>No-Code / Low-Code</h3><p>I work with low-code/no-code, but I can understand and implement coding — grounded in my frontend background with JS, HTML and CSS. You get builds that stay clean, tweakable and maintainable, not locked-in.</p><ul><li>JS</li><li>HTML</li><li>CSS</li></ul></div>
         </div>
       </section>
 
@@ -733,7 +757,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
             <h2>Let’s make<br><i>ops lighter.</i></h2>
             <p>Tell me the flow eating your week — I’ll map it and ship the first automation in days.</p>
             <div class="contact-links"><a href="mailto:techva.rain@gmail.com">techva.rain@gmail.com</a><a href="tel:09951462765">0995 146 2765</a><a href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
-            <p style="margin-top:12px;font-family:'Fragment Mono',monospace;font-size:10.5px;color:var(--ink-soft)">◎ Replies in 24h · Snapshots + Looms included</p>
+            <p style="margin-top:12px;font-family:'Fragment Mono',monospace;font-size:10.5px;color:var(--ink-soft)">◎ Replies in 24h</p>
           </div>
           <form class="form" onsubmit="return handleSubmit(event)">
             <div style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)">Send a brief</div>
@@ -759,12 +783,12 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
     </div>
     <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,244,237,.5)"><span style="color:var(--amber)">●</span> Operating · 24h reply</div>
     <div style="border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04);padding:14px">
-      <div style="font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,244,237,.5)">AI Automation / GHL Specialist</div>
-      <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(244,244,237,.78)">No-code systems that don't leak. Logged, routed, documented.</p>
+      <div style="font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,244,237,.5)">GHL SPECIALIST / FUNNEL BUILDER</div>
+      <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(244,244,237,.78)">No-code systems and GHL funnels that don't leak. Logged, routed, documented.</p>
       <div style="display:flex;gap:8px;margin-top:12px"><a class="btn-rail-p" href="#" onclick="toggleMobileRail(false);switchPanel('work')">Open bench</a><a class="btn-rail-g" href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank">LinkedIn ↗</a></div>
     </div>
     <div style="display:grid;gap:8px">
-      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('work')">Work — 18</button>
+      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('work')">Work — 19</button>
       <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('services')">Services</button>
       <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('about')">About</button>
       <button class="ptab" style="width:100%;justify-content:center;background:var(--amber);color:white;border-color:var(--amber)" onclick="toggleMobileRail(false);switchPanel('contact')">Start a project →</button>
@@ -774,29 +798,30 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 </div>
 
 <div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer"><div class="drawer-head"><span id="drawerKicker" style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)">Case study</span><button onclick="closeDrawer()" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--ground);cursor:pointer">✕</button></div><div class="drawer-body" id="drawerBody"></div></aside>
+<aside class="drawer" id="drawer"><div class="drawer-head"><span id="drawerKicker" style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)">Case study</span><button onclick="closeDrawer()" class="drawer-close" aria-label="Close">✕</button></div><div class="drawer-body" id="drawerBody"></div></aside>
 <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()"><div style="width:min(1280px,96vw)"><div class="lightbox-bar"><button onclick="closeLightbox()">✕ Close</button><button onclick="document.getElementById('lightboxImg').style.transform=document.getElementById('lightboxImg').style.transform==='scale(1.5)'?'scale(1)':'scale(1.5)'" style="width:auto">Toggle 150%</button></div><img id="lightboxImg" src="" alt="Full view" style="width:100%;height:auto;display:block;transition:transform .2s;transform-origin:top center"></div></div>
 
 <script>
 const projects=[
-  {n:"01",cat:"funnel",title:"FitCoach Ecosystem — Stripe Payment to GHL",desc:"Stripe checkout for a 12-week program flows into GoHighLevel with router logic to update/create contacts, log roster, alert team.",img:"assets/funnel/fitcoach/thumb.webp",full:"assets/funnel/fitcoach/full.webp",sections:["assets/funnel/fitcoach/sec01.webp","assets/funnel/fitcoach/sec02.webp","assets/funnel/fitcoach/sec03.webp","assets/funnel/fitcoach/sec04.webp","assets/funnel/fitcoach/sec05.webp","assets/funnel/fitcoach/sec06.webp"],loom:"https://www.loom.com/embed/8613df569f7740c998a3a1f67d5dcdbb?hide_owner=true&hide_share=true&hide_title=true",stack:["Make.com","Stripe","GoHighLevel","Sheets","Slack"],bullets:["Stripe → Make router: create vs update","Checks existing GHL contact before upsert","Sheets roster + Slack ping","No double enrollments"]},
-  {n:"02",cat:"funnel",title:"Legal Consultation Intake & Nurture System — Immigration & Family Law",desc:"GHL-only 4-step funnel + 9-workflow tag-gated nurture loop where booking and nurture actively suppress each other — no double-messaging, no-shows recycled.",img:"assets/funnel/legal/thumb.webp",full:"assets/funnel/legal/full.webp",sections:["assets/funnel/legal/sec01.webp","assets/funnel/legal/sec02.webp","assets/funnel/legal/sec03.webp","assets/funnel/legal/sec04.webp","assets/funnel/legal/sec05.webp"],stack:["GoHighLevel","GHL Workflows","Custom HTML/CSS/JS"],bullets:["4-step funnel: Landing → Intake → Calendar → Confirmation (vanilla JS, no deps)","Tag taxonomy 14+ tags + 9 workflows with suppression gates + staff alerts","Nurture vs booking never conflict — provably one state at a time"],niche:"Immigration & Family Law Solo Practice",problem:"Solo/small law firms lose leads two different ways: cold inquiries that never convert into a booked consultation, and booked consultations that no-show or cancel without rebooking. Most funnel builds solve one side — a booking page or a nurture sequence — but treat them as separate systems where booking and nurture run blind to each other.",solution:"A 4-step GHL funnel (Landing → Intake Form → Calendar → Confirmation) feeding a 9-workflow automation backend built entirely on tag-based gating: cold leads nurtured 14-day drip; booked leads instantly pulled out of nurture; no-shows/cancels recycled into shortened nurture; every outcome (booked/completed/no-show/cancelled) triggers staff alert — single-platform, defensively gated.",build:["Tag taxonomy (built first): case-type-*, lead-source-*, consult-booked/completed/noshow/rescheduled, nurture-active/recycled/day3/7/14/exhausted, re-engage-sent","Funnel: Custom HTML/CSS/JS over GHL native form+calendar — hero, pain, how-it-works, credibility, FAQ accordion, UTM capture on hidden fields (data-q) + cross-page CTA href rewrite","9 Workflows: 1 New Inquiry→Nurture (suppressed if booked), 2 Booking Success→Kill Nurture, 3 No-show→Recycle, 4 Cancel→Recycle, 5 Completed→Thank-you, 6 Staff alerts per outcome, 7 Long-nurture drip (tag-gated), 8 Re-engage exhausted, 9 Cleanup"],outcome:"Provably one state at a time — nurture and booking never double-message. Booked leads exit nurture instantly, no-shows recycle, staff sees every transition in Slack + GHL — single snapshot, zero external code."},
-  {n:"03",cat:"funnel",title:"Real Estate Lead Automation — Buyer/Seller Routing",desc:"GHL lead system automating lead capture to appointment reminders for a real estate agency.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/8eff1e4c-cff2-4655-bf72-3acf0c61666f/work-realestate-ghl.png",loom:"https://www.loom.com/embed/fa05317c159f4dd38692c1186011f0ff?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel"],bullets:["Buyer vs seller intent routing","Nurturing + reminders","Single GHL snapshot"]},
-  {n:"04",cat:"funnel",title:"FlowFix Plumbing — Emergency Triage & Reactivation",desc:"Emergency-aware triage, missed-call recovery, dormant reactivation for a plumbing business.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/db328ede-0397-4b5d-ba3e-046bb4400b60/work-flowfix-triage.png",stack:["GoHighLevel","Make.com","Slack"],bullets:["Emergency keyword → priority queue","Missed-call text-back <2m","Dormant drip reactivation"]},
-  {n:"05",cat:"funnel",title:"Med Spa Reputation Firewall",desc:"Missed-call recovery + review gate routing unhappy clients privately vs to Google.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/51b0a9d8-1bc9-4d03-ae27-f79bffe5cb23/work-medspa-review-gate.png",loom:"https://www.loom.com/embed/adad4fff01bd48a5a871c3b1cb996c4d?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel","SMS","Surveys"],bullets:["Happy → Google, unhappy → owner","Missed-call SMS","Protects rating while fixing issue"]},
-  {n:"06",cat:"funnel",title:"Studio Lumina — Booking & Conflict-Check Automation",desc:"Photography studio booking routed by event type, checked vs confirmed bookings, locks after deposit.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/e20b8f08-623d-413a-a4f9-e053093576d7/work-studio-lumina.png",stack:["GoHighLevel","Make.com","Stripe","Sheets","Slack"],bullets:["Event-type routing + date conflict vs Sheets","Stripe deposit locks date","Confirmation + reminders"]},
-  {n:"07",cat:"automation",title:"AI Content Repurposing",desc:"Zap that transcribes media, generates blog posts, auto-publishes tailored to FB Pages + LinkedIn.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-zapier-content-OVsh9QQy.png",stack:["Zapier","Drive","AI","Facebook","LinkedIn"],bullets:["Drive → transcription → AI blog","Path routing per channel","No manual reformatting"]},
-  {n:"08",cat:"automation",title:"Leads Enrichment Automation",desc:"Webhook pipeline filtering by company size, Sheets log, Slack ping, AI outreach draft.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-zapier-leads-BtfJHQcL.png",stack:["Zapier","Webhooks","Sheets","Slack","AI"],bullets:["Webhook in → size filter","AI drafts outreach","Slack + Sheets"]},
-  {n:"09",cat:"automation",title:"Xero → Asana Transaction Sync",desc:"Make scenario exporting Xero transactions, iterator/router, CSV to Asana with Sheets logging.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-make-xero-CkNq8FiY.png",stack:["Make.com","Xero","Asana","Sheets"],bullets:["Xero export → iterator → router","CSV attachment to Asana","Sheets audit"]},
-  {n:"10",cat:"automation",title:"AI Powered Customer Support Bot",desc:"Webhook bot fetching ticket data, routing by status, generating AI responses via OpenAI assistants.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-ai-support-bot-DmCpIIAn.jpg",stack:["Make.com","Webhooks","OpenAI","Router"],bullets:["Fetch → status router","OpenAI per branch","Fallback to human"]},
-  {n:"11",cat:"automation",title:"Auto Sort Gmail Attachments on Drive",desc:"Watches Gmail, classifies with Gemini+OpenAI, files to Drive, logs Sheets, replies Gmail.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-gmail-drive-PffsaQzU.jpg",stack:["Make.com","Gmail","Gemini","OpenAI","Drive","Sheets"],bullets:["Gmail watch → Gemini + OpenAI","Auto-filed to Drive folders","Sheets log + Gmail reply"]},
-  {n:"12",cat:"funnel",title:"Interbranch POS System",desc:"Web POS enabling seamless ops across multiple restaurant branches.",img:"",stack:["React","JavaScript"],bullets:["Multi-branch sync","React front-end","Ling Ling internship"],letter:"POS"},
-  {n:"13",cat:"automation",title:"Crowdsourcing Platform",desc:"Collaborative platform connecting contributors with projects.",img:"",stack:["TypeScript","Next.js"],bullets:["Next.js + TypeScript","Contributor matching","Fligno internship"],letter:"CP"},
-  {n:"14",cat:"automation",title:"Enterprise Low-Code Solutions",desc:"Client solutions built with low-code for rapid delivery.",img:"",stack:["OutSystems"],bullets:["OutSystems","Enterprise clients","Rapid iteration"],letter:"LC"},
-  {n:"15",cat:"automation",title:"AI Customer Support Agent",desc:"Conversational AI trained on docs to handle inbound 24/7.",img:"",stack:["OpenAI","GHL","Vector DB"],bullets:["Trained on docs","Vector DB retrieval","GHL inbox"],letter:"AI"},
-  {n:"16",cat:"automation",title:"AI Content Generator",desc:"Prompt chains generating SEO blog + social copy at scale.",img:"",stack:["GPT-4","Prompt Engineering"],bullets:["SEO prompt chains","Blog + social variants","Consistent voice"],letter:"CG"},
-  {n:"17",cat:"automation",title:"Voice AI Appointment Booker",desc:"Inbound voice agent qualifying leads and booking calendar.",img:"",stack:["Vapi","Twilio","n8n"],bullets:["Vapi voice agent","Twilio telephony","n8n calendar"],letter:"VA"},
-  {n:"18",cat:"funnel",title:"Haven Animal Care — AI-Qualified Booking",desc:"GoHighLevel-native Conversation AI with hard-gated emergency detection — business-hours-aware routing to clinic vs backup emergency vet, plus tag-gated auto-booking.",img:"assets/funnel/haven/thumb.webp",full:"assets/funnel/haven/full.webp",sections:["assets/funnel/haven/sec01.webp"],stack:["GoHighLevel","Conversation AI","GHL Workflows","GHL Calendar"],bullets:["Hard-gated emergency detection overrides normal flow","Business-hours-aware: to clinic vs backup emergency vet","Bot-triggered workflow action (Goals, not Knowledge Source)","Native GHL calendar auto-confirm — no manual approval"],niche:"Veterinary Clinic — Single-Location General Practice (Business-Hours Only)",problem:"Vet clinics run on nonstop inbound volume — pricing questions, booking requests, and occasionally messages that sound routine but describe an actual emergency. A slow reply on a routine question costs a booking; a mishandled reply on an emergency could cost an animal's life. Front-desk staff can't monitor every channel around the clock, and a generic auto-responder can't tell 'do you groom cats' from 'my dog ate chocolate.'",solution:"A GoHighLevel Conversation AI bot trained on the clinic's real service info, with a hard-gated emergency detection layer that overrides all normal conversation flow. Since Haven only has in-house capability during business hours, the bot's emergency response branches on time: during hours, it directs the owner straight to the clinic; after hours, it redirects to a backup emergency vet — and either way, it fires an internal workflow so staff always know what happened, even when they weren't the ones who responded.",build:["Bot config: Goals vs Knowledge Source separation — Goals drive actions, Knowledge drives answers (conflating them was bug #1)","Emergency intent set: bleeding, seizure, collapse, difficulty breathing, poisoning, hit by car, urgent language etc. — hard gate overrides all routine flow","Business-hours-aware branching in both bot reply and workflow logic — to clinic vs to backup emergency vet","Tag taxonomy pre-created (category:value): patient:new/existing, intent:routine/pricing, booking:confirmed, ai-handled, escalated-to-staff, after-hours-emergency","Routine branch: new/existing → pet type/reason → tags → book into dedicated GHL calendar (auto-confirm, no manual approval)","Emergency branch: business-hours-aware reply + Goal triggers Emergency Escalation workflow → duplicate-suppression guard → SMS to on-call + task + audit tag + timed removal","Booking Confirmation workflow: booking:confirmed + ai-handled + front-desk notification"],"bugs":["Early prompt caused bot to treat sending emergency reply as task-complete and skip workflow trigger — fixed by stating both steps mandatory and non-substitutable"],"outcome":"Build in progress — emergency and booking logic designed and largely wired; final verification of action-chaining reliability (via AI Action Logs, live conversation testing) still pending at time of writing."},
+  {n:"01",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"FitCoach Ecosystem — Stripe Payment to GHL",desc:"Stripe checkout for a 12-week program flows into GoHighLevel with router logic to update/create contacts, log roster, alert team.",img:"assets/funnel/fitcoach/thumb.webp",full:"assets/funnel/fitcoach/full.webp",sections:["assets/funnel/fitcoach/sec01.webp","assets/funnel/fitcoach/sec02.webp","assets/funnel/fitcoach/sec03.webp","assets/funnel/fitcoach/sec04.webp","assets/funnel/fitcoach/sec05.webp","assets/funnel/fitcoach/sec06.webp"],loom:"https://www.loom.com/embed/8613df569f7740c998a3a1f67d5dcdbb?hide_owner=true&hide_share=true&hide_title=true",stack:["Make.com","Stripe","GoHighLevel","Sheets","Slack"],bullets:["Stripe → Make router: create vs update","Checks existing GHL contact before upsert","Sheets roster + Slack ping","No double enrollments"]},
+  {n:"02",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Legal Consultation Intake & Nurture System — Immigration & Family Law",desc:"GHL-only 4-step funnel + 9-workflow tag-gated nurture loop where booking and nurture actively suppress each other — no double-messaging, no-shows recycled.",img:"assets/funnel/legal/thumb.webp",full:"assets/funnel/legal/full.webp",sections:["assets/funnel/legal/sec01.webp","assets/funnel/legal/sec02.webp","assets/funnel/legal/sec03.webp","assets/funnel/legal/sec04.webp","assets/funnel/legal/sec05.webp"],stack:["GoHighLevel","GHL Workflows","Custom HTML/CSS/JS"],bullets:["4-step funnel: Landing → Intake → Calendar → Confirmation (vanilla JS, no deps)","Tag taxonomy 14+ tags + 9 workflows with suppression gates + staff alerts","Nurture vs booking never conflict — provably one state at a time"],niche:"Immigration & Family Law Solo Practice",problem:"Solo/small law firms lose leads two different ways: cold inquiries that never convert into a booked consultation, and booked consultations that no-show or cancel without rebooking. Most funnel builds solve one side — a booking page or a nurture sequence — but treat them as separate systems where booking and nurture run blind to each other.",solution:"A 4-step GHL funnel (Landing → Intake Form → Calendar → Confirmation) feeding a 9-workflow automation backend built entirely on tag-based gating: cold leads nurtured 14-day drip; booked leads instantly pulled out of nurture; no-shows/cancels recycled into shortened nurture; every outcome (booked/completed/no-show/cancelled) triggers staff alert — single-platform, defensively gated.",build:["Tag taxonomy (built first): case-type-*, lead-source-*, consult-booked/completed/noshow/rescheduled, nurture-active/recycled/day3/7/14/exhausted, re-engage-sent","Funnel: Custom HTML/CSS/JS over GHL native form+calendar — hero, pain, how-it-works, credibility, FAQ accordion, UTM capture on hidden fields (data-q) + cross-page CTA href rewrite","9 Workflows: 1 New Inquiry→Nurture (suppressed if booked), 2 Booking Success→Kill Nurture, 3 No-show→Recycle, 4 Cancel→Recycle, 5 Completed→Thank-you, 6 Staff alerts per outcome, 7 Long-nurture drip (tag-gated), 8 Re-engage exhausted, 9 Cleanup"],outcome:"Provably one state at a time — nurture and booking never double-message. Booked leads exit nurture instantly, no-shows recycle, staff sees every transition in Slack + GHL — single snapshot, zero external code."},
+  {n:"03",cat:"funnel",tags:["funnel"],family:"funnel",title:"Real Estate Lead Automation — Buyer/Seller Routing",desc:"GHL lead system automating lead capture to appointment reminders for a real estate agency.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/8eff1e4c-cff2-4655-bf72-3acf0c61666f/work-realestate-ghl.png",loom:"https://www.loom.com/embed/fa05317c159f4dd38692c1186011f0ff?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel"],bullets:["Buyer vs seller intent routing","Nurturing + reminders","Single GHL snapshot"]},
+  {n:"04",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"FlowFix Plumbing — Emergency Triage & Reactivation",desc:"Emergency-aware triage, missed-call recovery, dormant reactivation for a plumbing business.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/db328ede-0397-4b5d-ba3e-046bb4400b60/work-flowfix-triage.png",stack:["GoHighLevel","Make.com","Slack"],bullets:["Emergency keyword → priority queue","Missed-call text-back <2m","Dormant drip reactivation"]},
+  {n:"05",cat:"funnel",tags:["funnel"],family:"funnel",title:"Med Spa Reputation Firewall",desc:"Missed-call recovery + review gate routing unhappy clients privately vs to Google.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/51b0a9d8-1bc9-4d03-ae27-f79bffe5cb23/work-medspa-review-gate.png",loom:"https://www.loom.com/embed/adad4fff01bd48a5a871c3b1cb996c4d?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel","SMS","Surveys"],bullets:["Happy → Google, unhappy → owner","Missed-call SMS","Protects rating while fixing issue"]},
+  {n:"06",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Studio Lumina — Booking & Conflict-Check Automation",desc:"Photography studio booking routed by event type, checked vs confirmed bookings, locks after deposit.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/e20b8f08-623d-413a-a4f9-e053093576d7/work-studio-lumina.png",stack:["GoHighLevel","Make.com","Stripe","Sheets","Slack"],bullets:["Event-type routing + date conflict vs Sheets","Stripe deposit locks date","Confirmation + reminders"]},
+  {n:"07",cat:"automation",tags:["automation"],family:"automation",title:"AI Content Repurposing",desc:"Zap that transcribes media, generates blog posts, auto-publishes tailored to FB Pages + LinkedIn.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-zapier-content-OVsh9QQy.png",stack:["Zapier","Drive","AI","Facebook","LinkedIn"],bullets:["Drive → transcription → AI blog","Path routing per channel","No manual reformatting"]},
+  {n:"08",cat:"automation",tags:["automation"],family:"automation",title:"Leads Enrichment Automation",desc:"Webhook pipeline filtering by company size, Sheets log, Slack ping, AI outreach draft.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-zapier-leads-BtfJHQcL.png",stack:["Zapier","Webhooks","Sheets","Slack","AI"],bullets:["Webhook in → size filter","AI drafts outreach","Slack + Sheets"]},
+  {n:"09",cat:"automation",tags:["automation"],family:"automation",title:"Xero → Asana Transaction Sync",desc:"Make scenario exporting Xero transactions, iterator/router, CSV to Asana with Sheets logging.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-make-xero-CkNq8FiY.png",stack:["Make.com","Xero","Asana","Sheets"],bullets:["Xero export → iterator → router","CSV attachment to Asana","Sheets audit"]},
+  {n:"10",cat:"automation",tags:["automation"],family:"automation",title:"AI Powered Customer Support Bot",desc:"Webhook bot fetching ticket data, routing by status, generating AI responses via OpenAI assistants.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-ai-support-bot-DmCpIIAn.jpg",stack:["Make.com","Webhooks","OpenAI","Router"],bullets:["Fetch → status router","OpenAI per branch","Fallback to human"]},
+  {n:"11",cat:"automation",tags:["automation"],family:"automation",title:"Auto Sort Gmail Attachments on Drive",desc:"Watches Gmail, classifies with Gemini+OpenAI, files to Drive, logs Sheets, replies Gmail.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-gmail-drive-PffsaQzU.jpg",stack:["Make.com","Gmail","Gemini","OpenAI","Drive","Sheets"],bullets:["Gmail watch → Gemini + OpenAI","Auto-filed to Drive folders","Sheets log + Gmail reply"]},
+  {n:"12",cat:"funnel",tags:["funnel"],family:"funnel",title:"Interbranch POS System",desc:"Web POS enabling seamless ops across multiple restaurant branches.",img:"",stack:["React","JavaScript"],bullets:["Multi-branch sync","React front-end","Ling Ling internship"],letter:"POS"},
+  {n:"13",cat:"automation",tags:["automation"],family:"automation",title:"Crowdsourcing Platform",desc:"Collaborative platform connecting contributors with projects.",img:"",stack:["TypeScript","Next.js"],bullets:["Next.js + TypeScript","Contributor matching","Fligno internship"],letter:"CP"},
+  {n:"14",cat:"automation",tags:["automation"],family:"automation",title:"Enterprise Low-Code Solutions",desc:"Client solutions built with low-code for rapid delivery.",img:"",stack:["OutSystems"],bullets:["OutSystems","Enterprise clients","Rapid iteration"],letter:"LC"},
+  {n:"15",cat:"automation",tags:["automation"],family:"automation",title:"AI Customer Support Agent",desc:"Conversational AI trained on docs to handle inbound 24/7.",img:"",stack:["OpenAI","GHL","Vector DB"],bullets:["Trained on docs","Vector DB retrieval","GHL inbox"],letter:"AI"},
+  {n:"16",cat:"automation",tags:["automation"],family:"automation",title:"AI Content Generator",desc:"Prompt chains generating SEO blog + social copy at scale.",img:"",stack:["GPT-4","Prompt Engineering"],bullets:["SEO prompt chains","Blog + social variants","Consistent voice"],letter:"CG"},
+  {n:"17",cat:"automation",tags:["automation"],family:"automation",title:"Voice AI Appointment Booker",desc:"Inbound voice agent qualifying leads and booking calendar.",img:"",stack:["Vapi","Twilio","n8n"],bullets:["Vapi voice agent","Twilio telephony","n8n calendar"],letter:"VA"},
+  {n:"18",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Haven Animal Care — AI-Qualified Booking",desc:"GoHighLevel-native Conversation AI with hard-gated emergency detection — business-hours-aware routing to clinic vs backup emergency vet, plus tag-gated auto-booking.",img:"assets/funnel/haven/thumb.webp",full:"assets/funnel/haven/full.webp",sections:["assets/funnel/haven/sec01.webp"],stack:["GoHighLevel","Conversation AI","GHL Workflows","GHL Calendar"],bullets:["Hard-gated emergency detection overrides normal flow","Business-hours-aware: to clinic vs backup emergency vet","Bot-triggered workflow action (Goals, not Knowledge Source)","Native GHL calendar auto-confirm — no manual approval"],niche:"Veterinary Clinic — Single-Location General Practice (Business-Hours Only)",problem:"Vet clinics run on nonstop inbound volume — pricing questions, booking requests, and occasionally messages that sound routine but describe an actual emergency. A slow reply on a routine question costs a booking; a mishandled reply on an emergency could cost an animal's life. Front-desk staff can't monitor every channel around the clock, and a generic auto-responder can't tell 'do you groom cats' from 'my dog ate chocolate.'",solution:"A GoHighLevel Conversation AI bot trained on the clinic's real service info, with a hard-gated emergency detection layer that overrides all normal conversation flow. Since Haven only has in-house capability during business hours, the bot's emergency response branches on time: during hours, it directs the owner straight to the clinic; after hours, it redirects to a backup emergency vet — and either way, it fires an internal workflow so staff always know what happened, even when they weren't the ones who responded.",build:["Bot config: Goals vs Knowledge Source separation — Goals drive actions, Knowledge drives answers (conflating them was bug #1)","Emergency intent set: bleeding, seizure, collapse, difficulty breathing, poisoning, hit by car, urgent language etc. — hard gate overrides all routine flow","Business-hours-aware branching in both bot reply and workflow logic — to clinic vs to backup emergency vet","Tag taxonomy pre-created (category:value): patient:new/existing, intent:routine/pricing, booking:confirmed, ai-handled, escalated-to-staff, after-hours-emergency","Routine branch: new/existing → pet type/reason → tags → book into dedicated GHL calendar (auto-confirm, no manual approval)","Emergency branch: business-hours-aware reply + Goal triggers Emergency Escalation workflow → duplicate-suppression guard → SMS to on-call + task + audit tag + timed removal","Booking Confirmation workflow: booking:confirmed + ai-handled + front-desk notification"],"bugs":["Early prompt caused bot to treat sending emergency reply as task-complete and skip workflow trigger — fixed by stating both steps mandatory and non-substitutable"],"outcome":"Build in progress — emergency and booking logic designed and largely wired; final verification of action-chaining reliability (via AI Action Logs, live conversation testing) still pending at time of writing."},
+  {n:"19",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Rubio Roofing and Trusses \u2014 Industrial Construction Funnel",desc:"High-converting 2-page funnel for Rubio Roofing (Alapan, Imus City). Construction-inspired hazard-stripe system, real-build proof (20+ photos) + GHL-ready capture for Cavite & Metro Manila.",img:"assets/funnel/rubio/thumb.webp",full:"assets/funnel/rubio/full.webp",stack:["GoHighLevel","HTML/CSS/JS","Hazard-Stripe System","GHL Webhook"],bullets:["Construction design language \u2014 hazard stripe #FFD400, concrete #F6F6F3, Barlow + JetBrains Mono","Sticky conversion header + glass spec-card + tel:+639954846174 click-to-call","Interactive before/after slider \u2014 clip-path + range + click-to-seek (0.60mm ribtype)","5-tab filterable gallery \u2014 Before/After, Tanza 9, Gen Trias 4, Bi\u00f1an 3, Imus 3 \u2014 12-col bento, no reload","GHL-ready estimate form \u2014 09XXXXXXXXX validation, 13 cities, 6 services, honeypot + hidden source","Thank-you sequence \u2014 3-step timeline + dual CTA (Call/Messenger) + fbq('Lead') & gtag hooks"],niche:"Construction \u00b7 Roofing Contractor \u2014 Cavite & Metro Manila (Alapan, Imus City)",problem:"No centralized lead capture \u2014 inquiries lost in Facebook DMs. No way to prove material quality (0.50mm/0.60mm gauge, stainless 304) or warranty. Generic contractor sites look the same \u2014 no visual authority for a brand that does 50+ projects.",solution:"A 2-page construction-inspired sales funnel (index + thank-you) built around an industrial system: hazard stripe (repeating-linear-gradient 135deg #FFD400), concrete gray #F6F6F3, Barlow + JetBrains Mono. Every image is an actual build from Tanza, General Trias, Bi\u00f1an, and Imus \u2014 geotagged in captions. One clear action: Get a Free 21-Point Inspection + Written Estimate in 24H.",build:["Visual identity \u2014 hazard stripe repeating-linear-gradient(135deg,#FFD400,#0F1115), concrete #F6F6F3, signal yellow #FFD400; Barlow Extra Bold + Plus Jakarta Sans + JetBrains Mono","Sticky conversion header (utility bar + nav) with always-visible CTA and tel:+639954846174","Hero with proof card \u2014 glassmorphism spec card overlay (Vivid Blue 0.50mm + location proof)","4 Pillars \u2014 compact dark/yellow cards: Great Finish, Expert Team, Reliable Warranty, Honest Pricing","Before/After slider \u2014 draggable clip-path with range + click-to-seek (0.60mm ribtype + 10mm foam + stainless gutter)","Filterable gallery \u2014 5 tabs (Before/After, Tanza 9, Gen Trias 4, Bi\u00f1an 3, Imus 3), 12-col bento for Tanza, no reload","Lightbox \u2014 full-screen blur backdrop + caption","FAQ \u2014 6 details/summary accordions (cost, warranty, timeline, site visits)","GHL-ready form \u2014 name, mobile 09 validation, city 13, service 6, honeypot, hidden source/location \u2192 thank-you ?name=&city=","Thank-you timeline \u2014 next 3 steps + dual CTA (Call/Messenger) + fbq Lead & gtag hooks"],outcome:"Replaces Facebook-only presence with a dedicated funnel that feels like the trade itself \u2014 rugged, reliable, straight to the point. Proves quality with actual builds, not renders, and centralizes every lead into GHL with personalization and pixel tracking."},
 ];
 
 const rows=document.getElementById('rows');
@@ -807,7 +832,10 @@ let active=projects[0];
 
 function render(filter='all'){
   rows.innerHTML='';
-  const list = filter==='all'? projects : projects.filter(p=>p.cat===filter);
+  let list;
+  if(filter==='all') list=projects;
+  else if(filter==='hybrid') list=projects.filter(p=>p.family==='hybrid');
+  else list=projects.filter(p=> (p.tags||[p.cat]).includes(filter));
   const isCoarse = window.matchMedia('(hover: none)').matches;
   list.forEach(p=>{
     const r=document.createElement('div');
@@ -815,7 +843,15 @@ function render(filter='all'){
     r.tabIndex=0;
     r.setAttribute('role','button');
     r.setAttribute('aria-label', `Preview ${p.title}`);
-    r.innerHTML=`<b>${p.n}</b><div><h4>${p.title}</h4><p>${p.desc}</p></div><span class="tag ${p.cat}">${p.cat==='automation'?'Automation':'Funnel'}</span><span class="stack-mini">${p.stack.slice(0,3).join(' · ')}</span>`;
+    const tags=(p.tags||[p.cat]);
+    const tagPills=tags.map(t=>{
+      const cls=t==='hybrid'?'hybrid':t==='automation'?'auto':'funnel';
+      const label=t==='automation'?'Automation':t==='funnel'?'Funnel':'Hybrid';
+      return `<span class="tag ${cls}">${label}</span>`;
+    }).join('');
+    const familyPill=p.family==='hybrid'? `<span class="tag hybrid" title="Funnel design + Automation routing">Hybrid</span>`:'';
+    const showFamily = p.family==='hybrid' ? familyPill : tagPills;
+    r.innerHTML=`<b>${p.n}</b><div><h4>${p.title}</h4><p>${p.desc}</p></div><span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end">${tags.length>1 ? tagPills : showFamily}</span><span class="stack-mini">${p.stack.slice(0,3).join(' · ')}</span>`;
     r.addEventListener('mouseenter',()=>{ if(!isCoarse) setPreview(p); });
     r.addEventListener('focus',()=>setPreview(p));
     r.addEventListener('click',()=>{
@@ -843,7 +879,8 @@ window.closeLightbox=closeLightbox; window.prevZoom=prevZoom; window.drawerZoom=
 function setPreview(p){
   active=p;
   document.querySelectorAll('.row').forEach(el=>el.classList.toggle('active', el.querySelector('b').textContent===p.n));
-  prevKicker.textContent=`Preview — ${p.n} · ${p.cat==='automation'?'Automation':'Funnel'}`;
+  const famLabel = p.family==='hybrid' ? 'Hybrid · Funnel + Automation' : (p.cat==='automation'?'Automation':'Funnel');
+  prevKicker.textContent=`Preview — ${p.n} · ${famLabel}`;
   if(p.sections && p.sections.length){
     prevZoomLevel=1;
     const secThumbs=p.sections.map((s,i)=>`<img src="${s}" alt="sec ${i+1}" style="width:64px;height:44px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:6px;cursor:pointer;flex-shrink:0" onclick="document.getElementById('prevScroll').scrollTop=${i}*260" loading="lazy">`).join('');
@@ -852,7 +889,16 @@ function setPreview(p){
     prevZoomLevel=1;
     prevImg.innerHTML = p.img ? `<div class="zoom-bar"><span style="flex:1">${p.cat==='automation'?'Workflow':'Funnel'}</span><button onclick="prevZoom(-0.15)">−</button><span class="zoom-label" id="prevZoomLabel">100%</span><button onclick="prevZoom(0.15)">+</button><button onclick="openLightbox('${p.img}')" style="width:auto;padding:0 10px">⤢ Full</button></div><div style="overflow:auto;max-height:300px" id="prevScroll"><img id="prevZoomImg" src="${p.img}" alt="${p.title}" style="width:100%;height:auto;display:block" loading="lazy"></div>` : `<div style="width:100%;height:160px;border:1px dashed var(--line);border-radius:10px;display:grid;place-items:center;font-family:'Instrument Serif',serif;font-size:32px;color:var(--ink-soft)">${p.letter}</div>`;
   }
-  prevBody.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${p.stack.map(s=>`<span class="pill" style="padding:5px 8px;font-size:9px">${s}</span>`).join('')}</div><ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul><div class="preview-cta"><button class="btn-p" onclick="openDrawerById('${p.n}')">Open zoom view →</button><button class="btn-g" onclick="switchPanel('contact')">Discuss this →</button></div>`;
+  const tags=(p.tags||[p.cat]);
+  const tagLabels=tags.map(t=> t==='automation'?'Automation':t==='funnel'?'Funnel':'Hybrid');
+  const tagPills=tags.map(t=>{
+    const cls=t==='automation'?'auto':'funnel';
+    const label=t==='automation'?'Automation':'Funnel';
+    return `<span class="tag ${cls}" style="font-size:9px">${label}</span>`;
+  }).join('');
+  const hybridNote = p.family==='hybrid' ? `<div style="margin-top:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--ground);font-size:11px;line-height:1.5;color:var(--ink-soft);display:flex;gap:8px;align-items:center"><span class="tag hybrid" style="font-size:8px">Hybrid</span><span>Funnel design + automation routing — tabs in detail view.</span></div>` : '';
+  const funnelBadge = p.sections && p.sections.length && p.family==='hybrid' ? `<span style="font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft)">+ ${p.sections.length} funnel sections</span>` : '';
+  prevBody.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center">${tagPills}${funnelBadge}</div>${hybridNote}<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${p.stack.map(s=>`<span class="pill" style="padding:5px 8px;font-size:9px">${s}</span>`).join('')}</div><ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul><div class="preview-cta"><button class="btn-p" onclick="openDrawerById('${p.n}')">Open zoom view →</button><button class="btn-g" onclick="switchPanel('contact')">Discuss this →</button></div>`;
 }
 function openDrawerById(n){ openDrawer(projects.find(x=>x.n===n)); }
 render(); setPreview(active);
@@ -878,13 +924,15 @@ document.querySelectorAll('.ptab').forEach(b=> b.addEventListener('click',()=> s
 document.querySelectorAll('[data-go]').forEach(a=> a.addEventListener('click',e=>{ e.preventDefault(); switchPanel(a.dataset.go); }));
 // deep link — hero is default, so allow #hero as well
 if(location.hash){ const h=location.hash.replace('#',''); if(['hero','work','services','about','contact'].includes(h)) switchPanel(h); }
-// hero live carousel — B · Live Proof (auto-cycle, pause on hover)
-window.heroLiveIdx=0; const heroLiveTitles=["FitCoach Ecosystem — Stripe Payment to GHL","Legal Consultation Intake & Nurture System","FlowFix Plumbing — Emergency Triage & Reactivation"];
-const heroLiveDescs=["Stripe checkout → Make router (create vs update) → GHL + Sheets roster + Slack ping. No double enrollments.","GHL-only 4-step funnel + 9 tag-gated workflows. Booking and nurture suppress each other — no double-messaging.","Emergency keyword → priority queue · Missed-call text-back <2m · Dormant drip reactivation."];
+// hero live carousel — B · Live Proof (auto-cycle, pause on hover) — now 5 featured: FitCoach, Legal, FlowFix, Haven, Rubio
+window.heroLiveIdx=0; const heroProjectNs=["01","02","04","18","19"]; const heroLiveTitles=["FitCoach Ecosystem — Stripe Payment to GHL","Legal Consultation Intake & Nurture System","FlowFix Plumbing — Emergency Triage & Reactivation","Haven Animal Care — AI-Qualified Booking","Rubio Roofing and Trusses — Industrial Construction Funnel"];
+const heroLiveDescs=["Stripe checkout → Make router (create vs update) → GHL + Sheets roster + Slack ping. No double enrollments.","GHL-only 4-step funnel + 9 tag-gated workflows. Booking and nurture suppress each other — no double-messaging.","Emergency keyword → priority queue · Missed-call text-back <2m · Dormant drip reactivation.","Hard-gated emergency detection → business-hours routing + auto-booking. No missed emergency.","Construction-inspired 2-page funnel — hazard-stripe system, 20+ real builds, 5-tab gallery + GHL capture."];
 const heroLiveStacks=[
   '<span>Make.com</span><span>Stripe</span><span>GHL</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>',
   '<span>GoHighLevel</span><span>GHL Workflows</span><span>Custom JS</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>',
-  '<span>GoHighLevel</span><span>Make.com</span><span>Slack</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>'
+  '<span>GoHighLevel</span><span>Make.com</span><span>Slack</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>',
+  '<span>GoHighLevel</span><span>Conversation AI</span><span>GHL Calendar</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Hybrid</span>',
+  '<span>GHL Funnels</span><span>Custom Code</span><span>Responsive</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Hybrid</span>'
 ];
 function setHeroLive(i){
   window.heroLiveIdx=i;
@@ -898,7 +946,7 @@ function setHeroLive(i){
   if(d) d.textContent=heroLiveDescs[i]||heroLiveDescs[0];
   if(tg) tg.innerHTML=heroLiveStacks[i]||heroLiveStacks[0];
 }
-let heroLiveTimer=null; function startHeroLive(){ stopHeroLive(); heroLiveTimer=setInterval(()=> setHeroLive((window.heroLiveIdx+1)%3), 3600); } function stopHeroLive(){ if(heroLiveTimer) clearInterval(heroLiveTimer); }
+let heroLiveTimer=null; function startHeroLive(){ stopHeroLive(); heroLiveTimer=setInterval(()=> setHeroLive((window.heroLiveIdx+1)%5), 3600); } function stopHeroLive(){ if(heroLiveTimer) clearInterval(heroLiveTimer); }
 const heroLiveEl=document.getElementById('heroLive');
 if(heroLiveEl){ heroLiveEl.addEventListener('mouseenter', stopHeroLive); heroLiveEl.addEventListener('mouseleave', startHeroLive); heroLiveEl.addEventListener('focusin', stopHeroLive); heroLiveEl.addEventListener('focusout', startHeroLive); startHeroLive(); }
 window.setHeroLive=setHeroLive;
@@ -919,7 +967,8 @@ tBtn.addEventListener('click',()=>{
 // drawer + lightbox
 const drawer=document.getElementById('drawer'), overlay=document.getElementById('overlay'), drawerBody=document.getElementById('drawerBody'), drawerKicker=document.getElementById('drawerKicker');
 function openDrawer(p){
-  drawerKicker.textContent=(p.cat==='automation'?'Automation':'Funnel')+' — '+p.n;
+  const famLabel = p.family==='hybrid' ? 'Hybrid · Funnel + Automation' : (p.cat==='automation'?'Automation':'Funnel');
+  drawerKicker.textContent=famLabel+' — '+p.n;
   drawerZoomLevel=1;
   let media='';
   const labels = p.n==="02" ? ["Landing · Hero + Trust","Intake · Form + UTM","Calendar · Booking","Confirmation · Next steps","Nurture · Tag loop"] : ["Hero · Build the body","Problem · Pain","Program · 4 pillars","Proof · Testimonials","Pricing · $297","FAQ · No surprises"];
@@ -946,7 +995,23 @@ function openDrawer(p){
     const escTitle = p.title.replace(/"/g,'&quot;');
     loomHtml = `<div class="loom-wrap" data-loom="${p.loom}" data-title="${escTitle}" style="margin:14px 0 0"><img class="loom-thumb" src="${thumb}" alt="${escTitle} — Loom thumbnail" loading="lazy"><button class="loom-play" onclick="playLoom(this)" aria-label="Play Loom walkthrough for ${escTitle}"><span class="loom-btn">▶</span></button><span class="loom-label">Click to play — Loom walkthrough</span></div>`;
   }
-  drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${p.title}</h3><p style="color:var(--ink-soft);line-height:1.6;margin:0">${p.desc}</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0">${p.stack.map(s=>`<span class="pill">${s}</span>`).join('')}</div>${media}${loomHtml}${caseStudy}<ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul><div style="display:flex;gap:8px;margin-top:14px"><a class="btn-p" href="#" onclick="closeDrawer();switchPanel('contact');return false">Discuss this build →</a></div>`;
+  const tags=(p.tags||[p.cat]);
+  const tagPills=tags.map(t=>{ const cls=t==='automation'?'auto':t==='funnel'?'funnel':'hybrid'; const label=t==='automation'?'Automation':t==='funnel'?'Funnel':'Hybrid'; return `<span class="tag ${cls}">${label}</span>`; }).join('');
+  const isHybrid=p.family==='hybrid';
+  const hybridBanner = isHybrid ? `<div style="margin:12px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--ground);display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="tag hybrid">Hybrid</span><span style="font-size:12px;color:var(--ink-soft)">Funnel design + automation routing — switch tabs below.</span><span style="margin-left:auto;font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft)">${p.sections ? p.sections.length+' sections' : ''} · ${p.stack.slice(0,3).join(' · ')}</span></div>` : '';
+  const stackPills=`<div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0">${p.stack.map(s=>`<span class="pill">${s}</span>`).join('')}</div>`;
+  const tagRow=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0">${tagPills}</div>`;
+  let hybridTabs='';
+  let bodyMain='';
+  if(isHybrid){
+    hybridTabs=`<div style="display:flex;gap:8px;margin:14px 0 10px"><button class="btn-p" style="padding:8px 14px;font-size:10px" onclick="document.getElementById('hybrid-design').style.display='block';document.getElementById('hybrid-routing').style.display='none';this.style.opacity='1';this.nextElementSibling.style.opacity='.6'" >Funnel Design</button><button class="btn-g" style="padding:8px 14px;font-size:10px;opacity:.6" onclick="document.getElementById('hybrid-design').style.display='none';document.getElementById('hybrid-routing').style.display='block';this.style.opacity='1';this.previousElementSibling.style.opacity='.6'" >Automation Routing</button></div>`;
+    const designPanel=`<div id="hybrid-design">${media}${loomHtml ? loomHtml : ''}${caseStudy ? `<div style="margin-top:12px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px">Funnel — What the visitor sees</div>${caseStudy}${media ? '' : ''}</div>` : ''}<div style="margin-top:12px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px">Highlights</div><ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul></div></div>`;
+    const routingPanel=`<div id="hybrid-routing" style="display:none">${!p.sections && p.img ? media : `<div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ground);padding:12px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:8px">Routing — What happens behind</div><div style="font-size:13px;line-height:1.6;color:var(--ink-2)">GHL tags, routers, webhooks and fallback — the system that prevents leaks.</div></div>`}${p.build ? `<div style="margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);padding:16px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px">Build steps</div><ul style="margin:0;padding:0;list-style:none;display:grid;gap:8px">${(p.build||[]).map(b=>`<li style="padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--ground);font-size:12.5px;line-height:1.5;color:var(--ink-2)">▸ ${b}</li>`).join('')}</ul></div>` : ''}<div style="margin-top:12px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px">Automation highlights</div><ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul></div></div>`;
+    bodyMain=hybridTabs+designPanel+routingPanel;
+  } else {
+    bodyMain=`${media}${loomHtml}${caseStudy}<ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul>`;
+  }
+  drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${p.title}</h3><p style="color:var(--ink-soft);line-height:1.6;margin:0">${p.desc}</p>${tagRow}${hybridBanner}${stackPills}${bodyMain}<div style="display:flex;gap:8px;margin-top:14px"><a class="btn-p" href="#" onclick="closeDrawer();switchPanel('contact');return false">Discuss this build →</a></div>`;
   drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
 }
 function playLoom(btn){
