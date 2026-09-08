@@ -899,8 +899,9 @@ function setPreview(p){
   }).join('');
   const hybridNote = p.family==='hybrid' ? `<div style="margin-top:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--ground);font-size:11px;line-height:1.5;color:var(--ink-soft);display:flex;gap:8px;align-items:center"><span class="tag hybrid" style="font-size:8px">Hybrid</span><span>Funnel design + automation routing — tabs in detail view.</span></div>` : '';
   const funnelBadge = p.sections && p.sections.length && p.family==='hybrid' ? `<span style="font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft)">+ ${p.sections.length} funnel sections</span>` : '';
-  const liveBtn = p.liveUrl ? `<a class="btn-p" href="${p.liveUrl}" target="_blank" rel="noreferrer">Live view ↗</a>` : '';
-  prevBody.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center">${tagPills}${funnelBadge}</div>${hybridNote}<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${p.stack.map(s=>`<span class="pill" style="padding:5px 8px;font-size:9px">${s}</span>`).join('')}</div><ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul><div class="preview-cta">${liveBtn}<button class="btn-p" onclick="openDrawerById('${p.n}')">Open zoom view →</button><button class="btn-g" onclick="switchPanel('contact')">Discuss this →</button></div>`;
+  const liveBtn = p.liveUrl ? `<a class="btn-p" href="${p.liveUrl}" target="_blank" rel="noreferrer" style="display:flex;justify-content:center;width:100%;padding:12px 16px;font-size:11px;letter-spacing:.1em;box-shadow:0 6px 16px rgba(180,83,9,.18)">Live view — open funnel ↗</a>` : '';
+  const previewCta = p.liveUrl ? `<div class="preview-cta" style="flex-direction:column;align-items:stretch">${liveBtn}<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn-p" style="flex:1" onclick="openDrawerById('${p.n}')">Open zoom view →</button><button class="btn-g" style="flex:1" onclick="switchPanel('contact')">Discuss this →</button></div></div>` : `<div class="preview-cta"><button class="btn-p" onclick="openDrawerById('${p.n}')">Open zoom view →</button><button class="btn-g" onclick="switchPanel('contact')">Discuss this →</button></div>`;
+  prevBody.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center">${tagPills}${funnelBadge}</div>${hybridNote}<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${p.stack.map(s=>`<span class="pill" style="padding:5px 8px;font-size:9px">${s}</span>`).join('')}</div><ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul>${previewCta}`;
 }
 function openDrawerById(n){ openDrawer(projects.find(x=>x.n===n)); }
 render(); setPreview(active);
@@ -1013,8 +1014,9 @@ function openDrawer(p){
   } else {
     bodyMain=`${media}${loomHtml}${caseStudy}<ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul>`;
   }
+  const drawerLiveTop = p.liveUrl ? `<a class="btn-p" href="${p.liveUrl}" target="_blank" rel="noreferrer" style="display:flex;justify-content:center;width:100%;padding:13px 16px;font-size:11px;letter-spacing:.1em;box-shadow:0 6px 16px rgba(180,83,9,.18);margin:12px 0 6px">Live view — open funnel ↗</a>` : '';
   const drawerLiveBtn = p.liveUrl ? `<a class="btn-p" href="${p.liveUrl}" target="_blank" rel="noreferrer">Live view ↗</a>` : '';
-  drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${p.title}</h3><p style="color:var(--ink-soft);line-height:1.6;margin:0">${p.desc}</p>${tagRow}${hybridBanner}${stackPills}${bodyMain}<div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">${drawerLiveBtn}<a class="btn-p" href="#" onclick="closeDrawer();switchPanel('contact');return false">Discuss this build →</a></div>`;
+  drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${p.title}</h3><p style="color:var(--ink-soft);line-height:1.6;margin:0">${p.desc}</p>${tagRow}${hybridBanner}${stackPills}${drawerLiveTop}${bodyMain}<div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">${drawerLiveBtn}<a class="btn-p" href="#" onclick="closeDrawer();switchPanel('contact');return false">Discuss this build →</a></div>`;
   drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
 }
 function playLoom(btn){
