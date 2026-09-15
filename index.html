@@ -413,6 +413,17 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .ghl-pop-proof{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:10px 0 0}
 .ghl-pop-proof img{width:100%;height:150px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:10px;cursor:zoom-in;transition:.15s;background:var(--ground)}
 .ghl-pop-proof img:hover{border-color:var(--amber);box-shadow:0 0 0 3px color-mix(in srgb, var(--amber) 12%, transparent)}
+.ghl-sub-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.ghl-sub-tags span{font-family:'Fragment Mono',monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
+.ghl-chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
+.ghl-chips .pill{padding:5px 8px;font-size:9px}
+.ghl-sec-label{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:14px 0 8px}
+.ghl-pop-sub{border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
+.ghl-pop-sub-title{font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:4px;display:flex;align-items:center;gap:7px}
+.ghl-pop-sub-title::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--amber);flex-shrink:0}
+.ghl-pop-sub p{margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+.ghl-pop-sub .ghl-pop-proof{margin-top:2px}
+.ghl-pop-none{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-top:4px}
 
 /* Hero panel — B · Live Proof (live preview + side picker, fills grid) */
 .panel-hero{flex-direction:column;overflow:hidden;justify-content:center;align-items:stretch}
@@ -1085,10 +1096,14 @@ window.closeDrawer=closeDrawer; window.openDrawer=openDrawer; window.playLoom=pl
 
 // GHL skills — data-driven tiles, popup = existing drawer
 const glSkills=[
-  {n:"01",icon:"◈",title:"Contacts & Lead Records",short:"Manage contact records end-to-end — add, edit, safely delete.\nAware of the downstream impact on automations and data.",desc:"I'm confident managing HighLevel contact records — editing details and safely deleting contacts, with awareness of the downstream impact on automations and data.",chips:["Contact Management","Edit & Delete","Data Safety"],proof:["assets/ghl/proof-contact-1.png","assets/ghl/proof-contact-2.png","assets/ghl/proof-contact-3.png","assets/ghl/proof-contact-4.png"]},
-  {n:"02",icon:"▤",title:"Custom Fields",short:"Create & organize custom fields —\nhold data unique to each business.",desc:"I'm able to create and organize custom fields in HighLevel to hold data unique to a specific business.",chips:["Custom Fields","Create & Organize","Business Data"],proof:["assets/ghl/proof-fields-1.png","assets/ghl/proof-fields-2.png"]}
+  {n:"01",icon:"◈",title:"Contacts & Lead Records",short:"Manage contact records end-to-end — add, edit, safely delete.\nAware of the downstream impact on automations and data.",desc:"I'm confident managing HighLevel contact records — editing details and safely deleting contacts, with awareness of the downstream impact on automations and data.",chips:["Contact Management","Edit & Delete","Data Safety"],proof:["assets/ghl/proof-contact-1.png","assets/ghl/proof-contact-2.png","assets/ghl/proof-contact-3.png","assets/ghl/proof-contact-4.png"],subs:[
+    {title:"Custom Fields",desc:"I'm able to create and organize custom fields in HighLevel to hold data unique to a specific business.",chips:["Custom Fields","Create & Organize","Business Data"],proof:["assets/ghl/proof-fields-1.png","assets/ghl/proof-fields-2.png"]},
+    {title:"Contacts Import",desc:"I'm skilled at CSV-based contact imports in HighLevel, from data cleanup and field mapping (standard and custom) to post-import validation.",chips:["CSV Import","Field Mapping","Validation"],proof:["assets/ghl/proof-import-1.png","assets/ghl/proof-import-2.png"]}
+  ]}
 ];
 const ghlTiles=document.getElementById('ghlTiles');
+const ghlChip=c=>`<span class="pill">${c}</span>`;
+const ghlProof=s=>`<img src="${s}" alt="GHL proof" loading="lazy" onclick="openLightbox('${s}')">`;
 function renderGhl(){
   if(!ghlTiles) return;
   ghlTiles.innerHTML='';
@@ -1098,11 +1113,13 @@ function renderGhl(){
       if(m.length>1) return `<b style="font-weight:600;color:var(--ink-2)">${m[0]} — </b><span>${m.slice(1).join(' — ')}</span>`;
       return `<span>${l}</span>`;
     });
+    const subTags=s.subs&&s.subs.length?`<div class="ghl-sub-tags">${s.subs.map(u=>`<span>${u.title}</span>`).join('')}</div>`:'';
+    const footLabel=s.subs&&s.subs.length?('Skills · '+s.subs.length):'Skill';
     const t=document.createElement('button');
     t.className='ghl-tile';
     t.setAttribute('role','button');
     t.setAttribute('aria-label',`Open ${s.title} skill`);
-    t.innerHTML=`<span class="ghl-tile-top"><span>${s.n} · ${s.title.split(' & ')[0].split(' — ')[0]}</span><span class="spec-icon">${s.icon}</span></span><h3>${s.title}</h3><p>${lines.join('<br>')}</p><span class="ghl-open"><span>Skill</span><b>Open skill →</b></span>`;
+    t.innerHTML=`<span class="ghl-tile-top"><span>${s.n} · ${s.title.split(' & ')[0].split(' — ')[0]}</span><span class="spec-icon">${s.icon}</span></span><h3>${s.title}</h3><p>${lines.join('<br>')}</p>${subTags}<span class="ghl-open"><span>${footLabel}</span><b>Open skill →</b></span>`;
     t.addEventListener('click',()=>openGhlSkill(s));
     t.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openGhlSkill(s); } });
     ghlTiles.appendChild(t);
@@ -1110,12 +1127,18 @@ function renderGhl(){
 }
 function openGhlSkill(s){
   drawerKicker.textContent='GHL — skill '+s.n+' · '+s.title;
-  const chipPills=s.chips.map(c=>`<span style="font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)">${c}</span>`).join('');
-  const proofGrid=s.proof.map(p=>`<img src="${p}" alt="${s.title} proof" loading="lazy" style="width:100%;height:150px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:10px;cursor:zoom-in" onclick="openLightbox('${p}')">`).join('');
+  const chipPills=s.chips.map(ghlChip).join('');
+  const proofHtml=(s.proof&&s.proof.length)?`<div><div class="ghl-sec-label">Proof — record management · ${s.proof.length} shots</div><div class="ghl-pop-proof">${s.proof.map(ghlProof).join('')}</div></div>`:'';
+  const subHtml=(s.subs&&s.subs.length)?'<div style="margin-top:14px;padding-top:2px">'+s.subs.map(u=>{
+    const uc=u.chips.map(ghlChip).join('');
+    const up=(u.proof&&u.proof.length)?`<div class="ghl-pop-proof">${u.proof.map(ghlProof).join('')}</div>`:`<span class="ghl-pop-none">Proof coming soon.</span>`;
+    return `<div class="ghl-pop-sub"><div class="ghl-pop-sub-title">${u.title}</div><p>${u.desc}</p><div class="ghl-chips" style="margin:10px 0 12px">${uc}</div>${up}</div>`;
+  }).join('')+'</div>':'';
   drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${s.title}</h3>
     <p style="color:var(--ink-soft);line-height:1.6;margin:0">${s.desc}</p>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px">${chipPills}</div>
-    ${proofGrid?`<div><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:14px 0 8px">Proof — ${s.proof.length} shots</div><div class="ghl-pop-proof">${proofGrid}</div></div>`:''}`;
+    <div class="ghl-chips">${chipPills}</div>
+    ${proofHtml}
+    ${subHtml}`;
   drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
 }
 window.openGhlSkill=openGhlSkill;
