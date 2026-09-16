@@ -1,0 +1,8 @@
+# editor / os
+.DS_Store
+Thumbs.db
+
+# design-source leftovers (converted to webp before commit)
+**/*.bak
+**/source-*.png
+**/source-*.jpg

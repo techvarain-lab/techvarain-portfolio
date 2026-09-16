@@ -4,7 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rainier Dimasacat — Single Viewport · GHL SPECIALIST / FUNNEL BUILDER</title>
-<meta name="description" content="Rainier Dimasacat — GHL SPECIALIST / FUNNEL BUILDER. 19 builds, 2 families. Single-viewport workbench: Stripe → GHL → Sheets → Slack, logged, routed, documented.">
+<meta name="description" content="Rainier Dimasacat — GHL SPECIALIST / FUNNEL BUILDER. 21 builds. Single-viewport workbench: Stripe → GHL → Sheets → Slack, logged, routed, documented.">
+<script>try{var t=localStorage.getItem('rd-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}</script>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rainier Dimasacat — GHL Specialist / Funnel Builder">
+<meta property="og:description" content="No-code systems and GHL funnels that don't leak. Stripe → GHL → Sheets → Slack — logged, routed, documented. 21 builds.">
+<meta property="og:url" content="https://rainier-dimasacat.github.io/">
+<meta property="og:image" content="https://rainier-dimasacat.github.io/assets/funnel/rubio/thumb.webp">
+<meta property="og:locale" content="en_PH">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rainier Dimasacat — GHL Specialist / Funnel Builder">
+<meta name="twitter:description" content="No-code systems and GHL funnels that don't leak. Stripe → GHL → Sheets → Slack — logged, routed, documented.">
+<meta name="twitter:image" content="https://rainier-dimasacat.github.io/assets/funnel/rubio/thumb.webp">
+<link rel="canonical" href="https://rainier-dimasacat.github.io/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Rainier Dimasacat Jr","jobTitle":"GHL Specialist / Funnel Builder","description":"GoHighLevel specialist and funnel builder — GHL main, plus Zapier, n8n and Make.","email":"mailto:techva.rain@gmail.com","telephone":"+639951462765","url":"https://rainier-dimasacat.github.io/","address":{"@type":"PostalAddress","addressLocality":"Cavite","addressCountry":"PH"},"knowsAbout":["GoHighLevel","Funnel Building","Workflow Automation","Make.com","n8n","Zapier","API Integrations"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@400;500;600&family=Fragment+Mono&family=Instrument+Serif&display=swap" rel="stylesheet">
 <style>
@@ -279,16 +293,22 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 /* WORK panel specifics */
 .panel-work{flex-direction:column}
 .work-toolbar{
-  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
   padding:0 0 2px;flex-shrink:0;
 }
-.filter{
-  padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--paper);
-  font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--ink-soft);cursor:pointer;display:flex;gap:6px;align-items:center;min-height:38px;transition:.15s;flex-shrink:0
+.segs{
+  display:inline-flex;align-items:stretch;border:1px solid var(--line);border-radius:8px;
+  overflow:hidden;background:var(--ground)
 }
-.filter.active{background:var(--amber);color:white;border-color:var(--amber);box-shadow:0 6px 16px rgba(180,83,9,.18)}
-.filter:hover{border-color:var(--line-strong)}
+.filter{
+  padding:8px 13px;border:0;border-radius:0;background:transparent;
+  font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-soft);cursor:pointer;display:flex;gap:6px;align-items:center;min-height:34px;transition:.15s
+}
+.filter + .filter{border-left:1px solid var(--line)}
+.filter:hover{background:color-mix(in srgb, var(--navy) 6%, transparent);color:var(--ink)}
+.filter.active{background:var(--navy);color:white}
+.filter:focus-visible{outline:2px solid var(--amber);outline-offset:-2px}
 .chip{font-size:9px;padding:2px 6px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
 .filter.active .chip{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.18);color:white}
 .kbd{
@@ -410,9 +430,17 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .ghl-open{margin-top:auto;display:flex;align-items:center;justify-content:space-between;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-top:6px}
 .ghl-open b{color:var(--amber);font-weight:500}
 .ghl-tile:hover .ghl-open b{color:var(--amber-2)}
-.ghl-pop-proof{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:10px 0 0}
-.ghl-pop-proof img{width:100%;height:150px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:10px;cursor:zoom-in;transition:.15s;background:var(--ground)}
-.ghl-pop-proof img:hover{border-color:var(--amber);box-shadow:0 0 0 3px color-mix(in srgb, var(--amber) 12%, transparent)}
+.ghl-pop-proof{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;margin:10px 0 0}
+.ghl-proof-cell{position:relative;border:0;padding:0;background:none;display:block;border-radius:8px;overflow:hidden;cursor:zoom-in}
+.ghl-proof-cell img{width:100%;height:56px;object-fit:cover;object-position:top;display:block;border:1px solid var(--line);border-radius:8px;transition:.15s;background:var(--ground)}
+.ghl-proof-cell:hover img{border-color:var(--amber);box-shadow:0 0 0 3px color-mix(in srgb, var(--amber) 12%, transparent)}
+.ghl-proof-cell:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.ghl-proof-badge{position:absolute;right:5px;bottom:5px;width:18px;height:18px;border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);border-radius:5px;display:grid;place-items:center;font-size:9px;font-family:'Fragment Mono',monospace;opacity:0;transition:opacity .15s;pointer-events:none}
+.ghl-proof-badge::after{content:"⤢"}
+.ghl-proof-cell:hover .ghl-proof-badge{opacity:1}
+.ghl-zoom{position:fixed;z-index:70;pointer-events:none;width:min(340px,52vw);border:1px solid var(--line-strong);border-radius:12px;overflow:hidden;background:var(--ground);box-shadow:0 18px 50px rgba(0,0,0,.28);display:none}
+.ghl-zoom img{width:100%;height:auto;display:block}
+.ghl-zoom.show{display:block}
 .ghl-sub-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
 .ghl-sub-tags span{font-family:'Fragment Mono',monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
 .ghl-chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
@@ -421,7 +449,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .ghl-pop-sub{border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
 .ghl-pop-sub-title{font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:4px;display:flex;align-items:center;gap:7px}
 .ghl-pop-sub-title::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--amber);flex-shrink:0}
-.ghl-pop-sub p{margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+.ghl-pop-sub p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-2)}
 .ghl-pop-sub .ghl-pop-proof{margin-top:2px}
 .ghl-pop-none{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-top:4px}
 
@@ -467,6 +495,10 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 @media (prefers-reduced-motion: no-preference){
   .panel-hero.active .hero-card{animation:heroIn .5s cubic-bezier(.16,1,.3,1) both}
   @keyframes heroIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion: reduce){
+  .panel-anim,.hero-live-track{transition:none;animation:none}
+  .hero-live-track img,.funnel-drawer-img img,.preview-img img{transition:none}
 }
 
 /* About panel */
@@ -641,12 +673,12 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <div class="topbar-left">
         <button class="m-toggle" id="menuBtn" aria-expanded="false" aria-label="Open menu"><span class="burger"><i></i><i></i><i></i></span></button>
         <div class="panel-tabs" role="tablist" aria-label="Sections">
-          <button class="ptab active" data-panel="hero" role="tab" aria-selected="true">Home</button>
-          <button class="ptab" data-panel="work" role="tab" aria-selected="false">Work <span class="cnt">21</span></button>
-          <button class="ptab" data-panel="services" role="tab">Services</button>
-          <button class="ptab" data-panel="ghl" role="tab">GHL</button>
-          <button class="ptab" data-panel="about" role="tab">About</button>
-          <button class="ptab" data-panel="contact" role="tab">Contact</button>
+          <button class="ptab active" data-panel="hero" role="tab" aria-selected="true">HOME</button>
+          <button class="ptab" data-panel="ghl" role="tab" aria-selected="false">WHAT I DO IN GHL</button>
+          <button class="ptab" data-panel="work" role="tab" aria-selected="false">WORK <span class="cnt">21</span></button>
+          <button class="ptab" data-panel="services" role="tab" aria-selected="false">SERVICES</button>
+          <button class="ptab" data-panel="about" role="tab" aria-selected="false">ABOUT</button>
+          <button class="ptab" data-panel="contact" role="tab" aria-selected="false">CONTACT</button>
         </div>
       </div>
       <div class="topbar-right">
@@ -663,7 +695,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
             <div class="hero-card-body">
               <div class="hero-live" id="heroLive" onclick="openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))" role="button" tabindex="0" aria-label="Open funnel preview" onkeydown="if(event.key==='Enter')openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))">
                 <div class="hero-live-track" id="heroLiveTrack">
-                  <img src="assets/funnel/rubio/thumb.webp" srcset="assets/funnel/rubio/thumb.webp 800w, assets/funnel/rubio/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Rubio Roofing and Trusses — Industrial Funnel" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='assets/funnel/rubio/full.webp'">
+                  <img src="assets/funnel/rubio/thumb.webp" srcset="assets/funnel/rubio/thumb.webp 800w, assets/funnel/rubio/thumb.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Rubio Roofing and Trusses — Industrial Funnel" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='assets/funnel/rubio/thumb.webp'">
                   <img src="assets/funnel/mountain-hiking/sec01.webp" srcset="assets/funnel/mountain-hiking/sec01.webp 1920w, assets/funnel/mountain-hiking/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Mountain Hiking — Adventure Funnel" loading="lazy" decoding="async" onerror="this.src='assets/funnel/mountain-hiking/full.webp'">
                   <img src="assets/funnel/clearview/sec01.webp" srcset="assets/funnel/clearview/sec01.webp 1920w, assets/funnel/clearview/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="ClearView Pressure Washing — Lead Generation Funnel" loading="lazy" decoding="async" onerror="this.src='assets/funnel/clearview/full.webp'">
                   <img src="assets/funnel/haven/thumb.webp" srcset="assets/funnel/haven/thumb.webp 800w, assets/funnel/haven/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Haven Animal Clinic — AI-Qualified Booking" loading="lazy" decoding="async" onerror="this.src='assets/funnel/haven/full.webp'">
@@ -681,7 +713,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
             </div>
           </aside>
           <aside class="hero-side" aria-label="Featured funnels">
-            <div class="hero-side-head"><span>Featured — Funnel builds</span><span style="color:var(--amber)">● 11 total</span></div>
+            <div class="hero-side-head"><span>Featured — Funnel builds</span><span style="color:var(--amber)">● 6 featured</span></div>
             <div class="hero-side-list" id="heroSideList">
               <button class="hero-side-item active" data-i="0" onclick="setHeroLive(0)">
                 <small><i>01</i> HYBRID <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
@@ -730,10 +762,12 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <!-- WORK -->
       <section class="panel panel-work panel-anim" data-panel-id="work" role="tabpanel">
         <div class="work-toolbar">
-          <button class="filter active" data-filter="all">All <span class="chip">21</span></button>
-          <button class="filter" data-filter="funnel">Funnel <span class="chip">11</span></button>
-          <button class="filter" data-filter="automation">Automation <span class="chip">16</span></button>
-          <button class="filter" data-filter="hybrid">Hybrid <span class="chip">6</span></button>
+          <div class="segs">
+            <button class="filter active" data-filter="all">All <span class="chip">21</span></button>
+            <button class="filter" data-filter="funnel">Funnel <span class="chip">11</span></button>
+            <button class="filter" data-filter="automation">Automation <span class="chip">16</span></button>
+            <button class="filter" data-filter="hybrid">Hybrid <span class="chip">6</span></button>
+          </div>
           <span class="kbd" id="kbdHint">Hover to preview · Click to open</span>
         </div>
         <div class="workbench">
@@ -814,10 +848,10 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
           </div>
           <form class="form" onsubmit="return handleSubmit(event)">
             <div style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)">Send a brief</div>
-            <div class="field"><label>Name</label><input required placeholder="Your name"></div>
-            <div class="field"><label>Email</label><input type="email" required placeholder="you@company.com"></div>
-            <div class="field"><label>What to automate?</label><select><option>Lead routing & follow-up</option><option>Missed-call & review recovery</option><option>Booking & payment flow</option><option>Content / AI pipeline</option><option>Other</option></select></div>
-            <div class="field"><label>Message</label><textarea placeholder="The flow that hurts most…"></textarea></div>
+            <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Your name"></div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com"></div>
+            <div class="field"><label for="f-topic">What to automate?</label><select id="f-topic" name="topic"><option>Lead routing & follow-up</option><option>Missed-call & review recovery</option><option>Booking & payment flow</option><option>Content / AI pipeline</option><option>Other</option></select></div>
+            <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" autocomplete="off" placeholder="The flow that hurts most…"></textarea></div>
             <button class="submit" type="submit">Send brief →</button>
             <div id="formOk" style="display:none;text-align:center;padding:10px;border:1px solid #C7E8D0;background:#EBF6EF;color:#1F5E2E;border-radius:8px;font-size:13px">Thanks! Opening your email client…</div>
           </form>
@@ -828,11 +862,11 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 </div>
 
 <!-- mobile rail drawer -->
-<div class="mobile-rail" id="mobileRail" style="display:none" onclick="if(event.target===this) toggleMobileRail(false)">
+<div class="mobile-rail" id="mobileRail" inert style="display:none" onclick="if(event.target===this) toggleMobileRail(false)">
   <div class="mobile-rail-panel">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <span style="font-family:'Instrument Serif',serif;font-size:18px">Rainier <i style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--amber)">D.</i></span>
-      <button onclick="toggleMobileRail(false)" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:white;cursor:pointer">✕</button>
+      <button onclick="toggleMobileRail(false)" aria-label="Close menu" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:white;cursor:pointer">✕</button>
     </div>
     <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,244,237,.5)"><span style="color:var(--amber)">●</span> Operating · 24h reply</div>
     <div style="border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04);padding:14px">
@@ -841,38 +875,39 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <div style="display:flex;gap:8px;margin-top:12px"><a class="btn-rail-p" href="#" onclick="toggleMobileRail(false);switchPanel('work')">Open bench</a><a class="btn-rail-g" href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank">LinkedIn ↗</a></div>
     </div>
     <div style="display:grid;gap:8px">
-      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('work')">Work — 21</button>
-      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('services')">Services</button>
-      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('ghl')">GHL</button>
-      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('about')">About</button>
-      <button class="ptab" style="width:100%;justify-content:center;background:var(--amber);color:white;border-color:var(--amber)" onclick="toggleMobileRail(false);switchPanel('contact')">Start a project →</button>
+      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('hero')">HOME</button>
+      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('ghl')">WHAT I DO IN GHL</button>
+      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('work')">WORK — 21</button>
+      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('services')">SERVICES</button>
+      <button class="ptab" style="width:100%;justify-content:center" onclick="toggleMobileRail(false);switchPanel('about')">ABOUT</button>
+      <button class="ptab" style="width:100%;justify-content:center;background:var(--amber);color:white;border-color:var(--amber)" onclick="toggleMobileRail(false);switchPanel('contact')">START A PROJECT →</button>
     </div>
     <div style="margin-top:auto;font-family:'Fragment Mono',monospace;font-size:10px;color:rgba(244,244,237,.42)">techva.rain@gmail.com · 0995 146 2765</div>
   </div>
 </div>
 
 <div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer"><div class="drawer-head"><span id="drawerKicker" style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)">Case study</span><button onclick="closeDrawer()" class="drawer-close" aria-label="Close">✕</button></div><div class="drawer-body" id="drawerBody"></div></aside>
-<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()"><div style="width:min(1280px,96vw)"><div class="lightbox-bar"><button onclick="closeLightbox()">✕ Close</button><button onclick="document.getElementById('lightboxImg').style.transform=document.getElementById('lightboxImg').style.transform==='scale(1.5)'?'scale(1)':'scale(1.5)'" style="width:auto">Toggle 150%</button></div><img id="lightboxImg" src="" alt="Full view" style="width:100%;height:auto;display:block;transition:transform .2s;transform-origin:top center"></div></div>
+<aside class="drawer" id="drawer" inert><div class="drawer-head"><span id="drawerKicker" style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)">Case study</span><button onclick="closeDrawer()" class="drawer-close" aria-label="Close">✕</button></div><div class="drawer-body" id="drawerBody"></div></aside>
+<div class="lightbox" id="lightbox" inert onclick="if(event.target===this)closeLightbox()"><div style="width:min(1280px,96vw)"><div class="lightbox-bar"><button onclick="closeLightbox()">✕ Close</button><button onclick="document.getElementById('lightboxImg').style.transform=document.getElementById('lightboxImg').style.transform==='scale(1.5)'?'scale(1)':'scale(1.5)'" style="width:auto">Toggle 150%</button></div><img id="lightboxImg" src="" alt="Full view" style="width:100%;height:auto;display:block;transition:transform .2s;transform-origin:top center"></div></div>
 
 <script>
 const projects=[
-  {n:"01",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Rubio Roofing and Trusses \u2014 Industrial Construction Funnel",desc:"High-converting 2-page funnel for Rubio Roofing (Alapan, Imus City). Construction-inspired hazard-stripe system, real-build proof (20+ photos) + GHL-ready capture for Cavite & Metro Manila.",img:"assets/funnel/rubio/thumb.webp",full:"assets/funnel/rubio/full.webp",stack:["GoHighLevel","HTML/CSS/JS","Hazard-Stripe System","GHL Webhook"],bullets:["Construction design language \u2014 hazard stripe #FFD400, concrete #F6F6F3, Barlow + JetBrains Mono","Sticky conversion header + glass spec-card + tel:+639954846174 click-to-call","Interactive before/after slider \u2014 clip-path + range + click-to-seek (0.60mm ribtype)","5-tab filterable gallery \u2014 Before/After, Tanza 9, Gen Trias 4, Bi\u00f1an 3, Imus 3 \u2014 12-col bento, no reload","GHL-ready estimate form \u2014 09XXXXXXXXX validation, 13 cities, 6 services, honeypot + hidden source","Thank-you sequence \u2014 3-step timeline + dual CTA (Call/Messenger) + fbq('Lead') & gtag hooks"],niche:"Construction \u00b7 Roofing Contractor \u2014 Cavite & Metro Manila (Alapan, Imus City)",problem:"No centralized lead capture \u2014 inquiries lost in Facebook DMs. No way to prove material quality (0.50mm/0.60mm gauge, stainless 304) or warranty. Generic contractor sites look the same \u2014 no visual authority for a brand that does 50+ projects.",solution:"A 2-page construction-inspired sales funnel (index + thank-you) built around an industrial system: hazard stripe (repeating-linear-gradient 135deg #FFD400), concrete gray #F6F6F3, Barlow + JetBrains Mono. Every image is an actual build from Tanza, General Trias, Bi\u00f1an, and Imus \u2014 geotagged in captions. One clear action: Get a Free 21-Point Inspection + Written Estimate in 24H.",build:["Visual identity \u2014 hazard stripe repeating-linear-gradient(135deg,#FFD400,#0F1115), concrete #F6F6F3, signal yellow #FFD400; Barlow Extra Bold + Plus Jakarta Sans + JetBrains Mono","Sticky conversion header (utility bar + nav) with always-visible CTA and tel:+639954846174","Hero with proof card \u2014 glassmorphism spec card overlay (Vivid Blue 0.50mm + location proof)","4 Pillars \u2014 compact dark/yellow cards: Great Finish, Expert Team, Reliable Warranty, Honest Pricing","Before/After slider \u2014 draggable clip-path with range + click-to-seek (0.60mm ribtype + 10mm foam + stainless gutter)","Filterable gallery \u2014 5 tabs (Before/After, Tanza 9, Gen Trias 4, Bi\u00f1an 3, Imus 3), 12-col bento for Tanza, no reload","Lightbox \u2014 full-screen blur backdrop + caption","FAQ \u2014 6 details/summary accordions (cost, warranty, timeline, site visits)","GHL-ready form \u2014 name, mobile 09 validation, city 13, service 6, honeypot, hidden source/location \u2192 thank-you ?name=&city=","Thank-you timeline \u2014 next 3 steps + dual CTA (Call/Messenger) + fbq Lead & gtag hooks"],outcome:"Replaces Facebook-only presence with a dedicated funnel that feels like the trade itself \u2014 rugged, reliable, straight to the point. Proves quality with actual builds, not renders, and centralizes every lead into GHL with personalization and pixel tracking.",liveUrl:"https://techvarain-lab.github.io/funnelbuild-rubio_roofing/"},
+  {n:"01",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Rubio Roofing and Trusses \u2014 Industrial Construction Funnel",desc:"High-converting 2-page funnel for Rubio Roofing (Alapan, Imus City). Construction-inspired hazard-stripe system, real-build proof (20+ photos) + GHL-ready capture for Cavite & Metro Manila.",img:"assets/funnel/rubio/thumb.webp",full:"assets/funnel/rubio/thumb.webp",stack:["GoHighLevel","HTML/CSS/JS","Hazard-Stripe System","GHL Webhook"],bullets:["Construction design language \u2014 hazard stripe #FFD400, concrete #F6F6F3, Barlow + JetBrains Mono","Sticky conversion header + glass spec-card + tel:+639954846174 click-to-call","Interactive before/after slider \u2014 clip-path + range + click-to-seek (0.60mm ribtype)","5-tab filterable gallery \u2014 Before/After, Tanza 9, Gen Trias 4, Bi\u00f1an 3, Imus 3 \u2014 12-col bento, no reload","GHL-ready estimate form \u2014 09XXXXXXXXX validation, 13 cities, 6 services, honeypot + hidden source","Thank-you sequence \u2014 3-step timeline + dual CTA (Call/Messenger) + fbq('Lead') & gtag hooks"],niche:"Construction \u00b7 Roofing Contractor \u2014 Cavite & Metro Manila (Alapan, Imus City)",problem:"No centralized lead capture \u2014 inquiries lost in Facebook DMs. No way to prove material quality (0.50mm/0.60mm gauge, stainless 304) or warranty. Generic contractor sites look the same \u2014 no visual authority for a brand that does 50+ projects.",solution:"A 2-page construction-inspired sales funnel (index + thank-you) built around an industrial system: hazard stripe (repeating-linear-gradient 135deg #FFD400), concrete gray #F6F6F3, Barlow + JetBrains Mono. Every image is an actual build from Tanza, General Trias, Bi\u00f1an, and Imus \u2014 geotagged in captions. One clear action: Get a Free 21-Point Inspection + Written Estimate in 24H.",build:["Visual identity \u2014 hazard stripe repeating-linear-gradient(135deg,#FFD400,#0F1115), concrete #F6F6F3, signal yellow #FFD400; Barlow Extra Bold + Plus Jakarta Sans + JetBrains Mono","Sticky conversion header (utility bar + nav) with always-visible CTA and tel:+639954846174","Hero with proof card \u2014 glassmorphism spec card overlay (Vivid Blue 0.50mm + location proof)","4 Pillars \u2014 compact dark/yellow cards: Great Finish, Expert Team, Reliable Warranty, Honest Pricing","Before/After slider \u2014 draggable clip-path with range + click-to-seek (0.60mm ribtype + 10mm foam + stainless gutter)","Filterable gallery \u2014 5 tabs (Before/After, Tanza 9, Gen Trias 4, Bi\u00f1an 3, Imus 3), 12-col bento for Tanza, no reload","Lightbox \u2014 full-screen blur backdrop + caption","FAQ \u2014 6 details/summary accordions (cost, warranty, timeline, site visits)","GHL-ready form \u2014 name, mobile 09 validation, city 13, service 6, honeypot, hidden source/location \u2192 thank-you ?name=&city=","Thank-you timeline \u2014 next 3 steps + dual CTA (Call/Messenger) + fbq Lead & gtag hooks"],outcome:"Replaces Facebook-only presence with a dedicated funnel that feels like the trade itself \u2014 rugged, reliable, straight to the point. Proves quality with actual builds, not renders, and centralizes every lead into GHL with personalization and pixel tracking.",liveUrl:"https://techvarain-lab.github.io/funnelbuild-rubio_roofing/"},
   {n:"02",cat:"funnel",tags:["funnel"],family:"funnel",title:"Mountain Hiking \u2014 Adventure Funnel",desc:"Outdoor adventure booking funnel \u2014 hero \u2192 itinerary \u2192 proof \u2192 pricing \u2192 FAQ with GHL capture. Built to convert trail seekers into booked hikers.",img:"assets/funnel/mountain-hiking/thumb.webp",full:"assets/funnel/mountain-hiking/full.webp",sections:["assets/funnel/mountain-hiking/sec01.webp"],stack:["GoHighLevel","HTML/CSS/JS","GHL Webhook"],bullets:["Hero + itinerary + social proof","GHL capture + calendar","Mobile-first, no overlay","Sections stacked for zoom proof"],  liveUrl:"https://techvarain-lab.github.io/funnelbuild-mountainhiking/"},
   {n:"03",cat:"funnel",tags:["funnel"],family:"funnel",title:"ClearView Pressure Washing — Lead Generation Funnel",desc:"Single-page direct-response funnel for a pressure washing company — glassmorphic hero, before/after slider, GHL webhook capture with PH phone normalization.",img:"assets/funnel/clearview/thumb.webp",full:"assets/funnel/clearview/full.webp",sections:["assets/funnel/clearview/sec01.webp","assets/funnel/clearview/sec02.webp","assets/funnel/clearview/sec03.webp","assets/funnel/clearview/sec04.webp","assets/funnel/clearview/sec05.webp"],stack:["HTML/CSS/JS","Tailwind CSS v3","GHL Webhook"],bullets:["Interactive before/after slider — spring physics, keyboard accessible, prefers-reduced-motion","Glassmorphic hero cards with backdrop-filter blur and hover lift","Live status banner — pulsing green dot, Teams on-site indicator","GHL webhook lead capture — PH phone normalization (0917→+63917), UTM extraction, duplicate prevention","Two deployment variants — standalone HTML + GHL-ready CDN wrapper","Mobile-first responsive — hamburger drawer, 44px touch targets"],niche:"Local Service Business — Pressure Washing (Cavite/Tagaytay, PH)",problem:"Local service businesses like pressure washing companies rely on word-of-mouth and Facebook DMs for leads. There is no centralized capture system — visitors see the work but have no clear path to request a quote. Without pricing on the page, the only conversion goal is getting visitors to submit their info, but generic contact forms kill conversion rates.",solution:"A single-page direct-response funnel engineered around one goal: quote request submission. Modern corporate design with deep maritime navy (#0F2B48) and sky blue accent, glassmorphic hero cards, interactive before/after slider, and a GHL webhook backend with Philippine phone normalization and UTM extraction. Zero pricing on page — pure lead generation.",build:["Design system — deep maritime navy #0F2B48, sky blue accent, Plus Jakarta Sans, tight negative-tracking headlines, pill CTAs, 3-tier shadow system","Before/after slider — spring-physics animation with auto-sweep intro, keyboard accessibility (arrow keys + tab), prefers-reduced-motion support","Glassmorphic hero — frosted glass floating service cards with backdrop-filter blur and hover lift","Live status banner — pulsing green dot with Teams on-site today real-time indicator","GHL webhook integration — full lead-capture pipeline with form validation, PH phone normalization (0917→+63917), UTM extraction, and duplicate prevention","Two deployment variants — standalone HTML (zero deps) + GHL-ready version with CDN assets and wrapper compatibility","Mobile-first responsive — hamburger menu with slide-down drawer, touch-optimized sliders, 44px minimum touch targets","Accessibility — ARIA slider roles, aria-live form status, keyboard navigation, reduced-motion support"],outcome:"A production-ready lead generation funnel deployed for ClearView Exterior Cleaning, capturing quote requests through a polished, conversion-optimized single-page experience with full GHL backend integration.",liveUrl:"https://techvarain-lab.github.io/funnelbuild-clearview/"},
   {n:"04",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Haven Animal Clinic — AI-Qualified Booking",desc:"GoHighLevel-native Conversation AI with hard-gated emergency detection — business-hours-aware routing to clinic vs backup emergency vet, plus tag-gated auto-booking.",img:"assets/funnel/haven/thumb.webp",full:"assets/funnel/haven/full.webp",sections:["assets/funnel/haven/sec01.webp"],stack:["GoHighLevel","Conversation AI","GHL Workflows","GHL Calendar"],bullets:["Hard-gated emergency detection overrides normal flow","Business-hours-aware: to clinic vs backup emergency vet","Bot-triggered workflow action (Goals, not Knowledge Source)","Native GHL calendar auto-confirm — no manual approval"],niche:"Veterinary Clinic — Single-Location General Practice (Business-Hours Only)",problem:"Vet clinics run on nonstop inbound volume — pricing questions, booking requests, and occasionally messages that sound routine but describe an actual emergency. A slow reply on a routine question costs a booking; a mishandled reply on an emergency could cost an animal's life. Front-desk staff can't monitor every channel around the clock, and a generic auto-responder can't tell 'do you groom cats' from 'my dog ate chocolate.'",solution:"A GoHighLevel Conversation AI bot trained on the clinic's real service info, with a hard-gated emergency detection layer that overrides all normal conversation flow. Since Haven only has in-house capability during business hours, the bot's emergency response branches on time: during hours, it directs the owner straight to the clinic; after hours, it redirects to a backup emergency vet — and either way, it fires an internal workflow so staff always know what happened, even when they weren't the ones who responded.",build:["Bot config: Goals vs Knowledge Source separation — Goals drive actions, Knowledge drives answers (conflating them was bug #1)","Emergency intent set: bleeding, seizure, collapse, difficulty breathing, poisoning, hit by car, urgent language etc. — hard gate overrides all routine flow","Business-hours-aware branching in both bot reply and workflow logic — to clinic vs to backup emergency vet","Tag taxonomy pre-created (category:value): patient:new/existing, intent:routine/pricing, booking:confirmed, ai-handled, escalated-to-staff, after-hours-emergency","Routine branch: new/existing → pet type/reason → tags → book into dedicated GHL calendar (auto-confirm, no manual approval)","Emergency branch: business-hours-aware reply + Goal triggers Emergency Escalation workflow → duplicate-suppression guard → SMS to on-call + task + audit tag + timed removal","Booking Confirmation workflow: booking:confirmed + ai-handled + front-desk notification"],"bugs":["Early prompt caused bot to treat sending emergency reply as task-complete and skip workflow trigger — fixed by stating both steps mandatory and non-substitutable"],"outcome":"Build in progress — emergency and booking logic designed and largely wired; final verification of action-chaining reliability (via AI Action Logs, live conversation testing) still pending at time of writing.",liveUrl:"https://techvarain-lab.github.io/funnelbuild-haven_animal_clinic/"},
   {n:"05",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"FitCoach Ecosystem — Stripe Payment to GHL",desc:"Stripe checkout for a 12-week program flows into GoHighLevel with router logic to update/create contacts, log roster, alert team.",img:"assets/funnel/fitcoach/thumb.webp",full:"assets/funnel/fitcoach/full.webp",sections:["assets/funnel/fitcoach/sec01.webp","assets/funnel/fitcoach/sec02.webp","assets/funnel/fitcoach/sec03.webp","assets/funnel/fitcoach/sec04.webp","assets/funnel/fitcoach/sec05.webp","assets/funnel/fitcoach/sec06.webp"],loom:"https://www.loom.com/embed/8613df569f7740c998a3a1f67d5dcdbb?hide_owner=true&hide_share=true&hide_title=true",stack:["Make.com","Stripe","GoHighLevel","Sheets","Slack"],bullets:["Stripe → Make router: create vs update","Checks existing GHL contact before upsert","Sheets roster + Slack ping","No double enrollments"],automation:["assets/funnel/fitcoach/automation/auto01.webp","assets/funnel/fitcoach/automation/auto02.webp","assets/funnel/fitcoach/automation/auto03.webp","assets/funnel/fitcoach/automation/auto04.webp","assets/funnel/fitcoach/automation/auto05.webp"]},
   {n:"06",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Legal Consultation Intake & Nurture System — Immigration & Family Law",desc:"GHL-only 4-step funnel + 9-workflow tag-gated nurture loop where booking and nurture actively suppress each other — no double-messaging, no-shows recycled.",img:"assets/funnel/legal/thumb.webp",full:"assets/funnel/legal/full.webp",sections:["assets/funnel/legal/sec01.webp","assets/funnel/legal/sec02.webp","assets/funnel/legal/sec03.webp","assets/funnel/legal/sec04.webp","assets/funnel/legal/sec05.webp"],stack:["GoHighLevel","GHL Workflows","Custom HTML/CSS/JS"],bullets:["4-step funnel: Landing → Intake → Calendar → Confirmation (vanilla JS, no deps)","Tag taxonomy 14+ tags + 9 workflows with suppression gates + staff alerts","Nurture vs booking never conflict — provably one state at a time"],niche:"Immigration & Family Law Solo Practice",problem:"Solo/small law firms lose leads two different ways: cold inquiries that never convert into a booked consultation, and booked consultations that no-show or cancel without rebooking. Most funnel builds solve one side — a booking page or a nurture sequence — but treat them as separate systems where booking and nurture run blind to each other.",solution:"A 4-step GHL funnel (Landing → Intake Form → Calendar → Confirmation) feeding a 9-workflow automation backend built entirely on tag-based gating: cold leads nurtured 14-day drip; booked leads instantly pulled out of nurture; no-shows/cancels recycled into shortened nurture; every outcome (booked/completed/no-show/cancelled) triggers staff alert — single-platform, defensively gated.",build:["Tag taxonomy (built first): case-type-*, lead-source-*, consult-booked/completed/noshow/rescheduled, nurture-active/recycled/day3/7/14/exhausted, re-engage-sent","Funnel: Custom HTML/CSS/JS over GHL native form+calendar — hero, pain, how-it-works, credibility, FAQ accordion, UTM capture on hidden fields (data-q) + cross-page CTA href rewrite","9 Workflows: 1 New Inquiry→Nurture (suppressed if booked), 2 Booking Success→Kill Nurture, 3 No-show→Recycle, 4 Cancel→Recycle, 5 Completed→Thank-you, 6 Staff alerts per outcome, 7 Long-nurture drip (tag-gated), 8 Re-engage exhausted, 9 Cleanup"],outcome:"Provably one state at a time — nurture and booking never double-message. Booked leads exit nurture instantly, no-shows recycle, staff sees every transition in Slack + GHL — single snapshot, zero external code.",liveUrl:"https://techvarain-lab.github.io/funnelbuild-legal_intake/"},
-  {n:"07",cat:"funnel",tags:["funnel"],family:"funnel",title:"Real Estate Lead Automation — Buyer/Seller Routing",desc:"GHL lead system automating lead capture to appointment reminders for a real estate agency.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/8eff1e4c-cff2-4655-bf72-3acf0c61666f/work-realestate-ghl.png",loom:"https://www.loom.com/embed/fa05317c159f4dd38692c1186011f0ff?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel"],bullets:["Buyer vs seller intent routing","Nurturing + reminders","Single GHL snapshot"]},
-  {n:"08",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"FlowFix Plumbing — Emergency Triage & Reactivation",desc:"Emergency-aware triage, missed-call recovery, dormant reactivation for a plumbing business.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/db328ede-0397-4b5d-ba3e-046bb4400b60/work-flowfix-triage.png",stack:["GoHighLevel","Make.com","Slack"],bullets:["Emergency keyword → priority queue","Missed-call text-back <2m","Dormant drip reactivation"]},
-  {n:"09",cat:"funnel",tags:["funnel"],family:"funnel",title:"Med Spa Reputation Firewall",desc:"Missed-call recovery + review gate routing unhappy clients privately vs to Google.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/51b0a9d8-1bc9-4d03-ae27-f79bffe5cb23/work-medspa-review-gate.png",loom:"https://www.loom.com/embed/adad4fff01bd48a5a871c3b1cb996c4d?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel","SMS","Surveys"],bullets:["Happy → Google, unhappy → owner","Missed-call SMS","Protects rating while fixing issue"]},
-  {n:"10",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Studio Lumina — Booking & Conflict-Check Automation",desc:"Photography studio booking routed by event type, checked vs confirmed bookings, locks after deposit.",img:"https://rainier-portfolio-alchemy.lovable.app/__l5e/assets-v1/e20b8f08-623d-413a-a4f9-e053093576d7/work-studio-lumina.png",stack:["GoHighLevel","Make.com","Stripe","Sheets","Slack"],bullets:["Event-type routing + date conflict vs Sheets","Stripe deposit locks date","Confirmation + reminders"]},
+  {n:"07",cat:"funnel",tags:["funnel"],family:"funnel",title:"Real Estate Lead Automation — Buyer/Seller Routing",desc:"GHL lead system automating lead capture to appointment reminders for a real estate agency.",img:"assets/work/realestate-ghl.png",loom:"https://www.loom.com/embed/fa05317c159f4dd38692c1186011f0ff?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel"],bullets:["Buyer vs seller intent routing","Nurturing + reminders","Single GHL snapshot"]},
+  {n:"08",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"FlowFix Plumbing — Emergency Triage & Reactivation",desc:"Emergency-aware triage, missed-call recovery, dormant reactivation for a plumbing business.",img:"assets/work/flowfix-triage.png",stack:["GoHighLevel","Make.com","Slack"],bullets:["Emergency keyword → priority queue","Missed-call text-back <2m","Dormant drip reactivation"]},
+  {n:"09",cat:"funnel",tags:["funnel"],family:"funnel",title:"Med Spa Reputation Firewall",desc:"Missed-call recovery + review gate routing unhappy clients privately vs to Google.",img:"assets/work/medspa-review-gate.png",loom:"https://www.loom.com/embed/adad4fff01bd48a5a871c3b1cb996c4d?hide_owner=true&hide_share=true&hide_title=true",stack:["GoHighLevel","SMS","Surveys"],bullets:["Happy → Google, unhappy → owner","Missed-call SMS","Protects rating while fixing issue"]},
+  {n:"10",cat:"funnel",tags:["funnel","automation"],family:"hybrid",title:"Studio Lumina — Booking & Conflict-Check Automation",desc:"Photography studio booking routed by event type, checked vs confirmed bookings, locks after deposit.",img:"assets/work/studio-lumina.png",stack:["GoHighLevel","Make.com","Stripe","Sheets","Slack"],bullets:["Event-type routing + date conflict vs Sheets","Stripe deposit locks date","Confirmation + reminders"]},
   {n:"11",cat:"funnel",tags:["funnel"],family:"funnel",title:"Interbranch POS System",desc:"Web POS enabling seamless ops across multiple restaurant branches.",img:"",stack:["React","JavaScript"],bullets:["Multi-branch sync","React front-end","Ling Ling internship"],letter:"POS"},
-  {n:"12",cat:"automation",tags:["automation"],family:"automation",title:"AI Content Repurposing",desc:"Zap that transcribes media, generates blog posts, auto-publishes tailored to FB Pages + LinkedIn.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-zapier-content-OVsh9QQy.png",stack:["Zapier","Drive","AI","Facebook","LinkedIn"],bullets:["Drive → transcription → AI blog","Path routing per channel","No manual reformatting"]},
-  {n:"13",cat:"automation",tags:["automation"],family:"automation",title:"Leads Enrichment Automation",desc:"Webhook pipeline filtering by company size, Sheets log, Slack ping, AI outreach draft.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-zapier-leads-BtfJHQcL.png",stack:["Zapier","Webhooks","Sheets","Slack","AI"],bullets:["Webhook in → size filter","AI drafts outreach","Slack + Sheets"]},
-  {n:"14",cat:"automation",tags:["automation"],family:"automation",title:"Xero → Asana Transaction Sync",desc:"Make scenario exporting Xero transactions, iterator/router, CSV to Asana with Sheets logging.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-make-xero-CkNq8FiY.png",stack:["Make.com","Xero","Asana","Sheets"],bullets:["Xero export → iterator → router","CSV attachment to Asana","Sheets audit"]},
-  {n:"15",cat:"automation",tags:["automation"],family:"automation",title:"AI Powered Customer Support Bot",desc:"Webhook bot fetching ticket data, routing by status, generating AI responses via OpenAI assistants.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-ai-support-bot-DmCpIIAn.jpg",stack:["Make.com","Webhooks","OpenAI","Router"],bullets:["Fetch → status router","OpenAI per branch","Fallback to human"]},
-  {n:"16",cat:"automation",tags:["automation"],family:"automation",title:"Auto Sort Gmail Attachments on Drive",desc:"Watches Gmail, classifies with Gemini+OpenAI, files to Drive, logs Sheets, replies Gmail.",img:"https://rainier-portfolio-alchemy.lovable.app/assets/work-gmail-drive-PffsaQzU.jpg",stack:["Make.com","Gmail","Gemini","OpenAI","Drive","Sheets"],bullets:["Gmail watch → Gemini + OpenAI","Auto-filed to Drive folders","Sheets log + Gmail reply"]},
+  {n:"12",cat:"automation",tags:["automation"],family:"automation",title:"AI Content Repurposing",desc:"Zap that transcribes media, generates blog posts, auto-publishes tailored to FB Pages + LinkedIn.",img:"assets/work/zapier-content.png",stack:["Zapier","Drive","AI","Facebook","LinkedIn"],bullets:["Drive → transcription → AI blog","Path routing per channel","No manual reformatting"]},
+  {n:"13",cat:"automation",tags:["automation"],family:"automation",title:"Leads Enrichment Automation",desc:"Webhook pipeline filtering by company size, Sheets log, Slack ping, AI outreach draft.",img:"assets/work/zapier-leads.png",stack:["Zapier","Webhooks","Sheets","Slack","AI"],bullets:["Webhook in → size filter","AI drafts outreach","Slack + Sheets"]},
+  {n:"14",cat:"automation",tags:["automation"],family:"automation",title:"Xero → Asana Transaction Sync",desc:"Make scenario exporting Xero transactions, iterator/router, CSV to Asana with Sheets logging.",img:"assets/work/make-xero.png",stack:["Make.com","Xero","Asana","Sheets"],bullets:["Xero export → iterator → router","CSV attachment to Asana","Sheets audit"]},
+  {n:"15",cat:"automation",tags:["automation"],family:"automation",title:"AI Powered Customer Support Bot",desc:"Webhook bot fetching ticket data, routing by status, generating AI responses via OpenAI assistants.",img:"assets/work/ai-support-bot.jpg",stack:["Make.com","Webhooks","OpenAI","Router"],bullets:["Fetch → status router","OpenAI per branch","Fallback to human"]},
+  {n:"16",cat:"automation",tags:["automation"],family:"automation",title:"Auto Sort Gmail Attachments on Drive",desc:"Watches Gmail, classifies with Gemini+OpenAI, files to Drive, logs Sheets, replies Gmail.",img:"assets/work/gmail-drive.jpg",stack:["Make.com","Gmail","Gemini","OpenAI","Drive","Sheets"],bullets:["Gmail watch → Gemini + OpenAI","Auto-filed to Drive folders","Sheets log + Gmail reply"]},
   {n:"17",cat:"automation",tags:["automation"],family:"automation",title:"Crowdsourcing Platform",desc:"Collaborative platform connecting contributors with projects.",img:"",stack:["TypeScript","Next.js"],bullets:["Next.js + TypeScript","Contributor matching","Fligno internship"],letter:"CP"},
   {n:"18",cat:"automation",tags:["automation"],family:"automation",title:"Enterprise Low-Code Solutions",desc:"Client solutions built with low-code for rapid delivery.",img:"",stack:["OutSystems"],bullets:["OutSystems","Enterprise clients","Rapid iteration"],letter:"LC"},
   {n:"19",cat:"automation",tags:["automation"],family:"automation",title:"AI Customer Support Agent",desc:"Conversational AI trained on docs to handle inbound 24/7.",img:"",stack:["OpenAI","GHL","Vector DB"],bullets:["Trained on docs","Vector DB retrieval","GHL inbox"],letter:"AI"},
@@ -930,8 +965,8 @@ let prevZoomLevel=1, drawerZoomLevel=1, autoZoomLevel=1;
 function prevZoom(d){ prevZoomLevel=Math.min(2,Math.max(0.6, prevZoomLevel+d)); const im=document.getElementById('prevZoomImg'); const lb=document.getElementById('prevZoomLabel'); if(im) im.style.transform=`scale(${prevZoomLevel})`; if(lb) lb.textContent=Math.round(prevZoomLevel*100)+'%'; }
 function drawerZoom(d){ drawerZoomLevel=Math.min(2,Math.max(0.6, drawerZoomLevel+d)); const im=document.getElementById('drawerZoomImg'); const lb=document.getElementById('drawerZoomLabel'); if(im) im.style.transform=`scale(${drawerZoomLevel})`; if(lb) lb.textContent=Math.round(drawerZoomLevel*100)+'%'; }
 function autoZoom(d){ autoZoomLevel=Math.min(2,Math.max(0.6, autoZoomLevel+d)); const im=document.getElementById('autoZoomImg'); const lb=document.getElementById('autoZoomLabel'); if(im) im.style.transform=`scale(${autoZoomLevel})`; if(lb) lb.textContent=Math.round(autoZoomLevel*100)+'%'; }
-function openLightbox(src){ const lb=document.getElementById('lightbox'); const im=document.getElementById('lightboxImg'); if(lb&&im){ im.src=src; lb.classList.add('open'); document.body.style.overflow='hidden'; } }
-function closeLightbox(){ const lb=document.getElementById('lightbox'); if(lb) lb.classList.remove('open'); document.body.style.overflow=''; if(window.innerWidth<=860) document.body.style.overflow='auto'; else document.body.style.overflow='hidden'; }
+function openLightbox(src){ const lb=lightbox; const im=document.getElementById('lightboxImg'); if(lb&&im){ lb.inert=false; lbTrigger=document.activeElement; im.src=src; lb.classList.add('open'); document.body.style.overflow='hidden'; const c=lb.querySelector('.lightbox-bar button'); if(c) c.focus(); } if(typeof ghlZoomHide==='function') ghlZoomHide(); }
+function closeLightbox(){ const lb=lightbox; if(lb){ lb.classList.remove('open'); lb.inert=true; if(lbTrigger&&lbTrigger.focus) lbTrigger.focus(); lbTrigger=null; document.body.style.overflow=''; if(window.innerWidth<=860) document.body.style.overflow='auto'; else document.body.style.overflow='hidden'; } }
 window.closeLightbox=closeLightbox; window.prevZoom=prevZoom; window.drawerZoom=drawerZoom; window.autoZoom=autoZoom; window.openLightbox=openLightbox;
 function setPreview(p){
   active=p;
@@ -982,18 +1017,17 @@ function switchPanel(id){
 document.querySelectorAll('.ptab').forEach(b=> b.addEventListener('click',()=> switchPanel(b.dataset.panel)));
 document.querySelectorAll('[data-go]').forEach(a=> a.addEventListener('click',e=>{ e.preventDefault(); switchPanel(a.dataset.go); }));
 // deep link — hero is default, so allow #hero as well
-if(location.hash){ const h=location.hash.replace('#',''); if(['hero','work','services','ghl','about','contact'].includes(h)) switchPanel(h); }
+if(location.hash){ const h=location.hash.replace('#',''); if(['hero','ghl','work','services','about','contact'].includes(h)) switchPanel(h); }
 // hero live carousel — B · Live Proof (auto-cycle, pause on hover) — 6 featured: Rubio, Mountain Hiking, ClearView, Haven, FitCoach, Legal
-window.heroLiveIdx=0; const heroProjectNs=["01","02","03","04","05","06"]; const heroLiveTitles=["Rubio Roofing and Trusses — Industrial Construction Funnel","Mountain Hiking — Adventure Funnel","ClearView Pressure Washing — Lead Generation Funnel","Haven Animal Clinic — AI-Qualified Booking","FitCoach Ecosystem — Stripe Payment to GHL","Legal Consultation Intake & Nurture System"];
-const heroLiveDescs=["Construction-inspired 2-page funnel — hazard-stripe system, 20+ real builds, 5-tab gallery + GHL capture.","Outdoor adventure booking funnel — hero → itinerary → pricing → FAQ with GHL capture + calendar.","Single-page direct-response funnel — glassmorphic hero, before/after slider, GHL webhook with PH phone normalization.","Hard-gated emergency detection → business-hours routing + auto-booking. No missed emergency.","Stripe checkout → Make router (create vs update) → GHL + Sheets roster + Slack ping. No double enrollments.","GHL-only 4-step funnel + 9 tag-gated workflows. Booking and nurture suppress each other — no double-messaging."];
-const heroLiveStacks=[
-  '<span>GHL Funnels</span><span>Custom Code</span><span>Responsive</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Hybrid</span>',
-  '<span>GoHighLevel</span><span>HTML/CSS/JS</span><span>GHL Webhook</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>',
-  '<span>HTML/CSS/JS</span><span>Tailwind CSS</span><span>GHL Webhook</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Funnel</span>',
-  '<span>GoHighLevel</span><span>Conversation AI</span><span>GHL Calendar</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Hybrid</span>',
-  '<span>Make.com</span><span>Stripe</span><span>GHL</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>',
-  '<span>GoHighLevel</span><span>GHL Workflows</span><span>Custom JS</span><span style="background:var(--amber);color:white;border-color:var(--amber)">Live snapshot</span>'
-];
+window.heroLiveIdx=0; const heroProjectNs=["01","02","03","04","05","06"];
+const heroLiveTitles=heroProjectNs.map(n=>{const p=projects.find(x=>x.n===n);return p?p.title:'';});
+const heroLiveDescs=heroProjectNs.map(n=>{const p=projects.find(x=>x.n===n);return p?p.desc:'';});
+const heroLiveStacks=heroProjectNs.map(n=>{
+  const p=projects.find(x=>x.n===n); if(!p) return '<span>GoHighLevel</span>';
+  const pills=p.stack.slice(0,3).map(s=>`<span>${s}</span>`).join('');
+  const badge=p.family==='hybrid'?'Hybrid':'Live snapshot';
+  return pills+`<span style="background:var(--amber);color:white;border-color:var(--amber)">${badge}</span>`;
+});
 function setHeroLive(i){
   window.heroLiveIdx=i;
   const track=document.getElementById('heroLiveTrack'); const dots=document.querySelectorAll('#heroLiveDots button');
@@ -1006,9 +1040,10 @@ function setHeroLive(i){
   if(d) d.textContent=heroLiveDescs[i]||heroLiveDescs[0];
   if(tg) tg.innerHTML=heroLiveStacks[i]||heroLiveStacks[0];
 }
-let heroLiveTimer=null; function startHeroLive(){ stopHeroLive(); heroLiveTimer=setInterval(()=> setHeroLive((window.heroLiveIdx+1)%6), 3600); } function stopHeroLive(){ if(heroLiveTimer) clearInterval(heroLiveTimer); }
+let heroLiveTimer=null; const heroReduceMotion=matchMedia('(prefers-reduced-motion: reduce)');
+function startHeroLive(){ stopHeroLive(); if(heroReduceMotion.matches||document.hidden) return; heroLiveTimer=setInterval(()=> setHeroLive((window.heroLiveIdx+1)%6), 3600); } function stopHeroLive(){ if(heroLiveTimer) clearInterval(heroLiveTimer); }
 const heroLiveEl=document.getElementById('heroLive');
-if(heroLiveEl){ heroLiveEl.addEventListener('mouseenter', stopHeroLive); heroLiveEl.addEventListener('mouseleave', startHeroLive); heroLiveEl.addEventListener('focusin', stopHeroLive); heroLiveEl.addEventListener('focusout', startHeroLive); startHeroLive(); }
+if(heroLiveEl){ heroLiveEl.addEventListener('mouseenter', stopHeroLive); heroLiveEl.addEventListener('mouseleave', startHeroLive); heroLiveEl.addEventListener('focusin', stopHeroLive); heroLiveEl.addEventListener('focusout', startHeroLive); document.addEventListener('visibilitychange', startHeroLive); if(heroReduceMotion.addEventListener) heroReduceMotion.addEventListener('change', startHeroLive); startHeroLive(); }
 window.setHeroLive=setHeroLive;
 
 // theme
@@ -1026,6 +1061,18 @@ tBtn.addEventListener('click',()=>{
 
 // drawer + lightbox
 const drawer=document.getElementById('drawer'), overlay=document.getElementById('overlay'), drawerBody=document.getElementById('drawerBody'), drawerKicker=document.getElementById('drawerKicker');
+let drawerTrigger=null, lbTrigger=null;
+function trapFocus(container,e){
+  if(e.key!=='Tab') return;
+  const f=container.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,iframe,[tabindex]:not([tabindex="-1"])');
+  if(!f.length) return;
+  const first=f[0], last=f[f.length-1], active=document.activeElement;
+  if(e.shiftKey && (active===first||active===container||!container.contains(active))){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && (active===last||!container.contains(active))){ e.preventDefault(); first.focus(); }
+}
+drawer.addEventListener('keydown',e=>trapFocus(drawer,e));
+const lightbox=document.getElementById('lightbox');
+if(lightbox) lightbox.addEventListener('keydown',e=>trapFocus(lightbox,e));
 function openDrawer(p){
   const famLabel = p.family==='hybrid' ? 'Hybrid · Funnel + Automation' : (p.cat==='automation'?'Automation':'Funnel');
   drawerKicker.textContent=famLabel+' — '+p.n;
@@ -1067,7 +1114,7 @@ function openDrawer(p){
   if(isHybrid){
     hybridTabs=`<div style="display:inline-flex;align-items:center;background:var(--ground);border:1px solid var(--line);border-radius:999px;padding:3px;gap:3px;margin:14px 0 10px"><button style="padding:8px 14px;border-radius:999px;border:1px solid var(--navy);background:var(--navy);color:white;font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer" onclick="document.getElementById('hybrid-design').style.display='block';document.getElementById('hybrid-routing').style.display='none';this.style.background='var(--navy)';this.style.color='white';this.style.borderColor='var(--navy)';this.style.opacity='1';this.nextElementSibling.style.background='transparent';this.nextElementSibling.style.color='var(--ink-soft)';this.nextElementSibling.style.borderColor='transparent';this.nextElementSibling.style.opacity='1'" >Funnel Design</button><button style="padding:8px 14px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--ink-soft);font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer" onclick="document.getElementById('hybrid-design').style.display='none';document.getElementById('hybrid-routing').style.display='block';this.style.background='var(--navy)';this.style.color='white';this.style.borderColor='var(--navy)';this.style.opacity='1';this.previousElementSibling.style.background='transparent';this.previousElementSibling.style.color='var(--ink-soft)';this.previousElementSibling.style.borderColor='transparent';this.previousElementSibling.style.opacity='1'" >Automation Routing</button></div>`;
     const designPanel=`<div id="hybrid-design">${media}${loomHtml ? loomHtml : ''}${caseStudy ? `<div style="margin-top:12px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px">Funnel — What the visitor sees</div>${caseStudy}${media ? '' : ''}</div>` : ''}<div style="margin-top:12px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px">Highlights</div><ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul></div></div>`;
-    let autoMedia=''; if(p.automation && p.automation.length){ autoZoomLevel=1; const labels=["Stripe trigger","Router — create vs update","GHL upsert","Sheets roster","Slack ping"]; const autoStack=p.automation.map((s,i)=>`<img src="${s}" alt="auto ${i+1}" style="width:100%;height:auto;display:block;border-bottom:1px solid var(--line)" loading="lazy"><div style="font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft);padding:6px 10px;background:var(--ground);border-bottom:1px solid var(--line)">Auto ${i+1} / ${p.automation.length} — ${labels[i]||"Step "+(i+1)}</div>`).join(''); autoMedia=`<div class="zoom-bar" style="position:sticky;top:0;z-index:2"><span>Automation — Make scenario (5 steps)</span><button onclick="autoZoom(-0.15)">−</button><span class="zoom-label" id="autoZoomLabel">100%</span><button onclick="autoZoom(0.15)">+</button><button onclick="openLightbox('${p.automation[0]}')" style="width:auto;padding:0 10px">⤢ Full</button></div><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ground);max-height:62vh;overflow:auto"><div id="autoZoomImg" style="transition:transform .2s cubic-bezier(.16,1,.3,1);transform-origin:top center"><div style="display:grid">${autoStack}</div></div></div>`; } else if(!p.sections && p.img){ autoMedia=media; } else { autoMedia=`<div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ground);padding:12px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:8px">Routing — What happens behind</div><div style="font-size:13px;line-height:1.6;color:var(--ink-2)">GHL tags, routers, webhooks and fallback — the system that prevents leaks.</div></div>`; }
+    let autoMedia=''; if(p.automation && p.automation.length){ autoZoomLevel=1; const labels=["Stripe trigger","Router — create vs update","GHL upsert","Sheets roster","Slack ping"]; const autoStack=p.automation.map((s,i)=>`<img src="${s}" alt="auto ${i+1}" style="width:100%;height:auto;display:block;border-bottom:1px solid var(--line)" loading="lazy"><div style="font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft);padding:6px 10px;background:var(--ground);border-bottom:1px solid var(--line)">Auto ${i+1} / ${p.automation.length} — ${labels[i]||"Step "+(i+1)}</div>`).join(''); autoMedia=`<div class="zoom-bar" style="position:sticky;top:0;z-index:2"><span>Automation — Make scenario (5 steps)</span><button onclick="autoZoom(-0.15)">−</button><span class="zoom-label" id="autoZoomLabel">100%</span><button onclick="autoZoom(0.15)">+</button><button onclick="openLightbox('${p.automation[0]}')" style="width:auto;padding:0 10px">⤢ Full</button></div><div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ground);max-height:62vh;overflow:auto"><div id="autoZoomImg" style="transition:transform .2s cubic-bezier(.16,1,.3,1);transform-origin:top center"><div style="display:grid">${autoStack}</div></div></div>`; } else if(!p.sections && p.img){ autoMedia=media.replace(/drawerZoom(Img|Label)/g,'autoZoom$1'); } else { autoMedia=`<div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ground);padding:12px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:8px">Routing — What happens behind</div><div style="font-size:13px;line-height:1.6;color:var(--ink-2)">GHL tags, routers, webhooks and fallback — the system that prevents leaks.</div></div>`; }
     const routingPanel=`<div id="hybrid-routing" style="display:none">${autoMedia}${p.build ? `<div style="margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);padding:16px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px">Build steps</div><ul style="margin:0;padding:0;list-style:none;display:grid;gap:8px">${(p.build||[]).map(b=>`<li style="padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--ground);font-size:12.5px;line-height:1.5;color:var(--ink-2)">▸ ${b}</li>`).join('')}</ul></div>` : ''}<div style="margin-top:12px"><div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px">Automation highlights</div><ul class="bullets">${p.bullets.map(b=>`<li>▸ ${b}</li>`).join('')}</ul></div></div>`;
     bodyMain=hybridTabs+designPanel+routingPanel;
   } else {
@@ -1076,7 +1123,9 @@ function openDrawer(p){
   const drawerLiveTop = p.liveUrl ? `<a class="btn-p" href="${p.liveUrl}" target="_blank" rel="noreferrer" style="display:flex;justify-content:center;width:100%;padding:13px 16px;font-size:11px;letter-spacing:.1em;box-shadow:0 6px 16px rgba(180,83,9,.18);margin:12px 0 6px">Live view — open funnel ↗</a>` : '';
   const drawerLiveBtn = p.liveUrl ? `<a class="btn-p" href="${p.liveUrl}" target="_blank" rel="noreferrer">Live view ↗</a>` : '';
   drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${p.title}</h3><p style="color:var(--ink-soft);line-height:1.6;margin:0">${p.desc}</p>${tagRow}${hybridBanner}${stackPills}${drawerLiveTop}${bodyMain}<div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">${drawerLiveBtn}<a class="btn-p" href="#" onclick="closeDrawer();switchPanel('contact');return false">Discuss this build →</a></div>`;
+  drawer.inert=false; drawerTrigger=document.activeElement;
   drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
+  const dClose=drawer.querySelector('.drawer-close'); if(dClose) dClose.focus();
 }
 function playLoom(btn){
   const wrap = btn.closest('.loom-wrap');
@@ -1086,24 +1135,40 @@ function playLoom(btn){
   wrap.innerHTML = `<iframe src="${src}&autoplay=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="${title} — Loom" style="width:100%;height:100%;border:0;display:block;aspect-ratio:16/9"></iframe>`;
 }
 function closeDrawer(){
+  if(typeof ghlZoomHide==='function') ghlZoomHide();
   drawerBody.querySelectorAll('iframe[src*="loom.com"]').forEach(f=>{ f.src='about:blank'; f.remove(); });
   drawer.classList.remove('open');overlay.classList.remove('open');
   if(window.innerWidth<=860) document.body.style.overflow='auto'; else document.body.style.overflow='hidden';
+  drawer.inert=true;
+  if(drawerTrigger&&drawerTrigger.focus) drawerTrigger.focus();
+  drawerTrigger=null;
 }
 overlay.addEventListener('click',closeDrawer);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer(); closeLightbox();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){ ghlZoomHide(); closeDrawer(); closeLightbox(); const mr=document.getElementById('mobileRail'); if(mr&&mr.style.display!=='none') toggleMobileRail(false); }});
 window.closeDrawer=closeDrawer; window.openDrawer=openDrawer; window.playLoom=playLoom;
 
 // GHL skills — data-driven tiles, popup = existing drawer
 const glSkills=[
   {n:"01",icon:"◈",title:"Contacts & Lead Records",short:"Manage contact records end-to-end — add, edit, safely delete.\nAware of the downstream impact on automations and data.",desc:"I'm confident managing HighLevel contact records — editing details and safely deleting contacts, with awareness of the downstream impact on automations and data.",chips:["Contact Management","Edit & Delete","Data Safety"],proof:["assets/ghl/proof-contact-1.png","assets/ghl/proof-contact-2.png","assets/ghl/proof-contact-3.png","assets/ghl/proof-contact-4.png"],subs:[
     {title:"Custom Fields",desc:"I'm able to create and organize custom fields in HighLevel to hold data unique to a specific business.",chips:["Custom Fields","Create & Organize","Business Data"],proof:["assets/ghl/proof-fields-1.png","assets/ghl/proof-fields-2.png"]},
-    {title:"Contacts Import",desc:"I'm skilled at CSV-based contact imports in HighLevel, from data cleanup and field mapping (standard and custom) to post-import validation.",chips:["CSV Import","Field Mapping","Validation"],proof:["assets/ghl/proof-import-1.png","assets/ghl/proof-import-2.png"]}
+    {title:"Contacts Import",desc:"I'm skilled at CSV-based contact imports in HighLevel, from data cleanup and field mapping (standard and custom) to post-import validation.",chips:["CSV Import","Field Mapping","Validation"],proof:["assets/ghl/proof-import-1.png","assets/ghl/proof-import-2.png"]},
+    {title:"Smart Lists",desc:"I build and manage Smart Lists in GoHighLevel to automatically segment leads and customers — dynamic filters on tags, pipeline stages, engagement, and opportunity status — powering marketing campaigns, follow-ups, and reactivation strategies.",chips:["Smart Lists","Dynamic Filters","Tag & Stage Segmentation"],proof:["assets/ghl/proof-lists-1.png","assets/ghl/proof-lists-2.png"]}
   ]}
 ];
 const ghlTiles=document.getElementById('ghlTiles');
 const ghlChip=c=>`<span class="pill">${c}</span>`;
-const ghlProof=s=>`<img src="${s}" alt="GHL proof" loading="lazy" onclick="openLightbox('${s}')">`;
+const ghlZoom=(()=>{ const d=document.createElement('div'); d.className='ghl-zoom'; d.innerHTML='<img alt="Proof zoom">'; document.body.appendChild(d); return d; })();
+const ghlZoomImg=ghlZoom.querySelector('img');
+function ghlZoomShow(src,e){ ghlZoomImg.src=src; ghlZoom.classList.add('show'); ghlZoomMove(e); }
+function ghlZoomMove(e){
+  const pad=14, w=ghlZoom.offsetWidth||280, h=ghlZoom.offsetHeight||180;
+  let x=e.clientX+pad; if(x+w>innerWidth-8) x=e.clientX-pad-w;
+  let y=e.clientY+pad; if(y+h>innerHeight-8) y=e.clientY-pad-h;
+  ghlZoom.style.left=x+'px'; ghlZoom.style.top=y+'px';
+}
+function ghlZoomHide(){ ghlZoom.classList.remove('show'); }
+window.ghlZoomShow=ghlZoomShow; window.ghlZoomMove=ghlZoomMove; window.ghlZoomHide=ghlZoomHide;
+const ghlProof=s=>`<button type="button" class="ghl-proof-cell" onclick="openLightbox('${s}')" onmouseenter="ghlZoomShow('${s}',event)" onmousemove="ghlZoomMove(event)" onmouseleave="ghlZoomHide()"><img src="${s}" alt="GHL proof" loading="lazy"><span class="ghl-proof-badge"></span></button>`;
 function renderGhl(){
   if(!ghlTiles) return;
   ghlTiles.innerHTML='';
@@ -1128,7 +1193,7 @@ function renderGhl(){
 function openGhlSkill(s){
   drawerKicker.textContent='GHL — skill '+s.n+' · '+s.title;
   const chipPills=s.chips.map(ghlChip).join('');
-  const proofHtml=(s.proof&&s.proof.length)?`<div><div class="ghl-sec-label">Proof — record management · ${s.proof.length} shots</div><div class="ghl-pop-proof">${s.proof.map(ghlProof).join('')}</div></div>`:'';
+  const proofHtml=(s.proof&&s.proof.length)?`<div><div class="ghl-sec-label">Proof — record management · ${s.proof.length} shots · hover to peek · click to view</div><div class="ghl-pop-proof">${s.proof.map(ghlProof).join('')}</div></div>`:'';
   const subHtml=(s.subs&&s.subs.length)?'<div style="margin-top:14px;padding-top:2px">'+s.subs.map(u=>{
     const uc=u.chips.map(ghlChip).join('');
     const up=(u.proof&&u.proof.length)?`<div class="ghl-pop-proof">${u.proof.map(ghlProof).join('')}</div>`:`<span class="ghl-pop-none">Proof coming soon.</span>`;
@@ -1137,8 +1202,8 @@ function openGhlSkill(s){
   drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${s.title}</h3>
     <p style="color:var(--ink-soft);line-height:1.6;margin:0">${s.desc}</p>
     <div class="ghl-chips">${chipPills}</div>
-    ${proofHtml}
-    ${subHtml}`;
+    ${subHtml}
+    ${proofHtml}`;
   drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
 }
 window.openGhlSkill=openGhlSkill;
@@ -1146,11 +1211,15 @@ renderGhl();
 
 function handleSubmit(e){
   e.preventDefault();
-  const name=e.target.querySelector('input').value||'there';
+  const f=e.target;
+  const name=f.querySelector('[name="name"]')?.value||'there';
+  const email=f.querySelector('[name="email"]')?.value||'';
+  const topic=f.querySelector('[name="topic"]')?.value||'General inquiry';
+  const msg=f.querySelector('[name="message"]')?.value||'Hi Rainier, let’s discuss an automation build.';
   document.getElementById('formOk').style.display='block';
-  const subject=encodeURIComponent('Workbench inquiry — '+name);
-  const body=encodeURIComponent(e.target.querySelector('textarea').value||'Hi Rainier, let’s discuss an automation build.');
-  setTimeout(()=>location.href=`mailto:techva.rain@gmail.com?subject=${subject}&body=${body}`,400);
+  const subject=encodeURIComponent('Workbench inquiry — '+name+(topic&&topic!=='Other'?' · '+topic:''));
+  const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nTopic: '+topic+'\n\n'+msg);
+  setTimeout(()=>location.href='mailto:techva.rain@gmail.com?subject='+subject+'&body='+body,400);
   return false;
 }
 window.handleSubmit=handleSubmit;
@@ -1158,9 +1227,13 @@ window.handleSubmit=handleSubmit;
 // mobile rail
 const menuBtn=document.getElementById('menuBtn');
 const mobileRail=document.getElementById('mobileRail');
+let railTrigger=null;
 function toggleMobileRail(open){
   mobileRail.style.display = open ? 'block' : 'none';
+  mobileRail.inert = !open;
   menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if(open){ railTrigger=document.activeElement; const c=mobileRail.querySelector('.mobile-rail-panel button, .mobile-rail-panel a'); if(c) c.focus(); }
+  else if(railTrigger&&railTrigger.focus){ railTrigger.focus(); railTrigger=null; }
   document.body.style.overflow = open ? 'hidden' : (window.innerWidth<=860 ? 'auto' : 'hidden');
 }
 window.toggleMobileRail=toggleMobileRail;
