@@ -4,7 +4,7 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 
 ## Project facts
 
-- **Single file:** `index.html` (~1,285 lines, ~126 KB) — CSS, panels, and JS all inline. All edits to the site happen here.
+- **Single file:** `index.html` (~1,291 lines, ~126 KB) — CSS, panels, and JS all inline. All edits to the site happen here.
 - **Assets:** `assets/` holds images only. `assets/funnel/<slug>/` = `thumb.webp`, `full.webp`, `secNN.webp` per case study; `assets/work/` = automation/funnel screenshots; `assets/ghl/` = GHL proof shots.
 - **Deploy:** GitHub Pages from `main`. `.nojekyll` present. No build/verify script — sanity-check by opening `index.html` or the Pages URL.
 - **No analytics/hard-coded Netlify forms here** (Rubio funnel has `fbq`/`gtag` hooks; this portfolio itself does not).
@@ -32,7 +32,7 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 | 1036–1088 | Hero carousel: `heroProjectNs` (ns "01".."06"), `setHeroLive(i)`, `heroLive**` element binding |
 | 1065–1088 | Theme toggle wiring |
 | 1090–1162 | `openDrawer(p)` / `closeDrawer()` / Escape-key handler |
-| 1165–1250 | **GHL skills**: `const glSkills=[...]` — 7 tiles (01–02 proof-backed; 03–07 "learning" `learning:true` placeholders). Tile shape: `n, icon, title, short, desc, chips[], proof[], subs[]`, optional `learning`. `ghlChip`, `ghlZoom*` hover peek, `ghlProof`, `renderGhl()`, `openGhlSkill(s)` |
+| 1165–1250 | **GHL skills**: `const glSkills=[...]` — 8 tiles (01–03 proof-backed; 04–08 "learning" `learning:true` placeholders). Tile shape: `n, icon, title, short, desc, chips[], proof[], subs[]`, optional `learning`. `ghlChip`, `ghlZoom*` hover peek, `ghlProof`, `renderGhl()`, `openGhlSkill(s)` |
 | 1254–1285 | `handleSubmit(e)` (mailto compose), mobile rail toggling, menu/rail listeners |
 
 ## Conventions
@@ -40,7 +40,7 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 - **Aesthetic:** editorial-mono. Fonts: Instrument Serif (display) + Fragment Mono (labels) + Cormorant Garamond accents. Ink on paper, amber accent, hairline `var(--line)` borders.
 - **Tags/taxonomy:** `funnel` / `automation` / `hybrid` (funnel + automation). Filter chips derive counts from `projects` — keep the span count and the `family`/`tags` fields in sync.
 - **Hero carousel** shows the 6 most recent/notable builds via `heroProjectNs` at line 1032.
-- **Counts to keep current:** rail "WORK — 21", toolbar chips, `heroProjectNs` length, CONTACT reads "24h reply". GHL tiles = `glSkills` length (7: 01–02 proof-backed + 5 `learning` placeholders).
+- **Counts to keep current:** rail "WORK — 21", toolbar chips, `heroProjectNs` length, CONTACT reads "24h reply". GHL tiles = `glSkills` length (8: 01–03 proof-backed + 5 `learning` placeholders).
 - **Images:** add sections as `sec01..secNN.webp` under `assets/funnel/<slug>/`; never hotlink. GHL proof under `assets/ghl/proof-*.png`.
 - New case study = new `projects` entry (number = next `n`). Update: toolbar chips, rail count, hero list if notable, this file's "File map" + CHANGELOG.md.
 
