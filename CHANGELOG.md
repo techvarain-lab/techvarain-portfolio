@@ -36,3 +36,14 @@ Compact, append-only log of what changed and why. Newest entry at the bottom. Ea
 - Committed + pushed to `main`: rebased over remote CNAME-only commits; 2 commits landed — `571a29b` (ops scaffold) + `bfd0dc9` (tiles + mobile UX pass). Working tree clean.
 - Counts confirmed current: 21 builds, hero 6, GHL tiles 7 (1 proof + 6 learning).
 - AGENTS.md file map + counts refreshed for the new line ranges (~1,285 lines) and `glSkills` shape. Nothing pending — graduate tiles by adding proof as modules finish.
+
+## 2026-09-17 — GHL proof-backed tiles grow to 3
+- Graduated n02 Pipelines & Opportunities (custom copy + 2 `proof-pipeline-*.png` shots). Proof label generalized from "record management" to "Proof — N shots" so all tiles read correctly.
+- Split n05 into two tiles: Forms & Surveys + new Calendars & Booking (8 tiles total, renumbered through n08).
+- Reordered Calendars to n03, graduated it with booking copy + 2 `proof-calendar-*.png` shots.
+- Pushed `main`: `304ba94` (pipelines) + `bcee448` (calendars reorder/graduate). Working tree clean.
+- GHL tiles now 01–03 proof-backed, 04–08 learning (Workflows, Funnels, Forms, Email/SMS, Reporting). AGENTS.md counts/file-map already synced. Pending: none — graduate 04–08 as modules complete.
+
+## 2026-09-18 — Mobile nav polish
+- Hid topbar `Start a project →` CTA on ≤860px (drawer's amber CTA + hero button already cover it).
+- Added scroll hint for the tab strip: pinned edge-fade masks (`.panel-tabs.ov` / `.ov-left` / `.at-end`) driven by a small `updTabs()` overflow tracker; clicked tab now `scrollIntoView` centers. No count changes.

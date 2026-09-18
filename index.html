@@ -611,6 +611,10 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .m-toggle[aria-expanded="true"] .burger i:nth-child(2){opacity:0}
   .m-toggle[aria-expanded="true"] .burger i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
   .panel-tabs{gap:6px}
+  .panel-tabs.ov{-webkit-mask-image:linear-gradient(90deg,#000 0 92%,transparent);mask-image:linear-gradient(90deg,#000 0 92%,transparent)}
+  .panel-tabs.ov-left{-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 92%,transparent)}
+  .panel-tabs.ov.at-end{-webkit-mask-image:none;mask-image:none}
+  .cta{display:none}
   .kbd{display:none}
   /* mobile rail drawer */
   .mobile-rail{
@@ -686,7 +690,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
     <div class="topbar">
       <div class="topbar-left">
         <button class="m-toggle" id="menuBtn" aria-expanded="false" aria-label="Open menu"><span class="burger"><i></i><i></i><i></i></span></button>
-        <div class="panel-tabs" role="tablist" aria-label="Sections">
+        <div class="panel-tabs" id="ptabs" role="tablist" aria-label="Sections">
           <button class="ptab active" data-panel="hero" role="tab" aria-selected="true">HOME</button>
           <button class="ptab" data-panel="ghl" role="tab" aria-selected="false">WHAT I DO IN GHL</button>
           <button class="ptab" data-panel="work" role="tab" aria-selected="false">WORK <span class="cnt">21</span></button>
@@ -1028,8 +1032,20 @@ function switchPanel(id){
   });
   history.replaceState(null,'','#'+id);
 }
-document.querySelectorAll('.ptab').forEach(b=> b.addEventListener('click',()=> switchPanel(b.dataset.panel)));
+document.querySelectorAll('.ptab').forEach(b=> b.addEventListener('click',()=>{ switchPanel(b.dataset.panel); b.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }));
 document.querySelectorAll('[data-go]').forEach(a=> a.addEventListener('click',e=>{ e.preventDefault(); switchPanel(a.dataset.go); }));
+// ptab strip scroll hint — pinned edge fades when tabs overflow (mobile)
+const ptabs=document.getElementById('ptabs');
+function updTabs(){
+  const ov=ptabs.scrollWidth>ptabs.clientWidth+1;
+  ptabs.classList.toggle('ov',ov);
+  ptabs.classList.toggle('at-end',ov&&(ptabs.scrollLeft+ptabs.clientWidth>=ptabs.scrollWidth-8));
+  ptabs.classList.toggle('ov-left',ptabs.scrollLeft>4);
+}
+ptabs.addEventListener('scroll',updTabs,{passive:true});
+addEventListener('resize',updTabs);
+addEventListener('load',updTabs);
+updTabs();
 // deep link — hero is default, so allow #hero as well
 if(location.hash){ const h=location.hash.replace('#',''); if(['hero','ghl','work','services','about','contact'].includes(h)) switchPanel(h); }
 // hero live carousel — B · Live Proof (auto-cycle, pause on hover) — 6 featured: Rubio, Mountain Hiking, ClearView, Haven, FitCoach, Legal
