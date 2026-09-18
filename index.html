@@ -415,21 +415,28 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .panel-services .spec li{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.06em;padding:4px 8px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
 
 /* GHL panel — mirrors Services, grows as modules land */
-.panel-ghl{flex-direction:column;overflow:auto;scrollbar-width:none;min-height:0;padding:12px !important}
+.panel-ghl{flex-direction:column;overflow:hidden;min-height:0;padding:44px 14px 14px !important}
 .panel-ghl .head{display:flex;align-items:end;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:10px;flex-shrink:0}
 .panel-ghl .eyebrow{font-family:'Fragment Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
 .panel-ghl .h2{font-family:'Instrument Serif',serif;font-size:38px;line-height:.95;letter-spacing:-.03em;margin:4px 0 0;font-weight:400}
 .panel-ghl .h2 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
 .panel-ghl .desc{max-width:38ch;font-size:13px;line-height:1.5;color:var(--ink-soft)}
-.panel-ghl .ghl-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;align-content:start;align-items:stretch}
-.ghl-tile{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:12px;display:flex;flex-direction:column;gap:7px;transition:.15s;cursor:pointer;text-align:left;width:100%}
-.ghl-tile:hover{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
-.ghl-tile:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.panel-ghl .ghl-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));grid-auto-rows:auto;gap:16px;align-content:safe center;align-items:stretch;flex:1;min-height:0}
+.ghl-tile{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:12px;display:flex;flex-direction:column;gap:9px;transition:.2s;cursor:pointer;text-align:left;width:100%;position:relative}
+.ghl-tile:hover{border-color:var(--line-strong);transform:translateY(-2px) scale(1.03);box-shadow:0 10px 26px rgba(0,0,0,.12);z-index:6;background:linear-gradient(var(--paper),var(--amber-wash))}
+.ghl-tile:focus-visible{outline:2px solid var(--amber);outline-offset:2px;z-index:6}
 .ghl-tile-top{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center}
 .ghl-tile .spec-icon{width:20px;height:20px;border:1px solid var(--line);background:var(--ground);display:grid;place-items:center;border-radius:6px;font-size:10px}
-.ghl-tile h3{font-size:14px;margin:0;letter-spacing:-.01em;line-height:1.2;color:var(--amber)}
-.ghl-tile p{margin:0;font-size:12px;line-height:1.5;color:var(--ink-soft)}
-.ghl-open{margin-top:auto;display:flex;align-items:center;justify-content:space-between;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-top:6px}
+.ghl-fan{position:absolute;top:50%;left:50%;pointer-events:none;z-index:1;width:0;height:0}
+.ghl-fan-card{position:absolute;left:0;top:0;white-space:nowrap;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.05em;padding:5px 9px;border:1px solid var(--amber);background:var(--paper);color:var(--amber);border-radius:6px;box-shadow:0 6px 14px rgba(0,0,0,.10);opacity:0;transform:translate(calc(-50% + var(--dx) * .45),calc(var(--dy) * .45)) scale(.72);transform-origin:center bottom;transition:opacity .22s,transform .42s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i) * 45ms)}
+@media(hover:hover){
+  .ghl-tile:is(:hover,:focus-visible) .ghl-fan-card{opacity:1;transform:translate(calc(-50% + var(--dx)),calc(var(--dy))) rotate(var(--rot)) scale(1)}
+  .ghl-tiles:has(.ghl-tile:hover) .ghl-tile:not(:hover){opacity:.42;filter:saturate(.55)}
+  .ghl-tiles:has(.ghl-tile:focus-visible) .ghl-tile:not(:focus-visible){opacity:.42;filter:saturate(.55)}
+}
+.ghl-tile h3{font-size:13px;margin:0;letter-spacing:-.01em;line-height:1.22;color:var(--amber);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ghl-tile p{margin:0;font-size:11.5px;line-height:1.5;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ghl-open{display:flex;align-items:center;justify-content:space-between;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-top:8px}
 .ghl-open b{color:var(--amber);font-weight:500}
 .ghl-tile:hover .ghl-open b{color:var(--amber-2)}
 .ghl-tile--learning{opacity:.55;border-style:dashed;position:relative}
@@ -447,8 +454,8 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .ghl-zoom{position:fixed;z-index:70;pointer-events:none;width:min(340px,52vw);border:1px solid var(--line-strong);border-radius:12px;overflow:hidden;background:var(--ground);box-shadow:0 18px 50px rgba(0,0,0,.28);display:none}
 .ghl-zoom img{width:100%;height:auto;display:block}
 .ghl-zoom.show{display:block}
-.ghl-sub-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
-.ghl-sub-tags span{font-family:'Fragment Mono',monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
+.ghl-sub-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;max-height:38px;overflow:hidden}
+.ghl-sub-tags span{font-family:'Fragment Mono',monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
 .ghl-chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
 .ghl-chips .pill{padding:5px 8px;font-size:9px}
 .ghl-sec-label{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:14px 0 8px}
@@ -503,7 +510,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   @keyframes heroIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 }
 @media (prefers-reduced-motion: reduce){
-  .panel-anim,.hero-live-track{transition:none;animation:none}
+  .panel-anim,.hero-live-track,.ghl-fan-card{transition:none;animation:none}
   .hero-live-track img,.funnel-drawer-img img,.preview-img img{transition:none}
 }
 
@@ -603,6 +610,8 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .panel.active{display:flex}
   .panel-services{height:auto;min-height:0;overflow:auto}
   .panel-services .specs{height:auto;min-height:0;grid-auto-rows:auto;align-content:start}
+  .panel-ghl{height:auto;min-height:0;overflow:visible}
+  .panel-ghl .ghl-tiles{flex:none;grid-auto-rows:auto;align-content:start}
   .workbench{grid-template-columns:1fr}
   .m-toggle{display:grid;place-items:center;width:42px;height:42px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);flex-shrink:0}
   .burger{display:grid;gap:4px;place-items:center;pointer-events:none}
@@ -1179,7 +1188,7 @@ window.closeDrawer=closeDrawer; window.openDrawer=openDrawer; window.playLoom=pl
 
 // GHL skills — data-driven tiles, popup = existing drawer
 const glSkills=[
-  {n:"01",icon:"◈",title:"Contacts & Lead Records",short:"Manage contact records end-to-end — add, edit, safely delete.\nAware of the downstream impact on automations and data.",desc:"I'm confident managing HighLevel contact records — editing details and safely deleting contacts, with awareness of the downstream impact on automations and data.",chips:["Contact Management","Edit & Delete","Data Safety"],proof:["assets/ghl/proof-contact-1.png","assets/ghl/proof-contact-2.png","assets/ghl/proof-contact-3.png","assets/ghl/proof-contact-4.png"],subs:[
+  {n:"01",icon:"◈",fan:"right",title:"Contacts & Lead Records",short:"Manage contact records end-to-end — add, edit, safely delete.\nAware of the downstream impact on automations and data.",desc:"I'm confident managing HighLevel contact records — editing details and safely deleting contacts, with awareness of the downstream impact on automations and data.",chips:["Contact Management","Edit & Delete","Data Safety"],proof:["assets/ghl/proof-contact-1.png","assets/ghl/proof-contact-2.png","assets/ghl/proof-contact-3.png","assets/ghl/proof-contact-4.png"],subs:[
     {title:"Custom Fields",desc:"I'm able to create and organize custom fields in HighLevel to hold data unique to a specific business.",chips:["Custom Fields","Create & Organize","Business Data"],proof:["assets/ghl/proof-fields-1.png","assets/ghl/proof-fields-2.png"]},
     {title:"Contacts Import",desc:"I'm skilled at CSV-based contact imports in HighLevel, from data cleanup and field mapping (standard and custom) to post-import validation.",chips:["CSV Import","Field Mapping","Validation"],proof:["assets/ghl/proof-import-1.png","assets/ghl/proof-import-2.png"]},
     {title:"Smart Lists",desc:"I build and manage Smart Lists in GoHighLevel to automatically segment leads and customers — dynamic filters on tags, pipeline stages, engagement, and opportunity status — powering marketing campaigns, follow-ups, and reactivation strategies.",chips:["Smart Lists","Dynamic Filters","Tag & Stage Segmentation"],proof:["assets/ghl/proof-lists-1.png","assets/ghl/proof-lists-2.png"]}
@@ -1198,17 +1207,21 @@ const glSkills=[
     {title:"Triggers & Events",desc:"Fire workflows on form submissions, calls, missed calls, tags, and opportunity stage changes.",chips:["Form Triggers","Stage Triggers"],proof:[]},
     {title:"Actions & Branching",desc:"Layer actions like add/remove tags and send messages, and use conditions to split paths.",chips:["Action Steps","Conditions"],proof:[]}
   ]},
-  {n:"05",icon:"▤",title:"Funnels & Websites",short:"Build the front door — funnel steps, landing pages, and capture forms inside GHL.\nModule in progress — extends my funnel-builder stack.",desc:"Working through funnels and websites in HighLevel — building steps, wiring forms to contacts, and publishing pages that connect to the rest of the platform.",learning:true,chips:["Funnel Steps","Landing Pages","Forms"],proof:[],subs:[
+  {n:"05",icon:"▤",fan:"left",title:"Funnels & Websites",short:"Build the front door — funnel steps, landing pages, and capture forms inside GHL.\nModule in progress — extends my funnel-builder stack.",desc:"Working through funnels and websites in HighLevel — building steps, wiring forms to contacts, and publishing pages that connect to the rest of the platform.",learning:true,chips:["Funnel Steps","Landing Pages","Forms"],proof:[],subs:[
     {title:"Funnel Steps",desc:"Add steps to a funnel and set the conversion goal — from landing page to thank-you page.",chips:["Funnel Builder","Steps & Goals"],proof:[]},
     {title:"Website Pages",desc:"Build and publish pages and a site that routes into the same contact and automation system.",chips:["Page Builder","Publishing"],proof:[]}
   ]},
-  {n:"06",icon:"◉",title:"Forms & Surveys",short:"Capture leads and qualify them — forms, survey logic, and conditional questions.\nModule in progress — first step in every funnel.",desc:"Working through forms and surveys in HighLevel — building capture forms, routing answers to contact fields, and adding conditional logic to qualify leads.",learning:true,chips:["Form Builder","Survey Logic","Conditional Questions"],proof:[],subs:[
+  {n:"06",icon:"◉",fan:"right",title:"Forms & Surveys",short:"Capture leads and qualify them — forms, survey logic, and conditional questions.\nModule in progress — first step in every funnel.",desc:"Working through forms and surveys in HighLevel — building capture forms, routing answers to contact fields, and adding conditional logic to qualify leads.",learning:true,chips:["Form Builder","Survey Logic","Conditional Questions"],proof:[],subs:[
     {title:"Form Builder",desc:"Design capture forms, connect them to contacts, and route answers to contact fields.",chips:["Capture Forms","Field Mapping"],proof:[]},
     {title:"Surveys & Logic",desc:"Add conditional questions and scoring to qualify leads before they reach your team.",chips:["Conditional Logic","Lead Qualification"],proof:[]}
   ]},
-  {n:"07",icon:"✉",title:"Email & SMS Marketing",short:"Follow up on autopilot — campaigns, broadcasts, and automated SMS sequences.\nModule in progress — complements my funnel flows.",desc:"Working through email and SMS in HighLevel — building campaigns and broadcasts and wiring sequences that nurture leads after they enter a funnel.",learning:true,chips:["Campaign Builder","Broadcasts","SMS Sequences"],proof:[],subs:[
-    {title:"Campaigns & Broadcasts",desc:"Segment a list, write campaigns that go out on a schedule, and fire one-off broadcasts.",chips:["Campaigns","Broadcasts"],proof:[]},
-    {title:"Automated Sequences",desc:"Chain multi-step email and SMS flows triggered by tags, funnel steps, and engagement.",chips:["Sequences","SMS"],proof:[]}
+  {n:"07",icon:"✦",title:"Marketing",short:"Run end-to-end marketing in GHL — email campaigns with analytics, social scheduling, and reusable snippets.\nPerformance-aware — built-in analytics, trigger links, and a consistent brand across every asset.",desc:"I can execute end-to-end marketing tasks in GoHighLevel. I build and send Email Campaigns and track performance through built-in analytics (open rates, click rates, deliverability). I use the Social Planner to schedule and manage posts across multiple platforms from one place. I create reusable SMS and Email Snippets to speed up messaging and keep communication consistent. I set up Countdown Timers to drive urgency in email and landing page campaigns, and Trigger Links to fire automations based on link clicks. I also build Brand Boards to maintain consistent colors, fonts, and logos across all marketing assets.",chips:["Email Campaigns","Social Planner","Snippets","Trigger Links"],proof:[],subs:[
+    {title:"Email Campaigns & Analytics",desc:"Build and send email campaigns and track performance through GHL's built-in analytics — open rates, click rates, and deliverability.",chips:["Campaign Builder","Broadcasts","Open & Click Rates"],proof:["assets/ghl/proof-email-1.png","assets/ghl/proof-email-2.png"]},
+    {title:"Social Planner",desc:"Schedule and manage posts across multiple social platforms from one place, so content goes out consistently without juggling tabs.",chips:["Post Scheduling","Multi-platform"],proof:[]},
+    {title:"Snippets",desc:"Create reusable SMS and Email snippets to speed up messaging and keep communication consistent.",chips:["SMS & Email","Reusable","Consistency"],proof:["assets/ghl/proof-snippet-1.png"]},
+    {title:"Countdown Timers",desc:"Set up countdown timers that drive urgency in email and landing page campaigns.",chips:["Urgency","Email & Landing Pages"],proof:["assets/ghl/proof-timer-1.png"]},
+    {title:"Trigger Links",desc:"Use trigger links inside emails and messages to fire automations based on link clicks.",chips:["Link Clicks","Automation Triggers"],proof:["assets/ghl/proof-trigger-1.png","assets/ghl/proof-trigger-2.png","assets/ghl/proof-trigger-3.png","assets/ghl/proof-trigger-4.png","assets/ghl/proof-trigger-5.png"]},
+    {title:"Brand Boards",desc:"Build GHL brand boards that keep colors, fonts, and logos consistent across all marketing assets.",chips:["Colors","Fonts","Logos"],proof:["assets/ghl/proof-brand-1.png"]}
   ]},
   {n:"08",icon:"▨",title:"Reporting & Dashboards",short:"Prove the work — dashboards, funnel analytics, and revenue tracking.\nModule in progress — ties results back to case studies.",desc:"Working through reporting in HighLevel — building dashboards that show pipeline, contacts, and funnel performance in one screen.",learning:true,chips:["Dashboards","Funnel Analytics","Revenue Tracking"],proof:[],subs:[
     {title:"Dashboard Widgets",desc:"Assemble widgets that surface contacts, opportunities, and campaign health at a glance.",chips:["Widgets","At-a-Glance"],proof:[]},
@@ -1240,11 +1253,31 @@ function renderGhl(){
     });
     const subTags=s.subs&&s.subs.length?`<div class="ghl-sub-tags">${s.subs.map(u=>`<span>${u.title}</span>`).join('')}</div>`:'';
     const footLabel=s.subs&&s.subs.length?((s.learning?'Learning · ':'Skills · ')+s.subs.length):'Skill';
+    const chips=(s.subs||[]).slice(0,6).map((u,i)=>{
+      const n=Math.min(6,(s.subs||[]).length);
+      let dx,dy,rot;
+      if(s.fan==='right'){
+        dx=132;
+        dy=Math.round((i-(n-1)/2)*34);
+        rot=i%2?6:-6;
+      } else if(s.fan==='left'){
+        dx=-132;
+        dy=Math.round((i-(n-1)/2)*34);
+        rot=i%2?-6:6;
+      } else {
+        const a=-Math.PI/2+Math.PI*(n>1?i/(n-1):0.5);
+        dx=Math.round(Math.sin(a)*128);
+        dy=Math.round(-(88+Math.cos(a)*12));
+        rot=Math.round((a/(Math.PI/2))*5);
+      }
+      return `<span class="ghl-fan-card" style="--dx:${dx}px;--dy:${dy}px;--rot:${rot}deg;--i:${i}">${u.title}</span>`;
+    }).join('');
+    const fan=(s.subs&&s.subs.length)?`<span class="ghl-fan" aria-hidden="true">${chips}</span>`:'';
     const t=document.createElement('button');
     t.className='ghl-tile'+(s.learning?' ghl-tile--learning':'');
     t.setAttribute('role','button');
     t.setAttribute('aria-label',`Open ${s.title} skill`);
-    t.innerHTML=`<span class="ghl-tile-top"><span>${s.n} · ${s.title.split(' & ')[0].split(' — ')[0]}</span><span class="spec-icon">${s.icon}</span></span><h3>${s.title}</h3><p>${lines.join('<br>')}</p>${subTags}<span class="ghl-open"><span>${footLabel}</span><b>Open skill →</b></span>`;
+    t.innerHTML=`<span class="ghl-tile-top"><span>${s.n} · ${s.title.split(' & ')[0].split(' — ')[0]}</span><span class="spec-icon">${s.icon}</span></span><h3>${s.title}</h3><p>${lines.join('<br>')}</p>${subTags}<span class="ghl-open"><span>${footLabel}</span><b>Open skill →</b></span>${fan}`;
     t.addEventListener('click',()=>openGhlSkill(s));
     t.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openGhlSkill(s); } });
     ghlTiles.appendChild(t);

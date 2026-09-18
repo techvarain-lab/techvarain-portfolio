@@ -45,5 +45,49 @@ Compact, append-only log of what changed and why. Newest entry at the bottom. Ea
 - GHL tiles now 01–03 proof-backed, 04–08 learning (Workflows, Funnels, Forms, Email/SMS, Reporting). AGENTS.md counts/file-map already synced. Pending: none — graduate 04–08 as modules complete.
 
 ## 2026-09-18 — Mobile nav polish
-- Hid topbar `Start a project →` CTA on ≤860px (drawer's amber CTA + hero button already cover it).
-- Added scroll hint for the tab strip: pinned edge-fade masks (`.panel-tabs.ov` / `.ov-left` / `.at-end`) driven by a small `updTabs()` overflow tracker; clicked tab now `scrollIntoView` centers. No count changes.
+- Hid topbar "Start a project →" CTA on ≤860px — drawer's amber CTA (`#mobileRail`) + hero button already cover the conversion path.
+- Added scroll affordance for the tab strip: pinned edge-fade masks (`.ov` / `.ov-left` / `.at-end`) driven by `updTabs()` overflow tracker; clicked tab now scrolls into view.
+- No count changes (21 builds, hero 6, GHL 8).
+- Committed + pushed `b106e83`; AGENTS.md file map refreshed for ~1,307 lines. Pending: none.
+
+## 2026-09-18 — Graduate GHL tile 07: Email & SMS → Marketing
+- Graduated n07 from a `learning:true` placeholder to a proof-backed tile renamed **"Marketing"** (icon ✉ → ✦) — confident first-person copy ("I can execute end-to-end marketing tasks in GoHighLevel…").
+- Restructured sub-skills from 2 → 6: Email Campaigns & Analytics, Social Planner, Snippets, Countdown Timers, Trigger Links, Brand Boards — each with desc + chips.
+- Copy-only graduate: `proof:[]` for now, so drawer sub-skills show "Proof coming soon." until screenshots land in `assets/ghl/`.
+- Dropping `learning:true` un-dims the tile + footer flips to "Skills · 6" (no CSS edits; verified 8 tiles total parse clean via node).
+- Counts unchanged: GHL now 01–03 + 07 proof/copy-backed, 04–06 + 08 learning. AGENTS.md file-map + counts synced. Pending: add tile-07 proof shots.
+
+## 2026-09-18 — GHL panel locked to 100vh (always-fit tiles)
+- `.panel-ghl` `overflow:auto` → `overflow:hidden`: panel now always fills the viewport like Work/Services, header pinned (`flex-shrink:0` already).
+- `.ghl-tiles` now `flex:1;min-height:0` + `grid-auto-rows:minmax(0,1fr)` → all 8 tiles stretch to share the row height and always fit, no scrollbars (2 rows on 4-col, 3 rows on 3-col).
+- `.ghl-tile` got `overflow:hidden` so card content clips cleanly on very short viewports instead of spilling past its stretched row.
+- Mobile (≤860px): `.panel-ghl` / `.ghl-tiles` override to `flex:none` + natural auto rows so mobile keeps normal page flow.
+- No count changes. Also in this session: graduated tile 07 → "Marketing" (copy + proof shots wired: email ×2, snippet ×1, timer ×1, trigger ×5, brand ×1) — Social Planner still "Proof coming soon."
+
+## 2026-09-18 — GHL tile breathing room + always-fit clamps
+- `.panel-ghl` padding 12→14px; `.ghl-tile` internal gap 7→9px; sub-tag gap/margin up (2px→6px, 5→6px), chip padding 3px→2px vertical; `.ghl-open` pad-top 6→8px. Tiles breathe more.
+- Clamped so always-fit rows never spill: `h3` 13px + 2-line clamp, `p` 11.5px + 2-line clamp, `.ghl-sub-tags` capped at `max-height:38px` (2 rows; full list lives in the drawer). Worst case (~768px viewport, 3 rows) now fits cleanly.
+
+## 2026-09-18 — Tile icon hover experiments reverted
+- Explored corner-pop + behind-card emblem peeks on `.spec-icon`/`.ghl-tile::before`; user scrapped them. Clean revert: no `::before`, no `data-glyph`/`data-kicker` attrs, `.spec-icon` back to its static 20px box, reduced-motion untouched. Icons stay as the original glyph set.
+
+## 2026-09-18 — GHL hover spotlight
+- Hovered/focused tile is the sole focus: siblings dim + desaturate (`opacity:.42`, `saturate(.55)`) via `:has()`; the active tile lifts more (`translateY(-2px) scale(1.03)`), gains a deeper shadow + amber-wash gradient (`--amber-wash`, auto light/dark). Keyboard focus-visible dims siblings too. `.ghl-tile` transition bumped to `.2s`. Rest state unchanged.
+
+## 2026-09-18 — GHL sub-skill cards fan (folder micro-interaction)
+- Each tile gains a `.ghl-fan` layer (aria-hidden): up to 4 sub-skill chips + `…` overflow, hidden at rest. On `:hover`/`:focus-visible` (desktop only, `@media(hover:hover)`), cards fan out of the tile's top edge — symmetric horizontal spread (count-aware via `--n`/`--i` CSS vars), staggered `45ms` per card, springy ease, amber border/paper fills with drop shadows.
+- `.ghl-tile:hover` and `:focus-visible` gain `z-index:6` so fanned cards render above adjacent tiles.
+- `.panel-ghl` top padding `14px` → `24px` so the first row's fan clears the 100vh-clipped edge; middle rows overlay the tile above (looks like cards in front of the folder).
+- Reduced-motion disables fan-card transitions. Marketing fans 4 cards + muted `…` chip; all other tiles fan 2–3 cards. Click still opens the drawer. No count changes.
+
+## 2026-09-18 — Fan rework: arc pop, each sub-skill individually visible
+- Dropped the top-edge card "stack" (folded-deck origin). Now every sub-skill card has its own landing spot on a top arc (`renderGhl` computes per-chip inline `--dx/--dy/--rot`: `a=π·i/(n−1)`, `dx=sin(a)·128`, `dy=-(70+cos(a)·64)`, `rot=±4°`). 2 cards → top corners, 3 → left/top/right, 6 → full arc.
+- Individual pop, never stacked: rest state sits at 45% along each card's own ray (`translate(dx·.45, dy·.45) scale(.72)`, `transform-origin:center bottom`) so cards start at unique positions and rise to their slots, staggered 45ms/index, `cubic-bezier(.16,1,.3,1)`. Spotlight dim stays.
+- Cap raised 4 → 6; the `…` more-chip removed (no tile has >6 subs). `.ghl-fan` anchored `top:50%;left:50%`; `.panel-ghl` top padding 24 → 44px for top-row arc headroom. Reduced-motion unchanged (cards snap to their slots).
+- Fix: the sweep was `a∈[0,π]` — `sin(a)` never negative, so cards piled center-right (n=2 stacked at dx 0, no left side). Centered to symmetric `a∈[−π/2,+π/2]`: `dx=sin·128` sweeps −128→+128, `dy=−(88+cos·12)` hugs the tile top, `rot=±5°`. n=2 → corner pair, n=3 → left/top/right, n=6 → even mirrored sweep.
+- Fix: cards were top-left anchored on their slots — a card at `dx=+128` extends right past the tile while its mirror at `−128` fills toward center, so the fan's centroid drifted right. Added `translateX(-50%)` to both rest + hover transforms: each card now centers exactly on `(--dx,--dy)`. Left/right fans mirror about the tile center.
+
+## 2026-09-18 — Per-tile fan customization
+- Added optional `fan` field to `glSkills` entries for per-tile pop layouts; absent = symmetric top-arc default.
+- Tile 01 "Contacts & Lead Records" set `fan:"right"` — its 3 sub-skills now pop in a vertical stack along the right edge (`dx=132`, `dy=(i−(n−1)/2)·34`, alternating ±6° tilt) instead of the top arc.
+- Added `fan:"left"` mirror layout. Tiles 05 "Funnels & Websites" → `left` and 06 "Forms & Surveys" → `right`. Fan layouts now: 01 right, 05 left, 06 right, rest top-arc.
