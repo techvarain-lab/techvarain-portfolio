@@ -404,41 +404,60 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .panel-services .h2{font-family:'Instrument Serif',serif;font-size:38px;line-height:.95;letter-spacing:-.03em;margin:4px 0 0;font-weight:400}
 .panel-services .h2 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
 .panel-services .desc{max-width:38ch;font-size:13px;line-height:1.5;color:var(--ink-soft)}
-.panel-services .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;flex:1;min-height:0;height:100%;align-content:stretch;grid-template-rows:1fr 1fr 1fr;align-items:stretch}
-.panel-services .spec{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:8px 10px;display:flex;flex-direction:column;transition:.15s;min-height:0;overflow:hidden}
-.panel-services .spec:hover{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.panel-services .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;flex:1;min-height:0;height:100%;align-content:stretch;grid-template-rows:1fr 1fr 1fr;align-items:stretch}
+.panel-services .spec{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;transition:.2s cubic-bezier(.16,1,.3,1);min-height:0;overflow:hidden;transform-origin:center top}
+.panel-services .spec:hover{height:max-content;overflow:visible;transform:translateY(-3px) scale(1.02);box-shadow:0 0 0 1px var(--amber),0 18px 40px rgba(0,0,0,.18);z-index:8;border-color:var(--amber);background:linear-gradient(var(--paper),var(--amber-wash-2))}
 .panel-services .spec-top{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
 .panel-services .spec-icon{width:20px;height:20px;border:1px solid var(--line);background:var(--ground);display:grid;place-items:center;border-radius:6px;font-size:10px}
-.panel-services .spec h3{font-size:13.5px;margin:0 0 4px;letter-spacing:-.01em;line-height:1.2}
-.panel-services .spec p{margin:6px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft);flex:0 1 auto;overflow:hidden;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical}
-.panel-services .spec ul{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
-.panel-services .spec li{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.06em;padding:4px 8px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
+.panel-services .spec h3{font-size:13.5px;margin:0 0 6px;letter-spacing:-.01em;line-height:1.2}
+.panel-services .spec p{margin:10px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft);flex:0 1 auto;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}
+.panel-services .spec:hover p{display:block;-webkit-line-clamp:unset;-webkit-box-orient:unset;overflow:visible}
+.panel-services .spec ul{margin:12px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.panel-services .spec li{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.06em;padding:5px 10px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
+@media(hover:hover){
+  .panel-services .specs:has(.spec:hover) .spec:not(:hover){opacity:.35;filter:saturate(.4)}
+}
+.panel-services .spec:hover .spec-top{color:var(--amber)}
+.panel-services .spec:hover .spec-icon{border-color:var(--amber);color:var(--amber)}
+.panel-services .spec:hover h3{color:var(--amber)}
+.panel-services .spec:hover li{border-color:var(--amber);color:var(--amber)}
 
 /* GHL panel — mirrors Services, grows as modules land */
 .panel-ghl{flex-direction:column;overflow:hidden;min-height:0;padding:44px 14px 14px !important}
 .panel-ghl .head{display:flex;align-items:end;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:10px;flex-shrink:0}
-.panel-ghl .eyebrow{font-family:'Fragment Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
-.panel-ghl .h2{font-family:'Instrument Serif',serif;font-size:38px;line-height:.95;letter-spacing:-.03em;margin:4px 0 0;font-weight:400}
+.panel-ghl .eyebrow{font-family:'Fragment Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+.panel-ghl .h2{font-family:'Instrument Serif',serif;font-size:46px;line-height:.95;letter-spacing:-.03em;margin:4px 0 0;font-weight:400}
 .panel-ghl .h2 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
 .panel-ghl .desc{max-width:38ch;font-size:13px;line-height:1.5;color:var(--ink-soft)}
-.panel-ghl .ghl-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));grid-auto-rows:auto;gap:16px;align-content:safe center;align-items:stretch;flex:1;min-height:0}
-.ghl-tile{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:12px;display:flex;flex-direction:column;gap:9px;transition:.2s;cursor:pointer;text-align:left;width:100%;position:relative}
-.ghl-tile:hover{border-color:var(--line-strong);transform:translateY(-2px) scale(1.03);box-shadow:0 10px 26px rgba(0,0,0,.12);z-index:6;background:linear-gradient(var(--paper),var(--amber-wash))}
+.panel-ghl .ghl-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));grid-auto-rows:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr) auto;gap:20px 16px;align-content:safe center;align-items:stretch;flex:1;min-height:0}
+.ghl-tile{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:12px;display:flex;flex-direction:column;gap:9px;transition:.2s cubic-bezier(.16,1,.3,1);cursor:pointer;text-align:left;width:100%;position:relative}
+.ghl-tile:hover{transform:translateY(-4px) scale(1.045);box-shadow:0 0 0 1px var(--amber),0 14px 34px rgba(0,0,0,.16);z-index:6;border-color:var(--amber);background:linear-gradient(var(--paper),var(--amber-wash-2))}
 .ghl-tile:focus-visible{outline:2px solid var(--amber);outline-offset:2px;z-index:6}
+.ghl-tile--featured{grid-column:1/-1;flex-direction:row;align-items:center;gap:18px;padding:14px 18px}
+.ghl-tile--featured:hover{transform:translateY(-3px) scale(1.012)}
+.ghl-tile--featured .feat-txt{min-width:0;flex:0 1 auto}
+.ghl-tile--featured .feat-kicker{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.ghl-tile--featured .feat-txt h3{display:block;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ghl-tile--featured .feat-txt p{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ghl-tile--featured .ghl-open{flex:none;flex-direction:column;align-items:flex-end;gap:4px;margin:0 0 0 auto;padding-top:0}
+.ghl-tile--featured .feat-fan{position:absolute;top:0;left:0;right:0;height:0;pointer-events:none;z-index:3}
+.ghl-tile--featured .feat-fan-card{position:absolute;top:0;left:var(--fx);white-space:nowrap;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.05em;padding:4px 9px;border:1px solid var(--amber);background:var(--paper);color:var(--amber);border-radius:6px;box-shadow:0 6px 14px rgba(0,0,0,.10);opacity:0;transform:translate(-50%,12px) rotate(var(--rot,0deg)) scale(.8);transform-origin:center bottom;transition:opacity .22s,transform .42s cubic-bezier(.16,1,.3,1);transition-delay:var(--dl,0ms)}
 .ghl-tile-top{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center}
 .ghl-tile .spec-icon{width:20px;height:20px;border:1px solid var(--line);background:var(--ground);display:grid;place-items:center;border-radius:6px;font-size:10px}
 .ghl-fan{position:absolute;top:50%;left:50%;pointer-events:none;z-index:1;width:0;height:0}
 .ghl-fan-card{position:absolute;left:0;top:0;white-space:nowrap;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.05em;padding:5px 9px;border:1px solid var(--amber);background:var(--paper);color:var(--amber);border-radius:6px;box-shadow:0 6px 14px rgba(0,0,0,.10);opacity:0;transform:translate(calc(-50% + var(--dx) * .45),calc(var(--dy) * .45)) scale(.72);transform-origin:center bottom;transition:opacity .22s,transform .42s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i) * 45ms)}
 @media(hover:hover){
   .ghl-tile:is(:hover,:focus-visible) .ghl-fan-card{opacity:1;transform:translate(calc(-50% + var(--dx)),calc(var(--dy))) rotate(var(--rot)) scale(1)}
-  .ghl-tiles:has(.ghl-tile:hover) .ghl-tile:not(:hover){opacity:.42;filter:saturate(.55)}
-  .ghl-tiles:has(.ghl-tile:focus-visible) .ghl-tile:not(:focus-visible){opacity:.42;filter:saturate(.55)}
+  .ghl-tile--featured:is(:hover,:focus-visible) .feat-fan-card{opacity:1;transform:translate(-50%,var(--up,-34px)) rotate(var(--rot)) scale(1)}
+  .ghl-tiles:has(.ghl-tile:hover) .ghl-tile:not(:hover){opacity:.35;filter:saturate(.4)}
+  .ghl-tiles:has(.ghl-tile:focus-visible) .ghl-tile:not(:focus-visible){opacity:.35;filter:saturate(.4)}
 }
 .ghl-tile h3{font-size:13px;margin:0;letter-spacing:-.01em;line-height:1.22;color:var(--amber);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .ghl-tile p{margin:0;font-size:11.5px;line-height:1.5;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.ghl-open{display:flex;align-items:center;justify-content:space-between;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-top:8px}
+.ghl-open{display:flex;align-items:center;justify-content:space-between;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:auto;padding-top:8px}
 .ghl-open b{color:var(--amber);font-weight:500}
-.ghl-tile:hover .ghl-open b{color:var(--amber-2)}
+.ghl-tile:hover .ghl-open{color:var(--amber)}
+.ghl-tile:hover .ghl-open b{color:var(--amber-2);letter-spacing:.14em}
 .ghl-tile--learning{opacity:.55;border-style:dashed;position:relative}
 .ghl-tile--learning::after{content:"Learning";position:absolute;top:-7px;right:-7px;padding:2px 7px;border:1px solid var(--amber);background:var(--paper);color:var(--amber);border-radius:999px;font-family:'Fragment Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .ghl-tile--learning:hover{opacity:.82;transform:none;box-shadow:none}
@@ -510,7 +529,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   @keyframes heroIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 }
 @media (prefers-reduced-motion: reduce){
-  .panel-anim,.hero-live-track,.ghl-fan-card{transition:none;animation:none}
+  .panel-anim,.hero-live-track,.ghl-fan-card,.feat-fan-card{transition:none;animation:none}
   .hero-live-track img,.funnel-drawer-img img,.preview-img img{transition:none}
 }
 
@@ -518,6 +537,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .panel-about{flex-direction:column;overflow:auto;scrollbar-width:none}
 .timeline2{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;align-content:start}
 .card{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px}
+.timeline2 .card:last-child{align-self:start}
 .card h3{font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:0 0 12px}
 .entry{display:grid;grid-template-columns:100px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
 .entry:last-child{border:0}
@@ -611,7 +631,8 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .panel-services{height:auto;min-height:0;overflow:auto}
   .panel-services .specs{height:auto;min-height:0;grid-auto-rows:auto;align-content:start}
   .panel-ghl{height:auto;min-height:0;overflow:visible}
-  .panel-ghl .ghl-tiles{flex:none;grid-auto-rows:auto;align-content:start}
+  .panel-ghl .ghl-tiles{flex:none;grid-auto-rows:auto;align-content:start;grid-template-rows:none}
+  .ghl-tile--featured{flex-direction:column;align-items:flex-start;gap:10px}
   .workbench{grid-template-columns:1fr}
   .m-toggle{display:grid;place-items:center;width:42px;height:42px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);flex-shrink:0}
   .burger{display:grid;gap:4px;place-items:center;pointer-events:none}
@@ -645,6 +666,8 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 @media (max-width:560px){
   .specs{grid-template-columns:1fr}
   .h2{font-size:28px}
+  .panel-ghl .eyebrow{font-size:12.5px}
+  .panel-ghl .h2{font-size:34px}
   .contact-left h2{font-size:34px}
   .th,.row{grid-template-columns:44px 1fr 90px}
   .lightbox{padding:20px 14px}
@@ -852,13 +875,8 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
             <div class="entry"><time>Apr — Aug 2022</time><div><h4>Frontend Intern — Fligno Software PH</h4><p>Crowdsourcing platform — TypeScript + Next.js.</p><small>TypeScript · Next.js</small></div></div>
             <div class="entry"><time>2021 — 2022</time><div><h4>Web Dev Intern — Ling Ling Restaurants</h4><p>Interbranch POS — React, real ops.</p><small>React · JavaScript</small></div></div>
           </div>
-          <div class="card"><h3>Education & Handover</h3>
+          <div class="card"><h3>Education</h3>
             <div class="entry"><time>2022</time><div><h4>BS Computer Engineering — PUP</h4><p>Polytechnic University of the Philippines.</p><small>Manila · PH</small></div></div>
-            <div style="margin-top:10px;border:1px solid var(--line);border-radius:10px;background:var(--ground);padding:14px">
-              <div style="font-family:'Instrument Serif',serif;font-size:16px;margin-bottom:4px">How I hand over — warm & documented</div>
-              <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)">1. Map the real flow. 2. Build happy path + human fallback. 3. Log to Sheets, alert to Slack, leave a Loom.</p>
-              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><span class="pill" style="font-size:9px">Loom</span><span class="pill" style="font-size:9px">Sheets</span><span class="pill" style="font-size:9px">Snapshot</span></div>
-            </div>
           </div>
         </div>
       </section>
@@ -1226,6 +1244,19 @@ const glSkills=[
   {n:"08",icon:"▨",title:"Reporting & Dashboards",short:"Prove the work — dashboards, funnel analytics, and revenue tracking.\nModule in progress — ties results back to case studies.",desc:"Working through reporting in HighLevel — building dashboards that show pipeline, contacts, and funnel performance in one screen.",learning:true,chips:["Dashboards","Funnel Analytics","Revenue Tracking"],proof:[],subs:[
     {title:"Dashboard Widgets",desc:"Assemble widgets that surface contacts, opportunities, and campaign health at a glance.",chips:["Widgets","At-a-Glance"],proof:[]},
     {title:"Funnel Analytics",desc:"Track step conversion, source, and drop-off to know where the funnel leaks.",chips:["Conversion","Drop-off"],proof:[]}
+  ]},
+  {n:"09",featured:true,title:"PSGCIMBTFLO — Automation Building System",short:"My 11-step system for shipping client automations — scoped live on discovery calls, built in GHL, tested with proof, optimized under retainer.",desc:"PSGCIMBTFLO is the acronym system I run on every client build: Problem, Solution, Goal, Customer Journey, Identify Pipeline Stage, Mapping, Build, Test, Final Revision, Live, Optimize. It turns vague asks into specific problems, anchors each automation to a customer journey, mirrors that journey into pipeline stages, and never calls a build done until it's tested with proof.",chips:["Problem-first","Pipeline mirrors journey","Tested with proof","Optimize & retainer"],proof:[],subs:[
+    {title:"Problem",desc:"Identify the specific problem or need — never build on vague answers. Probe until the real need is concrete.",chips:["Specific Need","Discovery Questions"],proof:[],skipProof:true},
+    {title:"Solution",desc:"The fix isn't always an automation — a pipeline, form, calendar, landing page, notification, nurture sequence, or a combination. Clear problem → clear solution.",chips:["Right Tool Choice","Plain Language"],proof:[],skipProof:true},
+    {title:"Goal",desc:"Every system needs an ending. Agree the client's desired outcome and start with one goal so the build stays focused.",chips:["Desired Outcome","One Goal"],proof:[],skipProof:true},
+    {title:"Customer Journey",desc:"The anchor of the automation. Map each step a lead takes to reach the goal — it doesn't have to be perfect, just clear.",chips:["Journey Anchor","Clear, Not Perfect"],proof:[],skipProof:true},
+    {title:"Identify Pipeline Stage",desc:"Pipeline stages mirror the customer journey — one stage per meaningful change, so the pipeline reads the journey back to you.",chips:["Stage Design","Mirror the Journey"],proof:[],skipProof:true},
+    {title:"Mapping",desc:"For each stage define the trigger (how the contact enters) and the action steps — every action must lead the contact to the next stage.",chips:["Triggers","Action Steps","Next-Stage Push"],proof:[],skipProof:true},
+    {title:"Build",desc:"Build it in GoHighLevel or the chosen tool with a keeper-simple structure — no overcomplication.",chips:["GoHighLevel","Simple Structure"],proof:[],skipProof:true},
+    {title:"Test",desc:"Never say done until tested. Test the real trigger (actually book, actually submit) and screenshot or record the pass as your proof receipt.",chips:["Realistic Testing","Proof Receipt"],proof:[],skipProof:true},
+    {title:"Final Revision",desc:"Optional review loop — clients may add, revise, or edit after testing. Rinse and re-test before going live.",chips:["Client Review","Re-test"],proof:[],skipProof:true},
+    {title:"Live",desc:"Publish once the client confirms and testing is clean.",chips:["Publish","Client Sign-off"],proof:[],skipProof:true},
+    {title:"Optimize",desc:"The role doesn't stop at go-live — this is the retainer. Weekly check-ins, open/click rates, A/B copy tests, and conditional-logic fixes.",chips:["Weekly Review","Stats & Insight","A/B Copy"],proof:[],skipProof:true}
   ]}
 ];
 const ghlTiles=document.getElementById('ghlTiles');
@@ -1272,12 +1303,20 @@ function renderGhl(){
       }
       return `<span class="ghl-fan-card" style="--dx:${dx}px;--dy:${dy}px;--rot:${rot}deg;--i:${i}">${u.title}</span>`;
     }).join('');
-    const fan=(s.subs&&s.subs.length)?`<span class="ghl-fan" aria-hidden="true">${chips}</span>`:'';
+    const fan=(s.featured?'':(s.subs&&s.subs.length)?`<span class="ghl-fan" aria-hidden="true">${chips}</span>`:'');
+    let inner;
+    if(s.featured){
+      const nsub=s.subs.length;
+      const fanWords=s.subs.map((u,i)=>`<span class="feat-fan-card" style="--fx:${(i/(nsub-1))*88+6}%;--dl:${Math.abs(i-(nsub-1)/2)*35}ms;--rot:${i%2?3:-3}deg;--up:${i%2?'-22px':'-50px'}">${u.title}</span>`).join('');
+      inner=`<span class="feat-txt"><span class="feat-kicker">${s.n} · System</span><h3>${s.title}</h3><p>${lines[0]}</p></span><span class="ghl-open"><span>System · ${s.subs.length} steps</span><b>Open system →</b></span><span class="feat-fan" aria-hidden="true">${fanWords}</span>`;
+    } else {
+      inner=`<span class="ghl-tile-top"><span>${s.n} · ${s.title.split(' & ')[0].split(' — ')[0]}</span><span class="spec-icon">${s.icon}</span></span><h3>${s.title}</h3><p>${lines.join('<br>')}</p>${subTags}<span class="ghl-open"><span>${footLabel}</span><b>Open skill →</b></span>${fan}`;
+    }
     const t=document.createElement('button');
-    t.className='ghl-tile'+(s.learning?' ghl-tile--learning':'');
+    t.className='ghl-tile'+(s.learning?' ghl-tile--learning':'')+(s.featured?' ghl-tile--featured':'');
     t.setAttribute('role','button');
     t.setAttribute('aria-label',`Open ${s.title} skill`);
-    t.innerHTML=`<span class="ghl-tile-top"><span>${s.n} · ${s.title.split(' & ')[0].split(' — ')[0]}</span><span class="spec-icon">${s.icon}</span></span><h3>${s.title}</h3><p>${lines.join('<br>')}</p>${subTags}<span class="ghl-open"><span>${footLabel}</span><b>Open skill →</b></span>${fan}`;
+    t.innerHTML=inner;
     t.addEventListener('click',()=>openGhlSkill(s));
     t.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openGhlSkill(s); } });
     ghlTiles.appendChild(t);
@@ -1290,7 +1329,7 @@ function openGhlSkill(s){
   const proofHtml=(s.proof&&s.proof.length)?`<div><div class="ghl-sec-label">Proof — ${s.proof.length} shots · hover to peek · click to view</div><div class="ghl-pop-proof">${s.proof.map(ghlProof).join('')}</div></div>`:'';
   const subHtml=(s.subs&&s.subs.length)?'<div style="margin-top:14px;padding-top:2px">'+s.subs.map(u=>{
     const uc=u.chips.map(ghlChip).join('');
-    const up=(u.proof&&u.proof.length)?`<div class="ghl-pop-proof">${u.proof.map(ghlProof).join('')}</div>`:`<span class="ghl-pop-none">Proof coming soon.</span>`;
+    const up=(u.proof&&u.proof.length)?`<div class="ghl-pop-proof">${u.proof.map(ghlProof).join('')}</div>`:(u.skipProof?'':`<span class="ghl-pop-none">Proof coming soon.</span>`);
     return `<div class="ghl-pop-sub"><div class="ghl-pop-sub-title">${u.title}</div><p>${u.desc}</p><div class="ghl-chips" style="margin:10px 0 12px">${uc}</div>${up}</div>`;
   }).join('')+'</div>':'';
   drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${s.title}</h3>

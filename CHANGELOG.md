@@ -91,3 +91,17 @@ Compact, append-only log of what changed and why. Newest entry at the bottom. Ea
 - Added optional `fan` field to `glSkills` entries for per-tile pop layouts; absent = symmetric top-arc default.
 - Tile 01 "Contacts & Lead Records" set `fan:"right"` — its 3 sub-skills now pop in a vertical stack along the right edge (`dx=132`, `dy=(i−(n−1)/2)·34`, alternating ±6° tilt) instead of the top arc.
 - Added `fan:"left"` mirror layout. Tiles 05 "Funnels & Websites" → `left` and 06 "Forms & Surveys" → `right`. Fan layouts now: 01 right, 05 left, 06 right, rest top-arc.
+
+## 2026-09-18 — GHL panel interactions + Marketing graduation
+- Graduated tile 07 "Marketing" (6 sub-skills, copy-backed; proof wired: email ×2, snippet ×1, timer ×1, trigger ×5, brand ×1). Social Planner still "Proof coming soon."
+- GHL panel locked to 100vh always-fit + breathing-room padding/gaps + content clamps (h3/p 2-line, sub-tags capped) so tiles never spill on short viewports.
+- Sub-skill pop-up (`.ghl-fan`): cards arc above each tile, each with its own landing slot (`--dx/--dy/--rot` computed in `renderGhl`, ray-pop rest origin), staggered 45ms; hover spotlight dims siblings (`:has()`) + lifts the focused tile with amber-wash.
+- Per-tile `fan` field: 01 right, 05 left, 06 right edge stacks; rest symmetric top-arc. Cards centered on slots via `translateX(-50%)` (fixes right-drift). Icon hover experiments reverted — original glyphs kept. Mobile nav CTA/scroll-hint work had landed earlier in `b106e83`.
+- Pushed `552c210` → GitHub Pages. Counts unchanged (21 builds, hero 6, GHL 8). AGENTS.md GHL file-map ranges re-pointed (1190–1307, 1309–1329).
+
+## 2026-09-19 — GHL featured PSGCIMBTFLO banner tile (n09)
+- Added `glSkills` n09 "PSGCIMBTFLO — Automation Building System" as a `featured:true` tile: full-width horizontal banner on the grid's 3rd row (`grid-column:1/-1`), kicked off with icon → icon later removed in-session (banner now: kicker + title + one-line desc + "Open system →"), no fan/wave pop.
+- `renderGhl` branch for `featured`: horizontal layout (icon + kicker + title + one-line desc + letters row + "Open system →"); `.ghl-tile--featured` CSS (row flex, ellipsis clamps, reduced hover scale `1.012`); ≤860px stacks to column.
+- Tile drawer holds all 11 steps as sub-skills with their playbook definitions; new `skipProof:true` sub field suppresses the "Proof coming soon." line for methodology steps.
+- Grid rows changed to `grid-template-rows:minmax(0,1fr) minmax(0,1fr) auto` — the 8 tiles keep two equal rows, the banner row sizes to content (tile rows actually get a little taller). Still always-fit.
+- Skill created globally: `psgcimbtflo` (opencode + claude). Counts: GHL 8 → 9; 21 builds + hero 6 unchanged. AGENTS.md map (1210–1347 / 1349–1377) + tile-9 count updated. Not yet committed/pushed.

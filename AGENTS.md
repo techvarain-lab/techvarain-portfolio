@@ -33,15 +33,15 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 | 1052–1104 | Hero carousel: `heroProjectNs` (ns "01".."06"), `setHeroLive(i)`, `heroLive**` element binding |
 | 1081–1104 | Theme toggle wiring |
 | 1106–1177 | `openDrawer(p)` / `closeDrawer()` / Escape-key handler |
-| 1181–1266 | **GHL skills**: `const glSkills=[...]` — 8 tiles (01–03 + 07 proof-backed/copy-backed; 04–06, 08 "learning" `learning:true` placeholders). Tile shape: `n, icon, title, short, desc, chips[], proof[], subs[]`, optional `learning`, `fan` (`"left"`/`"right"` = vertical pop stack on that edge; absent = top-arc). `ghlChip`, `ghlZoom*` hover peek, `ghlProof`, `renderGhl()`, `openGhlSkill(s)` |
-| 1270–1301 | `handleSubmit(e)` (mailto compose), mobile rail toggling, menu/rail listeners |
+| 1210–1347 | **GHL skills**: `const glSkills=[...]` — 9 tiles (01–03 + 07 proof-backed/copy-backed; 04–06, 08 `learning:true` placeholders; 09 `featured:true` full-width PSGCIMBTFLO banner). Tile shape: `n, icon, title, short, desc, chips[], proof[], subs[]`, optional `learning`, `fan` (`"left"`/`"right"` = vertical pop stack on that edge; absent = top-arc), `featured` (horizontal banner: kicker + title + one-line desc, no icon, no fan). Subs honor `skipProof:true` to hide "Proof coming soon". `ghlChip`, `ghlZoom*` hover peek, `ghlProof`, `renderGhl()`, `openGhlSkill(s)` |
+| 1349–1377 | `handleSubmit(e)` (mailto compose), mobile rail toggling, menu/rail listeners |
 
 ## Conventions
 
 - **Aesthetic:** editorial-mono. Fonts: Instrument Serif (display) + Fragment Mono (labels) + Cormorant Garamond accents. Ink on paper, amber accent, hairline `var(--line)` borders.
 - **Tags/taxonomy:** `funnel` / `automation` / `hybrid` (funnel + automation). Filter chips derive counts from `projects` — keep the span count and the `family`/`tags` fields in sync.
 - **Hero carousel** shows the 6 most recent/notable builds via `heroProjectNs` at line 1052.
-- **Counts to keep current:** rail "WORK — 21", toolbar chips, `heroProjectNs` length, CONTACT reads "24h reply". GHL tiles = `glSkills` length (8: 01–03 + 07 proof-backed/copy-backed, 04–06 + 08 `learning` placeholders).
+- **Counts to keep current:** rail "WORK — 21", toolbar chips, `heroProjectNs` length, CONTACT reads "24h reply". GHL tiles = `glSkills` length (9: 01–03 + 07 proof-backed/copy-backed, 04–06 + 08 `learning` placeholders, 09 `featured` PSGCIMBTFLO banner).
 - **Images:** add sections as `sec01..secNN.webp` under `assets/funnel/<slug>/`; never hotlink. GHL proof under `assets/ghl/proof-*.png`.
 - New case study = new `projects` entry (number = next `n`). Update: toolbar chips, rail count, hero list if notable, this file's "File map" + CHANGELOG.md.
 
