@@ -15,8 +15,8 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 | --- | --- |
 | 2–49 | `<head>`, fonts, favicon, meta |
 | 10 | Theme bootstrap `localStorage.getItem('rd-theme')` (dark/light) |
-| 52–644 | CSS: tokens/vars, dark theme overrides (`[data-theme="dark"]`), panels, workbench, drawer, lightbox, ghl tiles / zoom / learning-tile variants, responsive rules (incl. mobile `.ptabs` edge-fade scroll hint) |
-| 654–707 | Shell markup: rail (links, socials), `themeBtn`, `menuBtn`, top tabs `.ptab[data-panel=*]` (`#ptabs`), CTA (hidden ≤860px) |
+| 52–700 | CSS: tokens/vars, dark theme overrides (`[data-theme="dark"]`), panels, workbench, drawer, lightbox, ghl tiles / zoom / learning-tile variants, **BG-tweak modes** (`.main[data-bg=*]` overrides of `.main::before`/`::after`: grid/dots/grain/blueprint/bare/watermark) + `.bg-btn`/`.bg-pop` control styling, responsive rules (incl. mobile `.ptabs` edge-fade scroll hint) |
+| 704–757 | Shell markup: rail (links, socials), `themeBtn`, `menuBtn`, top tabs `.ptab[data-panel=*]` (`#ptabs`), CTA (hidden ≤860px), **BG test button `#bgBtn` + popover `#bgPop` (.bg-opt[data-bgopt=*])** |
 | 709–780 | Hero panel: `heroLive` carousel (driven by `projects`), `heroSideList`, CTA buttons — "21" count |
 | 781–803 | Work panel: `.work-toolbar` filters (All 21 / Funnel 11 / Automation 16 / Hybrid 6), `#rows` bench, `#preview` pane |
 | 805–821 | Services panel |
@@ -39,6 +39,7 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 ## Conventions
 
 - **Aesthetic:** editorial-mono. Fonts: Instrument Serif (display) + Fragment Mono (labels) + Cormorant Garamond accents. Ink on paper, amber accent, hairline `var(--line)` borders.
+- **BG tweak:** topbar "▦ BG" button tests background treatments live (`.main[data-bg=*]` switcher, persists `rd-bg` in localStorage, mirrors theme pattern). Default `grid`. Mode list in `#bgPop`; keep `.bg-opt` rows in sync with `BG_OPTS` + `data-bgopt` + mode CSS + swatch classes.
 - **Tags/taxonomy:** `funnel` / `automation` / `hybrid` (funnel + automation). Filter chips derive counts from `projects` — keep the span count and the `family`/`tags` fields in sync.
 - **Hero carousel** shows the 6 most recent/notable builds via `heroProjectNs` at line 1052.
 - **Counts to keep current:** rail "WORK — 21", toolbar chips, `heroProjectNs` length, CONTACT reads "24h reply". GHL tiles = `glSkills` length (9: 01–03 + 07 proof-backed/copy-backed, 04–06 + 08 `learning` placeholders, 09 `featured` PSGCIMBTFLO banner).

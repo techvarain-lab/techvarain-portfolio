@@ -99,6 +99,12 @@ Compact, append-only log of what changed and why. Newest entry at the bottom. Ea
 - Per-tile `fan` field: 01 right, 05 left, 06 right edge stacks; rest symmetric top-arc. Cards centered on slots via `translateX(-50%)` (fixes right-drift). Icon hover experiments reverted — original glyphs kept. Mobile nav CTA/scroll-hint work had landed earlier in `b106e83`.
 - Pushed `552c210` → GitHub Pages. Counts unchanged (21 builds, hero 6, GHL 8). AGENTS.md GHL file-map ranges re-pointed (1190–1307, 1309–1329).
 
+## 2026-09-19 — BG tweak button (background tester)
+- Added topbar "▦ BG" control (`#bgBtn` + `#bgPop`) to switch the main-column background treatment live, persisted as `rd-bg` in localStorage (mirrors `rd-theme`). Applies `data-bg` on `.main`; default `grid`.
+- Static modes: **grid** (original), **dots** (lithographic halftone), **grain** (inline-SVG feTurbulence noise), **blueprint** (column rules + every-4th baseline + amber corner registration marks via `.main::after`), **bare** (no texture), **watermark** (giant faint serif "21" bottom-right, Instrument Serif italic, over the grid). Each option row carries a mini CSS swatch preview; popover closes on outside click / Escape.
+- Grid-motion experiment (ambient `translate3d` drift) was added, then reverted — user reported dizziness; all artifact-free (tokens back to `.04/.06`, no `@keyframes`).
+- No counts changed (21 builds, hero 6, GHL 9).
+
 ## 2026-09-19 — GHL featured PSGCIMBTFLO banner tile (n09)
 - Added `glSkills` n09 "PSGCIMBTFLO — Automation Building System" as a `featured:true` tile: full-width horizontal banner on the grid's 3rd row (`grid-column:1/-1`), kicked off with icon → icon later removed in-session (banner now: kicker + title + one-line desc + "Open system →"), no fan/wave pop.
 - `renderGhl` branch for `featured`: horizontal layout (icon + kicker + title + one-line desc + letters row + "Open system →"); `.ghl-tile--featured` CSS (row flex, ellipsis clamps, reduced hover scale `1.012`); ≤860px stacks to column.

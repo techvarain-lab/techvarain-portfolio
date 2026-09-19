@@ -240,6 +240,72 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   background-size:32px 32px;
   pointer-events:none;z-index:0;
 }
+/* BG-tweak modes (switchable via topbar "BG") */
+.main[data-bg="dots"]::before{background-image:radial-gradient(var(--grid) 1.25px,transparent 1.25px);background-size:26px 26px}
+.main[data-bg="grain"]::before{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size:260px 260px;
+  opacity:.12;
+}
+.main[data-bg="blueprint"]::before{
+  background-image:
+    repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 32px),
+    repeating-linear-gradient(0deg,var(--grid) 0 1px,transparent 1px 128px);
+  background-size:32px 32px,128px 128px;
+}
+.main[data-bg="blueprint"]::after{
+  content:"";position:absolute;inset:10px;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(color-mix(in srgb,var(--amber) 60%,transparent) 1px,transparent 1px),
+    linear-gradient(90deg,color-mix(in srgb,var(--amber) 60%,transparent) 1px,transparent 1px),
+    linear-gradient(color-mix(in srgb,var(--amber) 60%,transparent) 1px,transparent 1px),
+    linear-gradient(90deg,color-mix(in srgb,var(--amber) 60%,transparent) 1px,transparent 1px),
+    linear-gradient(color-mix(in srgb,var(--amber) 60%,transparent) 1px,transparent 1px),
+    linear-gradient(90deg,color-mix(in srgb,var(--amber) 60%,transparent) 1px,transparent 1px),
+    linear-gradient(color-mix(in srgb,var(--amber) 60%,transparent) 1px,transparent 1px),
+    linear-gradient(90deg,color-mix(in srgb,var(--amber) 60%,transparent) 1px,transparent 1px);
+  background-size:12px 12px;
+  background-repeat:no-repeat;
+  background-position:0 0,0 0,100% 0,100% 0,0 100%,0 100%,100% 100%,100% 100%;
+}
+.main[data-bg="bare"]::before{display:none}
+.main[data-bg="watermark"]::before{
+  content:"21";
+  display:flex;align-items:flex-end;justify-content:flex-end;
+  color:color-mix(in srgb,var(--amber) 8%,transparent);
+  font-family:'Instrument Serif',serif;font-style:italic;
+  font-size:clamp(120px,22vh,280px);line-height:.72;letter-spacing:-.04em;
+  padding:0 14px 4px 0;text-align:right;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+.bg-wrap{position:relative}
+.bg-btn{display:flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:.15s;white-space:nowrap}
+.bg-btn:hover{border-color:var(--line-strong)}
+.bg-btn .bg-cur{color:var(--amber)}
+.bg-pop{position:absolute;top:calc(100% + 8px);right:0;z-index:60;display:none;flex-direction:column;gap:2px;padding:6px;border:1px solid var(--line-strong);border-radius:12px;background:var(--paper);box-shadow:0 18px 44px rgba(0,0,0,.16);min-width:208px}
+.bg-pop.open{display:flex}
+.bg-top{display:flex;justify-content:space-between;align-items:center;padding:4px 8px 8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.bg-opt{display:flex;gap:9px;align-items:center;padding:7px 8px;border-radius:8px;border:0;background:none;cursor:pointer;text-align:left;font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);transition:.12s}
+.bg-opt:hover{background:var(--ground);color:var(--ink)}
+.bg-opt.active{background:var(--amber-wash);color:var(--ink);box-shadow:inset 2px 0 0 var(--amber)}
+.bg-sw{width:22px;height:22px;flex:none;border-radius:5px;border:1px solid var(--line);background:
+   linear-gradient(var(--grid) 1px,transparent 1px),
+   linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:8px 8px}
+.bg-sw.dots{background:radial-gradient(var(--grid) 1px,transparent 1px);background-size:6px 6px}
+.bg-sw.grain{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='40' height='40' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");background-size:28px 28px}
+.bg-sw.bp{background-image:
+   repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 8px),
+   repeating-linear-gradient(0deg,var(--grid) 0 1px,transparent 1px 32px);
+  background-size:8px 8px,32px 8px}
+.bg-sw.bare{background:transparent}
+.bg-sw.wm{background-image:
+   linear-gradient(var(--grid) 1px,transparent 1px),
+   linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:8px 8px;color:var(--amber);font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;line-height:1;display:grid;place-items:end center;padding:0 5px 2px 0}
 .topbar{
   position:relative;z-index:5;
   height:var(--top-h);min-height:var(--top-h);
@@ -718,7 +784,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   </aside>
 
   <!-- MAIN -->
-  <main class="main">
+  <main class="main" data-bg="grid">
     <div class="topbar">
       <div class="topbar-left">
         <button class="m-toggle" id="menuBtn" aria-expanded="false" aria-label="Open menu"><span class="burger"><i></i><i></i><i></i></span></button>
@@ -733,6 +799,18 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       </div>
       <div class="topbar-right">
         <a class="cta" href="#" data-go="contact">Start a project →</a>
+        <div class="bg-wrap">
+          <button class="bg-btn" id="bgBtn" aria-haspopup="true" aria-expanded="false" aria-label="Background style">▦ <span class="bg-cur" id="bgCur">Grid</span></button>
+          <div class="bg-pop" id="bgPop" role="menu">
+            <div class="bg-top">Background</div>
+            <button class="bg-opt active" data-bgopt="grid" role="menuitemradio"><span class="bg-sw"></span>Grid</button>
+            <button class="bg-opt" data-bgopt="dots" role="menuitemradio"><span class="bg-sw dots"></span>Dots · litho</button>
+            <button class="bg-opt" data-bgopt="grain" role="menuitemradio"><span class="bg-sw grain"></span>Paper grain</button>
+            <button class="bg-opt" data-bgopt="blueprint" role="menuitemradio"><span class="bg-sw bp"></span>Blueprint</button>
+            <button class="bg-opt" data-bgopt="bare" role="menuitemradio"><span class="bg-sw bare"></span>Bare paper</button>
+            <button class="bg-opt" data-bgopt="watermark" role="menuitemradio"><span class="bg-sw wm"></span>Watermark</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1114,6 +1192,39 @@ tBtn.addEventListener('click',()=>{
   const next=cur==='dark'?'light':'dark';
   document.documentElement.setAttribute('data-theme',next);
   localStorage.setItem('rd-theme',next);
+});
+
+// background-style tweak
+const mainEl=document.querySelector('.main');
+const bgBtn=document.getElementById('bgBtn'), bgPop=document.getElementById('bgPop'), bgCur=document.getElementById('bgCur');
+const bgOpts=[...document.querySelectorAll('.bg-opt')];
+const BG_OPTS={grid:'Grid',dots:'Dots',grain:'Grain',blueprint:'Blueprint',bare:'Bare',watermark:'Watermark'};
+function applyBg(m){
+  if(!BG_OPTS[m]) return;
+  mainEl.setAttribute('data-bg',m);
+  bgCur.textContent=BG_OPTS[m];
+  bgOpts.forEach(o=>o.classList.toggle('active',o.dataset.bgopt===m));
+  localStorage.setItem('rd-bg',m);
+}
+const savedBg=localStorage.getItem('rd-bg');
+if(BG_OPTS[savedBg]) applyBg(savedBg);
+bgBtn.addEventListener('click',e=>{
+  e.stopPropagation();
+  const open=bgPop.classList.toggle('open');
+  bgBtn.setAttribute('aria-expanded',open?'true':'false');
+});
+bgOpts.forEach(o=>o.addEventListener('click',()=>applyBg(o.dataset.bgopt)));
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.bg-wrap')){
+    bgPop.classList.remove('open');
+    bgBtn.setAttribute('aria-expanded','false');
+  }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    bgPop.classList.remove('open');
+    bgBtn.setAttribute('aria-expanded','false');
+  }
 });
 
 // drawer + lightbox
