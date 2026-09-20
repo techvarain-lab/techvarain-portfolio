@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#F2EFE8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#EFE7D8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
 <title>Rainier Dimasacat — Single Viewport · GHL SPECIALIST / FUNNEL BUILDER</title>
 <meta name="description" content="Rainier Dimasacat — GHL SPECIALIST / FUNNEL BUILDER. 21 builds. Single-viewport workbench: Stripe → GHL → Sheets → Slack, logged, routed, documented.">
@@ -26,14 +26,14 @@
 <style>
 :root{
   /* A · Warm Ink — restored editorial, burnt sienna pop */
-  --ground:#F2EFE8;
-  --ground-2:#EFE9E0;
-  --paper:#FFFDFA;
+  --ground:#EFE7D8;
+  --ground-2:#EDE5D6;
+  --paper:#FBF6EC;
   --ink:#1A1A18;
   --ink-2:#3A3834;
   --ink-soft:#8A8580;
-  --line:#E7DDD0;
-  --line-strong:#D8CCB8;
+  --line:#E2D5C0;
+  --line-strong:#D5C5AC;
   --amber:#B45309;
   --amber-2:#92400E;
   --amber-wash:#FFFBEB;
@@ -42,10 +42,32 @@
   --sage-wash:#E8EFE6;
   --navy:#1A1A18;
   --navy-2:#242424;
-  --cream:#F2EFE8;
+  --cream:#EFE7D8;
   --radius:10px;
   --radius-lg:16px;
-  --grid:rgba(26,26,24,.04);
+  --grid:rgba(122,90,56,.055);
+  /* rail (soft dark — same in both themes) */
+  --ra-bg:#2B2620;
+  --ra-ink:#F4F4ED;
+  --ra-body:rgba(244,244,237,.78);
+  --ra-sub:rgba(244,244,237,.56);
+  --ra-mute:rgba(244,244,237,.55);
+  --ra-faint:rgba(244,244,237,.42);
+  --ra-kick:rgba(244,244,237,.62);
+  --ra-role:#B8C8B8;
+  --ra-pill:rgba(244,244,237,.84);
+  --ra-btn-txt:rgba(244,244,237,.72);
+  --ra-edge:rgba(255,255,255,.08);
+  --ra-hair:rgba(255,255,255,.06);
+  --ra-border:rgba(255,255,255,.12);
+  --ra-border-soft:rgba(255,255,255,.08);
+  --ra-border-strong:rgba(255,255,255,.16);
+  --ra-chip:rgba(255,255,255,.08);
+  --ra-chip-hover:rgba(255,255,255,.06);
+  --ra-panel:rgba(0,0,0,.12);
+  --ra-stat:rgba(0,0,0,.14);
+  --ra-note:rgba(0,0,0,.12);
+  --ra-btn-hover-border:rgba(255,255,255,.32);
   --rail-w:320px;
   --top-h:52px;
 }
@@ -67,6 +89,27 @@
   --navy:#1A1A18;
   --cream:#070B14;
   --grid:rgba(245,241,235,.06);
+  --ra-bg:#2B2620;
+  --ra-ink:#F4F4ED;
+  --ra-body:rgba(244,244,237,.78);
+  --ra-sub:rgba(244,244,237,.56);
+  --ra-mute:rgba(244,244,237,.55);
+  --ra-faint:rgba(244,244,237,.42);
+  --ra-kick:rgba(244,244,237,.62);
+  --ra-role:#B8C8B8;
+  --ra-pill:rgba(244,244,237,.84);
+  --ra-btn-txt:rgba(244,244,237,.72);
+  --ra-edge:rgba(255,255,255,.08);
+  --ra-hair:rgba(255,255,255,.06);
+  --ra-border:rgba(255,255,255,.12);
+  --ra-border-soft:rgba(255,255,255,.08);
+  --ra-border-strong:rgba(255,255,255,.16);
+  --ra-chip:rgba(255,255,255,.08);
+  --ra-chip-hover:rgba(255,255,255,.06);
+  --ra-panel:rgba(0,0,0,.12);
+  --ra-stat:rgba(0,0,0,.14);
+  --ra-note:rgba(0,0,0,.12);
+  --ra-btn-hover-border:rgba(255,255,255,.32);
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -111,9 +154,9 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 
 /* RAIL — navy like BrewedOps, but warm detail */
 .rail{
-  background:var(--navy);
-  color:#F4F4ED;
-  border-right:1px solid rgba(255,255,255,.08);
+  background:var(--ra-bg);
+  color:var(--ra-ink);
+  border-right:1px solid var(--ra-edge);
   display:flex;
   flex-direction:column;
   overflow:hidden;
@@ -158,24 +201,28 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .brand-mini em{font-style:italic;color:var(--amber);font-weight:400}
 .rail-kicker{
   font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(244,244,237,.62);display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap
+  color:var(--ra-kick);display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap
 }
 .rail-kicker b{color:var(--amber)}
-.dot{width:7px;height:7px;border-radius:50%;background:#1DB954;box-shadow:0 0 0 6px color-mix(in srgb, #1DB954 16%, transparent)}
+.live-tag{display:inline-flex;align-items:center;gap:6px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#1DB954;white-space:nowrap}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#1DB954;position:relative;display:inline-block;flex:none}
+.live-dot::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1px solid #1DB954;opacity:0;animation:livePing 1.8s ease-out infinite}
+@keyframes livePing{0%{opacity:.8;transform:scale(.5)}75%,100%{opacity:0;transform:scale(1.7)}}
+@media (prefers-reduced-motion: reduce){.live-dot::after{animation:none}.live-dot{box-shadow:0 0 0 4px color-mix(in srgb,#1DB954 18%,transparent)}.tab-hint,.tab-hint.out{transform:none;transition:opacity .15s ease}}
 .rail h1{
   font-family:'Instrument Serif',serif;font-size:50px;line-height:.78;letter-spacing:-.05em;margin:0;font-weight:400
 }
 .rail h1 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
 .rail-role-wrap{width:fit-content;max-width:100%;display:flex;flex-direction:column;gap:0}
 .rail .rule{width:100%;height:1px;background:var(--amber);margin:2px 0 6px;border-radius:999px;opacity:1;display:block}
-.rail-role{font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#B8C8B8;line-height:1.0;margin:0;padding:0;font-weight:500;white-space:nowrap}
-.rail-copy{font-size:13.5px;line-height:1.62;color:rgba(244,244,237,.78);margin:0}
-.rail-copy .sub{color:rgba(244,244,237,.56);display:block;margin-top:8px;font-size:12px;line-height:1.6}
+.rail-role{font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-role);line-height:1.0;margin:0;padding:0;font-weight:500;white-space:nowrap}
+.rail-copy{font-size:13.5px;line-height:1.62;color:var(--ra-body);margin:0}
+.rail-copy .sub{color:var(--ra-sub);display:block;margin-top:8px;font-size:12px;line-height:1.6}
 .rail-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .pill-rail{
   font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;
-  padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.08);color:rgba(244,244,237,.84);
+  padding:6px 8px;border-radius:999px;border:1px solid var(--ra-border);
+  background:var(--ra-chip);color:var(--ra-pill);
   backdrop-filter:blur(6px);
 }
 .pill-rail.amb{background:var(--amber);border-color:var(--amber);color:white}
@@ -188,31 +235,31 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 }
 .btn-rail-p:hover{background:var(--amber-2);border-color:var(--amber-2)}
 .btn-rail-g{
-  padding:10px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);
+  padding:10px 12px;border-radius:999px;border:1px solid var(--ra-border-strong);
   font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(244,244,237,.72);text-align:center;transition:.15s
+  color:var(--ra-btn-txt);text-align:center;transition:.15s
 }
-.btn-rail-g:hover{border-color:rgba(255,255,255,.32);color:white;background:rgba(255,255,255,.06)}
-.rail-divider{height:1px;background:rgba(255,255,255,.08);margin:14px 0}
+.btn-rail-g:hover{border-color:var(--ra-btn-hover-border);color:var(--ra-ink);background:var(--ra-chip-hover)}
+.rail-divider{height:1px;background:var(--ra-hair);margin:14px 0}
 
 .stat2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.stat2 div{border:1px solid rgba(255,255,255,.10);border-radius:10px;background:rgba(0,0,0,.14);padding:8px;text-align:center}
-.stat2 b{font-family:'Instrument Serif',serif;font-size:18px;display:block;line-height:1;color:white}
-.stat2 span{font-family:'Fragment Mono',monospace;font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:rgba(244,244,237,.55)}
+.stat2 div{border:1px solid var(--ra-border);border-radius:10px;background:var(--ra-stat);padding:8px;text-align:center}
+.stat2 b{font-family:'Instrument Serif',serif;font-size:18px;display:block;line-height:1;color:var(--ra-ink)}
+.stat2 span{font-family:'Fragment Mono',monospace;font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:var(--ra-mute)}
 .rail-note{
-  border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;
-  background:rgba(0,0,0,.12);font-size:11.6px;line-height:1.55;color:rgba(244,244,237,.78)
+  border:1px solid var(--ra-border-soft);border-radius:10px;padding:10px;
+  background:var(--ra-note);font-size:11.6px;line-height:1.55;color:var(--ra-body)
 }
 .rail-note small{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
 .rail-foot{
-  padding:10px 14px;border-top:1px solid rgba(255,255,255,.06);
+  padding:10px 14px;border-top:1px solid var(--ra-hair);
   display:flex;justify-content:space-between;gap:8px;align-items:center;
-  font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:rgba(244,244,237,.42)
+  font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ra-faint)
 }
 .rail-foot-rail{
-  padding:12px 18px;border-top:1px solid rgba(255,255,255,.06);
+  padding:12px 18px;border-top:1px solid var(--ra-hair);
   display:flex;justify-content:center;gap:8px;align-items:center;
-  font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.06em;color:rgba(244,244,237,.42);
+  font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.06em;color:var(--ra-faint);
   position:relative;z-index:1;margin-top:auto;
   text-align:center;
 }
@@ -220,8 +267,8 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   display:flex;align-items:center;gap:8px
 }
 .theme{
-  width:42px;height:26px;border-radius:999px;border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.10);position:relative;cursor:pointer;display:flex;align-items:center;padding:2px;transition:.2s
+  width:42px;height:26px;border-radius:999px;border:1px solid var(--ra-border-strong);
+  background:var(--ra-chip);position:relative;cursor:pointer;display:flex;align-items:center;padding:2px;transition:.2s
 }
 .knob{width:20px;height:20px;border-radius:50%;background:white;color:var(--navy);display:grid;place-items:center;font-size:11px;transition:transform .3s}
 [data-theme="dark"] .knob{transform:translateX(16px)}
@@ -229,9 +276,13 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 /* MAIN */
 .main{
   display:flex;flex-direction:column;min-width:0;overflow:hidden;
-  background:var(--ground);
+  background:
+    radial-gradient(700px 420px at 12% 0%, color-mix(in srgb,var(--amber) 6%, transparent), transparent 62%),
+    radial-gradient(620px 620px at 95% 95%, color-mix(in srgb,var(--amber) 5%, transparent), transparent 60%),
+    var(--ground);
   position:relative;
 }
+[data-theme="dark"] .main{background:var(--ground)}
 .main::before{
   content:"";position:absolute;inset:0;
   background-image:
@@ -329,6 +380,14 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .ptab:hover{border-color:var(--line-strong)}
 .ptab .cnt{font-size:9px;padding:2px 6px;border-radius:999px;background:var(--ground);border:1px solid var(--line);color:var(--ink-soft)}
 .ptab.active .cnt{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.14);color:white}
+.tab-hint{position:fixed;z-index:30;left:0;top:0;pointer-events:none;opacity:0;transform:translateY(4px) scale(.92);transform-origin:18px 4px;transition:opacity .16s ease,transform .24s cubic-bezier(.34,1.56,.64,1)}
+.tab-hint[aria-hidden="false"]{opacity:1;transform:none}
+.tab-hint.out{opacity:0;transform:translateY(2px) scale(.97);transition:opacity .12s cubic-bezier(.16,1,.3,1),transform .12s cubic-bezier(.16,1,.3,1)}
+.tab-hint-card{display:flex;flex-direction:column;gap:7px;min-width:210px;max-width:300px;padding:13px 14px 13px 16px;border:1px dashed var(--line-strong);background:var(--paper);clip-path:polygon(0 9px,9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%);filter:drop-shadow(0 8px 18px rgba(0,0,0,.12));font-family:'Fragment Mono',monospace;color:var(--ink-2)}
+.tab-hint-k{color:var(--amber);align-self:flex-start;border:1px solid var(--amber);border-radius:2px;padding:2px 7px;font-size:8.5px;letter-spacing:.14em;line-height:1.2;transform:rotate(-2deg);box-shadow:inset 0 0 0 1px var(--paper),0 0 0 3px color-mix(in srgb,var(--amber) 14%,transparent)}
+.tab-hint-line{height:1px;background:repeating-linear-gradient(90deg,var(--line-strong) 0 5px,transparent 5px 8px);margin:1px 0}
+.tab-hint-txt{font-size:9.5px;letter-spacing:.06em;line-height:1.55;color:var(--ink-2)}
+.tab-hint-caret{position:absolute;top:-4.5px;left:18px;width:8px;height:8px;background:var(--paper);border-left:1px solid var(--line-strong);border-top:1px solid var(--line-strong);transform:rotate(45deg)}
 .topbar-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .seg{display:flex;gap:6px;align-items:center}
 .seg button{width:36px;height:36px;border-radius:999px;border:1px solid var(--line);background:var(--paper);display:grid;place-items:center;cursor:pointer}
@@ -719,7 +778,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   }
   .mobile-rail-panel{
     position:absolute;left:0;top:0;bottom:0;width:min(360px,86vw);
-    background:var(--navy);color:#F4F4ED;overflow:auto;
+    background:var(--ra-bg);color:var(--ra-ink);overflow:auto;
     padding:18px;display:flex;flex-direction:column;gap:14px;
     animation:slideIn .28s cubic-bezier(.16,1,.3,1)
   }
@@ -765,17 +824,17 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
         GHL Specialist &amp; Funnel Builder — GHL main, plus Zapier, n8n and Make. I automate manual processes and build funnels in GHL or custom code — your choice.
       </p>
       <div class="rail-meta" style="display:grid;gap:8px;margin-top:12px">
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,244,237,.72)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:10px;flex-shrink:0">◈</span><span>Make · n8n · Zapier</span></div>
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,244,237,.72)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:10px;flex-shrink:0">◐</span><span>GHL Funnels · Custom Code</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-body)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid var(--ra-border);background:var(--ra-chip);display:grid;place-items:center;font-size:10px;flex-shrink:0">◈</span><span>Make · n8n · Zapier</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-body)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid var(--ra-border);background:var(--ra-chip);display:grid;place-items:center;font-size:10px;flex-shrink:0">◐</span><span>GHL Funnels · Custom Code</span></div>
       </div>
       <div class="rail-actions" style="display:grid;gap:8px;margin-top:12px">
         <a class="btn-rail-p" href="#" data-go="work" style="text-align:center">Open bench →</a>
-        <a href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer" style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,244,237,.62);text-align:center;padding:6px">LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer" style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-kick);text-align:center;padding:6px">LinkedIn ↗</a>
       </div>
       <div style="display:grid;gap:6px;margin-top:10px">
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:rgba(244,244,237,.52)"><span style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;font-size:8px;flex-shrink:0">✉</span><span>techva.rain@gmail.com</span></div>
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:rgba(244,244,237,.52)"><span style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;font-size:8px;flex-shrink:0">☎</span><span>0995 146 2765</span></div>
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:rgba(244,244,237,.52)"><span style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;font-size:8px;flex-shrink:0">◎</span><span>Cavite, PH</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ra-mute)"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">✉</span><span>techva.rain@gmail.com</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ra-mute)"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">☎</span><span>0995 146 2765</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ra-mute)"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">◎</span><span>Cavite, PH</span></div>
       </div>
     </div>
     <div class="rail-foot-rail">
@@ -789,12 +848,12 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <div class="topbar-left">
         <button class="m-toggle" id="menuBtn" aria-expanded="false" aria-label="Open menu"><span class="burger"><i></i><i></i><i></i></span></button>
         <div class="panel-tabs" id="ptabs" role="tablist" aria-label="Sections">
-          <button class="ptab active" data-panel="hero" role="tab" aria-selected="true">HOME</button>
-          <button class="ptab" data-panel="ghl" role="tab" aria-selected="false">WHAT I DO IN GHL</button>
-          <button class="ptab" data-panel="work" role="tab" aria-selected="false">WORK <span class="cnt">21</span></button>
-          <button class="ptab" data-panel="services" role="tab" aria-selected="false">SERVICES</button>
-          <button class="ptab" data-panel="about" role="tab" aria-selected="false">ABOUT</button>
-          <button class="ptab" data-panel="contact" role="tab" aria-selected="false">CONTACT</button>
+          <button class="ptab active" data-panel="hero" data-hint="6 featured builds — live preview carousel" role="tab" aria-selected="true">HOME</button>
+          <button class="ptab" data-panel="ghl" data-hint="9 skills, proof-backed — the automation system I run" role="tab" aria-selected="false">WHAT I DO IN GHL</button>
+          <button class="ptab" data-panel="work" data-hint="See my actual work — 21 builds, real proof, live links" role="tab" aria-selected="false">WORK <span class="cnt">21</span></button>
+          <button class="ptab" data-panel="services" data-hint="What I run reliably — funnels, automations, systems" role="tab" aria-selected="false">SERVICES</button>
+          <button class="ptab" data-panel="about" data-hint="Experience & bench notes" role="tab" aria-selected="false">ABOUT</button>
+          <button class="ptab" data-panel="contact" data-hint="Warm reply · fast loom · under 24h" role="tab" aria-selected="false">CONTACT</button>
         </div>
       </div>
       <div class="topbar-right">
@@ -819,7 +878,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <section class="panel panel-hero active panel-anim" data-panel-id="hero" role="tabpanel">
         <div class="hero-grid">
           <aside class="hero-card hero-card--live">
-            <div class="hero-card-top"><span>Funnel live preview · GHL</span><span style="color:var(--amber)">● Live</span></div>
+            <div class="hero-card-top"><span>Funnel live preview · GHL</span><span class="live-tag" id="heroLiveBadge"><span class="live-dot"></span>Live</span></div>
             <div class="hero-card-body">
               <div class="hero-live" id="heroLive" onclick="openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))" role="button" tabindex="0" aria-label="Open funnel preview" onkeydown="if(event.key==='Enter')openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))">
                 <div class="hero-live-track" id="heroLiveTrack">
@@ -841,40 +900,40 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
             </div>
           </aside>
           <aside class="hero-side" aria-label="Featured funnels">
-            <div class="hero-side-head"><span>Featured — Funnel builds</span><span style="color:var(--amber)">● 6 featured</span></div>
+            <div class="hero-side-head"><span>Featured — Funnel builds</span></div>
             <div class="hero-side-list" id="heroSideList">
               <button class="hero-side-item active" data-i="0" onclick="setHeroLive(0)">
-                <small><i>01</i> HYBRID <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
+                <small><i>01</i> HYBRID <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
                 <b>Rubio Roofing — Industrial Construction Funnel</b>
                 <p>Hazard-stripe system, real-build proof (20+ photos), 5-tab gallery + GHL capture for Cavite &amp; Metro Manila.</p>
                 <small><i>GHL Funnels</i><i>Custom Code</i><i>Before/After</i></small>
               </button>
               <button class="hero-side-item" data-i="1" onclick="setHeroLive(1)">
-                <small><i>02</i> FUNNEL <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
+                <small><i>02</i> FUNNEL <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
                 <b>Mountain Hiking — Adventure Funnel</b>
                 <p>Hero → itinerary → pricing → FAQ with GHL capture + calendar. Mobile-first, no overlay.</p>
                 <small><i>GoHighLevel</i><i>HTML/CSS/JS</i><i>GHL Webhook</i></small>
               </button>
               <button class="hero-side-item" data-i="2" onclick="setHeroLive(2)">
-                <small><i>03</i> FUNNEL</small>
+                <small><i>03</i> FUNNEL <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
                 <b>ClearView Pressure Washing — Lead Gen Funnel</b>
                 <p>Single-page direct-response funnel with glassmorphic hero, before/after slider, and GHL webhook capture.</p>
                 <small><i>HTML/CSS/JS</i><i>Tailwind</i><i>GHL</i></small>
               </button>
               <button class="hero-side-item" data-i="3" onclick="setHeroLive(3)">
-                <small><i>04</i> HYBRID <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
+                <small><i>04</i> HYBRID <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
                 <b>Haven Animal Clinic — AI-Qualified Booking</b>
                 <p>Hard-gated emergency detection → business-hours routing + auto-booking. No missed emergency.</p>
                 <small><i>GHL</i><i>Conversation AI</i><i>Calendar</i></small>
               </button>
               <button class="hero-side-item" data-i="4" onclick="setHeroLive(4)">
-                <small><i>05</i> HYBRID <span style="margin-left:auto;color:var(--amber)">● Live</span></small>
+                <small><i>05</i> HYBRID</small>
                 <b>FitCoach — Stripe to GHL</b>
                 <p>12-week program checkout with router (create vs update), Sheets roster + Slack ping. No double enrollments.</p>
                 <small><i>Make</i><i>Stripe</i><i>GHL</i></small>
               </button>
               <button class="hero-side-item" data-i="5" onclick="setHeroLive(5)">
-                <small><i>06</i> HYBRID</small>
+                <small><i>06</i> HYBRID <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
                 <b>Legal Intake & Nurture — 4 steps + 9 workflows</b>
                 <p>Tag-gated nurture where booking and nurture suppress each other — no double-messaging, no-shows recycled.</p>
                 <small><i>GHL Workflows</i><i>Custom JS</i></small>
@@ -904,7 +963,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
             <div class="rows" id="rows"></div>
           </div>
           <aside class="preview" id="preview">
-            <div class="preview-top"><span id="prevKicker">Preview — 01</span><span style="color:var(--amber)">● Live</span></div>
+            <div class="preview-top"><span id="prevKicker">Preview — 01</span><span class="live-tag" id="prevLiveBadge"><span class="live-dot"></span>Live</span></div>
             <div class="preview-img" id="prevImg"></div>
             <div class="preview-body" id="prevBody"></div>
           </aside>
@@ -989,12 +1048,12 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   <div class="mobile-rail-panel">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <span style="font-family:'Instrument Serif',serif;font-size:18px">Rainier <i style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--amber)">D.</i></span>
-      <button onclick="toggleMobileRail(false)" aria-label="Close menu" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:white;cursor:pointer">✕</button>
+      <button onclick="toggleMobileRail(false)" aria-label="Close menu" style="width:36px;height:36px;border-radius:50%;border:1px solid var(--ra-border);background:var(--ra-chip);color:var(--ra-ink);cursor:pointer">✕</button>
     </div>
-    <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,244,237,.5)"><span style="color:var(--amber)">●</span> Operating · 24h reply</div>
-    <div style="border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04);padding:14px">
-      <div style="font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,244,237,.5)">GHL SPECIALIST / FUNNEL BUILDER</div>
-      <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(244,244,237,.78)">No-code systems and GHL funnels that don't leak. Logged, routed, documented.</p>
+    <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ra-kick)"><span style="color:var(--amber)">●</span> Operating · 24h reply</div>
+    <div style="border:1px solid var(--ra-border-soft);border-radius:12px;overflow:hidden;background:var(--ra-panel);padding:14px">
+      <div style="font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-kick)">GHL SPECIALIST / FUNNEL BUILDER</div>
+      <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:var(--ra-body)">No-code systems and GHL funnels that don't leak. Logged, routed, documented.</p>
       <div style="display:flex;gap:8px;margin-top:12px"><a class="btn-rail-p" href="#" data-go="work">Open bench</a><a class="btn-rail-g" href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank">LinkedIn ↗</a></div>
     </div>
     <div style="display:grid;gap:8px">
@@ -1005,13 +1064,14 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <button class="ptab" style="width:100%;justify-content:center" data-panel="about">ABOUT</button>
       <button class="ptab" style="width:100%;justify-content:center;background:var(--amber);color:white;border-color:var(--amber)" data-panel="contact">START A PROJECT →</button>
     </div>
-    <div style="margin-top:auto;font-family:'Fragment Mono',monospace;font-size:10px;color:rgba(244,244,237,.42)">techva.rain@gmail.com · 0995 146 2765</div>
+    <div style="margin-top:auto;font-family:'Fragment Mono',monospace;font-size:10px;color:var(--ra-faint)">techva.rain@gmail.com · 0995 146 2765</div>
   </div>
 </div>
 
 <div class="overlay" id="overlay"></div>
 <aside class="drawer" id="drawer" inert><div class="drawer-head"><span id="drawerKicker" style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)">Case study</span><button onclick="closeDrawer()" class="drawer-close" aria-label="Close">✕</button></div><div class="drawer-body" id="drawerBody"></div></aside>
 <div class="lightbox" id="lightbox" inert onclick="if(event.target===this)closeLightbox()"><div style="width:min(1280px,96vw)"><div class="lightbox-bar"><button onclick="closeLightbox()">✕ Close</button><button onclick="document.getElementById('lightboxImg').style.transform=document.getElementById('lightboxImg').style.transform==='scale(1.5)'?'scale(1)':'scale(1.5)'" style="width:auto">Toggle 150%</button></div><img id="lightboxImg" src="" alt="Full view" style="width:100%;height:auto;display:block;transition:transform .2s;transform-origin:top center"></div></div>
+<div class="tab-hint" id="tabHint" role="tooltip" aria-hidden="true"><i class="tab-hint-caret"></i><span class="tab-hint-card"><span class="tab-hint-k" id="tabHintK"></span><span class="tab-hint-line"></span><span class="tab-hint-txt" id="tabHintTxt"></span></span></div>
 
 <script>
 const projects=[
@@ -1040,6 +1100,7 @@ const projects=[
 
 const rows=document.getElementById('rows');
 const prevKicker=document.getElementById('prevKicker');
+const prevLiveBadge=document.getElementById('prevLiveBadge');
 const prevImg=document.getElementById('prevImg');
 const prevBody=document.getElementById('prevBody');
 let active=projects[0];
@@ -1096,6 +1157,7 @@ function setPreview(p){
   document.querySelectorAll('.row').forEach(el=>el.classList.toggle('active', el.querySelector('b').textContent===p.n));
   const famLabel = p.family==='hybrid' ? 'Hybrid · Funnel + Automation' : (p.cat==='automation'?'Automation':'Funnel');
   prevKicker.textContent=`Preview — ${p.n} · ${famLabel}`;
+  if(prevLiveBadge) prevLiveBadge.style.display = p.liveUrl ? '' : 'none';
   if(p.sections && p.sections.length){
     prevZoomLevel=1;
     const secThumbs=p.sections.map((s,i)=>`<img src="${s}" alt="sec ${i+1}" style="width:64px;height:44px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:6px;cursor:pointer;flex-shrink:0" onclick="document.getElementById('prevScroll').scrollTop=${i}*260" loading="lazy">`).join('');
@@ -1151,6 +1213,46 @@ ptabs.addEventListener('scroll',updTabs,{passive:true});
 addEventListener('resize',updTabs);
 addEventListener('load',updTabs);
 updTabs();
+// tab hover hints — paper footnote card, gated to fine pointers
+const tabHint=document.getElementById('tabHint');
+const tabHintK=document.getElementById('tabHintK');
+const tabHintTxt=document.getElementById('tabHintTxt');
+const finePtr=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+let tabHintHideT=null;
+function positionTabHint(t){
+  const r=t.getBoundingClientRect();
+  const w=Math.min(tabHint.offsetWidth,300), m=8;
+  let l=Math.round(r.left+r.width/2-w/2);
+  l=Math.max(m,Math.min(l,window.innerWidth-w-m));
+  tabHint.style.left=l+'px';
+  tabHint.style.top=Math.round(r.bottom+10)+'px';
+  const caret=tabHint.querySelector('.tab-hint-caret');
+  const tabC=r.left+r.width/2;
+  let cl=Math.round(tabC-l);
+  cl=Math.max(16,Math.min(cl,w-16));
+  caret.style.left=cl+'px';
+}
+function showTabHint(t){
+  if(!t||!t.dataset.hint) return;
+  clearTimeout(tabHintHideT);
+  tabHintK.textContent=t.dataset.panel.toUpperCase();
+  tabHintTxt.textContent=t.dataset.hint;
+  tabHint.classList.remove('out');
+  tabHint.setAttribute('aria-hidden','false');
+  positionTabHint(t);
+}
+function hideTabHint(){ clearTimeout(tabHintHideT); tabHintHideT=setTimeout(()=>{ tabHint.classList.add('out'); tabHint.setAttribute('aria-hidden','true'); },140); }
+if(finePtr){
+  document.querySelectorAll('.ptab[data-hint]').forEach(t=>{
+    t.addEventListener('mouseenter',()=>showTabHint(t));
+    t.addEventListener('mouseleave',hideTabHint);
+    t.addEventListener('focus',()=>showTabHint(t));
+    t.addEventListener('blur',hideTabHint);
+  });
+  const reAnchor=()=>{ if(tabHint.getAttribute('aria-hidden')==='false'){ const t=document.querySelector('.ptab:hover')||document.activeElement; if(t&&t.dataset.hint) positionTabHint(t); } };
+  addEventListener('resize',reAnchor);
+  ptabs.addEventListener('scroll',reAnchor,{passive:true});
+}
 // deep link — hero is default, so allow #hero as well
 if(location.hash){ const h=location.hash.replace('#',''); if(['hero','ghl','work','services','about','contact'].includes(h)) switchPanel(h); }
 // hero live carousel — B · Live Proof (auto-cycle, pause on hover) — 6 featured: Rubio, Mountain Hiking, ClearView, Haven, FitCoach, Legal
@@ -1168,9 +1270,11 @@ function setHeroLive(i){
   const track=document.getElementById('heroLiveTrack'); const dots=document.querySelectorAll('#heroLiveDots button');
   const sideItems=document.querySelectorAll('#heroSideList .hero-side-item');
   const t=document.getElementById('heroLiveTitle'); const d=document.getElementById('heroLiveDesc'); const tg=document.getElementById('heroLiveTags');
+  const liveBadge=document.getElementById('heroLiveBadge');
   if(track) track.style.transform=`translateX(-${i*100}%)`;
   dots.forEach((b,idx)=> b.classList.toggle('active', idx===i));
   sideItems.forEach((b,idx)=> b.classList.toggle('active', idx===i));
+  if(liveBadge){ const proj=projects.find(p=>p.n===heroProjectNs[i]); liveBadge.style.display=(proj&&proj.liveUrl)?'':'none'; }
   if(t) t.textContent=heroLiveTitles[i]||heroLiveTitles[0];
   if(d) d.textContent=heroLiveDescs[i]||heroLiveDescs[0];
   if(tg) tg.innerHTML=heroLiveStacks[i]||heroLiveStacks[0];
