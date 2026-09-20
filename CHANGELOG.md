@@ -118,3 +118,35 @@ Compact, append-only log of what changed and why. Newest entry at the bottom. Ea
 - Live indicators → blinking green badge system: `.live-tag` + `.live-dot` (8px #1DB954 + `livePing` pulse ring, reduced-motion → static halo). Badges derive from `liveUrl` — hero-top + workbench preview-top toggled in `setHeroLive`/`setPreview`; hero side list shows them only on builds 01–04 & 06 (05 FitCoach has no URL). Featured list header badge reverted to plain; unused `.dot` rule repurposed. Dot uses `<span>` not `<i>` — `.hero-side-item small i` was overlaying it black.
 - Tab hover hint (topbar `.ptab`s): JS-positioned singleton `#tabHint` (`position:fixed`, `pointer-events:none`, clamped to viewport, re-anchored on resize/scroll, gated to `(hover:hover) and (pointer:fine)`, `role="tooltip"`). Final design = foundry ticket: notched paper card (clip-path TL+BR cuts) with dashed perforation border, amber rubber-stamp kicker, dashed divider, caret tracking the hovered tab center; stamped-in reveal (`scale(.92)→1` back-out curve). Earlier card + folded-pivot variants tried and iterated away. `data-hint` copy on all 6 tabs.
 - Pushed to `main` → GitHub Pages. Counts unchanged (21 builds, hero 6, GHL 9).
+
+## 2026-09-20 — Tab hover hint: design iteration + wrap-up
+- Iterated topbar tab-hint directions — plain card, folded pivot (A), foundry ticket (B), blueprint annotation (C), teletype readout (D) — settled on B.
+- Final = foundry ticket: notched paper card (clip-path TL+BR corner cuts), dashed perforation border, amber rubber-stamp kicker (rotated −2°, ink-ring halo), dashed divider, `drop-shadow` on the notched shape; caret kept on an unclipped outer layer and tracks the hovered tab's center; stamped-in reveal `scale(.92)→1` on a back-out curve.
+- A (folded pivot) was trialed as a comparison and reverted in favor of B; caret hardcoded-`left:14px` was replaced with JS tracking (clamped 16..w−16).
+- `<span class="live-dot">` swap also fixed `.hero-side-item small i` overlaying the dot as a black pill (dark mode).
+- Pushed `1b8e30b` to `main` → GitHub Pages. Counts unchanged (21 builds, hero 6, GHL 9). No AGENTS.md map changes (no new data blocks or counts).
+
+## 2026-09-20 — Archify diagrams embedded in PSGCIMBTFLO skill (n09)
+- Added two standalone Archify viewers to the repo: `capabilities.html` (architecture, SHA `6463bdf7…`) and `psgcimbtflo.html` (workflow, SHA `36e74543…`, 11-step snake: Drive/Proof lanes, tags 01–11), delivered via the Archify skill (9/9 validate, 0 warnings, visual-check PASS at 1440–2048px light+dark).
+- n09 PSGCIMBTFLO skill now renders the workflow diagram as the first block of its drawer (`diagram:` field → `.sysmap-wrap` iframe + "Open full ↗"), right under the title; the `embed` sub field exists for iframing a standalone html in place of desc/proof (unused after the System-map sub was removed in-session).
+- Added `.sysmap-wrap`/`.sysmap-open` CSS (~724); sub renderer in `openGhlSkill` supports `embed`; drawer focus-trap/overlay unchanged, lazily-loaded iframes.
+- AGENTS.md: "Companion Archify viewers" fact + GHL-skills file-map note (`diagram`, `embed`). Not yet committed/pushed.
+
+## 2026-09-20 — Drawer expands to full width
+- `.drawer` width `min(720px,100%)` → `100%` — the side panel now occupies the whole design; `.drawer-body` content centered on `max-width:min(1080px,100%)` for reading comfort at desktop widths. Applies to both case-study and GHL-skill drawers. No counts/lines changed.
+
+## 2026-09-20 — Native PSGCIMBTFLO flow replaces Archify viewers
+- Reverted the Archify iframe approach (viewer chrome clashed with the editorial aesthetic): deleted `capabilities.html` + `psgcimbtflo.html`, removed `.sysmap-wrap`/`.sysmap-open` CSS, the `diagram` field, and the `embed` sub-branch from `openGhlSkill`.
+- Added native `.psm-track` — a single editorial one-line flow from Problem → Optimize at the top of the n09 drawer: 11 stations on a hairline rule (labels alternating above/below, Fragment Mono `01`–`11` amber numerals + step titles, amber markers, filled first/last dots, hover → amber tint, `--ground-2` panel), auto-generated from `subs[]` titles via new `psmTrackHtml(subs)` gated on an n09 `flow:true` flag. Subtle-grain: no chrome, no JS state, theme-adaptive, ≤600px side-scroll. CSS ~723; JS ~1560.
+- AGENTS.md: dropped "Companion Archify viewers" fact, re-pointed GHL-skills row (`flow` + `.psm-track`). Counts unchanged (n09 subs = 11, GHL 9, 21 builds). Not yet committed/pushed.
+
+## 2026-09-20 — Archify PSGCIMBTFLO diagram restored (signal-flow preset)
+- The native `.psm-track` editorial chart was replaced — restored the Archify workflow viewer the user preferred for its design + trace animation.
+- Re-delivered from a new frozen candidate `psgcimbtflo-signal.candidate.json` (copy of the classic candidate, `meta.visual_preset` flipped `classic` → `signal-flow`): 9/9 validate, 0 warnings, artifact SHA `5975052e…` (809,863 B) → `psgcimbtflo.html` in repo, visual-check PASS (no overflow, 8px min node text, viewer chrome OK).
+- `index.html`: removed `.psm-track` CSS + `psmTrackHtml()` + n09 `flow:true`; restored `.sysmap-wrap`/`.sysmap-open` CSS (~723), `diagram:"psgcimbtflo.html"` on n09, and the drawer iframe branch in `openGhlSkill` (top of drawer + "Open full ↗"). Drawer stays full-width so the viewer renders large; theme toggle, pan/zoom + animated trace replay intact (S key cycles the signal skin).
+- AGENTS.md: "Companion Archify viewer" fact restored (signal-flow, new SHAs), GHL-skills row back to `diagram` + `.sysmap-wrap`. Counts unchanged. Not yet committed/pushed.
+
+## 2026-09-20 — Default drawer reverted to side panel; roomy n09 special case
+- `.drawer` width reverted `100%` → `min(720px,100%)` — case-study and ordinary GHL-skill drawers are the original narrow right side panel again.
+- New `.drawer-roomy` special case for chart-carrying skills (n09): drawer fills the main area below the topbar (`top:var(--top-h); left:var(--rail-w); right:0; bottom:0`) so the Archify workflow shows wide while the **topbar nav + left rail stay visible**; `html.drawer-n09-open .overlay` trims the dim layer to the drawer footprint (no dim over rail/nav). ≤860px: drawer + overlay drop to full-width below the sticky topbar.
+- JS: `openGhlSkill` toggles `.drawer-roomy`/`drawer-n09-open` off `s.diagram`; `openDrawer` + `closeDrawer` clear both. Counts unchanged. Not yet committed/pushed.

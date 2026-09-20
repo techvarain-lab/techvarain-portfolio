@@ -4,7 +4,8 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 
 ## Project facts
 
-- **Single file:** `index.html` (~1,307 lines, ~126 KB) — CSS, panels, and JS all inline. All edits to the site happen here.
+- **Single file:** `index.html` (~1,330 lines, ~127 KB) — CSS, panels, and JS all inline. All edits to the site happen here.
+- **Companion Archify viewer:** `psgcimbtflo.html` — a standalone Archify artifact (delivered `signal-flow` preset, trace animation, SHA-pinned, `visual-check` PASS) iframed at the top of the PSGCIMBTFLO GHL skill (n09). Regenerate with the Archify skill; the frozen `signal` candidate + receipts live outside the repo in `C:\Users\raini\AppData\Local\Temp\opencode\archify-psg\` (`psgcimbtflo-signal.candidate.json`, spec sha `97692e21…`, artifact sha `5975052e…`).
 - **Assets:** `assets/` holds images only. `assets/funnel/<slug>/` = `thumb.webp`, `full.webp`, `secNN.webp` per case study; `assets/work/` = automation/funnel screenshots; `assets/ghl/` = GHL proof shots.
 - **Deploy:** GitHub Pages from `main`. `.nojekyll` present. No build/verify script — sanity-check by opening `index.html` or the Pages URL.
 - **No analytics/hard-coded Netlify forms here** (Rubio funnel has `fbq`/`gtag` hooks; this portfolio itself does not).
@@ -33,7 +34,7 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 | 1052–1104 | Hero carousel: `heroProjectNs` (ns "01".."06"), `setHeroLive(i)`, `heroLive**` element binding |
 | 1081–1104 | Theme toggle wiring |
 | 1106–1177 | `openDrawer(p)` / `closeDrawer()` / Escape-key handler |
-| 1210–1347 | **GHL skills**: `const glSkills=[...]` — 9 tiles (01–03 + 07 proof-backed/copy-backed; 04–06, 08 `learning:true` placeholders; 09 `featured:true` full-width PSGCIMBTFLO banner). Tile shape: `n, icon, title, short, desc, chips[], proof[], subs[]`, optional `learning`, `fan` (`"left"`/`"right"` = vertical pop stack on that edge; absent = top-arc), `featured` (horizontal banner: kicker + title + one-line desc, no icon, no fan). Subs honor `skipProof:true` to hide "Proof coming soon". `ghlChip`, `ghlZoom*` hover peek, `ghlProof`, `renderGhl()`, `openGhlSkill(s)` |
+| 1210–1347 | **GHL skills**: `const glSkills=[...]` — 9 tiles (01–03 + 07 proof-backed/copy-backed; 04–06, 08 `learning:true` placeholders; 09 `featured:true` full-width PSGCIMBTFLO banner). Tile shape: `n, icon, title, short, desc, chips[], proof[], subs[]`, optional `learning`, `diagram` (standalone Archify viewer iframed at the top of the drawer via `.sysmap-wrap` + an "Open full ↗" `.sysmap-open` link), `fan` (`"left"`/`"right"` = vertical pop stack on that edge; absent = top-arc), `featured` (horizontal banner: kicker + title + one-line desc, no icon, no fan). Subs honor `skipProof:true` to hide "Proof coming soon". `ghlChip`, `ghlZoom*` hover peek, `ghlProof`, `renderGhl()`, `openGhlSkill(s)`. `.sysmap-wrap`/`.sysmap-open` styles ~723. Diagram-carrying skills (n09) open in the **roomy** drawer: `.drawer-roomy` fills the main area below the topbar (`top:var(--top-h);left:var(--rail-w)`) so the chart shows wide while the topbar nav + left rail stay visible; `html.drawer-n09-open` trims the `#overlay` to match. Default drawers stay `min(720px,100%)`. |
 | 1349–1377 | `handleSubmit(e)` (mailto compose), mobile rail toggling, menu/rail listeners |
 
 ## Conventions
@@ -42,7 +43,7 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 - **BG tweak:** topbar "▦ BG" button tests background treatments live (`.main[data-bg=*]` switcher, persists `rd-bg` in localStorage, mirrors theme pattern). Default `grid`. Mode list in `#bgPop`; keep `.bg-opt` rows in sync with `BG_OPTS` + `data-bgopt` + mode CSS + swatch classes.
 - **Tags/taxonomy:** `funnel` / `automation` / `hybrid` (funnel + automation). Filter chips derive counts from `projects` — keep the span count and the `family`/`tags` fields in sync.
 - **Hero carousel** shows the 6 most recent/notable builds via `heroProjectNs` at line 1052.
-- **Counts to keep current:** rail "WORK — 21", toolbar chips, `heroProjectNs` length, CONTACT reads "24h reply". GHL tiles = `glSkills` length (9: 01–03 + 07 proof-backed/copy-backed, 04–06 + 08 `learning` placeholders, 09 `featured` PSGCIMBTFLO banner).
+- **Counts to keep current:** rail "WORK — 21", toolbar chips, `heroProjectNs` length, CONTACT reads "24h reply". GHL tiles = `glSkills` length (9: 01–03 + 07 proof-backed/copy-backed, 04–06 + 08 `learning` placeholders, 09 `featured` PSGCIMBTFLO banner). n09 subs = 11 steps (workflow diagram lives at the top of its drawer via the `diagram` field; `footLabel` reads "Skills · 11").
 - **Images:** add sections as `sec01..secNN.webp` under `assets/funnel/<slug>/`; never hotlink. GHL proof under `assets/ghl/proof-*.png`.
 - New case study = new `projects` entry (number = next `n`). Update: toolbar chips, rail count, hero list if notable, this file's "File map" + CHANGELOG.md.
 

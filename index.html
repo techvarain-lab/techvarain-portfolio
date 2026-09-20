@@ -708,8 +708,14 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   border-left:1px solid var(--line);transform:translateX(100%);transition:.32s cubic-bezier(.16,1,.3,1);z-index:50;overflow:auto;display:flex;flex-direction:column
 }
 .drawer.open{transform:none}
+.drawer-roomy{left:var(--rail-w);right:0;top:var(--top-h);bottom:0;width:auto;max-width:none}
+html.drawer-n09-open .overlay{left:var(--rail-w);top:var(--top-h)}
+@media (max-width:860px){
+  .drawer-roomy{left:0;top:var(--top-h);right:0;width:auto}
+  html.drawer-n09-open .overlay{left:0;top:var(--top-h)}
+}
 .drawer-head{position:sticky;top:0;background:var(--paper);padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;z-index:2;flex-shrink:0}
-.drawer-body{overflow:auto;flex:1;padding:18px}
+.drawer-body{overflow:auto;flex:1;padding:18px;width:100%;max-width:min(1080px,100%);margin:0 auto}
 .drawer-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);display:grid;place-items:center;cursor:pointer;font-size:14px;line-height:1;transition:border-color .15s,background .15s,color .15s,transform .1s;flex-shrink:0}
 .drawer-close:hover{border-color:var(--amber);color:var(--amber);background:var(--amber-wash)}
 .drawer-close:active{transform:scale(.96)}
@@ -721,6 +727,10 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .loom-btn{width:56px;height:56px;border-radius:50%;background:var(--amber);color:white;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.18);transition:transform .15s;font-size:18px}
 .loom-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:white;background:rgba(18,17,16,.52);padding:6px 10px;border-radius:999px;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);white-space:nowrap}
 .loom-thumb{width:100%;height:100%;object-fit:cover;opacity:.92;display:block}
+.sysmap-wrap{background:var(--ground);border:1px solid var(--line);border-radius:12px;overflow:hidden;position:relative;margin:14px 0}
+.sysmap-wrap iframe{width:100%;height:clamp(380px,68vh,720px);border:0;display:block;background:var(--paper)}
+.sysmap-open{display:inline-flex;align-items:center;gap:6px;font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;margin-top:4px;transition:border-color .15s,color .15s}
+.sysmap-open:hover{border-color:var(--amber);color:var(--amber)}
 .lightbox{position:fixed;inset:0;background:rgba(18,17,16,.88);backdrop-filter:blur(8px);z-index:80;display:none;overflow:auto;padding:32px 24px 24px}
 .lightbox.open{display:grid;place-items:start center}
 .lightbox img{max-width:min(1280px,96vw);height:auto;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.4);background:white;margin-top:4px}
@@ -1395,6 +1405,7 @@ function openDrawer(p){
   const drawerLiveTop = p.liveUrl ? `<a class="btn-p" href="${p.liveUrl}" target="_blank" rel="noreferrer" style="display:flex;justify-content:center;width:100%;padding:13px 16px;font-size:11px;letter-spacing:.1em;box-shadow:0 6px 16px rgba(180,83,9,.18);margin:12px 0 6px">Live view — open funnel ↗</a>` : '';
   const drawerLiveBtn = p.liveUrl ? `<a class="btn-p" href="${p.liveUrl}" target="_blank" rel="noreferrer">Live view ↗</a>` : '';
   drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${p.title}</h3><p style="color:var(--ink-soft);line-height:1.6;margin:0">${p.desc}</p>${tagRow}${hybridBanner}${stackPills}${drawerLiveTop}${bodyMain}<div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">${drawerLiveBtn}<a class="btn-p" href="#" onclick="closeDrawer();switchPanel('contact');return false">Discuss this build →</a></div>`;
+  drawer.classList.remove('drawer-roomy'); document.documentElement.classList.remove('drawer-n09-open');
   drawer.removeAttribute('inert'); drawerTrigger=document.activeElement;
   drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
   const dClose=drawer.querySelector('.drawer-close'); if(dClose) dClose.focus();
@@ -1410,6 +1421,7 @@ function closeDrawer(){
   if(typeof ghlZoomHide==='function') ghlZoomHide();
   drawerBody.querySelectorAll('iframe[src*="loom.com"]').forEach(f=>{ f.src='about:blank'; f.remove(); });
   drawer.classList.remove('open');overlay.classList.remove('open');
+  drawer.classList.remove('drawer-roomy'); document.documentElement.classList.remove('drawer-n09-open');
   if(window.innerWidth<=860) document.body.style.overflow='auto'; else document.body.style.overflow='hidden';
   drawer.setAttribute('inert','');
   if(drawerTrigger&&drawerTrigger.focus) drawerTrigger.focus();
@@ -1460,7 +1472,7 @@ const glSkills=[
     {title:"Dashboard Widgets",desc:"Assemble widgets that surface contacts, opportunities, and campaign health at a glance.",chips:["Widgets","At-a-Glance"],proof:[]},
     {title:"Funnel Analytics",desc:"Track step conversion, source, and drop-off to know where the funnel leaks.",chips:["Conversion","Drop-off"],proof:[]}
   ]},
-  {n:"09",featured:true,title:"PSGCIMBTFLO — Automation Building System",short:"My 11-step system for shipping client automations — scoped live on discovery calls, built in GHL, tested with proof, optimized under retainer.",desc:"PSGCIMBTFLO is the acronym system I run on every client build: Problem, Solution, Goal, Customer Journey, Identify Pipeline Stage, Mapping, Build, Test, Final Revision, Live, Optimize. It turns vague asks into specific problems, anchors each automation to a customer journey, mirrors that journey into pipeline stages, and never calls a build done until it's tested with proof.",chips:["Problem-first","Pipeline mirrors journey","Tested with proof","Optimize & retainer"],proof:[],subs:[
+  {n:"09",featured:true,diagram:"psgcimbtflo.html",title:"PSGCIMBTFLO — Automation Building System",short:"My 11-step system for shipping client automations — scoped live on discovery calls, built in GHL, tested with proof, optimized under retainer.",desc:"PSGCIMBTFLO is the acronym system I run on every client build: Problem, Solution, Goal, Customer Journey, Identify Pipeline Stage, Mapping, Build, Test, Final Revision, Live, Optimize. It turns vague asks into specific problems, anchors each automation to a customer journey, mirrors that journey into pipeline stages, and never calls a build done until it's tested with proof.",chips:["Problem-first","Pipeline mirrors journey","Tested with proof","Optimize & retainer"],proof:[],subs:[
     {title:"Problem",desc:"Identify the specific problem or need — never build on vague answers. Probe until the real need is concrete.",chips:["Specific Need","Discovery Questions"],proof:[],skipProof:true},
     {title:"Solution",desc:"The fix isn't always an automation — a pipeline, form, calendar, landing page, notification, nurture sequence, or a combination. Clear problem → clear solution.",chips:["Right Tool Choice","Plain Language"],proof:[],skipProof:true},
     {title:"Goal",desc:"Every system needs an ending. Agree the client's desired outcome and start with one goal so the build stays focused.",chips:["Desired Outcome","One Goal"],proof:[],skipProof:true},
@@ -1549,10 +1561,12 @@ function openGhlSkill(s){
   }).join('')+'</div>':'';
   drawerBody.innerHTML=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${s.title}</h3>
     <p style="color:var(--ink-soft);line-height:1.6;margin:0">${s.desc}</p>
+    ${s.diagram?`<div class="sysmap-wrap"><iframe src="${s.diagram}" title="${s.title} — step flow" loading="lazy"></iframe></div><a class="sysmap-open" href="${s.diagram}" target="_blank" rel="noopener">Open full ↗</a>`:''}
     <div class="ghl-chips">${chipPills}</div>
     ${learnHtml}
     ${subHtml}
     ${proofHtml}`;
+  drawer.classList.toggle('drawer-roomy',!!s.diagram); document.documentElement.classList.toggle('drawer-n09-open',!!s.diagram);
   drawer.removeAttribute('inert'); drawerTrigger=document.activeElement;
   drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
   const dClose=drawer.querySelector('.drawer-close'); if(dClose) dClose.focus();
