@@ -165,3 +165,26 @@ Compact, append-only log of what changed and why. Newest entry at the bottom. Ea
 - Removed the n09 workflow-chart drawer and all `.psm-*` chart styles, helpers, and bindings; the featured PSGCIMBTFLO tile now opens the standard compact skill drawer.
 - Added two supplied GHL proof screenshots under `assets/ghl/` and attached them to the Calendar & Booking → Calendar Types sub-skill.
 - Updated `AGENTS.md` to document the compact skill drawer and removed obsolete chart-specific instructions.
+
+## 2026-09-22 — Proof images & skill updates
+- Added two GHL proof screenshots (availability-1/2) and attached them to the Availability & Booking Rules sub‑skill.
+- Updated the Automation Triggers and Calendar & Booking skill proof arrays; removed the PSGCIMBTFLO chart references.
+- In‑progress: finalize AGENTS.md line‑range updates and verify syntax.
+
+## 2026-09-22 — TorqueWorks Dormant Win-Back → Work section (n22), n04 reverted
+- Reverted the n04 graduation: `Workflows & Automations` is back to its `learning:true` placeholder (2 subs, no proof, dimmed tile). Deleted `assets/ghl/proof-workflow-1/2/3.png`.
+- Added the TorqueWorks project as a **case study in the Work panel** instead — new `projects` entry **n22** "TorqueWorks Auto Care — Dormant Lead Win-Back" (`cat: automation`, `family: automation`). Full case-study block (niche/problem/solution/build/outcome) from the supplied docx: tiered dormancy Smart Lists (60/90/180+ days), three tag-triggered win-back workflows, Wait-for-Reply + stage-check suppression, dedicated retention pipeline, 5 documented build bugs fixed.
+- The three workflow screenshots moved into `assets/work/torqueworks-1/2/3.png` (60-day / 90-day / Dormant-Lost) and attached as `sections[]`; added n22-specific section labels in `openDrawer` (pattern mirrors n06's custom labels).
+- Counts bumped: toolbar chips All 22 / Automation 17, rail "WORK — 22". AGENTS.md synced (work-panel row, projects row 22 entries, WORK 22; GHL rows reverted to committed text). GHL tiles still 9; learning set back to 04–06 + 08. Not committed/pushed.
+- Moved n22 earlier in the `projects` array so TorqueWorks ranks 3rd on the Automation-filtered Work list (after Rubio, Haven; before FitCoach). No count changes.
+
+## 2026-09-22 — Graduated n04 Workflows & Automations (capability, copy + proof)
+- Dropped `learning:true` from the Workflows & Automations tile — now a confident capability tile, not a project showcase (that's n22 in the Work panel). Desc uses supplied copy: custom GHL/Make.com builds tailored to how the business runs, tested live, fixed before it reaches customers.
+- 5 build-area sub-skills, each matching a chip and each proof-backed by existing shipped work: Defensive suppression (TorqueWorks workflow shot), Cross-app integrations Stripe·Sheets·Slack (FitCoach Make auto01/02), Lead routing & escalation (FlowFix triage), Dormant lead re-engagement (TorqueWorks 1–3), Conversation AI bot flows (Haven sec01). Root `proof:[]` stays empty — subs carry the shots.
+- AGENTS.md synced: GHL row 1427–1480, counts line now 01–04 + 07 proof-backed. GHL tiles still 9; learning set 05–06 + 08. Not committed/pushed.
+
+## 2026-09-22 — Work preview pane: page-like scroll + labeled image strip
+- Preview was two hidden scroll regions (`.preview-img` + `.preview-body`, both `scrollbar-width:none`); a tall screenshot filled the image area and the 64×44 "tap to jump" strip was below its fold — multi-image projects read as single-image.
+- Now one flow: `.preview-img` is `flex:none`, the big image scales to fit (`max-height:40vh, object-fit:contain`), and every image renders as a labeled `.preview-strip` chip under it (`n/N · Workflow 01 · Win-Back — 60-Day`, automation → `n/N · Auto M · Make scenario`, funnel → `n/N · Hero · …`), each chip opening the lightbox; count bar "N screenshots · click any to view full".
+- `.preview-body` is the sole scroller with a visible slim scrollbar; a sticky `▾ more below` cue (`.preview-cue`) is appended only when the body overflows. Single-image/letter previews unchanged.
+- Verified: both script blocks parse, 13/13 pattern checks pass, drawer untouched. AGENTS.md work-panel row updated. Not committed/pushed.

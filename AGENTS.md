@@ -18,14 +18,16 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 | 52–700 | CSS: tokens/vars, dark theme overrides (`[data-theme="dark"]`), panels, workbench, drawer, lightbox, ghl tiles / zoom / learning-tile variants, **BG-tweak modes** (`.main[data-bg=*]` overrides of `.main::before`/`::after`: grid/dots/grain/blueprint/bare/watermark) + `.bg-btn`/`.bg-pop` control styling, responsive rules (incl. mobile `.ptabs` edge-fade scroll hint) |
 | 704–757 | Shell markup: rail (links, socials), `themeBtn`, `menuBtn`, top tabs `.ptab[data-panel=*]` (`#ptabs`), CTA (hidden ≤860px), **BG test button `#bgBtn` + popover `#bgPop` (.bg-opt[data-bgopt=*])** |
 | 709–780 | Hero panel: `heroLive` carousel (driven by `projects`), `heroSideList`, CTA buttons — "21" count |
-| 781–803 | Work panel: `.work-toolbar` filters (All 21 / Funnel 11 / Automation 16 / Hybrid 6), `#rows` bench, `#preview` pane |
+| 781–803 | Work panel: `.work-toolbar` filters (All 22 / Funnel 11 / Automation 17 / Hybrid 6), `#rows` bench, `#preview` pane. Preview = one page-like scroll: big image scale-to-fit (`max-height:40vh`, `object-fit:contain`), then a labeled `.preview-strip` of every image (count bar, chips open lightbox) for multi-image projects, then body; `.preview-body` is the sole scroller (visible scrollbar) + sticky `▾ more below` cue when overflowing |
 | 805–821 | Services panel |
 | 823–833 | GHL panel — `#ghlTiles` (rendered by `renderGhl()`) |
 | 835–856 | About panel — timeline cards |
 | 858–877 | Contact panel — `handleSubmit(event)` form (mailto fallback), links: `techva.rain@gmail.com`, `0995 146 2765`, LinkedIn |
 | 882–905 | Mobile rail drawer (`toggleMobileRail()`) |
 | 907–909 | `#overlay`, `#drawer` (case-study), `#lightbox` markup |
-| 912–940 | **`const projects=[...]`** — 21 entries. Item shape: `n` ("01".."21"), `cat` (`funnel`/`automation`), `tags[]`, `family` (`funnel`/`hybrid`/`automation`), `title`, `desc`, `img`, `full`, `sections[]`, `stack[]`, `bullets[]`, `niche/problem/solution/build`, optional `loom`, `automation[]`, `letter`, `liveUrl`. Items without `img` use `letter` fallback. |
+
+| 1080–1100 | **`const projects=[...]`** — 22 entries (n "01".."22"; n22 = TorqueWorks Dormant Win-Back, GHL automation case study w/ 3 workflow screenshots under `assets/work/torqueworks-*.png`). Item shape: `n` ("01".."22"), `cat` (`funnel`/`automation`), `tags[]`, `family` (`funnel`/`hybrid`/`automation`), `title`, `desc`, `img`, `full`, `sections[]`, `stack[]`, `bullets[]`, `niche/problem/solution/build/outcome`, optional `loom`, `automation[]`, `letter`, `liveUrl`. Items without `img` use `letter` fallback. |
+
 | 942–980 | Workbench render/filter: `render(filter)`, row builder, family pill logic |
 | 984–1026 | Zoom/lightbox/drawer/panel helpers: `drawerZoom`, `openLightbox`, `prevUpdater`/preview body, `famLabel`, tag label mapping, `switchPanel` |
 | 1015 | `openDrawerById(n)` |
@@ -33,7 +35,7 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 | 1052–1104 | Hero carousel: `heroProjectNs` (ns "01".."06"), `setHeroLive(i)`, `heroLive**` element binding |
 | 1081–1104 | Theme toggle wiring |
 | 1106–1177 | `openDrawer(p)` / `closeDrawer()` / Escape-key handler |
-| 1210–1347 | **GHL skills**: `const glSkills=[...]` — 9 tiles (01–03 + 07 proof-backed/copy-backed; 04–06, 08 `learning:true` placeholders; 09 `featured:true` full-width PSGCIMBTFLO banner). Tile shape: `n, icon, title, short, desc, chips[], proof[], subs[]`, optional `learning`, `fan` (`"left"`/`"right"` = vertical pop stack on that edge; absent = top-arc), `featured` (horizontal banner: kicker + title + one-line desc, no icon, no fan). Subs honor `skipProof:true` to hide "Proof coming soon". `ghlChip`, `ghlZoom*` hover peek, `ghlProof`, `renderGhl()`, `openGhlSkill(s)` render the tiles and drawer; no embedded workflow chart remains. |
+| 1427–1480 | **GHL skills**: `const glSkills=[...]` — 9 tiles (01–04 + 07 proof-backed/copy-backed — n04 `Workflows & Automations` graduated, 5 build-area subs each proof-backed; 05–06, 08 `learning:true` placeholders; 09 `featured:true` full-width PSGCIMBTFLO banner). Tile shape: `n, icon, title, short, desc, chips[], proof[], subs[]`, optional `learning`, `fan` (`"left"`/`"right"` = vertical pop stack on that edge; absent = top-arc), `featured` (horizontal banner: kicker + title + one-line desc, no icon, no fan). Subs honor `skipProof:true` to hide "Proof coming soon". `ghlChip`, `ghlZoom*` hover peek, `ghlProof`, `renderGhl()`, `openGhlSkill(s)` render the tiles and drawer; no embedded workflow chart remains. |
 | 1349–1377 | `handleSubmit(e)` (mailto compose), mobile rail toggling, menu/rail listeners |
 
 ## Conventions
@@ -42,7 +44,7 @@ Personal GHL Specialist / Funnel Builder portfolio. One self-contained page — 
 - **BG tweak:** topbar "▦ BG" button tests background treatments live (`.main[data-bg=*]` switcher, persists `rd-bg` in localStorage, mirrors theme pattern). Default `grid`. Mode list in `#bgPop`; keep `.bg-opt` rows in sync with `BG_OPTS` + `data-bgopt` + mode CSS + swatch classes.
 - **Tags/taxonomy:** `funnel` / `automation` / `hybrid` (funnel + automation). Filter chips derive counts from `projects` — keep the span count and the `family`/`tags` fields in sync.
 - **Hero carousel** shows the 6 most recent/notable builds via `heroProjectNs` at line 1052.
-- **Counts to keep current:** rail "WORK — 21", toolbar chips, `heroProjectNs` length, CONTACT reads "24h reply". GHL tiles = `glSkills` length (9: 01–03 + 07 proof-backed/copy-backed, 04–06 + 08 `learning` placeholders, 09 `featured` PSGCIMBTFLO banner). n09 subs = 11 steps; the banner remains, but no embedded workflow chart or roomy drawer behavior remains.
+- **Counts to keep current:** rail "WORK — 22", toolbar chips, `heroProjectNs` length, CONTACT reads "24h reply". GHL tiles = `glSkills` length (9: 01–04 + 07 proof-backed/copy-backed, 05–06 + 08 `learning` placeholders, 09 `featured` PSGCIMBTFLO banner). n09 subs = 11 steps; the banner remains, but no embedded workflow chart or roomy drawer behavior remains.
 - **Images:** add sections as `sec01..secNN.webp` under `assets/funnel/<slug>/`; never hotlink. GHL proof under `assets/ghl/proof-*.png`.
 - New case study = new `projects` entry (number = next `n`). Update: toolbar chips, rail count, hero list if notable, this file's "File map" + CHANGELOG.md.
 
