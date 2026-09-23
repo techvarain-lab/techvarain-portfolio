@@ -31,3 +31,11 @@
 - **Bundled local posters** `assets/work/yt-NNA_A_6O6sU.jpg` + `assets/work/yt-0n5a-mSrghk.jpg` (hqdefault frames, ~15 KB each) are the primary poster src - no `i.ytimg.com` dependency (fixes blank-thumbnail on local: cached 404 / client-side block). AGENTS flow shape now `{name,short,tags[],video?,poster?}`.
 - **Flow previews are video-only**: when the focused flow has a `video`, the automation image is suppressed in the preview pane ("too much"), keeping proof on the main views (project preview + drawer zoom stack). Flow #1 (no video originally) keeps its image until it got its video.
 - **Verify**: 2 script blocks parse OK; 17 projects (funnel 6 / automation 11); 21 flows; n04 carried 3 `video` fields after this batch.
+
+## 2026-09-23 - n04 Conversation AI emphasis (4-point)
+- **Opt-in `engine` field** added to n04 ("Conversation AI agent"); absent elsewhere so no other project changes. AGENTS item shape synced.
+- **3 amber touchpoints on the Haven surfaces**: (1) flow rows on the Automation tab get an amber pill prefix on the `.flow-parent` eyebrow line; (2) flow preview kicker leads with "Conversation AI agent - title - n"; (3) drawer workflow-jump intro header suffixes "Conversation AI agent" (`Automation 04:2 - of 3 - Conversation AI agent`). All single-line edits, zero draft.
+- **Verify**: 2 script blocks parse OK; 16/16 markers; 17 projects / 21 flows unchanged; `engine` decl 1x, `p.engine` refs 3x.
+
+## 2026-09-23 - n04 stack de-dup
+- **"Conversation AI" dropped from n04's `stack[]`** ("GoHighLevel","GHL Workflows","GHL Calendar") - now redundant with the amber `engine` badge on rows/preview/drawer. Removes the gray repeat from the flow-row `.stack-mini`, preview stack pills, drawer metaLine and stackPills. n24 (funnel copy) keeps it - no badge there, and it is a legit build tag in that context.
