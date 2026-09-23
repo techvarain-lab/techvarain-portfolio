@@ -1,3 +1,24 @@
+## 2026-09-23 — Automation tab → grouped card-per-build (grouped tree)
+- **Automation filter now renders a card per build** (`.build-group` hairline border/radius): tinted `.build-hdr` header row (build title + `N workflows` amber pill + stack + optional engine badge) with `.flow-child` indented flow rows beneath (amber branch number, left tree rail via `.flow-child>div` border-left). 11 groups / 23 flow rows verified. Replaces the flat per-flow rows that repeated the parent build as a `.flow-parent` eyebrow.
+- **Interactions:** header row hover→project preview / click→build drawer (`openDrawer(p)` → flow chips); flow rows keep per-flow preview + per-flow drawer (scoped `imgs[]` + P/S/O unchanged). Search still scopes to flows — a matching flow shows its whole group.
+- **`render()` automation branch rewritten** (grouping + first-flow default preview); `.flow-parent` CSS rule removed (dead). `.th/.row` responsive column collapses reused — no count changes (chip stays **Automation 23**).
+- **AGENTS.md:** work-panel row (781–803) + workbench render row (1124–1157) synced to grouped-tree description.
+- **Verify:** 2 script blocks parse OK; grouping sim = 11 groups / 23 flow rows; no `.flow-parent` references remain; chip/tooltip/placeholder still 23.
+
+## 2026-09-23 — FitCoach n05 per-flow images scoped to each automation
+- **n05 flows now carry `imgs[]`** scoping the proof to the focused workflow: New Client Onboarding→`auto01.webp` (1 shot), Abandoned Checkout Recovery→`auto02/auto03.webp` (2), Payment Failed Alert→`auto04/auto05.webp` (2). All 5 screenshots allocated, zero duplicates.
+- **Preview pane** (`setPreview`) + **drawer automation zoom** (`openDrawer`) now use `flow.imgs` when a flow is focused, falling back to `p.automation` otherwise (other builds unaffected). Drawer zoom-bar count/labels follow the scoped array; non-flow labels reuse `autoLabels`/defaults.
+- **AGENTS.md:** flow item shape notes `imgs?` + n05 mapping; drawer/preview anchors unchanged.
+- **Verify:** 2 script blocks parse OK; n05 flows 1/2/2 images, project-level still holds all 5.
+
+## 2026-09-23 — FitCoach n05 expanded to 3 independent automation workflows (23 automations / 11 builds)
+- **`n05.flows[]`: 1 → 3** (New Client Onboarding / Abandoned Checkout Recovery / Payment Failed Alert) — each flow now carries its own `problem`/`solution`/`outcome` in the empathetic marketing voice, plus flow-specific tags. Automation tab renders 3 independent rows (`05·1/05·2/05·3`), each with its own preview, drawer chips, and search.
+- **Per-flow case-study rendering:** `openDrawer` case-study block now prefers the focused flow's P/S/O via `const cs=(flow&&flow.problem)?flow:p` (index.html:1452); builds without per-flow copy (n04/n22) fall back to project-level P/S/O — no regression.
+- **`bullets[]` removed** from n05 (4 legacy enrollment-only technical bullets; unrendered search-hay, flows/tags carry the content now).
+- **Counts:** Automation chip 21→**23** (tooltip "23 automations across 11 builds"); `#workSearch` placeholder "Search 21 automations…"→"Search 23 automations…". All 17 / Funnel 6 unchanged (builds, not flows).
+- **AGENTS.md:** file-map + taxonomy/counts synced (n05:1→n05:3, 21→23, flow item shape notes per-flow P/S/O).
+- **Verify:** 2 script blocks parse OK; n05 = 3 flows each with P/S/O+tags; TOTAL FLOWS = 23; no stale "21 automations"/"Search 21"/n05:1 references remain.
+
 ## 2026-09-23 — Manage the automation: flows + search (21 automations / 11 builds)
 - **`flows[]` authored** on the 11 automation projects (21 automations: n04:3 n22:3 n05:1 n07:2 n08:3 n09:2 n10:3 n12:1 n13:1 n14:1 n16:1; each `{name,short,tags[]}`). No new images — flows reuse existing proof/section assets.
 - **Automation filter flattens into per-flow rows** (`render(filter, q)`): `data-id` = `p.n·idx` (e.g. `04·2`), parent build as `.flow-parent` eyebrow, flow tag pills, `rowEl`/`wireRow` helpers; All/Funnel stay project-level. Active highlight now tracks `data-id` (not the visible number).
@@ -39,3 +60,8 @@
 
 ## 2026-09-23 - n04 stack de-dup
 - **"Conversation AI" dropped from n04's `stack[]`** ("GoHighLevel","GHL Workflows","GHL Calendar") - now redundant with the amber `engine` badge on rows/preview/drawer. Removes the gray repeat from the flow-row `.stack-mini`, preview stack pills, drawer metaLine and stackPills. n24 (funnel copy) keeps it - no badge there, and it is a legit build tag in that context.
+
+## 2026-09-23 — Session wrap-up: n04 emphasis + workbench polish (committed da1c0af, pushed)
+- **n04 Conversation AI emphasis** shipped (engine badge on flow rows/preview/drawer) + **"Conversation AI" dropped from n04 `stack[]`** as redundant — details in the two entries above. AGENTS item shape synced with the optional `engine` field.
+- **Type↔stack column breathing room**: `.stack-mini` gains `padding-left:14px` + a hairline left border so the type pill column and stack column aren't glued; **Stack** table header now centered to match **Type**.
+- **Verify**: 2 script blocks parse OK, 16/16 markers, counts unchanged (17 projects / funnel 6 / automation 11 / 21 flows). Nothing in-flight; remote `main` is at da1c0af.
