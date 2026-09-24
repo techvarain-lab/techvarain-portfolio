@@ -76,3 +76,7 @@
 - **Automation counts 23→25** (11 builds unchanged): toolbar chip 25, tooltip "25 automations across 11 builds", `#workSearch` placeholder "Search 25 automations…". All 17 / Funnel 6 unchanged.
 - **Preview crop for tall screenshots**: added `.prev-crop` (16:9 cover crop); used for n07 + n22 so the preview pane shows a crisp top slice instead of a squished full-page image (full pages still open via lightbox).
 - **Verify:** 2 JS script blocks parse OK (3rd = ld+json); n07 = 4 flows verified; AGENTS.md rows 21/29/46/48 + taxonomy list synced (n07:4, 25 total flows).
+## 2026-09-24 — FlowFix Plumbing n08 rebuilt to 4 automations (flows 25→26)
+- **n08 flows 3 → 4** (Intake & Triage / Missed-Call-Text-Back / Database Reactivation / Review & Referral Loop) — user copy kept verbatim as per-flow `problem/solution/outcome`; derived `short` + `tags` added (approved); inline double-quotes escaped as `\"` for JS validity.
+- **Automation count 25→26** (n08:4); All 17 / Funnel 6 unchanged. Chip/tooltip/`#workSearch` placeholder updated; AGENTS.md rows 29/46/48 synced.
+- **Images attached:** per-flow `imgs[]` → `assets/work/flowfix-{intake,missedcall,reactivation,review}.png` + project `automation[]`/`autoLabels[]` (build-level drawer zoom mirrors n07); n08 added to `.prev-crop` (tall screenshots); `img`/`flowfix-triage.png` preview untouched.
