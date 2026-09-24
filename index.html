@@ -770,12 +770,13 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .panel-services{overflow:auto}
   .preview{max-height:none}
   .th,.row{grid-template-columns:44px minmax(0,1fr) 134px}
+  .th>span:last-child{display:none}
   .stack-mini{display:none}
   .specs{grid-template-columns:1fr 1fr}
   .timeline2{grid-template-columns:1fr}
   .contact{grid-template-columns:1fr}
 }
-@media (max-width:860px){
+@media (max-width:1024px){
   body{overflow:auto;height:auto}
   .app{grid-template-columns:1fr;height:auto;min-height:100dvh;overflow:visible;overflow-x:clip}
   .main{overflow:visible}
@@ -819,6 +820,13 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .field input,.field textarea,.field select{font-size:16px}
   .hero-live-dots button{width:26px;height:14px}
   .ghl-proof-badge{opacity:1}
+  .filter{min-height:44px}
+  .segs button{width:42px;height:42px}
+  .drawer-close{width:40px;height:40px}
+  .lightbox-bar button{min-height:40px}
+  .zoom-bar button{min-height:40px}
+  .wf-chip{padding:9px 12px}
+  .bg-btn{padding:9px 12px}
 }
 @media (max-width:560px){
   .specs{grid-template-columns:1fr}
@@ -827,6 +835,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .panel-ghl .h2{font-size:34px}
   .contact-left h2{font-size:34px}
   .th,.row{grid-template-columns:44px minmax(0,1fr) 120px}
+  .th>span:last-child{display:none}
   .lightbox{padding:20px 14px}
 }
 .mobile-rail{display:none}
@@ -1207,7 +1216,7 @@ let drawerZoomLevel=1, autoZoomLevel=1;
 function drawerZoom(d){ drawerZoomLevel=Math.min(2,Math.max(0.6, drawerZoomLevel+d)); const im=document.getElementById('drawerZoomImg'); const lb=document.getElementById('drawerZoomLabel'); if(im) im.style.transform=`scale(${drawerZoomLevel})`; if(lb) lb.textContent=Math.round(drawerZoomLevel*100)+'%'; }
 function autoZoom(d){ autoZoomLevel=Math.min(2,Math.max(0.6, autoZoomLevel+d)); const im=document.getElementById('autoZoomImg'); const lb=document.getElementById('autoZoomLabel'); if(im) im.style.transform=`scale(${autoZoomLevel})`; if(lb) lb.textContent=Math.round(autoZoomLevel*100)+'%'; }
 function openLightbox(src){ const lb=lightbox; const im=document.getElementById('lightboxImg'); if(lb&&im){ lb.removeAttribute('inert'); lbTrigger=document.activeElement; im.src=src; lb.classList.add('open'); document.body.style.overflow='hidden'; const c=lb.querySelector('.lightbox-bar button'); if(c) c.focus(); } if(typeof ghlZoomHide==='function') ghlZoomHide(); }
-function closeLightbox(){ const lb=lightbox; if(lb){ lb.classList.remove('open'); lb.setAttribute('inert',''); if(lbTrigger&&lbTrigger.focus) lbTrigger.focus(); lbTrigger=null; document.body.style.overflow=''; if(window.innerWidth<=860) document.body.style.overflow='auto'; else document.body.style.overflow='hidden'; } }
+function closeLightbox(){ const lb=lightbox; if(lb){ lb.classList.remove('open'); lb.setAttribute('inert',''); if(lbTrigger&&lbTrigger.focus) lbTrigger.focus(); lbTrigger=null; document.body.style.overflow=''; if(window.innerWidth<=1024) document.body.style.overflow='auto'; else document.body.style.overflow='hidden'; } }
 window.closeLightbox=closeLightbox; window.drawerZoom=drawerZoom; window.autoZoom=autoZoom; window.openLightbox=openLightbox;
 function setPreview(p, flow){
   active=p; activeFlow=flow||null;
@@ -1535,7 +1544,7 @@ function closeDrawer(){
   drawerBody.querySelectorAll('iframe[src*="loom.com"], iframe[src*="youtube"]').forEach(f=>{ f.src='about:blank'; f.remove(); });
   drawer.classList.remove('open');overlay.classList.remove('open');
 
-  if(window.innerWidth<=860) document.body.style.overflow='auto'; else document.body.style.overflow='hidden';
+if(window.innerWidth<=1024) document.body.style.overflow='auto'; else document.body.style.overflow='hidden';
   drawer.setAttribute('inert','');
   if(drawerTrigger&&drawerTrigger.focus) drawerTrigger.focus();
   drawerTrigger=null;
@@ -1708,7 +1717,7 @@ function toggleMobileRail(open){
   menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
   if(open){ railTrigger=document.activeElement; const c=mobileRail.querySelector('.mobile-rail-panel button, .mobile-rail-panel a'); if(c) c.focus(); }
   else if(railTrigger&&railTrigger.focus){ railTrigger.focus(); railTrigger=null; }
-  document.body.style.overflow = open ? 'hidden' : (window.innerWidth<=860 ? 'auto' : 'hidden');
+  document.body.style.overflow = open ? 'hidden' : (window.innerWidth<=1024 ? 'auto' : 'hidden');
 }
 window.toggleMobileRail=toggleMobileRail;
 menuBtn.addEventListener('click',()=> toggleMobileRail(mobileRail.style.display==='none' || !mobileRail.style.display));

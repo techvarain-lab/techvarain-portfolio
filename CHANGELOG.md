@@ -85,3 +85,10 @@
 - **n09 Med Spa Reputation Firewall flows 2 → 5** (Missed Call Text Back / Post-Visit Review Request / Reputation Gate (the review filter) / Owner Alert / Review Follow-Up Nudge) — user copy verbatim as per-flow `problem/solution/outcome`; derived `short` + `tags` added (approved); `"please leave us a review!"` quoted phrase `\"`-escaped.
 - **Automation count 26→29** (n09:5); All 17 / Funnel 6 unchanged. Chip/tooltip/`#workSearch` placeholder updated; AGENTS.md rows 29/46/48 synced.
 - Untouched: title/desc/bullets/`img` (`medspa-review-gate.png`)/`loom`/stack. No proof images attached yet (user may supply later).
+
+## 2026-09-24 — Responsive: mobile switch to 1024px + `.th` phantom-header fix + touch targets
+- **Mobile breakpoint 860 → 1024** (`@media(max-width:1024px)`): iPad landscape (exactly 1024px) and small laptops now get the full-page mobile chrome — rail swapped for the burger + `.mobile-rail` drawer, sticky topbar, CTA/kbd hidden. Desktop app-shell returns at 1025+. JS body-overflow guards sync'd to 1024 (closeLightbox L1219, closeDrawer L1547, toggleMobileRail L1720).
+- **`.th` header fix:** the static header emits 4 cells but `.th,.row` collapses to 3 columns at ≤1060/≤560 while rows hid their 4th `.stack-mini` — the 4th "Stack" header span had no hide rule and wrapped into a phantom second header row. Added `.th>span:last-child{display:none}` in both media blocks.
+- **Touch targets ≥40px on mobile (≤1024):** `.filter` min-height 44, `.segs button` 42×42, `.drawer-close` 40×40, `.lightbox-bar`/`.zoom-bar` buttons min-height 40, `.wf-chip`/`.bg-btn` padding 9px 12px.
+- **AGENTS.md:** row 19 CTA note updated to "hidden ≤1024px".
+- **Verify:** 2 script blocks + ld+json parse OK; headless Edge sweep at 17 widths (320–1440, both themes not swept — widths only): **0 horizontal overflow anywhere**; `rail/menu` flip clean at 1024 (mobile) vs 1025 (shell); `.th` 4th child `display:none` at every width ≤1060, visible at 1180+.
