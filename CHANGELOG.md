@@ -86,6 +86,13 @@
 - **Automation count 26→29** (n09:5); All 17 / Funnel 6 unchanged. Chip/tooltip/`#workSearch` placeholder updated; AGENTS.md rows 29/46/48 synced.
 - Untouched: title/desc/bullets/`img` (`medspa-review-gate.png`)/`loom`/stack. No proof images attached yet (user may supply later).
 
+## 2026-09-24 — FitCoach n05: Make.com onboarding proof added (no count change)
+- **`download (16).png` imported → `assets/funnel/fitcoach/automation/make-onboarding.png`** (byte-identical, 238 KB) and wired into the **New Client Onboarding** flow: `imgs[]` now `[auto01.webp, make-onboarding.png]` — both preview pane and flow-focused drawer zoom show the Make shot after the auto01 view.
+- **`automation[]` extended 5 → 6** (n05 and the mirrored n23 funnel-copy stack) so the build-level drawer zoom ("N workflow steps") stays consistent; flow `imgs[]` remain a subset of `automation[]`.
+- **Counts unchanged:** Automation stays **29** (flows untouched — 3 on n05); no chip/tooltip/placeholder edits.
+- **AGENTS.md:** n05 mapping note updated (New Client Onboarding→auto01 + make-onboarding).
+- **Verify:** 2 script blocks + ld+json parse OK; n05 automation=6, n05 flow-1 imgs=2, n23 automation=6, total flows=29; asset resolves on disk.
+
 ## 2026-09-24 — Responsive: mobile switch to 1024px + `.th` phantom-header fix + touch targets
 - **Mobile breakpoint 860 → 1024** (`@media(max-width:1024px)`): iPad landscape (exactly 1024px) and small laptops now get the full-page mobile chrome — rail swapped for the burger + `.mobile-rail` drawer, sticky topbar, CTA/kbd hidden. Desktop app-shell returns at 1025+. JS body-overflow guards sync'd to 1024 (closeLightbox L1219, closeDrawer L1547, toggleMobileRail L1720).
 - **`.th` header fix:** the static header emits 4 cells but `.th,.row` collapses to 3 columns at ≤1060/≤560 while rows hid their 4th `.stack-mini` — the 4th "Stack" header span had no hide rule and wrapped into a phantom second header row. Added `.th>span:last-child{display:none}` in both media blocks.
