@@ -65,3 +65,14 @@
 - **n04 Conversation AI emphasis** shipped (engine badge on flow rows/preview/drawer) + **"Conversation AI" dropped from n04 `stack[]`** as redundant — details in the two entries above. AGENTS item shape synced with the optional `engine` field.
 - **Type↔stack column breathing room**: `.stack-mini` gains `padding-left:14px` + a hairline left border so the type pill column and stack column aren't glued; **Stack** table header now centered to match **Type**.
 - **Verify**: 2 script blocks parse OK, 16/16 markers, counts unchanged (17 projects / funnel 6 / automation 11 / 21 flows). Nothing in-flight; remote `main` is at da1c0af.
+
+## 2026-09-23 — Session wrap-up: FitCoach 3 workflows + grouped Automation tab (committed cb6b81c, pushed)
+- **FitCoach n05 → 3 independent automations** (Onboarding / Abandoned Checkout / Payment Failed) with per-flow P/S/O + scoped `imgs[]` (auto01 / auto02-03 / auto04-05); Automation count 21→23.
+- **Automation tab → grouped card-per-build**: `.build-group` + `.build-hdr` header + `.flow-child` tree rows (11 groups / 23 flows); `.flow-parent` eyebrow/CSS removed; old single-row flattening gone.
+- **AGENTS.md** file-map rows 21/29/30/32 + taxonomy/counts synced (n05:3, `imgs?` flow shape, grouped render). Nothing in-flight.
+## 2026-09-24 — Real Estate automation expanded 2→4 + preview crop + counts
+- **n07 expanded 2 → 4 flows** (Builder/Seller Lead Router / Hot Lead Instant Alert / Staggered Lead Re-engagement / Appointment Confirmation & Reminder), each with imgs proof + plain-language `short` + problem/solution/outcome; added `automation[]` + `autoLabels[]` so the drawer renders "Zoom — 4 workflow steps" with named labels (mirrors n05).
+- **Proof images imported** to `assets/work/realestate-{router,hotalert,stalled,appointment}.png`; `img` repointed from the broken `realestate-ghl.png` to `realestate-router.png`.
+- **Automation counts 23→25** (11 builds unchanged): toolbar chip 25, tooltip "25 automations across 11 builds", `#workSearch` placeholder "Search 25 automations…". All 17 / Funnel 6 unchanged.
+- **Preview crop for tall screenshots**: added `.prev-crop` (16:9 cover crop); used for n07 + n22 so the preview pane shows a crisp top slice instead of a squished full-page image (full pages still open via lightbox).
+- **Verify:** 2 JS script blocks parse OK (3rd = ld+json); n07 = 4 flows verified; AGENTS.md rows 21/29/46/48 + taxonomy list synced (n07:4, 25 total flows).
