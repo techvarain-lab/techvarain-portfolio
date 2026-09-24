@@ -93,6 +93,13 @@
 - **AGENTS.md:** n05 mapping note updated (New Client Onboarding→auto01 + make-onboarding).
 - **Verify:** 2 script blocks + ld+json parse OK; n05 automation=6, n05 flow-1 imgs=2, n23 automation=6, total flows=29; asset resolves on disk.
 
+## 2026-09-24 — FitCoach n05: two more Make.com proof shots (no count change)
+- **Imported & wired two more Make screenshots** (byte-identical): `Screenshot 2026-09-24 094932.png` → `make-abandoned.png` (Abandoned Checkout Recovery `imgs[]` = auto02/03 + make-abandoned) and `Screenshot 2026-09-24 095016.png` → `make-paymentfailed.png` (Payment Failed Alert `imgs[]` = auto04/05 + make-paymentfailed).
+- **`automation[]` 6 → 8** (n05 + mirrored n23 stack) so build-level drawer zoom stays consistent; flow `imgs[]` remain subsets of `automation[]`.
+- **Counts unchanged:** Automation still **29** (flows untouched); no chip/tooltip/placeholder edits.
+- **AGENTS.md:** n05 mapping note updated with both new shots.
+- **Verify:** 2 script blocks + ld+json parse OK; n05 automation=8, flow imgs = 2/3/3, n23 automation=8, total flows=29; both assets resolve on disk.
+
 ## 2026-09-24 — Responsive: mobile switch to 1024px + `.th` phantom-header fix + touch targets
 - **Mobile breakpoint 860 → 1024** (`@media(max-width:1024px)`): iPad landscape (exactly 1024px) and small laptops now get the full-page mobile chrome — rail swapped for the burger + `.mobile-rail` drawer, sticky topbar, CTA/kbd hidden. Desktop app-shell returns at 1025+. JS body-overflow guards sync'd to 1024 (closeLightbox L1219, closeDrawer L1547, toggleMobileRail L1720).
 - **`.th` header fix:** the static header emits 4 cells but `.th,.row` collapses to 3 columns at ≤1060/≤560 while rows hid their 4th `.stack-mini` — the 4th "Stack" header span had no hide rule and wrapped into a phantom second header row. Added `.th>span:last-child{display:none}` in both media blocks.
