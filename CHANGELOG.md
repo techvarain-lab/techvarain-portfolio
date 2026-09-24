@@ -80,3 +80,8 @@
 - **n08 flows 3 → 4** (Intake & Triage / Missed-Call-Text-Back / Database Reactivation / Review & Referral Loop) — user copy kept verbatim as per-flow `problem/solution/outcome`; derived `short` + `tags` added (approved); inline double-quotes escaped as `\"` for JS validity.
 - **Automation count 25→26** (n08:4); All 17 / Funnel 6 unchanged. Chip/tooltip/`#workSearch` placeholder updated; AGENTS.md rows 29/46/48 synced.
 - **Images attached:** per-flow `imgs[]` → `assets/work/flowfix-{intake,missedcall,reactivation,review}.png` + project `automation[]`/`autoLabels[]` (build-level drawer zoom mirrors n07); n08 added to `.prev-crop` (tall screenshots); `img`/`flowfix-triage.png` preview untouched.
+
+## 2026-09-24 — Med Spa n09 rebuilt to 5 automations (flows 26→29)
+- **n09 Med Spa Reputation Firewall flows 2 → 5** (Missed Call Text Back / Post-Visit Review Request / Reputation Gate (the review filter) / Owner Alert / Review Follow-Up Nudge) — user copy verbatim as per-flow `problem/solution/outcome`; derived `short` + `tags` added (approved); `"please leave us a review!"` quoted phrase `\"`-escaped.
+- **Automation count 26→29** (n09:5); All 17 / Funnel 6 unchanged. Chip/tooltip/`#workSearch` placeholder updated; AGENTS.md rows 29/46/48 synced.
+- Untouched: title/desc/bullets/`img` (`medspa-review-gate.png`)/`loom`/stack. No proof images attached yet (user may supply later).
