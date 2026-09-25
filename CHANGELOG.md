@@ -1,3 +1,8 @@
+## 2026-09-25 — Funnels & Websites GHL skill
+- **n05 upgraded in place** from a learning placeholder to a completed GHL skill entry with conversion-focused copy for funnels, landing pages, forms, and clean handoffs into calendars, pipelines, and automations.
+- **Added drawer CTA** `See actual work — funnel builds →`, routing through `gotoWork('funnel')` and the existing Funnel filter; no Work counts or project data changed.
+- **AGENTS.md:** GHL tile map/counts synced to the new n05 status and routing behavior.
+
 ## 2026-09-23 — Automation tab → grouped card-per-build (grouped tree)
 - **Automation filter now renders a card per build** (`.build-group` hairline border/radius): tinted `.build-hdr` header row (build title + `N workflows` amber pill + stack + optional engine badge) with `.flow-child` indented flow rows beneath (amber branch number, left tree rail via `.flow-child>div` border-left). 11 groups / 23 flow rows verified. Replaces the flat per-flow rows that repeated the parent build as a `.flow-parent` eyebrow.
 - **Interactions:** header row hover→project preview / click→build drawer (`openDrawer(p)` → flow chips); flow rows keep per-flow preview + per-flow drawer (scoped `imgs[]` + P/S/O unchanged). Search still scopes to flows — a matching flow shows its whole group.
