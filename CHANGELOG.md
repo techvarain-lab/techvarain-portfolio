@@ -112,3 +112,14 @@
 - **FitCoach n05 Make proof**: 3 Make.com screenshots added — `make-onboarding/make-abandoned/make-paymentfailed.png` under `assets/funnel/fitcoach/automation/` — flow `imgs[]` = 2/3/3, `automation[]` 5 → 8 mirrored on n23. Committed `da6f68e`, `f315e03`.
 - **Counts unchanged:** All 17 / Funnel 6 / Automation 29; hero carousel 6; n05 flows still 3.
 - **AGENTS.md:** rows 19 (hidden ≤1024px) + 30 (n05 imgs mapping) updated; file-map ranges left approximate (no renumber). Nothing in-flight — n09 proof images still pending if the user supplies them later.
+
+## 2026-09-25 — Work: phone title-first rows
+- **Phone layout (≤560px):** Work headers and rows collapse to a single title column; `#`, `Type`, `Stack`, workflow counts, and automation tags are hidden on phones, while a compact themed `Funnel`/`Automation` pill remains beneath each build title and long titles wrap instead of ellipsizing.
+- **Scope:** 561–1024px tablet/mobile layouts and desktop remain unchanged.
+- **Verify:** 2 script blocks + ld+json parse OK; headless Edge computed-style sweep at 375/560/561/1024/1440px confirmed 17 rows, correct column visibility, compact type pills on normal rows and 11 automation headers, 0 horizontal overflow, and no repeated indicators on workflow children.
+
+## 2026-09-25 — Rail: marketing-first positioning
+- **Desktop rail:** Replaced the technical-first introduction with an outcome-led promise, 17-build/29-automation proof, and a quieter `Built with` stack line.
+- **Actions/contact:** Added `Start a project` and `View 17 builds` CTAs, routed the RD mark to Work, and made email/phone actionable links with location and 24h reply context.
+- **Mobile parity:** Updated the mobile drawer to use the same marketing message, proof, CTAs, and contact links.
+- **Verify:** 2 script blocks + ld+json parse OK; headless Edge at 1440×900, 1440×700, 1440×600, and 375×812 confirmed fitting rail content, working panel routing, actionable contact links, and no horizontal overflow.

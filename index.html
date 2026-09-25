@@ -217,7 +217,13 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .rail .rule{width:100%;height:1px;background:var(--amber);margin:2px 0 6px;border-radius:999px;opacity:1;display:block}
 .rail-role{font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-role);line-height:1.0;margin:0;padding:0;font-weight:500;white-space:nowrap}
 .rail-copy{font-size:13.5px;line-height:1.62;color:var(--ra-body);margin:0}
+.rail-copy strong{display:block;color:var(--ra-ink);font-size:15px;line-height:1.35;font-weight:500;margin-bottom:8px}
 .rail-copy .sub{color:var(--ra-sub);display:block;margin-top:8px;font-size:12px;line-height:1.6}
+.rail-contact a{color:var(--ra-mute);text-decoration:none}
+.rail-contact a:hover{color:var(--ra-ink)}
+.rail-social{color:var(--ra-kick);text-decoration:none}
+.rail-social:hover{color:var(--ra-ink)}
+.rail a:focus-visible,.rail button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .rail-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .pill-rail{
   font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;
@@ -240,6 +246,9 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   color:var(--ra-btn-txt);text-align:center;transition:.15s
 }
 .btn-rail-g:hover{border-color:var(--ra-btn-hover-border);color:var(--ra-ink);background:var(--ra-chip-hover)}
+.rail-actions .btn-rail-p,.rail-actions .btn-rail-g{white-space:nowrap;padding-left:8px;padding-right:8px}
+.rail-actions .btn-rail-g{font-size:9px}
+.mobile-rail-panel .btn-rail-p,.mobile-rail-panel .btn-rail-g{white-space:nowrap;font-size:9px;padding-left:6px;padding-right:6px}
 .rail-divider{height:1px;background:var(--ra-hair);margin:14px 0}
 
 .stat2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
@@ -468,6 +477,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .row h4{margin:0;font-size:15px;line-height:1.3;letter-spacing:-.015em;font-weight:600;color:var(--ink);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .row p{margin:3px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 .tag{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;border-radius:999px;border:1px solid var(--line);width:fit-content}
+.mobile-type{display:none}
 .tag.auto{border-color:#C7E8D0;background:#EBF6EF;color:#1F5E2E}
 [data-theme="dark"] .tag.auto{border-color:#2A4A32;background:#1B2E1F;color:#A8D5B5}
 .tag.funnel{border-color:#E8D9C8;background:#FFF3E6;color:#7A4D1A}
@@ -834,8 +844,17 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .panel-ghl .eyebrow{font-size:12.5px}
   .panel-ghl .h2{font-size:34px}
   .contact-left h2{font-size:34px}
-  .th,.row{grid-template-columns:44px minmax(0,1fr) 120px}
-  .th>span:last-child{display:none}
+  .panel-work .th,.panel-work .row{grid-template-columns:minmax(0,1fr)}
+  .panel-work .th>span:first-child,
+  .panel-work .th>span:nth-child(3),
+  .panel-work .th>span:last-child,
+  .panel-work .row>*:first-child,
+  .panel-work .row>span:nth-child(3),
+  .panel-work .row>span:last-child{display:none}
+  .panel-work .row>span:nth-child(3){display:none!important}
+  .panel-work .row>div{min-width:0}
+  .panel-work .row h4{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+  .panel-work .mobile-type{display:inline-flex;margin:6px 0 2px}
   .lightbox{padding:20px 14px}
 }
 .mobile-rail{display:none}
@@ -849,7 +868,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   <aside class="rail" aria-label="Primary rail">
     <div class="rail-scroll">
       <div class="rail-top">
-        <a class="brand-mini" href="#work"><span class="mark">RD</span> Rainier <em>D.</em></a>
+        <a class="brand-mini" href="#work" data-go="work" aria-label="Rainier Dimasacat Jr — go to work"><span class="mark">RD</span></a>
         <div class="rail-controls">
           <button class="theme" id="themeBtn" aria-label="Toggle dark / light"><span class="knob">◐</span></button>
         </div>
@@ -862,20 +881,22 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
         </div>
       </div>
       <p class="rail-copy">
-        GHL Specialist &amp; Funnel Builder — GHL main, plus Zapier, n8n and Make. I automate manual processes and build funnels in GHL or custom code — your choice.
+        <strong>Funnels and follow-up systems that keep leads moving.</strong>
+        <span class="sub">I build GoHighLevel funnels and automations that help growing businesses capture, route, and follow up on every inquiry.</span>
       </p>
       <div class="rail-meta" style="display:grid;gap:8px;margin-top:12px">
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-body)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid var(--ra-border);background:var(--ra-chip);display:grid;place-items:center;font-size:10px;flex-shrink:0">◈</span><span>Make · n8n · Zapier</span></div>
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-body)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid var(--ra-border);background:var(--ra-chip);display:grid;place-items:center;font-size:10px;flex-shrink:0">◐</span><span>GHL Funnels · Custom Code</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-body)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid var(--ra-border);background:var(--ra-chip);display:grid;place-items:center;font-size:10px;flex-shrink:0">◈</span><span>17 builds · 29 automations</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-body)"><span style="width:20px;height:20px;border-radius:6px;border:1px solid var(--ra-border);background:var(--ra-chip);display:grid;place-items:center;font-size:10px;flex-shrink:0">◐</span><span>Built with GHL · Make · n8n · Zapier</span></div>
       </div>
-      <div class="rail-actions" style="display:grid;gap:8px;margin-top:12px">
-        <a class="btn-rail-p" href="#" data-go="work" style="text-align:center">Open bench →</a>
-        <a href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer" style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-kick);text-align:center;padding:6px">LinkedIn ↗</a>
+      <div class="rail-actions" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+        <a class="btn-rail-p" href="#" data-go="contact" style="text-align:center">Start a project →</a>
+        <a class="btn-rail-g" href="#" data-go="work" style="text-align:center">View 17 builds →</a>
       </div>
-      <div style="display:grid;gap:6px;margin-top:10px">
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ra-mute)"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">✉</span><span>techva.rain@gmail.com</span></div>
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ra-mute)"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">☎</span><span>0995 146 2765</span></div>
-        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ra-mute)"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">◎</span><span>Cavite, PH</span></div>
+      <a class="rail-social" href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer" style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:2px">LinkedIn ↗</a>
+      <div class="rail-contact" style="display:grid;gap:6px;margin-top:10px">
+        <a href="mailto:techva.rain@gmail.com" style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;text-decoration:none"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">✉</span><span>techva.rain@gmail.com</span></a>
+        <a href="tel:+639951462765" style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;text-decoration:none"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">☎</span><span>0995 146 2765</span></a>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ra-mute)"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">◎</span><span>Cavite, PH · replies within 24h</span></div>
       </div>
     </div>
     <div class="rail-foot-rail">
@@ -1088,15 +1109,17 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 <div class="mobile-rail" id="mobileRail" style="display:none" onclick="if(event.target===this) toggleMobileRail(false)">
   <div class="mobile-rail-panel">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <span style="font-family:'Instrument Serif',serif;font-size:18px">Rainier <i style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--amber)">D.</i></span>
+      <span style="font-family:'Instrument Serif',serif;font-size:18px">Rainier <i style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--amber)">Dimasacat Jr</i></span>
       <button onclick="toggleMobileRail(false)" aria-label="Close menu" style="width:36px;height:36px;border-radius:50%;border:1px solid var(--ra-border);background:var(--ra-chip);color:var(--ra-ink);cursor:pointer">✕</button>
     </div>
-    <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ra-kick)"><span style="color:var(--amber)">●</span> Operating · 24h reply</div>
+    <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ra-kick)"><span style="color:var(--amber)">●</span> Replies within 24h</div>
     <div style="border:1px solid var(--ra-border-soft);border-radius:12px;overflow:hidden;background:var(--ra-panel);padding:14px">
       <div style="font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-kick)">GHL SPECIALIST / FUNNEL BUILDER</div>
-      <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:var(--ra-body)">No-code systems and GHL funnels that don't leak. Logged, routed, documented.</p>
-      <div style="display:flex;gap:8px;margin-top:12px"><a class="btn-rail-p" href="#" data-go="work">Open bench</a><a class="btn-rail-g" href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank">LinkedIn ↗</a></div>
+      <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:var(--ra-ink)">Funnels and follow-up systems that keep leads moving.</p>
+      <p style="margin:8px 0 0;font-size:12px;line-height:1.6;color:var(--ra-body)">GoHighLevel funnels and automations for growing businesses — capture, route, follow up.</p>
+      <div style="margin-top:12px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ra-pill)">17 builds · 29 automations</div>
     </div>
+    <div style="display:flex;gap:8px;margin-top:12px"><a class="btn-rail-p" href="#" data-go="contact">Start a project →</a><a class="btn-rail-g" href="#" data-go="work">View 17 builds →</a></div>
     <div style="display:grid;gap:8px">
       <button class="ptab" style="width:100%;justify-content:center" data-panel="hero">HOME</button>
       <button class="ptab" style="width:100%;justify-content:center" data-panel="ghl">WHAT I DO IN GHL</button>
@@ -1105,7 +1128,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <button class="ptab" style="width:100%;justify-content:center" data-panel="about">ABOUT</button>
       <button class="ptab" style="width:100%;justify-content:center;background:var(--amber);color:white;border-color:var(--amber)" data-panel="contact">START A PROJECT →</button>
     </div>
-    <div style="margin-top:auto;font-family:'Fragment Mono',monospace;font-size:10px;color:var(--ra-faint)">techva.rain@gmail.com · 0995 146 2765</div>
+    <div style="margin-top:auto;font-family:'Fragment Mono',monospace;font-size:10px;color:var(--ra-faint)"><a href="mailto:techva.rain@gmail.com" style="color:inherit;text-decoration:none">techva.rain@gmail.com</a> · <a href="tel:+639951462765" style="color:inherit;text-decoration:none">0995 146 2765</a> · Cavite, PH</div>
   </div>
 </div>
 
@@ -1142,6 +1165,10 @@ const prevImg=document.getElementById('prevImg');
 const prevBody=document.getElementById('prevBody');
 let active=projects[0];
 let activeId=null, activeFlow=null, curFilter='all';
+const mobileType = p => {
+  const automation=(p.tags||[p.cat]).includes('automation');
+  return `<span class="tag ${automation?'auto':'funnel'} mobile-type">${automation?'Automation':'Funnel'}</span>`;
+};
 
 function render(filter=curFilter, q=''){
   curFilter=filter;
@@ -1161,7 +1188,7 @@ function render(filter=curFilter, q=''){
       hdr.classList.add('build-hdr');
       const cnt=p.flows&&p.flows.length?p.flows.length:1;
       const eng=p.engine?`<b style="display:inline-block;font-family:'Fragment Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:4px;padding:1px 5px;margin-bottom:4px">${p.engine}</b>`:'';
-      hdr.innerHTML=`<b>${p.n}</b><div>${eng}<h4>${p.title}</h4></div><span class="flow-count">${cnt} workflows</span><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
+      hdr.innerHTML=`<b>${p.n}</b><div>${eng}<h4>${p.title}</h4>${mobileType(p)}</div><span class="flow-count">${cnt} workflows</span><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
       wireRow(hdr,()=>setPreview(p),()=>openDrawer(p),isCoarse);
       grp.appendChild(hdr);
       matches.forEach(({f,idx})=>{
@@ -1186,7 +1213,7 @@ function render(filter=curFilter, q=''){
       const tagPills=tags.map(t=>{const cls=t==='automation'?'auto':'funnel';const label=t==='automation'?'Automation':'Funnel';return `<span class="tag ${cls}">${label}</span>`;}).join('');
       const autoCount=(p.flows&&p.flows.length)?`<span class="tag auto" title="${p.flows.length} independent GHL workflow automations">${p.flows.length} workflows</span>`:'';
       const showFamily=tagPills+autoCount;
-      r.innerHTML=`<b>${p.n}</b><div><h4>${p.title}</h4><p>${p.desc}</p></div><span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">${tags.length>1?tagPills:showFamily}</span><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
+      r.innerHTML=`<b>${p.n}</b><div><h4>${p.title}</h4>${mobileType(p)}<p>${p.desc}</p></div><span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">${tags.length>1?tagPills:showFamily}</span><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
       wireRow(r,()=>setPreview(p),()=>openDrawer(p),isCoarse);
       rows.appendChild(r);
     });
