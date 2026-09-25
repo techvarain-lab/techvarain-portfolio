@@ -106,3 +106,9 @@
 - **Touch targets ≥40px on mobile (≤1024):** `.filter` min-height 44, `.segs button` 42×42, `.drawer-close` 40×40, `.lightbox-bar`/`.zoom-bar` buttons min-height 40, `.wf-chip`/`.bg-btn` padding 9px 12px.
 - **AGENTS.md:** row 19 CTA note updated to "hidden ≤1024px".
 - **Verify:** 2 script blocks + ld+json parse OK; headless Edge sweep at 17 widths (320–1440, both themes not swept — widths only): **0 horizontal overflow anywhere**; `rail/menu` flip clean at 1024 (mobile) vs 1025 (shell); `.th` 4th child `display:none` at every width ≤1060, visible at 1180+.
+
+## 2026-09-24 — Responsive fixes + FitCoach Make proof (session wrap)
+- **Responsive pass** (expensive to ship on tablets): mobile switch 860 → 1024px so iPad-landscape/small laptops get the burger + mobile-rail chrome; `.th` phantom 4th header ("Stack") hidden at ≤1060/≤560; touch targets bumped ≥40px on mobile. Headless-Edge sweep (17 widths) showed 0 horizontal overflow. Committed `7b8c18f`.
+- **FitCoach n05 Make proof**: 3 Make.com screenshots added — `make-onboarding/make-abandoned/make-paymentfailed.png` under `assets/funnel/fitcoach/automation/` — flow `imgs[]` = 2/3/3, `automation[]` 5 → 8 mirrored on n23. Committed `da6f68e`, `f315e03`.
+- **Counts unchanged:** All 17 / Funnel 6 / Automation 29; hero carousel 6; n05 flows still 3.
+- **AGENTS.md:** rows 19 (hidden ≤1024px) + 30 (n05 imgs mapping) updated; file-map ranges left approximate (no renumber). Nothing in-flight — n09 proof images still pending if the user supplies them later.
