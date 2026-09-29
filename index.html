@@ -161,33 +161,39 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 /* RAIL AUTO-COLLAPSE — the rail narrows to a 64px spine on the WORK panel only,
    where the workbench is widest and most cramped; every other panel keeps the
    full 320px rail. `auto` is the default state, `pinned` (rd-rail) holds the
-   full rail even on Work. Inert below 1025px: the max-width:1024px block later
-   sets grid-template-columns:1fr and .rail{display:none}, which wins on source
-   order. To add a panel, add it to the :not() list on the .rail-pin rule and
-   widen the [data-view="work"] conditions below. */
-[data-rail="auto"][data-view="work"] .app{grid-template-columns:64px 1fr}
-[data-rail="auto"][data-view="work"] .rail-scroll{padding:14px 0;justify-content:space-between;align-items:center}
-/* !important is required: the h1/role wrapper, .rail-actions and .rail-contact
-   all carry inline display: in the markup, which otherwise wins.
-   .rail-spine-mark is exempted — it IS the spine's bottom content. */
-[data-rail="auto"][data-view="work"] .rail-scroll > *:not(.rail-top):not(.rail-spine-mark){display:none!important}
-[data-rail="auto"][data-view="work"] .rail-top{flex-direction:column;align-items:center;gap:12px}
-[data-rail="auto"][data-view="work"] .rail-foot-rail{display:none}
-/* the expand button is the spine's only control and its whole purpose — keep it loud */
-[data-rail="auto"][data-view="work"] #themeBtn{display:none}
+   full rail even on Work.
 
-/* bottom-anchored vertical wordmark — fills the spine with identity, not controls.
-   vertical-rl + rotate(180deg) reads bottom-to-top, which also flips border-bottom
-   to the visual top edge, giving the hairline that separates it from the gap above.
-   Hidden whenever the rail is full. */
+   These are DESKTOP-ONLY by explicit @media(min-width:1025px), NOT by relying on
+   the max-width:1024px block further down. That block's `.app{grid-template-columns:1fr}`
+   is only (0,1,0) while the selectors below are (0,3,0), and specificity is compared
+   BEFORE source order — so without this wrapper the 64px track won at mobile widths,
+   `.rail` was display:none so nothing filled it, and `.main` took the empty 64px
+   track and collapsed the whole site to 64px wide at <=1024px. Shipped in 6b355e6.
+   To add a panel, add it to the :not() list on the .rail-pin rule and widen the
+   [data-view="work"] conditions below. */
 .rail-spine-mark{display:none}
-[data-rail="auto"][data-view="work"] .rail-spine-mark{
-  display:block;
-  writing-mode:vertical-rl;transform:rotate(180deg);
-  font-family:'Fragment Mono',monospace;font-size:11px;font-weight:500;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--ra-faint);
-  white-space:nowrap;border-bottom:1px solid var(--ra-hair);padding-bottom:10px;
-  max-height:calc(100% - 120px);overflow:hidden
+@media (min-width:1025px){
+  [data-rail="auto"][data-view="work"] .app{grid-template-columns:64px 1fr}
+  [data-rail="auto"][data-view="work"] .rail-scroll{padding:14px 0;justify-content:space-between;align-items:center}
+  /* !important is required: the h1/role wrapper, .rail-actions and .rail-contact
+     all carry inline display: in the markup, which otherwise wins.
+     .rail-spine-mark is exempted — it IS the spine's bottom content. */
+  [data-rail="auto"][data-view="work"] .rail-scroll > *:not(.rail-top):not(.rail-spine-mark){display:none!important}
+  [data-rail="auto"][data-view="work"] .rail-top{flex-direction:column;align-items:center;gap:12px}
+  [data-rail="auto"][data-view="work"] .rail-foot-rail{display:none}
+  /* the expand button is the spine's only control and its whole purpose — keep it loud */
+  [data-rail="auto"][data-view="work"] #themeBtn{display:none}
+  /* bottom-anchored vertical wordmark — fills the spine with identity, not controls.
+     vertical-rl + rotate(180deg) reads bottom-to-top, which also flips border-bottom
+     to the visual top edge, giving the hairline that separates it from the gap above. */
+  [data-rail="auto"][data-view="work"] .rail-spine-mark{
+    display:block;
+    writing-mode:vertical-rl;transform:rotate(180deg);
+    font-family:'Fragment Mono',monospace;font-size:11px;font-weight:500;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--ra-faint);
+    white-space:nowrap;border-bottom:1px solid var(--ra-hair);padding-bottom:10px;
+    max-height:calc(100% - 120px);overflow:hidden
+  }
 }
 
 /* the expand button — the spine's one primary control, so it carries the amber */
@@ -529,13 +535,13 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 }
 .th{
   padding:10px 12px;border-bottom:1px solid var(--line);background:var(--ground);
-  display:grid;grid-template-columns:44px minmax(0,1fr) 134px 150px;
+  display:grid;grid-template-columns:44px minmax(0,1fr) 150px;
   font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
   flex-shrink:0;
 }
 .rows{flex:1;overflow:auto;min-height:0;display:block;align-content:start;scrollbar-width:none}
 .row{
-  display:grid;grid-template-columns:44px minmax(0,1fr) 134px 150px;gap:0;align-items:center;
+  display:grid;grid-template-columns:44px minmax(0,1fr) 150px;gap:0;align-items:center;
   padding:12px 12px;border-bottom:1px solid var(--line);cursor:pointer;transition:.14s;background:var(--paper);
   text-align:left;
 }
@@ -564,7 +570,6 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .build-hdr{background:var(--ground)}
   .build-hdr:hover{background:var(--amber-wash)}
   .build-hdr b{font-size:17px}
-  .build-hdr .flow-count{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:999px;padding:3px 8px;white-space:nowrap;justify-self:center}
   .flow-child{transition:none}
   .flow-child b{color:var(--amber)}
   .flow-child>div{padding-left:12px;margin-left:14px;border-left:1px solid var(--line)}
@@ -734,6 +739,19 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .hero-side-item.active small i{border-color:var(--amber);background:var(--paper)}
 .hero-side-cta{margin-top:auto;display:flex;gap:8px}
 @media(max-width:1060px){.hero-grid{grid-template-columns:1fr;max-height:none;height:auto}.panel-hero{overflow:auto;scrollbar-width:none}.hero-side-list{overflow:visible}}
+/* Featured-build list compaction, gated on viewport HEIGHT. At 900px the list has
+   721px for 6 items + 5x8px gaps = 113px per item, but a roomy item measures 139px,
+   so 2 of the 6 sat below the fold in a scroll container with a hidden scrollbar.
+   2-line descriptions are kept, so this fits 5 of 6 at 900px and all 6 at 1080px+.
+   Height-gated so tall monitors are pixel-identical to the uncompacted design. */
+@media (max-height:940px) and (min-width:1061px){
+  .hero-side-list{gap:7px}
+  .hero-side-item{padding:9px 11px;gap:4px}
+  .hero-side-item b{font-size:13.5px;line-height:1.22}
+  .hero-side-item p{font-size:12px;line-height:1.5}
+  .hero-side-item small{font-size:8.5px;gap:5px}
+  .hero-side-item small i{padding:2px 5px}
+}
 .hero-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper);box-shadow:0 12px 32px rgba(0,0,0,.06);display:flex;flex-direction:column;align-self:center;position:relative;top:auto}
 .hero-card-top{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--ground)}
 .hero-card-body{padding:0;display:flex;flex-direction:column;gap:0;overflow:hidden;min-height:0;flex:1}
@@ -856,7 +874,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .panel-work{overflow:auto}
   .panel-services{overflow:auto}
   .preview{max-height:none}
-  .th,.row{grid-template-columns:44px minmax(0,1fr) 134px}
+  .th,.row{grid-template-columns:44px minmax(0,1fr)}
   .th>span:last-child{display:none}
   .stack-mini{display:none}
   .specs{grid-template-columns:1fr 1fr}
@@ -1013,13 +1031,13 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <section class="panel panel-hero active panel-anim" data-panel-id="hero" role="tabpanel">
         <div class="hero-grid">
           <aside class="hero-card hero-card--live">
-            <div class="hero-card-top"><span>Funnel live preview · GHL</span><span class="live-tag" id="heroLiveBadge"><span class="live-dot"></span>Live</span></div>
+            <div class="hero-card-top"><span>Build preview · GHL</span><span class="live-tag" id="heroLiveBadge"><span class="live-dot"></span>Live</span></div>
             <div class="hero-card-body">
-              <div class="hero-live" id="heroLive" onclick="openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))" role="button" tabindex="0" aria-label="Open funnel preview" onkeydown="if(event.key==='Enter')openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))">
+              <div class="hero-live" id="heroLive" onclick="openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))" role="button" tabindex="0" aria-label="Open build preview" onkeydown="if(event.key==='Enter')openDrawer(projects.find(p=>p.n===heroProjectNs[window.heroLiveIdx||0]))">
                 <div class="hero-live-track" id="heroLiveTrack">
                   <img src="assets/funnel/rubio/thumb.webp" srcset="assets/funnel/rubio/thumb.webp 800w, assets/funnel/rubio/thumb.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Rubio Roofing and Trusses — Industrial Funnel" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='assets/funnel/rubio/thumb.webp'">
-                  <img src="assets/funnel/mountain-hiking/sec01.webp" srcset="assets/funnel/mountain-hiking/sec01.webp 1920w, assets/funnel/mountain-hiking/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Mountain Hiking — Adventure Funnel" loading="lazy" decoding="async" onerror="this.src='assets/funnel/mountain-hiking/full.webp'">
-                  <img src="assets/funnel/clearview/sec01.webp" srcset="assets/funnel/clearview/sec01.webp 1920w, assets/funnel/clearview/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="ClearView Pressure Washing — Lead Generation Funnel" loading="lazy" decoding="async" onerror="this.src='assets/funnel/clearview/full.webp'">
+                  <img src="assets/work/flowfix-intake.png" srcset="assets/work/flowfix-intake.png 1920w, assets/work/flowfix-triage.png 1920w" sizes="(max-width:880px) 100vw, 780px" alt="FlowFix Plumbing — Emergency Triage &amp; Reactivation" loading="lazy" decoding="async" onerror="this.src='assets/work/flowfix-triage.png'">
+                  <img src="assets/work/torqueworks-1.png" srcset="assets/work/torqueworks-1.png 1920w, assets/work/torqueworks-3.png 1920w" sizes="(max-width:880px) 100vw, 780px" alt="TorqueWorks Auto Care — Dormant Lead Win-Back" loading="lazy" decoding="async" onerror="this.src='assets/work/torqueworks-3.png'">
                   <img src="assets/funnel/haven/thumb.webp" srcset="assets/funnel/haven/thumb.webp 800w, assets/funnel/haven/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Haven Animal Clinic — AI-Qualified Booking" loading="lazy" decoding="async" onerror="this.src='assets/funnel/haven/full.webp'">
                   <img src="assets/funnel/fitcoach/sec01.webp" srcset="assets/funnel/fitcoach/sec01.webp 1920w, assets/funnel/fitcoach/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="FitCoach — Stripe Payment to GHL" loading="lazy" decoding="async" onerror="this.src='assets/funnel/fitcoach/full.webp'">
                   <img src="assets/funnel/legal/sec01.webp" srcset="assets/funnel/legal/sec01.webp 1920w, assets/funnel/legal/full.webp 1920w" sizes="(max-width:880px) 100vw, 780px" alt="Legal Consultation Intake & Nurture System" loading="lazy" decoding="async" onerror="this.src='assets/funnel/legal/full.webp'">
@@ -1044,16 +1062,16 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
                 <small><i>GHL Funnels</i><i>Custom Code</i><i>Before/After</i></small>
               </button>
               <button class="hero-side-item" data-i="1" onclick="setHeroLive(1)">
-                <small><i>02</i> FUNNEL <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
-                <b>Mountain Hiking — Adventure Funnel</b>
-                <p>Hero → itinerary → pricing → FAQ with GHL capture + calendar. Mobile-first, no overlay.</p>
-                <small><i>GoHighLevel</i><i>HTML/CSS/JS</i><i>GHL Webhook</i></small>
+                <small><i>08</i> AUTOMATION</small>
+                <b>FlowFix Plumbing — Emergency Triage</b>
+                <p>Spots true emergencies, texts back missed calls within minutes, and reactivates past customers.</p>
+                <small><i>GHL</i><i>Make.com</i><i>Slack</i></small>
               </button>
               <button class="hero-side-item" data-i="2" onclick="setHeroLive(2)">
-                <small><i>03</i> FUNNEL <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
-                <b>ClearView Pressure Washing — Lead Gen Funnel</b>
-                <p>Single-page direct-response funnel with glassmorphic hero, before/after slider, and GHL webhook capture.</p>
-                <small><i>HTML/CSS/JS</i><i>Tailwind</i><i>GHL</i></small>
+                <small><i>22</i> AUTOMATION</small>
+                <b>TorqueWorks Auto Care — Dormant Win-Back</b>
+                <p>Tiered 60/90-day win-back for customers who've gone quiet, with reply-based suppression.</p>
+                <small><i>GHL</i><i>Smart Lists</i><i>SMS &amp; Email</i></small>
               </button>
               <button class="hero-side-item" data-i="3" onclick="setHeroLive(3)">
                 <small><i>04</i> AUTOMATION <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
@@ -1085,15 +1103,15 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <section class="panel panel-work panel-anim" data-panel-id="work" role="tabpanel">
         <div class="work-toolbar">
           <div class="segs">
-            <button class="filter" data-filter="funnel">Funnel <span class="chip">6</span></button>
             <button class="filter active" data-filter="automation" title="11 builds · 29 automations">Automation <span class="chip">11</span></button>
+            <button class="filter" data-filter="funnel">Funnel <span class="chip">6</span></button>
           </div>
           <input id="workSearch" class="work-search" type="search" spellcheck="false" autocomplete="off" aria-label="Search builds and automations">
           <span class="kbd" id="kbdHint">Hover to preview · Click to open</span>
         </div>
         <div class="workbench">
           <div class="table-wrap">
-            <div class="th"><span>#</span><span>Build</span><span style="text-align:center">Type</span><span style="text-align:center">Stack</span></div>
+            <div class="th"><span>#</span><span>Build</span><span style="text-align:center">Stack</span></div>
             <div class="rows" id="rows"></div>
           </div>
           <aside class="preview" id="preview">
@@ -1256,9 +1274,8 @@ function render(filter=curFilter, q=''){
       const grp=document.createElement('div'); grp.className='build-group';
       const hdr=rowEl(p.n,p.title);
       hdr.classList.add('build-hdr');
-      const cnt=p.flows&&p.flows.length?p.flows.length:1;
       const eng=p.engine?`<b style="display:inline-block;font-family:'Fragment Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:4px;padding:1px 5px;margin-bottom:4px">${p.engine}</b>`:'';
-      hdr.innerHTML=`<b>${p.n}</b><div>${eng}<h4>${p.title}</h4>${mobileType(p)}</div><span class="flow-count">${cnt} workflows</span><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
+      hdr.innerHTML=`<b>${p.n}</b><div>${eng}<h4>${p.title}</h4>${mobileType(p)}</div><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
       wireRow(hdr,()=>setPreview(p),()=>openDrawer(p),isCoarse);
       grp.appendChild(hdr);
       matches.forEach(({f,idx})=>{
@@ -1266,8 +1283,7 @@ function render(filter=curFilter, q=''){
         if(!firstFlow.p) Object.assign(firstFlow,{p,f,idx});
         const r=rowEl(id,`${p.title} — ${f.name}`);
         r.classList.add('flow-child');
-        const pills=f.tags&&f.tags.length?f.tags.map(t=>`<span class="tag">${t}</span>`).join(''):`<span class="tag auto">Automation</span>`;
-        r.innerHTML=`<b>${p.n}·${idx}</b><div><h4>${f.name}</h4><p>${f.short}</p></div><span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">${pills}</span><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
+        r.innerHTML=`<b>${p.n}·${idx}</b><div><h4>${f.name}</h4><p>${f.short}</p></div><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
         wireRow(r,()=>setPreview(p,{f,idx}),()=>openDrawer(p,idx),isCoarse);
         grp.appendChild(r);
       });
@@ -1279,11 +1295,7 @@ function render(filter=curFilter, q=''){
     list=list.filter(p=>!Q||hay(p.title,p.desc,p.stack.join(' '),(p.tags||[]).join(' ')).includes(Q));
     list.forEach(p=>{
       const r=rowEl(p.n,p.title);
-      const tags=p.tags||[p.cat];
-      const tagPills=tags.map(t=>{const cls=t==='automation'?'auto':'funnel';const label=t==='automation'?'Automation':'Funnel';return `<span class="tag ${cls}">${label}</span>`;}).join('');
-      const autoCount=(p.flows&&p.flows.length)?`<span class="tag auto" title="${p.flows.length} independent GHL workflow automations">${p.flows.length} workflows</span>`:'';
-      const showFamily=tagPills+autoCount;
-      r.innerHTML=`<b>${p.n}</b><div><h4>${p.title}</h4>${mobileType(p)}<p>${p.desc}</p></div><span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center">${tags.length>1?tagPills:showFamily}</span><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
+      r.innerHTML=`<b>${p.n}</b><div><h4>${p.title}</h4>${mobileType(p)}<p>${p.desc}</p></div><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
       wireRow(r,()=>setPreview(p),()=>openDrawer(p),isCoarse);
       rows.appendChild(r);
     });
@@ -1462,7 +1474,7 @@ if(finePtr){
 // deep link — hero is default, so allow #hero as well
 if(location.hash){ const h=location.hash.replace('#',''); if(['hero','ghl','work','services','about','contact'].includes(h)) switchPanel(h); }
 // hero live carousel — B · Live Proof (auto-cycle, pause on hover) — 6 featured: Rubio, Mountain Hiking, ClearView, Haven, FitCoach, Legal
-window.heroLiveIdx=0; const heroProjectNs=["01","02","03","04","05","06"];
+window.heroLiveIdx=0; const heroProjectNs=["01","08","22","04","05","06"];
 const heroLiveTitles=heroProjectNs.map(n=>{const p=projects.find(x=>x.n===n);return p?p.title:'';});
 const heroLiveDescs=heroProjectNs.map(n=>{const p=projects.find(x=>x.n===n);return p?p.desc:'';});
 const heroLiveStacks=heroProjectNs.map(n=>{
