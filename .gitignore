@@ -9,3 +9,6 @@ Thumbs.db
 
 # local design-direction prototypes (never commit - would deploy to Pages)
 /prototypes/
+
+# local print-preview render of the resume (regenerable, ~300KB, would deploy to Pages)
+/resume/resume-print-preview.png
