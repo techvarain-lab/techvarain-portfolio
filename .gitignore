@@ -6,3 +6,6 @@ Thumbs.db
 **/*.bak
 **/source-*.png
 **/source-*.jpg
+
+# local design-direction prototypes (never commit - would deploy to Pages)
+/prototypes/

@@ -128,3 +128,30 @@
 - **Actions/contact:** Added `Start a project` and `View 17 builds` CTAs, routed the RD mark to Work, and made email/phone actionable links with location and 24h reply context.
 - **Mobile parity:** Updated the mobile drawer to use the same marketing message, proof, CTAs, and contact links.
 - **Verify:** 2 script blocks + ld+json parse OK; headless Edge at 1440×900, 1440×700, 1440×600, and 375×812 confirmed fitting rail content, working panel routing, actionable contact links, and no horizontal overflow.
+
+## 2026-09-25 - GHL: phone title-first rows (backfill, commit e3b3d1e)
+- **Phone layout (<=560px):** Work headers and rows collapse to a single title column; #, Type, Stack, workflow counts, and automation tags hide on phones, while a compact themed Funnel/Automation pill remains beneath each build title and long titles wrap instead of ellipsizing.
+- **Scope:** 561-1024px tablet/mobile and desktop unchanged.
+- **Verify:** 2 script blocks + ld+json parse OK; headless Edge computed-style sweep at 375/560/561/1024/1440px confirmed 17 rows, correct column visibility, compact type pills on normal rows and 11 automation headers, 0 horizontal overflow, and no repeated indicators on workflow children.
+
+## 2026-09-25 - GHL: Funnels & Websites tile 05 upgraded (backfill, commit 84e7306)
+- **Tile 05 (Funnels & Websites)** copy reworked to the outcome-led front-door framing: clear funnels, landing pages, and capture flows inside GHL, handing off cleanly into the rest of the system. Chip/description pass; no count change.
+
+## 2026-09-25 - GHL: new skill 09 "Snapshots & Sub-Account Setup"
+- **New 10th GHL tile** (`n:"09"`, icon `◇` U+25C7) covering packaging a full GHL setup (funnels, calendars, pipelines, workflows, forms, templates) into a reusable Snapshot so a new client sub-account goes from empty to live in minutes. Graduated style like 04/05: `subs:[]`, no `learning`, no Work CTA. Ships 2 proof shots (see below).
+- **Renumber:** featured PSGCIMBTFLO banner `n:"09"` → `n:"10"`. Skills stay contiguous 01–09, banner stays last + full-width. Only the dynamic `feat-kicker` and the `workCta` branch key on `n` (only 04/05 are), so no collateral renumbering; 01–08 untouched.
+- **No CSS change needed:** a no-subs tile renders via the same path as 04/05 (no fan, `footLabel` → "Skill", drawer = title/desc/chips only).
+- **Counts unchanged:** Work All 17 / Funnel 6 / Automation 29, hero carousel 6; GHL tiles 9 → 10.
+- **Verify:** 2 script blocks + ld+json parse OK; headless Edge confirms `glSkills.length`=10, ids 01–10, 10 tiles rendered (9 normal + 1 full-width featured, last), 9 unique icons, grid reflow clean (rows 4+4+1+featured, column counts 3/2/2/2), snapshot drawer kicker `GHL — skill 09 · Snapshots & Sub-Account Setup`, no Work CTA / learn note / "Proof coming soon", 0 horizontal overflow and banner full-width at 320/375/560/561/768/1024/1025/1440/1920px, 0 console errors.
+- **AGENTS.md:** GHL-skills row + counts row updated to 10 tiles (09 = Snapshots, 10 = featured PSGCIMBTFLO banner).
+- **Proof wired (same session):** two Snapshot proof shots imported from the GHL account and wired into n09 `proof[]` — `proof-snapshot-1.png` (Imported snapshots list: "Tech VA Rain" v1, Sep 12 2026) and `proof-snapshot-2.png` (Snapshot details "9-29 Dim Automations", 409 captured assets by product category). Drawer now shows "Proof — 2 shots" with hover peek + lightbox.
+- **Counts unchanged:** All 17 / Funnel 6 / Automation 29, hero 6, GHL 10 tiles.
+- **Med Spa n09 work-case proof still pending** (unrelated — that's the automation tile, not this GHL skill).
+## 2026-09-29 - GHL: Forms & Surveys tile parked, GHL tiles renumbered to 9
+- **Removed "Forms & Surveys" from the GHL panel** — the `learning:true` tile is parked as a `/* PARKED 2026-09-29 ... */` block comment (kept in-file for easy restore, not deleted). Module still in progress; user asked to hide it "for now".
+- **Renumbered the four trailing tiles** to keep ids contiguous 01-09 (was 01-10 with a gap): n07 Marketing -> 06, n08 Reporting -> 07, n09 Snapshots -> 08, n10 PSGCIMBTFLO featured -> 09. No CSS/asset depends on a tile number; the `workCta` branch only keys on `"04"`/`"05"` (both before the renumber range) and `feat-kicker` reads `s.n` dynamically, so nothing else changed.
+- **Snapshot proof survives the renumber** — its `proof[]` paths are filename-based (`proof-snapshot-1/2.png`), not number-based.
+- **No orphaned styling** — n07 Reporting is now the only `learning:true` tile (keeps `.ghl-tile--learning` + `.ghl-learn-note` live) and n01 remains the only `fan:"right"` tile; the parked object carried the other `fan:"right"` and is inert.
+- **Counts unchanged:** Work All 17 / Funnel 6 / Automation 29, hero 6; GHL tiles 10 -> 9.
+- **Verify:** 2 script blocks + ld+json parse OK; headless Edge confirms `glSkills.length`=9, ids 01-09, 9 tiles rendered (8 normal + 1 full-width featured, last, kicker "09 · System"), no "Forms & Surveys" tile, 1 learning tile, fan intact on n01, grid reflows cleanly to 4x2 (col counts 2/2/2/2) with banner full-width, Reporting drawer keeps its amber learn note + 2 subs, Snapshots drawer still shows both proof shots and the lightbox opens, 04/05 CTAs still route to automation/funnel, 0 horizontal overflow + banner full-width at 320/375/560/561/768/1024/1025/1440/1920px, 0 broken images, 0 console errors.
+- **AGENTS.md:** GHL-skills row + counts row updated to 9 tiles, documented the parked object and the new numbering.
