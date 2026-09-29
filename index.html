@@ -8,6 +8,11 @@
 <title>Rainier Dimasacat — Single Viewport · GHL SPECIALIST / FUNNEL BUILDER</title>
 <meta name="description" content="Rainier Dimasacat — GHL SPECIALIST / FUNNEL BUILDER. 17 builds. Single-viewport workbench: Stripe → GHL → Sheets → Slack, logged, routed, documented.">
 <script>try{var t=localStorage.getItem('rd-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}</script>
+<script>/* rail auto-collapse state — set before paint so deep links don't flash a wide rail */
+(function(){var d=document.documentElement;var P=['hero','ghl','work','services','about','contact'];
+ var h=(location.hash||'').replace('#','');d.setAttribute('data-view',P.indexOf(h)>-1?h:'hero');
+ var p='auto';try{p=localStorage.getItem('rd-rail')==='pinned'?'pinned':'auto';}catch(e){}
+ d.setAttribute('data-rail',p);})();</script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Rainier Dimasacat — GHL Specialist / Funnel Builder">
@@ -150,6 +155,65 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   height:100dvh;
   overflow:hidden;
   max-width:100vw;
+  transition:grid-template-columns .34s cubic-bezier(.16,1,.3,1);
+}
+
+/* RAIL AUTO-COLLAPSE — the rail narrows to a 64px spine on the WORK panel only,
+   where the workbench is widest and most cramped; every other panel keeps the
+   full 320px rail. `auto` is the default state, `pinned` (rd-rail) holds the
+   full rail even on Work. Inert below 1025px: the max-width:1024px block later
+   sets grid-template-columns:1fr and .rail{display:none}, which wins on source
+   order. To add a panel, add it to the :not() list on the .rail-pin rule and
+   widen the [data-view="work"] conditions below. */
+[data-rail="auto"][data-view="work"] .app{grid-template-columns:64px 1fr}
+[data-rail="auto"][data-view="work"] .rail-scroll{padding:14px 0;justify-content:space-between;align-items:center}
+/* !important is required: the h1/role wrapper, .rail-meta, .rail-actions and
+   .rail-contact all carry inline display: in the markup, which otherwise wins.
+   .rail-spine-mark is exempted — it IS the spine's bottom content. */
+[data-rail="auto"][data-view="work"] .rail-scroll > *:not(.rail-top):not(.rail-spine-mark){display:none!important}
+[data-rail="auto"][data-view="work"] .rail-top{flex-direction:column;align-items:center;gap:12px}
+[data-rail="auto"][data-view="work"] .rail-foot-rail{display:none}
+/* the expand button is the spine's only control and its whole purpose — keep it loud */
+[data-rail="auto"][data-view="work"] #themeBtn{display:none}
+
+/* bottom-anchored vertical wordmark — fills the spine with identity, not controls.
+   vertical-rl + rotate(180deg) reads bottom-to-top, which also flips border-bottom
+   to the visual top edge, giving the hairline that separates it from the gap above.
+   Hidden whenever the rail is full. */
+.rail-spine-mark{display:none}
+[data-rail="auto"][data-view="work"] .rail-spine-mark{
+  display:block;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-family:'Fragment Mono',monospace;font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--ra-faint);
+  white-space:nowrap;border-bottom:1px solid var(--ra-hair);padding-bottom:10px;
+  max-height:calc(100% - 120px);overflow:hidden
+}
+
+/* the expand button — the spine's one primary control, so it carries the amber */
+.rail-pin{
+  width:38px;height:38px;border-radius:11px;border:1px solid var(--amber);
+  background:var(--amber);color:white;cursor:pointer;display:grid;place-items:center;
+  font-family:'Fragment Mono',monospace;font-size:13px;line-height:1;transition:.15s;flex-shrink:0
+}
+.rail-pin:hover{background:var(--amber-2);border-color:var(--amber-2)}
+.rail-pin[aria-pressed="true"]{background:transparent;color:var(--amber)}
+/* only Work has a spine to expand */
+[data-view]:not([data-view="work"]) .rail-pin{display:none}
+
+/* Theme toggle for the collapsed spine. The rail's own #themeBtn is hidden while
+   collapsed, so this keeps exactly one theme control in every state — never two.
+   Desktop-gated: at ≤1024px the rail is display:none entirely and mobile has never
+   had a theme control, so leave that alone. */
+.theme-top{
+  display:none;width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  cursor:pointer;place-items:center;font-family:'Fragment Mono',monospace;
+  font-size:12px;line-height:1;transition:.15s;flex-shrink:0
+}
+.theme-top:hover{border-color:var(--amber);color:var(--amber)}
+@media(min-width:1025px){
+  [data-rail="auto"][data-view="work"] .theme-top{display:grid}
 }
 
 /* RAIL — navy like BrewedOps, but warm detail */
@@ -208,7 +272,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#1DB954;position:relative;display:inline-block;flex:none}
 .live-dot::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1px solid #1DB954;opacity:0;animation:livePing 1.8s ease-out infinite}
 @keyframes livePing{0%{opacity:.8;transform:scale(.5)}75%,100%{opacity:0;transform:scale(1.7)}}
-@media (prefers-reduced-motion: reduce){.live-dot::after{animation:none}.live-dot{box-shadow:0 0 0 4px color-mix(in srgb,#1DB954 18%,transparent)}.tab-hint,.tab-hint.out{transform:none;transition:opacity .15s ease}}
+@media (prefers-reduced-motion: reduce){.live-dot::after{animation:none}.live-dot{box-shadow:0 0 0 4px color-mix(in srgb,#1DB954 18%,transparent)}.tab-hint,.tab-hint.out{transform:none;transition:opacity .15s ease}.app{transition:none}}
 .rail h1{
   font-family:'Instrument Serif',serif;font-size:50px;line-height:.78;letter-spacing:-.05em;margin:0;font-weight:400
 }
@@ -866,6 +930,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <div class="rail-top">
         <a class="brand-mini" href="#work" data-go="work" aria-label="Rainier Dimasacat Jr — go to work"><span class="mark">RD</span></a>
         <div class="rail-controls">
+          <button class="rail-pin" id="railPinBtn" aria-pressed="false" title="Keep the rail expanded" aria-label="Keep rail expanded on every panel">»</button>
           <button class="theme" id="themeBtn" aria-label="Toggle dark / light"><span class="knob">◐</span></button>
         </div>
       </div>
@@ -894,6 +959,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
         <a href="tel:+639951462765" style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;text-decoration:none"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">☎</span><span>0995 146 2765</span></a>
         <div style="display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ra-mute)"><span style="width:16px;height:16px;border-radius:50%;background:var(--ra-chip);border:1px solid var(--ra-border);display:grid;place-items:center;font-size:8px;flex-shrink:0">◎</span><span>Cavite, PH · replies within 24h</span></div>
       </div>
+      <div class="rail-spine-mark">GHL Specialist / Funnel Builder</div>
     </div>
     <div class="rail-foot-rail">
       <span>© 2026 Rainier D.</span>
@@ -916,6 +982,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       </div>
       <div class="topbar-right">
         <a class="cta" href="#" data-go="contact">Start a project →</a>
+        <button class="theme-top" id="themeTopBtn" aria-label="Toggle dark / light"><span class="knob">◐</span></button>
         <div class="bg-wrap">
           <button class="bg-btn" id="bgBtn" aria-haspopup="true" aria-expanded="false" aria-label="Background style">▦ <span class="bg-cur" id="bgCur">Grid</span></button>
           <div class="bg-pop" id="bgPop" role="menu">
@@ -1315,6 +1382,7 @@ function switchPanel(id){
     if(on){ p.classList.remove('panel-anim'); void p.offsetWidth; p.classList.add('panel-anim'); }
   });
   history.replaceState(null,'','#'+id);
+  document.documentElement.setAttribute('data-view',id);
 }
 function gotoWork(filter){
   closeDrawer();
@@ -1410,17 +1478,43 @@ const heroLiveEl=document.getElementById('heroLive');
 if(heroLiveEl){ heroLiveEl.addEventListener('mouseenter', stopHeroLive); heroLiveEl.addEventListener('mouseleave', startHeroLive); heroLiveEl.addEventListener('focusin', stopHeroLive); heroLiveEl.addEventListener('focusout', startHeroLive); document.addEventListener('visibilitychange', startHeroLive); if(heroReduceMotion.addEventListener) heroReduceMotion.addEventListener('change', startHeroLive); startHeroLive(); }
 window.setHeroLive=setHeroLive;
 
-// theme
+// theme — the rail's #themeBtn and the topbar's #themeTopBtn are the same control;
+// only one of the two is ever visible (see the .theme-top rules in the collapse block)
 
-const tBtn=document.getElementById('themeBtn');
-const saved=localStorage.getItem('rd-theme');
-if(saved) document.documentElement.setAttribute('data-theme',saved);
-else if(window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme','dark');
-tBtn.addEventListener('click',()=>{
+function toggleTheme(){
   const cur=document.documentElement.getAttribute('data-theme');
   const next=cur==='dark'?'light':'dark';
   document.documentElement.setAttribute('data-theme',next);
   localStorage.setItem('rd-theme',next);
+}
+const tBtn=document.getElementById('themeBtn');
+const tTopBtn=document.getElementById('themeTopBtn');
+const saved=localStorage.getItem('rd-theme');
+if(saved) document.documentElement.setAttribute('data-theme',saved);
+else if(window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme','dark');
+tBtn.addEventListener('click',toggleTheme);
+tTopBtn.addEventListener('click',toggleTheme);
+
+// rail auto-collapse — `auto` keeps a 64px spine on the Work panel only (where the
+// workbench is most cramped), `pinned` holds the full rail everywhere. State lives on
+// <html data-rail> and is mirrored into localStorage so it survives reloads and panel
+// switches. `applyRail` also rewrites the button glyph/title/aria for both states.
+const pinBtn=document.getElementById('railPinBtn');
+function applyRail(s){
+  document.documentElement.setAttribute('data-rail',s);
+  if(pinBtn){
+    const on=s==='pinned';
+    pinBtn.textContent=on?'«':'»';
+    pinBtn.setAttribute('aria-pressed',on?'true':'false');
+    pinBtn.setAttribute('aria-label',on?'Collapse the rail on Work':'Keep the rail expanded on Work');
+    pinBtn.setAttribute('title',on?'Collapse the rail':'Keep the rail expanded');
+  }
+}
+applyRail(document.documentElement.getAttribute('data-rail')==='pinned'?'pinned':'auto');
+if(pinBtn) pinBtn.addEventListener('click',()=>{
+  const next=document.documentElement.getAttribute('data-rail')==='pinned'?'auto':'pinned';
+  applyRail(next);
+  try{ localStorage.setItem('rd-rail',next); }catch(e){}
 });
 
 // background-style tweak
