@@ -724,12 +724,12 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .hero-grid .hero-card--live{width:100%;max-height:100%;display:flex;flex-direction:column;overflow:hidden;align-self:stretch}
 .hero-side{display:flex;flex-direction:column;gap:10px;min-width:0;overflow:hidden}
 .hero-side-head{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;padding:0 2px}
-.hero-side-list{display:grid;gap:8px;overflow:auto;scrollbar-width:none;flex:1;align-content:start;padding-right:2px}
-.hero-side-item{text-align:left;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--paper);cursor:pointer;display:grid;gap:6px;transition:.15s}
+.hero-side-list{display:grid;gap:9px;overflow:auto;scrollbar-width:none;flex:1;align-content:start;padding-right:2px}
+.hero-side-item{text-align:left;padding:9px;border-radius:12px;border:1px solid var(--line);background:var(--paper);cursor:pointer;display:grid;gap:3px;align-content:start;transition:.15s}
 .hero-side-item:hover{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
 .hero-side-item.active{border-color:var(--amber);background:var(--amber-wash);box-shadow:0 0 0 3px color-mix(in srgb, var(--amber) 12%, transparent)}
 .hero-side-item b{font-size:14.5px;line-height:1.28;letter-spacing:-.015em;display:block;color:var(--ink);font-weight:600}
-.hero-side-item p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hero-side-item p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2lh}
 .hero-side-item small{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--ink-soft);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 [data-theme="dark"] .hero-side-item b{color:var(--ink)}
 [data-theme="dark"] .hero-side-item p{color:var(--ink-2)}
@@ -738,32 +738,51 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .hero-side-item.active small i{border-color:var(--amber);background:var(--paper)}
 .hero-side-cta{margin-top:auto;display:flex;gap:8px}
 @media(max-width:1060px){.hero-grid{grid-template-columns:1fr;max-height:none;height:auto}.panel-hero{overflow:auto;scrollbar-width:none}.hero-side-list{overflow:visible}}
-/* Featured-build list compaction, gated on viewport HEIGHT. The list is a scroll container with
-   a hidden scrollbar, so any item below the fold VANISHES SILENTLY - always verify by measuring
-   clientHeight/scrollHeight and counting items whose bottom <= list.bottom, at more than one
-   viewport height. 7 slots since n25 was promoted: at 900px the list has 721px for 7 items +
-   6x4px gaps = ~98px per item, but a roomy item measures 139px, so 2 of the 7 sat below the fold.
-   Two tiers, both height-gated so tall monitors stay pixel-identical to the uncompacted design:
-     <=1120px -> 108px items, fits 7 of 7 at 1080px
-     <=940px  -> tighter, fits 7 of 7 at 900px
-   ORDER IS LOAD-BEARING: both tiers match a 900px viewport, so the tighter one must come SECOND
-   or the looser one wins on source order and silently does nothing. 2-line descriptions are kept
-   in both tiers; only padding, gap and type size move. */
-@media (max-height:1120px) and (min-width:1061px){
-  .hero-side-list{gap:6px}
-  .hero-side-item{padding:8px 10px;gap:3px}
-  .hero-side-item b{font-size:13px;line-height:1.2}
-  .hero-side-item p{font-size:11.5px;line-height:1.45}
+/* Featured-build list. 7 cards in a height-capped column, and the height is a FIXED BUDGET, so
+   the grid does the sizing instead of hand-tuned breakpoints: grid-auto-rows:minmax(94px,1fr) +
+   align-content:stretch makes each card grow to fill whatever height is actually available. Two
+   stepped tiers were tried first and both were wrong:
+     - they made slack NON-MONOTONIC: items jumped 90->108px at a 940->1000px viewport, so MORE
+       screen gave LESS air (+105px slack at 940px but only +29px at 1000px)
+     - tier ORDER is load-bearing and I got it backwards first: both queries match a 900px
+       viewport, so the tighter one must come second or the looser wins on source order and
+       silently does nothing. The tell was itemH stuck at 108px through a padding-only change -
+       a flex/grid row sized by content cannot ignore padding, so an unchanged height means the
+       rule is simply not applying.
+   94px is the floor (7x94 + 6x9 gap = 712px, so all 7 fit from ~885px of viewport height up).
+   Below that the list scrolls, and .ov/.at-end fade the bottom edge - the list has a HIDDEN
+   scrollbar, so without that cue an off-screen card vanishes SILENTLY. That is a real recorded
+   miss: at 820px the old tiers overflowed by 15px and the 7th card disappeared with no affordance.
+   VERIFY by measuring clientHeight/contentH and counting items whose bottom <= list.bottom at
+   MANY viewport heights, never at one. The type-size tier below is for readability only. */
+/* align-content:start above is load-bearing: without it the stretched card stretched its INNER
+   grid rows too, and `p`'s -webkit-line-clamp:2 box got taller than 2 lines, so a half-rendered
+   third line showed through the clip (Rubio's desc ended mid-glyph). Padding and the inner gap are
+   sized so a 2-line description still fits inside the 1fr row share - the list fills exactly, so
+   there is zero slack to absorb content that overflows its share. VERIFY p.clientHeight covers
+   its full clamped text at more than one viewport height, not just that the card is tall enough. */
+/* Rows are sized to CONTENT by default (max-content), NOT to a fraction of the column, because
+   a stretched card whose content exceeds its share compresses `p` below its -webkit-line-clamp:2
+   box and `overflow:hidden` then eats the deficit — Rubio's description rendered as 1.6 lines
+   with a half-glyph third line. The `1fr` fill only engages at >=1100px, where a card's share is
+   provably >= its content (122px needed, 124px available), so tall screens still fill edge to
+   edge with no clip. Below that, cards are content-sized and the list scrolls with the .ov fade. */
+/* Fill only where a card's 1fr share is provably >= its content, so nothing can be squeezed:
+   compact content is 102px (needs client >= 768, i.e. >=960px of viewport) and roomy content is
+   122px (needs >=1088px, which is exactly where the roomy type tier starts). Below the fill
+   threshold cards are content-sized and the list scrolls behind the .ov fade instead. */
+.hero-side-list{grid-auto-rows:minmax(94px,max-content);align-content:start;max-height:1090px}
+@media (min-height:960px) and (min-width:1061px){
+  .hero-side-list{grid-auto-rows:minmax(94px,1fr);align-content:stretch}
+}
+.hero-side-list.ov{-webkit-mask-image:linear-gradient(180deg,#000 0 90%,transparent);mask-image:linear-gradient(180deg,#000 0 90%,transparent)}
+.hero-side-list.at-end{-webkit-mask-image:none;mask-image:none}
+@media (max-height:1089px) and (min-width:1061px){
+  .hero-side-item{padding:7px 10px;gap:3px}
+  .hero-side-item b{font-size:12.5px;line-height:1.2}
+  .hero-side-item p{font-size:11px;line-height:1.38}
   .hero-side-item small{font-size:8.5px;gap:5px}
   .hero-side-item small i{padding:2px 5px}
-}
-@media (max-height:940px) and (min-width:1061px){
-  .hero-side-list{gap:4px}
-  .hero-side-item{padding:5px 9px;gap:2px}
-  .hero-side-item b{font-size:12.5px;line-height:1.18}
-  .hero-side-item p{font-size:11px;line-height:1.34}
-  .hero-side-item small{font-size:8px;gap:4px}
-  .hero-side-item small i{padding:1px 4px}
 }
 .hero-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper);box-shadow:0 12px 32px rgba(0,0,0,.06);display:flex;flex-direction:column;align-self:center;position:relative;top:auto}
 .hero-card-top{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--ground)}
@@ -1756,9 +1775,10 @@ function switchPanel(id){
     p.classList.toggle('active', on);
     if(on){ p.classList.remove('panel-anim'); void p.offsetWidth; p.classList.add('panel-anim'); }
   });
-  history.replaceState(null,'','#'+id);
-  document.documentElement.setAttribute('data-view',id);
-}
+history.replaceState(null,'','#'+id);
+    document.documentElement.setAttribute('data-view',id);
+    if(id==='hero'&&typeof updSide==='function') updSide();
+  }
 function gotoWork(filter){
   closeDrawer();
   switchPanel('work');
@@ -1781,6 +1801,20 @@ ptabs.addEventListener('scroll',updTabs,{passive:true});
 addEventListener('resize',updTabs);
 addEventListener('load',updTabs);
 updTabs();
+/* Same edge-fade contract as updTabs(), applied to the featured-build list. Its scrollbar is
+   hidden, so on short viewports (7 cards need ~712px) an off-screen card would otherwise
+   disappear with no affordance at all. .ov fades the bottom while more remains, .at-end clears
+   it once scrolled to the bottom. Re-measure on resize AND on panel switch, since the list only
+   has a height while the hero panel is the active view. */
+const heroSideList=document.getElementById('heroSideList');
+function updSide(){
+  if(!heroSideList) return;
+  const ov=heroSideList.scrollHeight>heroSideList.clientHeight+1;
+  heroSideList.classList.toggle('ov',ov);
+  heroSideList.classList.toggle('at-end',ov&&(heroSideList.scrollTop+heroSideList.clientHeight>=heroSideList.scrollHeight-8));
+}
+if(heroSideList){ heroSideList.addEventListener('scroll',updSide,{passive:true}); addEventListener('resize',updSide); }
+addEventListener('load',updSide);
 // tab hover hints — paper footnote card, gated to fine pointers
 const tabHint=document.getElementById('tabHint');
 const tabHintK=document.getElementById('tabHintK');
