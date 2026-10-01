@@ -1065,12 +1065,37 @@ html.ghl-system-open .drawer-body:not(:has(.cs-case)){max-width:min(1240px,100%)
   .filter{min-height:44px}
   .segs button{min-width:44px;min-height:44px}
   .drawer-close{width:40px;height:40px}
-  .drawer{top:0;left:0;transform:none;width:100%;height:100%;border-radius:0;border:none;box-shadow:none}
-  .drawer.open{transform:none}
   .lightbox-bar button{min-height:40px}
   .zoom-bar button{min-height:40px}
   .wf-chip{padding:9px 12px}
   .bg-btn{padding:9px 12px}
+}
+/* The case-study modal is FULL-BLEED on phones only — and that override has to move to its own
+   narrower query. It used to sit in max-width:1024px, which made every tablet (iPad portrait and
+   landscape alike) get a sheet sized to the entire viewport: no scrim gap, no radius, no shadow.
+   It stopped reading as a modal and started reading as a page. Worse, the gutter is LOAD-BEARING —
+   overlay.addEventListener('click', closeDrawer) is the outside-click-to-close affordance, and a
+   full-bleed drawer covers the scrim entirely, leaving only the X and Escape. So 701-1024 now
+   inherits the base .drawer (centred gutter card, :875) untouched: no duplicated properties, and
+   border / border-radius / the overflow:hidden that clips .drawer-head to the corners all come back
+   with it.
+
+   BOTH halves of the transform reset must move together — the base rule centres via
+   top:50%/left:50% + translate(-50%,-50%), so leaving `.drawer.open{transform:none}` behind would
+   drop the card's horizontal centring at tablet width.
+
+   The tablet block is a WIDTH+HEIGHT override only. 56px rather than the inherited 40px because at
+   1024x768 a 20px gutter reads as an accident rather than a card. The ranges are mutually
+   exclusive, so their relative source order is irrelevant.
+
+   No JS changed: the `innerWidth<=1024` body-overflow restores (:1690, :2078, :2292) are still
+   correct, since the page scrolls below 1024 whether the modal is a card or a sheet. */
+@media (min-width:701px) and (max-width:1024px){
+  .drawer{width:min(1120px,calc(100vw - 56px));height:min(880px,calc(100vh - 56px))}
+}
+@media (max-width:700px){
+  .drawer{top:0;left:0;transform:none;width:100%;height:100%;border-radius:0;border:none;box-shadow:none}
+  .drawer.open{transform:none}
 }
 @media (max-width:560px){
   .specs{grid-template-columns:1fr}
