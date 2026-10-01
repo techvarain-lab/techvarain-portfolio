@@ -956,9 +956,15 @@ html.ghl-system-open .drawer-body:not(:has(.cs-case)){max-width:min(1240px,100%)
 @keyframes psm-edge-flow{0%{stroke-dasharray:10 8;stroke-dashoffset:54;opacity:.42}88%{stroke-dasharray:10 8;stroke-dashoffset:0;opacity:1}99.9%,100%{stroke-dasharray:10 8;stroke-dashoffset:0;opacity:1}}
 @keyframes psm-node-pulse{0%,72%,100%{opacity:1;filter:none}18%,36%{opacity:.78;filter:drop-shadow(0 2px 2px color-mix(in srgb,var(--psm-text) 18%,transparent))}}
 /* The chart is 1150x520 user units. Scaled to a 390px phone that is a 27% fit, which renders
-   the 12-unit labels at ~3px — unreadable. So below 768px it holds a legible floor and pans
-   horizontally instead, exactly as psgcimbtflo-steps.html did with its min-width. */
-@media (max-width:768px){
+   the 12-unit labels at ~3px — unreadable. So it holds a legible floor and pans horizontally
+   instead, exactly as psgcimbtflo-steps.html did with its min-width.
+
+   This was gated at 768px, which created a one-pixel legibility cliff: at 768px the 840px floor
+   binds and the 12-unit labels land at ~8.8px, but at 769px the chart dropped to fit-to-width,
+   measured 691px of SVG against a 731px container, and the same labels fell to ~7.2px. One pixel
+   flipped legibility by 18%. Widened to 1024px so TABLETS pan too. The min-width only binds below
+   ~876px of container width, so it is inert above that and desktop is byte-identical. */
+@media (max-width:1024px){
   .psm{overflow-x:auto;overscroll-behavior-x:contain;padding:14px 14px 10px}
   .psm svg{min-width:840px}
 }
