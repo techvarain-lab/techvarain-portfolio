@@ -725,7 +725,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .hero-side{display:flex;flex-direction:column;gap:10px;min-width:0;overflow:hidden}
 .hero-side-head{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;padding:0 2px}
 .hero-side-list{display:grid;gap:9px;overflow:auto;scrollbar-width:none;flex:1;align-content:start;padding-right:2px}
-.hero-side-item{text-align:left;padding:9px;border-radius:12px;border:1px solid var(--line);background:var(--paper);cursor:pointer;display:grid;gap:3px;align-content:start;transition:.15s}
+.hero-side-item{text-align:left;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--paper);cursor:pointer;display:grid;gap:5px;align-content:start;transition:.15s}
 .hero-side-item:hover{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
 .hero-side-item.active{border-color:var(--amber);background:var(--amber-wash);box-shadow:0 0 0 3px color-mix(in srgb, var(--amber) 12%, transparent)}
 .hero-side-item b{font-size:14.5px;line-height:1.28;letter-spacing:-.015em;display:block;color:var(--ink);font-weight:600}
@@ -778,7 +778,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .hero-side-list.ov{-webkit-mask-image:linear-gradient(180deg,#000 0 90%,transparent);mask-image:linear-gradient(180deg,#000 0 90%,transparent)}
 .hero-side-list.at-end{-webkit-mask-image:none;mask-image:none}
 @media (max-height:1089px) and (min-width:1061px){
-  .hero-side-item{padding:7px 10px;gap:3px}
+  .hero-side-item{padding:12px 12px;gap:4px}
   .hero-side-item b{font-size:12.5px;line-height:1.2}
   .hero-side-item p{font-size:11px;line-height:1.38}
   .hero-side-item small{font-size:8.5px;gap:5px}
@@ -1202,43 +1202,36 @@ html.ghl-system-open .drawer-body:not(:has(.cs-case)){max-width:min(1240px,100%)
                 <small><i>25</i> AUTOMATION</small>
                 <b>Lead Capture &amp; Follow-Up Enrollment</b>
                 <p>Inquiry form submits → the lead auto-enrolls in follow-up, but only if they haven't already booked.</p>
-                <small><i>GHL</i><i>Workflows</i><i>Booking Check</i></small>
               </button>
               <button class="hero-side-item" data-i="1" onclick="setHeroLive(1)">
                 <small><i>01</i> FUNNEL <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
                 <b>Rubio Roofing — Industrial Construction Funnel</b>
                 <p>Hazard-stripe system, real-build proof (20+ photos), 5-tab gallery + GHL capture for Cavite &amp; Metro Manila.</p>
-                <small><i>GHL Funnels</i><i>Custom Code</i><i>Before/After</i></small>
               </button>
               <button class="hero-side-item" data-i="2" onclick="setHeroLive(2)">
                 <small><i>08</i> AUTOMATION</small>
                 <b>FlowFix Plumbing — Emergency Triage</b>
                 <p>Spots true emergencies, texts back missed calls within minutes, and reactivates past customers.</p>
-                <small><i>GHL</i><i>Make.com</i><i>Slack</i></small>
               </button>
               <button class="hero-side-item" data-i="3" onclick="setHeroLive(3)">
                 <small><i>22</i> AUTOMATION</small>
                 <b>TorqueWorks Auto Care — Dormant Win-Back</b>
                 <p>Tiered 60/90-day win-back for customers who've gone quiet, with reply-based suppression.</p>
-                <small><i>GHL</i><i>Smart Lists</i><i>SMS &amp; Email</i></small>
               </button>
               <button class="hero-side-item" data-i="4" onclick="setHeroLive(4)">
                 <small><i>04</i> AUTOMATION <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
                 <b>Haven Animal Clinic — AI-Qualified Booking</b>
                 <p>Hard-gated emergency detection → business-hours routing + auto-booking. No missed emergency.</p>
-                <small><i>GHL</i><i>Conversation AI</i><i>Calendar</i></small>
               </button>
               <button class="hero-side-item" data-i="5" onclick="setHeroLive(5)">
                 <small><i>05</i> AUTOMATION</small>
                 <b>FitCoach — Stripe to GHL</b>
                 <p>12-week program checkout with router (create vs update), Sheets roster + Slack ping. No double enrollments.</p>
-                <small><i>Make</i><i>Stripe</i><i>GHL</i></small>
               </button>
               <button class="hero-side-item" data-i="6" onclick="setHeroLive(6)">
                 <small><i>06</i> FUNNEL <span class="live-tag" style="margin-left:auto"><span class="live-dot"></span>Live</span></small>
                 <b>Legal Intake & Nurture — 4-step funnel</b>
                 <p>Tag-gated nurture where booking and nurture suppress each other — no double-messaging, no-shows recycled.</p>
-                <small><i>GHL Workflows</i><i>Custom JS</i></small>
               </button>
             </div>
             <div class="hero-side-cta">
