@@ -12,3 +12,13 @@ Thumbs.db
 
 # local print-preview render of the resume (regenerable, ~300KB, would deploy to Pages)
 /resume/resume-print-preview.png
+
+# Archify source + artifact. The chart that ships is inlined in index.html (#psmChart), so
+# nothing here is referenced by the site: psgcimbtflo.html is 812KB of viewer chrome and
+# psgcimbtflo-steps.html is the unused editorial variant. Both would only add dead weight
+# to Pages. The .architecture.json is the upstream source of truth — keep it locally, and
+# if the chart is ever re-cut, re-extract the SVG rather than expecting these to be live.
+/diagrams/
+
+# local marker selecting the `rainier-portfolio` Diagram Design profile (27 bytes, tooling state)
+/.diagram-design

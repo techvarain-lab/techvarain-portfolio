@@ -278,7 +278,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#1DB954;position:relative;display:inline-block;flex:none}
 .live-dot::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1px solid #1DB954;opacity:0;animation:livePing 1.8s ease-out infinite}
 @keyframes livePing{0%{opacity:.8;transform:scale(.5)}75%,100%{opacity:0;transform:scale(1.7)}}
-@media (prefers-reduced-motion: reduce){.live-dot::after{animation:none}.live-dot{box-shadow:0 0 0 4px color-mix(in srgb,#1DB954 18%,transparent)}.tab-hint,.tab-hint.out{transform:none;transition:opacity .15s ease}.app{transition:none}}
+@media (prefers-reduced-motion: reduce){.live-dot::after{animation:none}.live-dot{box-shadow:0 0 0 4px color-mix(in srgb,#1DB954 18%,transparent)}.tab-hint,.tab-hint.out{transform:none;transition:opacity .15s ease}.app{transition:none}.psm [data-animate]{animation:none!important;stroke-dashoffset:0}}
 .rail h1{
   font-family:'Instrument Serif',serif;font-size:50px;line-height:.78;letter-spacing:-.05em;margin:0;font-weight:400
 }
@@ -811,7 +811,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .panel-contact{flex-direction:column;overflow:auto;justify-content:center;scrollbar-width:none}
 .contact{border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1.08fr .92fr;background:var(--paper);max-width:980px;width:100%;margin:0 auto;box-shadow:0 12px 32px rgba(0,0,0,.06)}
 .contact-left{padding:28px;border-right:1px solid var(--line);background:var(--ground)}
-.contact-left h2{font-family:'Instrument Serif',serif;font-size:42px;line-height:.9;letter-spacing:-.03em;margin:8px 0 12px;font-weight:400}
+.contact-left h2{font-family:'Instrument Serif',serif;font-size:42px;line-height:.9;letter-spacing:-.03em;margin:0 0 12px;font-weight:400}
 .contact-left h2 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber)}
 .contact-left p{color:var(--ink-soft);line-height:1.6;margin:0;max-width:42ch;font-size:14px}
 .contact-links{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
@@ -850,7 +850,85 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   transition:opacity .2s ease,transform .28s cubic-bezier(.16,1,.3,1),visibility 0s}
 .drawer-head{position:sticky;top:0;background:var(--paper);padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;z-index:2;flex-shrink:0}
 .drawer-body{overflow:auto;flex:1;padding:18px;width:100%;max-width:min(1240px,100%);margin:0 auto}
-.drawer-body:not(:has(.cs-case)){max-width:820px}
+.drawer-body:not(:has(.cs-case)){max-width:1120px}
+/* n09 PSGCIMBTFLO: lift the 820px GHL cap so the embedded Archify diagram gets the modal's full width */
+html.ghl-system-open .drawer-body:not(:has(.cs-case)){max-width:min(1240px,100%)}
+.ghl-sysmap{margin:16px 0 6px}
+.ghl-sysmap-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:9px 0 0}
+
+/* GHL skill drawer, two-column: value left, proof right.
+   FLEX NOT GRID — this is load-bearing, not cosmetic. The first attempt used display:grid with
+   .ghl-colB in grid-column:2, which made both columns SHARE A ROW, so the row's height became
+   max(text, proof). A lazily-decoded proof image going 0px -> 678px pushed the entire left column
+   from y=190 to y=885 and off the modal's bottom edge. It measured correct in every screenshot
+   taken before decode and broken in every one taken after, and getComputedStyle +
+   elementFromPoint both reported the text visible and on top — so assert the two columns' `top`
+   values are EQUAL rather than trusting paint or hit-testing. Real wrappers + flex-size each
+   column by its own content; min-width:0 stops the wide canvases blowing out the flex basis. */
+.ghl-split{display:flex;flex-wrap:wrap;align-items:flex-start;column-gap:40px;row-gap:26px}
+.ghl-colA{flex:1 1 480px;min-width:0}
+.ghl-colB{flex:1 1 340px;min-width:0;position:sticky;top:0}
+.ghl-colB .ghl-sec-label{margin-top:0}
+.ghl-colB .ghl-pop-proof{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ghl-colB .ghl-pop-proof .ghl-proof-cell img{height:74px}
+.ghl-colB .ghl-pop-sub{border-top:1px solid var(--line);margin-top:14px;padding-top:12px}
+.ghl-colB .ghl-pop-sub p{font-size:13px;line-height:1.55}
+/* PSGCIMBTFLO chart — inlined from the Archify artifact's own SVG + style rules.
+   The artifact is 812KB of viewer chrome we no longer want, and its <h1> duplicated the
+   modal's, so the SVG was lifted out and re-skinned here. Diagrams/psgcimbtflo.architecture.json
+   is still the upstream source, but NOTHING regenerates this copy: a future `archify deliver`
+   will not update it. See AGENTS.md. */
+.psm{background:var(--psm-mask);border:1px solid var(--line);border-radius:12px;padding:18px 20px 14px}
+.psm svg{display:block;width:100%;height:auto}
+/* every rule is scoped under .psm so the generic names (c-*, t-*, m-*, a-*) cannot leak
+   onto site elements, and site rules cannot reach into the chart */
+.psm .c-grid{stroke:var(--psm-grid);fill:none}
+.psm .c-mask{fill:var(--psm-mask);stroke:none}
+.psm .c-backend{fill:var(--psm-backend-fill);stroke:var(--psm-backend-stroke)}
+.psm .c-external{fill:var(--psm-external-fill);stroke:var(--psm-external-stroke)}
+.psm .c-region{fill:color-mix(in srgb,var(--psm-arrow-emphasis) 7%,transparent);stroke:var(--psm-cloud-stroke);stroke-dasharray:8,4}
+.psm .t-primary{fill:var(--psm-text)}
+.psm .t-muted{fill:var(--psm-text-muted)}
+.psm .t-backend{fill:var(--psm-backend-stroke)}
+.psm .t-external{fill:var(--psm-external-stroke)}
+.psm .t-cloud{fill:var(--psm-cloud-stroke)}
+.psm .a-default{stroke:var(--psm-arrow);fill:none}
+.psm .m-default{fill:var(--psm-arrow)}
+.psm .m-emphasis{fill:var(--psm-arrow-emphasis)}
+.psm .m-security{fill:var(--psm-security-stroke)}
+.psm .m-dashed{fill:var(--psm-database-stroke)}
+.psm .s-backend{color:var(--psm-backend-stroke)}
+.psm .s-external{color:var(--psm-external-stroke)}
+.psm .semantic-sigil{fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;opacity:.76;pointer-events:none}
+.psm .semantic-sigil>*{vector-effect:non-scaling-stroke}
+.psm .semantic-sigil .sigil-fill{fill:currentColor;stroke:none}
+/* tokens are prefixed --psm-* because the site already owns --grid for its background
+   treatment; these are the Archify `editorial` preset values, which is the warm
+   paper/ink/vermilion register this site already speaks */
+.psm{--psm-text:#242018;--psm-text-muted:#6f6658;--psm-mask:#fbf8f1;--psm-grid:#d8d0c2;
+  --psm-backend-fill:rgba(42,119,75,.09);--psm-backend-stroke:#397b53;
+  --psm-external-fill:rgba(101,91,75,.09);--psm-external-stroke:#746b5e;
+  --psm-cloud-stroke:#9a671f;--psm-database-stroke:#765d86;--psm-security-stroke:#9e463f;
+  --psm-arrow:#8a806f;--psm-arrow-emphasis:#bb4c23}
+[data-theme="dark"] .psm{--psm-text:#f4eddf;--psm-text-muted:#b9ae9b;--psm-mask:#231f18;--psm-grid:#39342a;
+  --psm-backend-fill:rgba(63,132,92,.16);--psm-backend-stroke:#8fc29e;
+  --psm-external-fill:rgba(126,115,96,.18);--psm-external-stroke:#b8ad99;
+  --psm-cloud-stroke:#d8ad68;--psm-database-stroke:#c0a4d0;--psm-security-stroke:#df9085;
+  --psm-arrow:#948978;--psm-arrow-emphasis:#dd6b3d}
+/* Trace: the artifact gated this on html[data-ambient-motion="running"], set by viewer JS we
+   don't ship. One iteration, so it plays a single ambient pass and the 99.9% stop restores the
+   authored solid line language. --step is already inline on all 21 animated elements. */
+.psm [data-animate="edge"]{stroke-linecap:round;animation:psm-edge-flow 2.2s linear 1;animation-delay:calc(var(--step,0) * 160ms)}
+.psm [data-animate="node"]{transform-box:fill-box;transform-origin:center;animation:psm-node-pulse 3.5s ease-in-out 1;animation-delay:calc(var(--step,0) * 160ms)}
+@keyframes psm-edge-flow{0%{stroke-dasharray:10 8;stroke-dashoffset:54;opacity:.42}88%{stroke-dasharray:10 8;stroke-dashoffset:0;opacity:1}99.9%,100%{stroke-dasharray:10 8;stroke-dashoffset:0;opacity:1}}
+@keyframes psm-node-pulse{0%,72%,100%{opacity:1;filter:none}18%,36%{opacity:.78;filter:drop-shadow(0 2px 2px color-mix(in srgb,var(--psm-text) 18%,transparent))}}
+/* The chart is 1150x520 user units. Scaled to a 390px phone that is a 27% fit, which renders
+   the 12-unit labels at ~3px — unreadable. So below 768px it holds a legible floor and pans
+   horizontally instead, exactly as psgcimbtflo-steps.html did with its min-width. */
+@media (max-width:768px){
+  .psm{overflow-x:auto;overscroll-behavior-x:contain;padding:14px 14px 10px}
+  .psm svg{min-width:840px}
+}
 @media (min-width:1025px){
   .cs-case{display:flex;flex-wrap:wrap;align-items:flex-start;column-gap:40px}
   .cs-case > .cs-chips{flex:0 0 100%}
@@ -858,6 +936,17 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
   .cs-colB{flex:1.05 1 0;min-width:0;position:sticky;top:0}
 }
 @media (max-width:1024px){
+  /* GHL drawer collapses to one column WITHOUT reordering the DOM: the column wrappers become
+     display:contents so their grandchildren become flex items of .ghl-split, then row-direction
+     restores DOM order (value, then proof). Anything new added to .ghl-split needs an order or
+     it lands in DOM position. */
+  .ghl-split{flex-direction:column;column-gap:0;row-gap:0}
+  .ghl-colA,.ghl-colB{display:contents}
+  .ghl-colB{position:static}
+  .ghl-colB .ghl-pop-proof{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}
+  .ghl-colB .ghl-pop-proof .ghl-proof-cell img{height:56px}
+  .ghl-colB .ghl-pop-sub{margin-top:16px;padding-top:14px}
+  .ghl-colB .ghl-pop-sub p{font-size:14px;line-height:1.6}
   .cs-case{display:flex;flex-direction:column}
   .cs-colA,.cs-colB{display:contents}
   .cs-proof{order:1}
@@ -1192,7 +1281,6 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
       <section class="panel panel-contact" data-panel-id="contact" role="tabpanel">
         <div class="contact">
           <div class="contact-left">
-            <div class="eyebrow">Contact — warm reply, fast loom</div>
             <h2>Let’s make<br><i>ops lighter.</i></h2>
             <p>Tell me the flow eating your week — I’ll map it and ship the first automation in days.</p>
             <div class="contact-links"><a href="mailto:techva.rain@gmail.com">techva.rain@gmail.com</a><a href="tel:09951462765">0995 146 2765</a><a href="https://www.linkedin.com/in/rainier-dimasacat-a740a6176" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
@@ -1241,6 +1329,227 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 
 <div class="overlay" id="overlay"></div>
 <aside class="drawer" id="drawer" inert><div class="drawer-head"><span id="drawerKicker" style="font-family:'Fragment Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)">Case study</span><button onclick="closeDrawer()" class="drawer-close" aria-label="Close">✕</button></div><div class="drawer-body" id="drawerBody"></div></aside>
+<template id="psmChart">
+<svg viewBox="0 0 1150 360" role="img" lang="en" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="editorial" data-quality-profile="showcase">
+        <title id="archify-diagram-title">PSGCIMBTFLO — Automation Building System</title>
+        <desc id="archify-diagram-description">An architecture diagram generated by Archify.</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Boundaries (behind everything) -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="0" data-composition-frame-label="Discovery &amp; Design" x="10" y="50" width="1100" height="110" rx="12" class="c-region" stroke-width="1"/>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="1" data-composition-frame-label="Build, Ship &amp; Retain" x="10" y="226" width="916" height="110" rx="12" class="c-region" stroke-width="1"/>
+
+        <!-- Connection paths (before components for correct z-order) -->
+        <path data-edge-from="p" data-edge-to="s" data-edge-key="0" data-edge-id="p-to-s" data-composition-points="160,110;224,110" d="M 160 110 L 224 110" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="s" data-edge-to="g" data-edge-key="1" data-edge-id="s-to-g" data-composition-points="344,110;408,110" d="M 344 110 L 408 110" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="g" data-edge-to="c" data-edge-key="2" data-edge-id="g-to-c" data-composition-points="528,110;592,110" d="M 528 110 L 592 110" class="a-default" data-animate="edge" style="--step:2" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="c" data-edge-to="i" data-edge-label="pipeline mirrors journey" data-edge-key="3" data-edge-id="c-to-i" data-composition-points="712,110;776,110" d="M 712 110 L 776 110" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="i" data-edge-to="m" data-edge-key="4" data-edge-id="i-to-m" data-composition-points="896,110;960,110" d="M 896 110 L 960 110" class="a-default" data-animate="edge" style="--step:4" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="m" data-edge-to="b" data-edge-label="trigger + action steps" data-edge-key="5" data-edge-id="m-to-b" data-composition-points="1020,140;1020,198;100,198;100,256" d="M 1020 140 L 1020 190 Q 1020 198 1012 198 L 108 198 Q 100 198 100 206 L 100 256" class="a-default" data-animate="edge" style="--step:5" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="b" data-edge-to="t" data-edge-key="6" data-edge-id="b-to-t" data-composition-points="160,286;224,286" d="M 160 286 L 224 286" class="a-default" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="t" data-edge-to="f" data-edge-label="client revision loop" data-edge-key="7" data-edge-id="t-to-f" data-composition-points="344,286;408,286" d="M 344 286 L 408 286" class="a-default" data-animate="edge" style="--step:7" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="f" data-edge-to="l" data-edge-key="8" data-edge-id="f-to-l" data-composition-points="528,286;592,286" d="M 528 286 L 592 286" class="a-default" data-animate="edge" style="--step:8" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="l" data-edge-to="o" data-edge-label="retainer begins" data-edge-key="9" data-edge-id="l-to-o" data-composition-points="712,286;776,286" d="M 712 286 L 776 286" class="a-default" data-animate="edge" style="--step:9" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <!-- Components -->
+        <g id="node-p" data-node-id="p" data-node-label="Problem" tabindex="0" role="button" aria-label="Focus Problem, specific, not vague, Discovery &amp; Design" aria-pressed="false" data-node-kind="external" data-node-sublabel="specific, not vague" data-node-tag="P" data-node-context="Discovery &amp; Design">
+          <title>Problem · specific, not vague · Discovery &amp; Design · P</title>
+          <rect x="40" y="80" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="40" y="80" width="120" height="60" rx="6" class="c-external" data-animate="node" style="--step:0" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(46 86) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="100" y="108" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Problem</text>
+        <text data-detail="context" x="100" y="124" class="t-muted" font-size="9" text-anchor="middle">specific, not vague</text>
+        <text data-detail="fine" x="100" y="132" class="t-external" font-size="7" text-anchor="middle">P</text>
+        </g>
+
+        <g id="node-s" data-node-id="s" data-node-label="Solution" tabindex="0" role="button" aria-label="Focus Solution, not just automation, Discovery &amp; Design" aria-pressed="false" data-node-kind="external" data-node-sublabel="not just automation" data-node-tag="S" data-node-context="Discovery &amp; Design">
+          <title>Solution · not just automation · Discovery &amp; Design · S</title>
+          <rect x="224" y="80" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="224" y="80" width="120" height="60" rx="6" class="c-external" data-animate="node" style="--step:1" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(230 86) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="284" y="108" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Solution</text>
+        <text data-detail="context" x="284" y="124" class="t-muted" font-size="9" text-anchor="middle">not just automation</text>
+        <text data-detail="fine" x="284" y="132" class="t-external" font-size="7" text-anchor="middle">S</text>
+        </g>
+
+        <g id="node-g" data-node-id="g" data-node-label="Goal" tabindex="0" role="button" aria-label="Focus Goal, one outcome, Discovery &amp; Design" aria-pressed="false" data-node-kind="external" data-node-sublabel="one outcome" data-node-tag="G" data-node-context="Discovery &amp; Design">
+          <title>Goal · one outcome · Discovery &amp; Design · G</title>
+          <rect x="408" y="80" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="408" y="80" width="120" height="60" rx="6" class="c-external" data-animate="node" style="--step:2" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(414 86) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="468" y="108" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Goal</text>
+        <text data-detail="context" x="468" y="124" class="t-muted" font-size="9" text-anchor="middle">one outcome</text>
+        <text data-detail="fine" x="468" y="132" class="t-external" font-size="7" text-anchor="middle">G</text>
+        </g>
+
+        <g id="node-c" data-node-id="c" data-node-label="Customer Journey" tabindex="0" role="button" aria-label="Focus Customer Journey, the anchor, Discovery &amp; Design" aria-pressed="false" data-node-kind="external" data-node-sublabel="the anchor" data-node-tag="C" data-node-context="Discovery &amp; Design">
+          <title>Customer Journey · the anchor · Discovery &amp; Design · C</title>
+          <rect x="592" y="80" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="592" y="80" width="120" height="60" rx="6" class="c-external" data-animate="node" style="--step:3" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(598 86) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="652" y="108" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Customer Journey</text>
+        <text data-detail="context" x="652" y="124" class="t-muted" font-size="9" text-anchor="middle">the anchor</text>
+        <text data-detail="fine" x="652" y="132" class="t-external" font-size="7" text-anchor="middle">C</text>
+        </g>
+
+        <g id="node-i" data-node-id="i" data-node-label="Pipeline Stage" tabindex="0" role="button" aria-label="Focus Pipeline Stage, mirrors the journey, Discovery &amp; Design" aria-pressed="false" data-node-kind="external" data-node-sublabel="mirrors the journey" data-node-tag="I" data-node-context="Discovery &amp; Design">
+          <title>Pipeline Stage · mirrors the journey · Discovery &amp; Design · I</title>
+          <rect x="776" y="80" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="776" y="80" width="120" height="60" rx="6" class="c-external" data-animate="node" style="--step:4" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(782 86) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="836" y="108" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Pipeline Stage</text>
+        <text data-detail="context" x="836" y="124" class="t-muted" font-size="9" text-anchor="middle">mirrors the journey</text>
+        <text data-detail="fine" x="836" y="132" class="t-external" font-size="7" text-anchor="middle">I</text>
+        </g>
+
+        <g id="node-m" data-node-id="m" data-node-label="Mapping" tabindex="0" role="button" aria-label="Focus Mapping, trigger + actions, Discovery &amp; Design" aria-pressed="false" data-node-kind="external" data-node-sublabel="trigger + actions" data-node-tag="M" data-node-context="Discovery &amp; Design">
+          <title>Mapping · trigger + actions · Discovery &amp; Design · M</title>
+          <rect x="960" y="80" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="960" y="80" width="120" height="60" rx="6" class="c-external" data-animate="node" style="--step:5" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(966 86) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="1020" y="108" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Mapping</text>
+        <text data-detail="context" x="1020" y="124" class="t-muted" font-size="9" text-anchor="middle">trigger + actions</text>
+        <text data-detail="fine" x="1020" y="132" class="t-external" font-size="7" text-anchor="middle">M</text>
+        </g>
+
+        <g id="node-b" data-node-id="b" data-node-label="Build" tabindex="0" role="button" aria-label="Focus Build, in GoHighLevel, Build, Ship &amp; Retain" aria-pressed="false" data-node-kind="backend" data-node-sublabel="in GoHighLevel" data-node-tag="B" data-node-context="Build, Ship &amp; Retain">
+          <title>Build · in GoHighLevel · Build, Ship &amp; Retain · B</title>
+          <rect x="40" y="256" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="40" y="256" width="120" height="60" rx="6" class="c-backend" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(46 262) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="100" y="284" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Build</text>
+        <text data-detail="context" x="100" y="300" class="t-muted" font-size="9" text-anchor="middle">in GoHighLevel</text>
+        <text data-detail="fine" x="100" y="308" class="t-backend" font-size="7" text-anchor="middle">B</text>
+        </g>
+
+        <g id="node-t" data-node-id="t" data-node-label="Test" tabindex="0" role="button" aria-label="Focus Test, proof receipt, Build, Ship &amp; Retain" aria-pressed="false" data-node-kind="backend" data-node-sublabel="proof receipt" data-node-tag="T" data-node-context="Build, Ship &amp; Retain">
+          <title>Test · proof receipt · Build, Ship &amp; Retain · T</title>
+          <rect x="224" y="256" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="224" y="256" width="120" height="60" rx="6" class="c-backend" data-animate="node" style="--step:7" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(230 262) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="284" y="284" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Test</text>
+        <text data-detail="context" x="284" y="300" class="t-muted" font-size="9" text-anchor="middle">proof receipt</text>
+        <text data-detail="fine" x="284" y="308" class="t-backend" font-size="7" text-anchor="middle">T</text>
+        </g>
+
+        <g id="node-f" data-node-id="f" data-node-label="Final Revision" tabindex="0" role="button" aria-label="Focus Final Revision, review loop, Build, Ship &amp; Retain" aria-pressed="false" data-node-kind="backend" data-node-sublabel="review loop" data-node-tag="F" data-node-context="Build, Ship &amp; Retain">
+          <title>Final Revision · review loop · Build, Ship &amp; Retain · F</title>
+          <rect x="408" y="256" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="408" y="256" width="120" height="60" rx="6" class="c-backend" data-animate="node" style="--step:8" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(414 262) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="468" y="284" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Final Revision</text>
+        <text data-detail="context" x="468" y="300" class="t-muted" font-size="9" text-anchor="middle">review loop</text>
+        <text data-detail="fine" x="468" y="308" class="t-backend" font-size="7" text-anchor="middle">F</text>
+        </g>
+
+        <g id="node-l" data-node-id="l" data-node-label="Live" tabindex="0" role="button" aria-label="Focus Live, publish, Build, Ship &amp; Retain" aria-pressed="false" data-node-kind="backend" data-node-sublabel="publish" data-node-tag="L" data-node-context="Build, Ship &amp; Retain">
+          <title>Live · publish · Build, Ship &amp; Retain · L</title>
+          <rect x="592" y="256" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="592" y="256" width="120" height="60" rx="6" class="c-backend" data-animate="node" style="--step:9" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(598 262) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="652" y="284" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Live</text>
+        <text data-detail="context" x="652" y="300" class="t-muted" font-size="9" text-anchor="middle">publish</text>
+        <text data-detail="fine" x="652" y="308" class="t-backend" font-size="7" text-anchor="middle">L</text>
+        </g>
+
+        <g id="node-o" data-node-id="o" data-node-label="Optimize" tabindex="0" role="button" aria-label="Focus Optimize, retainer, Build, Ship &amp; Retain" aria-pressed="false" data-node-kind="backend" data-node-sublabel="retainer" data-node-tag="O" data-node-context="Build, Ship &amp; Retain">
+          <title>Optimize · retainer · Build, Ship &amp; Retain · O</title>
+          <rect x="776" y="256" width="120" height="60" rx="6" class="c-mask"/>
+          <rect x="776" y="256" width="120" height="60" rx="6" class="c-backend" data-animate="node" style="--step:10" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(782 262) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="836" y="284" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Optimize</text>
+        <text data-detail="context" x="836" y="300" class="t-muted" font-size="9" text-anchor="middle">retainer</text>
+        <text data-detail="fine" x="836" y="308" class="t-backend" font-size="7" text-anchor="middle">O</text>
+        </g>
+
+        <!-- Connection labels -->
+
+
+
+        <g data-detail="context" data-edge-from="c" data-edge-to="i" data-edge-label="pipeline mirrors journey" data-edge-key="3" data-edge-id="c-to-i">
+          <rect x="681.4" y="144" width="125.19999999999999" height="14" rx="3" class="c-mask"/>
+          <text x="744" y="154" class="t-muted" font-size="8" text-anchor="middle">pipeline mirrors journey</text>
+        </g>
+
+        <g data-detail="context" data-edge-from="m" data-edge-to="b" data-edge-label="trigger + action steps" data-edge-key="5" data-edge-id="m-to-b">
+          <rect x="502.2" y="178" width="115.6" height="14" rx="3" class="c-mask"/>
+          <text x="560" y="188" class="t-muted" font-size="8" text-anchor="middle">trigger + action steps</text>
+        </g>
+
+        <g data-detail="context" data-edge-from="t" data-edge-to="f" data-edge-label="client revision loop" data-edge-key="7" data-edge-id="t-to-f">
+          <rect x="323" y="320" width="106" height="14" rx="3" class="c-mask"/>
+          <text x="376" y="330" class="t-muted" font-size="8" text-anchor="middle">client revision loop</text>
+        </g>
+
+        <g data-detail="context" data-edge-from="l" data-edge-to="o" data-edge-label="retainer begins" data-edge-key="9" data-edge-id="l-to-o">
+          <rect x="703" y="320" width="82" height="14" rx="3" class="c-mask"/>
+          <text x="744" y="330" class="t-muted" font-size="8" text-anchor="middle">retainer begins</text>
+        </g>
+
+        <!-- Boundary labels (foreground masks keep routes out of titles) -->
+        <g data-graph-role="structural-frame-label" data-composition-frame-id="0" data-composition-frame-kind="region" data-composition-frame-label="Discovery &amp; Design">
+          <rect data-graph-role="structural-frame-label-mask" x="14" y="60" width="107.2" height="16" rx="3" class="c-mask"/>
+          <text data-boundary-label="" x="18" y="73" class="t-cloud" font-size="9" font-weight="600">Discovery &amp; Design</text>
+        </g>
+
+        <g data-graph-role="structural-frame-label" data-composition-frame-id="1" data-composition-frame-kind="region" data-composition-frame-label="Build, Ship &amp; Retain">
+          <rect data-graph-role="structural-frame-label-mask" x="14" y="236" width="118" height="16" rx="3" class="c-mask"/>
+          <text data-boundary-label="" x="18" y="249" class="t-cloud" font-size="9" font-weight="600">Build, Ship &amp; Retain</text>
+        </g>
+
+        <!-- Legend -->
+        
+      </svg>
+</template>
 <div class="lightbox" id="lightbox" inert onclick="if(event.target===this)closeLightbox()"><div style="width:min(1280px,96vw)"><div class="lightbox-bar"><button onclick="closeLightbox()">✕ Close</button><button onclick="document.getElementById('lightboxImg').style.transform=document.getElementById('lightboxImg').style.transform==='scale(1.5)'?'scale(1)':'scale(1.5)'" style="width:auto">Toggle 150%</button></div><img id="lightboxImg" src="" alt="Full view" style="width:100%;height:auto;display:block;transition:transform .2s;transform-origin:top center"></div></div>
 <div class="tab-hint" id="tabHint" role="tooltip" aria-hidden="true"><i class="tab-hint-caret"></i><span class="tab-hint-card"><span class="tab-hint-k" id="tabHintK"></span><span class="tab-hint-line"></span><span class="tab-hint-txt" id="tabHintTxt"></span></span></div>
 
@@ -1708,6 +2017,10 @@ function playLoom(btn){
 function closeDrawer(){
   if(typeof ghlZoomHide==='function') ghlZoomHide();
   drawerBody.querySelectorAll('iframe[src*="loom.com"], iframe[src*="youtube"]').forEach(f=>{ f.src='about:blank'; f.remove(); });
+  /* the inlined chart is a clone, so drop it rather than leave 22KB of SVG (and its 17
+     defs ids) resident in the document after the modal closes */
+  drawerBody.querySelectorAll('.psm').forEach(n=>n.remove());
+  document.documentElement.classList.remove('ghl-system-open');
   drawer.classList.remove('open');overlay.classList.remove('open');
 
 if(window.innerWidth<=1024) document.body.style.overflow='auto'; else document.body.style.overflow='hidden';
@@ -1761,7 +2074,10 @@ const glSkills=[
     {title:"Vehicle Custom Object",desc:"One of the custom objects I model: a Vehicle object with fields for make, model, year, plate number, last service date, next service due, and mileage. Associated as one contact to many vehicles — so a workflow can text \"Your Toyota Vios is due for an oil change\" based on that vehicle's next service date, not the contact's. Activity tracks per vehicle, which is exactly what a TorqueWorks-style dormant win-back needs.",chips:["Fields: make/model/year/plate","Last & next service","1 contact : many vehicles","Per-vehicle service triggers"],proof:["assets/ghl/proof-customobject-1.png","assets/ghl/proof-customobject-2.png","assets/ghl/proof-customobject-3.png"]}
   ]},
   {n:"08",icon:"◇",title:"Snapshots & Sub-Account Setup",short:"Package a full GHL setup — funnels, calendars, pipelines, workflows, forms, templates — into a reusable Snapshot.\nA new client sub-account goes from empty to live in minutes, not days.",desc:"I package a complete GoHighLevel setup into a reusable Snapshot — funnels, calendars, pipelines, workflows, forms, and templates captured as one template. A new client sub-account loads from empty to live in minutes instead of days, with the structure, copy, and automations already proven from a previous build instead of rebuilt from scratch.",chips:["Snapshot Templates","Sub-Account Setup","Rapid Onboarding","Reusable Builds"],pop:["Snapshot Template","Reusable Builds"],proof:["assets/ghl/proof-snapshot-1.png","assets/ghl/proof-snapshot-2.png"],subs:[]},
-  {n:"09",featured:true,title:"PSGCIMBTFLO — Automation Building System",short:"My 11-step system for shipping client automations — scoped live on discovery calls, built in GHL, tested with proof, optimized under retainer.",desc:"PSGCIMBTFLO is the acronym system I run on every client build: Problem, Solution, Goal, Customer Journey, Identify Pipeline Stage, Mapping, Build, Test, Final Revision, Live, Optimize. It turns vague asks into specific problems, anchors each automation to a customer journey, mirrors that journey into pipeline stages, and never calls a build done until it's tested with proof.",chips:["Problem-first","Pipeline mirrors journey","Tested with proof","Optimize & retainer"],proof:[],subs:[
+  /* chart:true renders the inlined PSGCIMBTFLO SVG from #psmChart. Upstream source is
+   diagrams/psgcimbtflo.architecture.json via the Archify skill — NOT diagrams/psgcimbtflo.html,
+   which is the 812KB viewer this replaced. Nothing regenerates the inline copy. */
+{n:"09",featured:true,title:"PSGCIMBTFLO — Automation Building System",short:"My 11-step system for shipping client automations — scoped live on discovery calls, built in GHL, tested with proof, optimized under retainer.",desc:"PSGCIMBTFLO is the acronym system I run on every client build: Problem, Solution, Goal, Customer Journey, Identify Pipeline Stage, Mapping, Build, Test, Final Revision, Live, Optimize. It turns vague asks into specific problems, anchors each automation to a customer journey, mirrors that journey into pipeline stages, and never calls a build done until it's tested with proof.",chips:["Problem-first","Pipeline mirrors journey","Tested with proof","Optimize & retainer"],chart:true,proof:[],subs:[
     {title:"Problem",desc:"Identify the specific problem or need — never build on vague answers. Probe until the real need is concrete.",chips:["Specific Need","Discovery Questions"],proof:[],skipProof:true},
     {title:"Solution",desc:"The fix isn't always an automation — a pipeline, form, calendar, landing page, notification, nurture sequence, or a combination. Clear problem → clear solution.",chips:["Right Tool Choice","Plain Language"],proof:[],skipProof:true},
     {title:"Goal",desc:"Every system needs an ending. Agree the client's desired outcome and start with one goal so the build stays focused.",chips:["Desired Outcome","One Goal"],proof:[],skipProof:true},
@@ -1843,18 +2159,53 @@ function openGhlSkill(s){
   drawerKicker.textContent='GHL — skill '+s.n+' · '+s.title;
   const chipPills=s.chips.map(ghlChip).join('');
   const proofHtml=(s.proof&&s.proof.length)?`<div><div class="ghl-sec-label">Proof — ${s.proof.length} shots · hover to peek · click to view</div><div class="ghl-pop-proof">${s.proof.map(ghlProof).join('')}</div></div>`:'';
+  /* evidence column = skill-level shots first, then each sub's shots under that sub's title, so
+     a shot always sits beside the claim it supports. hasSubsProof/skipProof follow the same
+     rule the single-column path used: a sub with no shots and skipProof renders nothing, a sub
+     with neither still shows "Proof coming soon." */
+  const subProofHtml=(s.subs||[]).map(u=>{
+    if(!(u.proof&&u.proof.length)) return (u.skipProof?'':`<div class="ghl-pop-sub"><div class="ghl-pop-sub-title">${u.title}</div><span class="ghl-pop-none">Proof coming soon.</span></div>`);
+    return `<div class="ghl-pop-sub"><div class="ghl-pop-sub-title">${u.title}</div><div class="ghl-pop-proof">${u.proof.map(ghlProof).join('')}</div></div>`;
+  }).join('');
+  const hasEvidence=!!((s.proof&&s.proof.length)||subProofHtml);
+  /* n09 keeps the plain single column — it is all chart and skipProof steps, so there is no
+     evidence column to build and its 1240px lift must not be disturbed. Every other tile that
+     has something to show on the right gets .ghl-split; the rest (04, 05) fall back to the
+     widened single column rather than being given an empty right side. Declared BEFORE subHtml
+     because subHtml reads it to decide whether to render proof inline. */
+  const twoCol=hasEvidence&&!s.chart;
   const workCta=(s.n==="04")?`<a class="btn-p" href="#work" style="display:flex;justify-content:center;width:100%;margin:12px 0 2px;padding:13px 16px;font-size:11px;letter-spacing:.1em" onclick="gotoWork('automation');return false">See actual work — automation builds →</a>`:(s.n==="05")?`<a class="btn-p" href="#work" style="display:flex;justify-content:center;width:100%;margin:12px 0 2px;padding:13px 16px;font-size:11px;letter-spacing:.1em" onclick="gotoWork('funnel');return false">See actual work — funnel builds →</a>`:'';
+  const sysmap=s.chart?`<div class="ghl-sysmap"><div class="psm" data-psm-slot></div><div class="ghl-sysmap-foot"><span class="ghl-sec-label">The 11 steps — system map</span></div></div>`:'';
+  /* In the two-column path the left column carries VALUE ONLY — title, desc, chips. Its proof
+     grid and its "Proof coming soon." are deliberately suppressed, because subProofHtml already
+     renders every shot in the right column and rendering both showed each shot twice. The
+     single-column path (n09, and 04/05) still needs `up` inline, so it is kept below and only
+     used when !twoCol. */
   const subHtml=(s.subs&&s.subs.length)?'<div style="margin-top:14px;padding-top:2px">'+s.subs.map(u=>{
     const uc=u.chips.map(ghlChip).join('');
     const up=(u.proof&&u.proof.length)?`<div class="ghl-pop-proof">${u.proof.map(ghlProof).join('')}</div>`:(u.skipProof?'':`<span class="ghl-pop-none">Proof coming soon.</span>`);
-    return `<div class="ghl-pop-sub"><div class="ghl-pop-sub-title">${u.title}</div><p>${u.desc}</p><div class="ghl-chips" style="margin:10px 0 12px">${uc}</div>${up}</div>`;
+    const inlineProof=twoCol?'':up;
+    return `<div class="ghl-pop-sub"><div class="ghl-pop-sub-title">${u.title}</div><p>${u.desc}</p><div class="ghl-chips" style="margin:10px 0 12px">${uc}</div>${inlineProof}</div>`;
   }).join('')+'</div>':'';
-  drawerBody.innerHTML = `<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${s.title}</h3>
-    <p style="color:var(--ink-soft);line-height:1.6;margin:0">${s.desc}</p>
+  const headHtml=`<h3 style="font-family:'Instrument Serif',serif;font-size:26px;margin:0 0 8px">${s.title}</h3>
+    <p style="color:var(--ink-soft);line-height:1.6;margin:0">${s.desc}</p>`;
+  const valueHtml=`${headHtml}
+    ${sysmap}
     ${workCta}
     <div class="ghl-chips">${chipPills}</div>
-    ${subHtml}
+    ${subHtml}`;
+  drawerBody.innerHTML = twoCol
+    ? `<div class="ghl-split"><div class="ghl-colA">${valueHtml}</div><div class="ghl-colB">${proofHtml}${subProofHtml}</div></div>`
+    : `${valueHtml}
     ${proofHtml}`;
+  document.documentElement.classList.toggle('ghl-system-open',!!s.chart);
+  if(s.chart){
+    const slot=drawerBody.querySelector('[data-psm-slot]'), tpl=document.getElementById('psmChart');
+    /* clone out of the <template> rather than fetching: fetch() is CORS-blocked on file://,
+       and the template's IDs stay out of the document until cloned, so the 17 defs ids
+       (arrowhead*, grid, node-*) can never collide with a second live copy */
+    if(slot&&tpl&&tpl.content.firstElementChild) slot.appendChild(tpl.content.firstElementChild.cloneNode(true));
+  }
   drawer.removeAttribute('inert'); drawerTrigger=document.activeElement;
   drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
   const dClose=drawer.querySelector('.drawer-close'); if(dClose) dClose.focus();
