@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#EFE7D8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
 <title>Rainier Dimasacat — Single Viewport · GHL SPECIALIST / FUNNEL BUILDER</title>
-<meta name="description" content="Rainier Dimasacat — GHL SPECIALIST / FUNNEL BUILDER. 18 builds. Single-viewport workbench: Stripe → GHL → Sheets → Slack, logged, routed, documented.">
+<meta name="description" content="Rainier Dimasacat — GHL SPECIALIST / FUNNEL BUILDER. 19 builds. Single-viewport workbench: Stripe → GHL → Sheets → Slack, logged, routed, documented.">
 <script>try{var t=localStorage.getItem('rd-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}</script>
 <script>/* rail auto-collapse state — set before paint so deep links don't flash a wide rail */
 (function(){var d=document.documentElement;var P=['hero','ghl','work','services','about','contact'];
@@ -16,7 +16,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Rainier Dimasacat — GHL Specialist / Funnel Builder">
-<meta property="og:description" content="No-code systems and GHL funnels that don't leak. Stripe → GHL → Sheets → Slack — logged, routed, documented. 18 builds.">
+<meta property="og:description" content="No-code systems and GHL funnels that don't leak. Stripe → GHL → Sheets → Slack — logged, routed, documented. 19 builds.">
 <meta property="og:url" content="https://rainier-dimasacat.github.io/">
 <meta property="og:image" content="https://rainier-dimasacat.github.io/assets/funnel/rubio/thumb.webp">
 <meta property="og:locale" content="en_PH">
@@ -548,7 +548,7 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 .row:last-child{border:0}
 .row:hover{background:var(--ground)}
 .row.active{background:var(--amber-wash);box-shadow:inset 3px 0 0 var(--amber)}
-.row b{font-family:'Instrument Serif',serif;font-size:16px;color:var(--ink-soft);font-weight:400}
+.row > b{font-family:'Instrument Serif',serif;font-size:16px;color:var(--ink-soft);font-weight:400}
 .row h4{margin:0;font-size:15px;line-height:1.3;letter-spacing:-.015em;font-weight:600;color:var(--ink);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .row p{margin:3px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 .tag{font-family:'Fragment Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;border-radius:999px;border:1px solid var(--line);width:fit-content}
@@ -557,6 +557,17 @@ html,body{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:none}
 [data-theme="dark"] .tag.auto{border-color:#2A4A32;background:#1B2E1F;color:#A8D5B5}
 .tag.funnel{border-color:#E8D9C8;background:#FFF3E6;color:#7A4D1A}
 [data-theme="dark"] .tag.funnel{border-color:#4A3520;background:#2E2418;color:#E8C9A0}
+/* The practice-build mark. OUTLINE + wash, not a solid amber fill: the two themes use very
+   different amber luminance (light #B45309 vs dark #E07A5F), so a fixed #fff-on-amber pill
+   measures 5.02:1 in light but only 2.95:1 in dark. Amber-on-wash clears AA in BOTH
+   (4.83:1 / 6.47:1). Keep the element a <span> — as an <b> it inherited `.row b` (0,1,1),
+   which outranks this rule (0,1,0) and forced 16px Instrument Serif in --ink-soft onto it,
+   giving 1.37:1: a pill that was present in the DOM and completely illegible. */
+.practice-badge{font-family:'Fragment Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);background:var(--amber-wash);border:1px solid var(--amber);border-radius:4px;padding:2px 7px;display:inline-block;width:fit-content}
+.practice-badge-note{font-family:'Fragment Mono',monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:4px;padding:2px 6px;display:inline-block;width:fit-content}
+/* a persistent left rail so the practice build is scannable across the whole bench, not just
+   on the one row you happen to read. Mirrors the .row.active idiom above. */
+.row.practice{box-shadow:inset 3px 0 0 var(--amber)}
   .stack-mini{font-family:'Fragment Mono',monospace;font-size:9px;color:var(--ink-soft);display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding-left:14px;border-left:1px solid var(--line)}
   .st-line{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;line-height:1.35}
   .work-search{flex:0 1 210px;min-width:130px;height:36px;padding:0 12px;font-family:'Fragment Mono',monospace;font-size:11px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:9px;outline:none;transition:border-color .15s}
@@ -1175,7 +1186,7 @@ html.ghl-system-open .drawer-body:not(:has(.cs-case)){max-width:min(1240px,100%)
         <div class="panel-tabs" id="ptabs" role="tablist" aria-label="Sections">
           <button class="ptab active" data-panel="hero" data-hint="6 featured builds — live preview carousel" role="tab" aria-selected="true">HOME</button>
           <button class="ptab" data-panel="ghl" data-hint="9 skills, proof-backed — the automation system I run" role="tab" aria-selected="false">WHAT I DO IN GHL</button>
-          <button class="ptab" data-panel="work" data-hint="See my actual work — real proof, live links" role="tab" aria-selected="false">PORTFOLIO BUILDS <span class="cnt">18</span></button>
+          <button class="ptab" data-panel="work" data-hint="See my actual work — real proof, live links" role="tab" aria-selected="false">PORTFOLIO BUILDS <span class="cnt">19</span></button>
           <button class="ptab" data-panel="services" data-hint="What I run reliably — funnels, automations, systems" role="tab" aria-selected="false">SERVICES</button>
           <button class="ptab" data-panel="about" data-hint="Experience & bench notes" role="tab" aria-selected="false">ABOUT ME</button>
           <button class="ptab" data-panel="contact" data-hint="Warm reply · fast loom · under 24h" role="tab" aria-selected="false">CONTACT</button>
@@ -1277,7 +1288,7 @@ html.ghl-system-open .drawer-body:not(:has(.cs-case)){max-width:min(1240px,100%)
         <div class="work-toolbar">
           <div class="segs">
             <button class="filter active" data-filter="automation" title="12 builds · 38 automations">Automation <span class="chip">12</span></button>
-            <button class="filter" data-filter="funnel">Funnel <span class="chip">6</span></button>
+            <button class="filter" data-filter="funnel">Funnel <span class="chip">7</span></button>
           </div>
           <input id="workSearch" class="work-search" type="search" spellcheck="false" autocomplete="off" aria-label="Search builds and automations">
           <span class="kbd" id="kbdHint">Hover to preview · Click to open</span>
@@ -1382,7 +1393,7 @@ html.ghl-system-open .drawer-body:not(:has(.cs-case)){max-width:min(1240px,100%)
     <div style="display:grid;gap:8px">
       <button class="ptab" style="width:100%;justify-content:center" data-panel="hero">HOME</button>
       <button class="ptab" style="width:100%;justify-content:center" data-panel="ghl">WHAT I DO IN GHL</button>
-      <button class="ptab" style="width:100%;justify-content:center" data-panel="work">PORTFOLIO BUILDS — 18</button>
+      <button class="ptab" style="width:100%;justify-content:center" data-panel="work">PORTFOLIO BUILDS — 19</button>
       <button class="ptab" style="width:100%;justify-content:center" data-panel="services">SERVICES</button>
       <button class="ptab" style="width:100%;justify-content:center" data-panel="about">ABOUT ME</button>
       <button class="ptab" style="width:100%;justify-content:center;background:var(--amber);color:white;border-color:var(--amber)" data-panel="contact">HIRE ME →</button>
@@ -1636,7 +1647,16 @@ const projects=[
   {n:"14",cat:"automation",tags:["automation"],family:"automation",title:"Xero → Asana Transaction Sync",desc:"Keeps finance and project management in step automatically — transactions flow from Xero to Asana with no copy-pasting, plus a clean audit trail.",img:"assets/work/make-xero.png",stack:["Make.com","Xero","Asana","Sheets"],bullets:["Xero export → iterator → router","CSV attachment to Asana","Sheets audit"],flows:[{name:"Xero → Asana Transaction Sync",short:"Xero transactions exported, iterated and routed, attached as CSV to Asana, with a Sheets audit trail.",tags:["Make.com","Xero","Asana","CSV","Audit"]}]},
   {n:"16",cat:"automation",tags:["automation"],family:"automation",title:"Auto Sort Gmail Attachments on Drive",desc:"Sorts email attachments into the right folders on its own — the inbox stays clean and nothing gets lost in Downloads.",img:"assets/work/gmail-drive.jpg",stack:["Make.com","Gmail","Gemini","OpenAI","Drive","Sheets"],bullets:["Gmail watch → Gemini + OpenAI","Auto-filed to Drive folders","Sheets log + Gmail reply"],flows:[{name:"Auto-File Gmail Attachments to Drive",short:"Watches Gmail, classifies attachments with Gemini + OpenAI, files them into Drive folders, logs to Sheets and replies to Gmail.",tags:["Make.com","Gmail","Gemini + OpenAI","Drive","Sheets"]}]},
   {n:"23",cat:"funnel",tags:["funnel"],family:"funnel",title:"FitCoach - 12-Week Program Checkout Funnel",desc:"A single-page checkout for a 12-week fitness program — clear offer, smooth payment, instant confirmation, and every new enrollment logged automatically.",img:"assets/funnel/fitcoach/thumb.webp",full:"assets/funnel/fitcoach/full.webp",sections:["assets/funnel/fitcoach/sec01.webp","assets/funnel/fitcoach/sec02.webp","assets/funnel/fitcoach/sec03.webp","assets/funnel/fitcoach/sec04.webp","assets/funnel/fitcoach/sec05.webp","assets/funnel/fitcoach/sec06.webp"],loom:"https://www.loom.com/embed/8613df569f7740c998a3a1f67d5dcdbb?hide_owner=true&hide_share=true&hide_title=true",stack:["Make.com","Stripe","GoHighLevel","Sheets","Slack"],bullets:["Landing -> offer -> Stripe checkout -> confirmation, single page","UTM + promo-code capture on hidden fields","Post-payment GHL contact sync + Sheets roster","Team Slack alert on every new enrollment","No double enrollments"],problem:"Coaches with a great offer were losing people between interest and payment — explaining the program, answering the same questions, and collecting payment all happened manually, one message at a time. Curious visitors had nowhere clear to go, so they never became clients.",solution:"I designed and built a single-page funnel that does the whole job in one scroll: it speaks to the right person, shows what they get, backs it up with proof, and takes them straight to checkout — without a single back-and-forth. It's mobile-ready and drops into their existing site in minutes.",outcome:"The coach now shares one link instead of chasing DMs. Visitors understand the offer in under a minute and can enroll anytime, from any device — turning traffic into signups while the coach gets back to coaching.",automation:["assets/funnel/fitcoach/automation/auto01.webp","assets/funnel/fitcoach/automation/auto02.webp","assets/funnel/fitcoach/automation/auto03.webp","assets/funnel/fitcoach/automation/auto04.webp","assets/funnel/fitcoach/automation/auto05.webp","assets/funnel/fitcoach/automation/make-onboarding.png","assets/funnel/fitcoach/automation/make-abandoned.png","assets/funnel/fitcoach/automation/make-paymentfailed.png"]},
-  {n:"24",cat:"funnel",tags:["funnel"],family:"funnel",title:"Haven Animal Clinic — New Patient Checkup Funnel",desc:"A friendly new-patient funnel that makes a ₱1,999 checkup easy to book — real trust signals, same-day or next-day slots, and a chat assistant ready to help.",img:"assets/funnel/haven/thumb.webp",full:"assets/funnel/haven/full.webp",sections:["assets/funnel/haven/sec01.webp"],stack:["GoHighLevel","Conversation AI","GHL Workflows","GHL Calendar"],bullets:["Single-page new-patient funnel — ₱1,999 Overall Checkup anchored vs ₱3,500 (saves ₱1,501)","60-sec booking: Today/Tomorrow slot picker with live availability labels","'Open Conversation Assistant →' hands chat booking to the AI flow","Trust stack: 1,200+ Haven families, 4.9★ Google, Fear-Free certified, 20-min unhurried exam","No upfront payment — settled at clinic check-in"],liveUrl:"https://techvarain-lab.github.io/funnelbuild-haven_animal_clinic/"}
+  {n:"24",cat:"funnel",tags:["funnel"],family:"funnel",title:"Haven Animal Clinic — New Patient Checkup Funnel",desc:"A friendly new-patient funnel that makes a ₱1,999 checkup easy to book — real trust signals, same-day or next-day slots, and a chat assistant ready to help.",img:"assets/funnel/haven/thumb.webp",full:"assets/funnel/haven/full.webp",sections:["assets/funnel/haven/sec01.webp"],stack:["GoHighLevel","Conversation AI","GHL Workflows","GHL Calendar"],bullets:["Single-page new-patient funnel — ₱1,999 Overall Checkup anchored vs ₱3,500 (saves ₱1,501)","60-sec booking: Today/Tomorrow slot picker with live availability labels","'Open Conversation Assistant →' hands chat booking to the AI flow","Trust stack: 1,200+ Haven families, 4.9★ Google, Fear-Free certified, 20-min unhurried exam","No upfront payment — settled at clinic check-in"],liveUrl:"https://techvarain-lab.github.io/funnelbuild-haven_animal_clinic/"},
+  /* n26 is a PRACTICE BUILD with a FICTIONAL client, unlike every other entry in this array.
+     `practice:true` is what draws the amber "Practice build" pill on the bench row and the
+     "fictional client" label in the sticky drawer head. Do not remove it, and do not present
+     this entry's outcome numbers as measured results — they are targets, stated as such.
+     Deliberately carries no `bullets[]`, `build[]` or `niche`: all three are DEAD fields with
+     zero render sites (only problem/solution/outcome render, at openDrawer). Its build detail
+     is folded into `solution` instead. No `flows[]`/`automation[]` either — a funnel carrying
+     those hits the n22 trap, where the automation branch silently takes over. */
+  {n:"26",cat:"funnel",tags:["funnel"],family:"funnel",practice:true,title:"Bright Minds Learning Center \u2014 Saturday Assessment Booking Funnel",desc:"A booking funnel that turns Facebook inquiries into booked free Saturday assessments \u2014 live slot availability, instant SMS confirmation, and reminders, so no parent goes quiet between the ad and the visit.",img:"assets/funnel/bright-minds/thumb.webp",full:"assets/funnel/bright-minds/full.webp",sections:["assets/funnel/bright-minds/sec01.webp","assets/funnel/bright-minds/sec02.webp","assets/funnel/bright-minds/sec03.webp","assets/funnel/bright-minds/sec04.webp","assets/funnel/bright-minds/sec05.webp","assets/funnel/bright-minds/sec06.webp","assets/funnel/bright-minds/sec07.webp","assets/funnel/bright-minds/sec08.webp"],stack:["GoHighLevel","GHL Calendar","GHL Workflows","Custom Fields","SMS & Email"],liveUrl:"https://techvarain-lab.github.io/funnelbuild-brightminds/",problem:"Carla runs a 3-year-old tutoring center in Dasmari\u00f1as, Cavite with about 60 students, and she was spending \u20B115,000 a month on Facebook ads. The ads worked \u2014 parents clicked and messaged. What happened next didn\u2019t. One staff member answered Messenger whenever she could, often hours later, and by then most parents had gone quiet. Every inquiry lived in a Google Form and a notebook. Only about 1 in 10 ever walked through the door, and there was no way to tell which ads produced enrolled students.<br><br>The real problem was that leads were treated as buy-or-gone. A parent who said \u201Cpag-iisipan ko muna\u201D simply disappeared, because nothing existed between the first message and enrollment. Eight Saturday slots were managed in Carla\u2019s head, and her parents \u2014 many of them shift workers on mobile \u2014 rarely checked email.",solution:"One offer, one action: a free 1-hour diagnostic assessment and trial class, booked in a few taps. The journey runs Facebook ad \u2192 landing page \u2192 pick a Saturday slot \u2192 instant SMS and email confirmation \u2192 reminders \u2192 assessment \u2192 enrollment offer.<br><br><b>The funnel \u2014 3 pages.</b> A landing page with hero, the pain points parents actually feel, what the free session includes, a 3-step process, a trust section, pricing and FAQ, with the call to action repeated. A booking page carrying the GHL calendar \u2014 Saturdays only, 60-minute 1-on-1 slots. A thank-you page confirming the booking and what to bring on the day.<br><br><b>Key design decisions.</b> One offer and one action: everything on the page points to the booking. Pricing is shown on the page, so parents arrive informed and Ate Joy stops answering \u201Cmagkano po?\u201D Communication is SMS-first, because that\u2019s where Carla\u2019s parents actually respond. And capacity is designed around the real world \u2014 8 back-to-back sessions isn\u2019t realistic for one tutor, so the calendar caps at 6 per Saturday with a lunch break and buffers, scalable to 8 once a second tutor is hired.<br><br><b>Booking form.</b> Parent name and mobile come first, so a contact is captured even if the parent abandons the rest of the form. Then the child\u2019s name, grade, subject of concern, and optional notes.<br><br><b>Data model.</b> Custom fields on the parent contact, since the parent is who gets texted and billed. A Student Custom Object is planned as a Phase 2 upgrade to support sibling bookings and per-child enrollment tracking.<br><br><b>Pipeline.</b> New Lead \u2192 Booked Assessment \u2192 Attended \u2192 Enrolled, with No Show \u2192 Rebooking and Lost alongside.<br><br><b>4 workflows built.</b> Instant booking confirmation (SMS + email, contact created, stage updated), reminders at 24 hours and 3 hours before, cancel/reschedule handling that frees the slot, and an internal alert to Carla and staff on each new booking.<br><br><i>Planned for Phase 2, not built:</i> an AI chat bot restricted to a knowledge base with staff handoff, a no-show rebooking nurture, a post-assessment urgency promo, and a marketing dashboard.",outcome:"This is a self-directed practice build, so there are no client results to report. The targets it was designed around:<br><br>- Every inquiry becomes a saved contact with a phone number and a pipeline stage, instead of living in a form and a notebook<br>- Replies and confirmations are instant instead of hours-late<br>- Reminders aim to cut Saturday no-shows<br>- The break-even math: one enrolled student is roughly \u20B13,000/month and typically stays 6+ months (\u20B118,000+), so converting just <b>two extra students</b> covers the full first-month cost"}
 ];
 
 const rows=document.getElementById('rows');
@@ -1650,6 +1670,24 @@ const mobileType = p => {
   const automation=(p.tags||[p.cat]).includes('automation');
   return `<span class="tag ${automation?'auto':'funnel'} mobile-type">${automation?'Automation':'Funnel'}</span>`;
 };
+/* A practice build is a self-directed exercise with a FICTIONAL client. Every other build here
+   is real client work with a real outcome, so the label has to be un-skimmable: an amber pill +
+   a persistent left rail on the bench row (before anyone clicks through) plus a sticky variant
+   in the drawer head. Grep `practice:true` before assuming any build is client work.
+   Both are <span>/<b> OUTSIDE .row on purpose — as an <b> inside .row it inherited `.row b`
+   (0,1,1) over `.practice-badge` (0,1,0) and rendered at 1.37:1, i.e. invisible. */
+const practiceBadge = p => p.practice ? `<span class="practice-badge">Practice build</span>` : '';
+const practiceNote  = p => p.practice ? `<b class="practice-badge-note">Practice build &middot; fictional client</b>` : '';
+/* Per-build captions for the stacked section shots. These were ONE ternary duplicated at two
+   call sites (the preview pane and the drawer zoom bar), whose fallback was Rubio's own funnel
+   — so every non-06 build was captioned "Pricing · $297" / "Program · 4 pillars". A short array
+   is safe: both consumers fall back to "Section N". Add a branch per build, don't widen the
+   fallback. */
+const SEC_LABELS={
+  "06":["Landing · Hero + Trust","Intake · Form + UTM","Calendar · Booking","Confirmation · Next steps","Nurture · Tag loop"],
+  "26":["Hero · the offer + one CTA","What's included + sample report","Trial class · a real session","A Saturday · how it runs","Proof + availability · 6 slots","FAQ + closing CTA","Booking · the GHL calendar","Confirmation · what happens next"]
+};
+const secLabelsFor = p => SEC_LABELS[p.n] || ["Hero · Build the body","Problem · Pain","Program · 4 pillars","Proof · Testimonials","Pricing · $297","FAQ · No surprises"];
 
 function render(filter=curFilter, q=''){
   curFilter=filter;
@@ -1667,8 +1705,9 @@ function render(filter=curFilter, q=''){
       const grp=document.createElement('div'); grp.className='build-group';
       const hdr=rowEl(p.n,p.title);
       hdr.classList.add('build-hdr');
+      if(p.practice) hdr.classList.add('practice');
       const eng=p.engine?`<b style="display:inline-block;font-family:'Fragment Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:4px;padding:1px 5px;margin-bottom:4px">${p.engine}</b>`:'';
-      hdr.innerHTML=`<b>${p.n}</b><div>${eng}<h4>${p.title}</h4>${mobileType(p)}</div><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
+      hdr.innerHTML=`<b>${p.n}</b><div>${eng}${practiceBadge(p)}<h4>${p.title}</h4>${mobileType(p)}</div><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
       wireRow(hdr,()=>setPreview(p),()=>openDrawer(p),isCoarse);
       grp.appendChild(hdr);
       matches.forEach(({f,idx})=>{
@@ -1688,7 +1727,8 @@ function render(filter=curFilter, q=''){
     list=list.filter(p=>!Q||hay(p.title,p.desc,p.stack.join(' '),(p.tags||[]).join(' ')).includes(Q));
     list.forEach(p=>{
       const r=rowEl(p.n,p.title);
-      r.innerHTML=`<b>${p.n}</b><div><h4>${p.title}</h4>${mobileType(p)}<p>${p.desc}</p></div><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
+      if(p.practice) r.classList.add('practice');
+      r.innerHTML=`<b>${p.n}</b><div>${practiceBadge(p)}<h4>${p.title}</h4>${mobileType(p)}<p>${p.desc}</p></div><span class="stack-mini">${p.stack.map(s=>'<span class="st-line">'+s+'</span>').join('')}</span>`;
       wireRow(r,()=>setPreview(p),()=>openDrawer(p),isCoarse);
       rows.appendChild(r);
     });
@@ -1728,7 +1768,7 @@ function setPreview(p, flow){
   const famLabel = p.cat==='automation'?'Automation':'Funnel';
   prevKicker.textContent=flow?`Preview — ${p.n}·${flow.idx} · ${famLabel} · ${flow.f.name}`:`Preview — ${p.n} · ${famLabel}`;
   if(prevLiveBadge) prevLiveBadge.style.display = p.liveUrl ? '' : 'none';
-  const secLabels = p.n==="06" ? ["Landing · Hero + Trust","Intake · Form + UTM","Calendar · Booking","Confirmation · Next steps","Nurture · Tag loop"] : ["Hero · Build the body","Problem · Pain","Program · 4 pillars","Proof · Testimonials","Pricing · $297","FAQ · No surprises"];
+  const secLabels = secLabelsFor(p);
   const stripItems=[];
   const fImgs=(flow&&flow.f&&flow.f.imgs)?flow.f.imgs:null;
   if(!(p.cat==='automation') && p.sections && p.sections.length) p.sections.forEach((s,i)=>stripItems.push({src:s,label:`${i+1}/${p.sections.length} · ${secLabels[i]||"Section "+(i+1)}`}));
@@ -2003,7 +2043,9 @@ const lightbox=document.getElementById('lightbox');
 if(lightbox) lightbox.addEventListener('keydown',e=>trapFocus(lightbox,e));
 function openDrawer(p, fi){
   const famLabel = p.cat==='automation'?'Automation':'Funnel';
-  drawerKicker.textContent=famLabel+' — '+p.n;
+  /* innerHTML, not textContent: a practice build carries its fictional-client label into the
+     STICKY drawer head, so it stays visible however far the case study is scrolled. */
+  drawerKicker.innerHTML=famLabel+' &mdash; '+p.n+(p.practice?' &nbsp;'+practiceNote(p):'');
   drawerZoomLevel=1;
 const __fl=p.flows||[];
 const fIdx=(fi&&fi>=1&&fi<=__fl.length)?fi:(__fl.length?1:0);
@@ -2018,7 +2060,7 @@ if(__fl.length>1){
   let media='';
   const isAuto=p.cat==='automation';
   
-  const labels = p.n==="06" ? ["Landing · Hero + Trust","Intake · Form + UTM","Calendar · Booking","Confirmation · Next steps","Nurture · Tag loop"] : ["Hero · Build the body","Problem · Pain","Program · 4 pillars","Proof · Testimonials","Pricing · $297","FAQ · No surprises"];
+  const labels = secLabelsFor(p);
   if(isAuto && p.automation && p.automation.length){
     autoZoomLevel=1;
     const fImgs=flow&&flow.imgs;
