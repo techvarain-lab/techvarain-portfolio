@@ -1835,18 +1835,30 @@ function foldersMedia(p){
   const total=(p.sections||[]).length, active=Math.min(drawerPageIdx,u.length-1), pg=u[active];
   const tabs=u.map((x,i)=>{
     const on=i===active;
-    /* the count badge is only meaningful for pages — a band is always 1 */
-    return `<button type="button" class="cs-tab${on?' on':''}" role="tab" aria-selected="${on}" aria-controls="csPane" tabindex="${on?0:-1}" onclick="drawerPage(${i})"><span class="fld">${on?'▾':'▸'}</span>${x.label}${x.kind==='page'?`<span class="n">${x.count}</span>`:''}</button>`;
+    /* the count badge is only meaningful for pages and skins — a band is always 1 */
+    return `<button type="button" class="cs-tab${on?' on':''}" role="tab" aria-selected="${on}" aria-controls="csPane" tabindex="${on?0:-1}" onclick="drawerPage(${i})"><span class="fld">${on?'▾':'▸'}</span>${x.label}${(x.kind==='page'||x.kind==='skin')?`<span class="n">${x.count}</span>`:''}</button>`;
   }).join('');
   let body='';
   if(pg && total){
-    const labels=secLabelsFor(p), stack=[];
-    for(let i=pg.from;i<pg.to && i<total;i++) stack.push(`<img src="${p.sections[i]}" alt="${p.title} — ${labels[i]||'section '+(i+1)}" style="width:100%;height:auto;display:block;border-bottom:1px solid var(--line)" loading="lazy">`+capHtml(labels[i]||"Section "+(i+1),i,total));
+    /* Captions + the "Section i / n" counter resolve LOCAL to the active unit for skins,
+       because each skin carries its own `labels[]` and its own band count. Band and page
+       units keep the GLOBAL index: a band IS a position in one page, so "Section 3 / 6" is
+       the honest reading there, and switching it to local would make every band read 1 / 1. */
+    const labels=(pg&&pg.labels)?pg.labels:secLabelsFor(p), stack=[];
+    for(let i=pg.from;i<pg.to && i<total;i++){
+      const li = pg.kind==='skin' ? (i-pg.from) : i;
+      const cap = labels[li]||("Section "+(li+1));
+      stack.push(`<img src="${p.sections[i]}" alt="${p.title} — ${cap}" style="width:100%;height:auto;display:block;border-bottom:1px solid var(--line)" loading="lazy">`+capHtml(cap,li,pg.kind==='skin'?pg.count:total));
+    }
     const zoomTxt = pg.kind==='page' ? `${pg.label.toLowerCase()}, ${pg.count} section${pg.count===1?'':'s'}` : pg.label;
-    body=`<div class="zoom-bar"><span style="flex:1">Zoom — ${zoomTxt}</span><button onclick="drawerZoom(-0.15)">−</button><span class="zoom-label" id="drawerZoomLabel">100%</span><button onclick="drawerZoom(0.15)">+</button><button onclick="openLightbox('${p.full||p.sections[pg.from]}')" style="width:auto;padding:0 10px">⤢ Full</button></div>`
+    /* the lightbox opens the ACTIVE unit's own capture. `pg.full` is set for every unit
+       kind by deckUnits; the fallbacks are belt-and-braces for any future kind. */
+    const unitFull = pg.full || p.full || p.sections[pg.from];
+    const liveBtn = pg.liveUrl ? `<button onclick="window.open('${pg.liveUrl}','_blank','noopener,noreferrer')" style="width:auto;padding:0 10px">↗ Live view</button>` : '';
+    body=`<div class="zoom-bar"><span style="flex:1">Zoom — ${zoomTxt}</span><button onclick="drawerZoom(-0.15)">−</button><span class="zoom-label" id="drawerZoomLabel">100%</span><button onclick="drawerZoom(0.15)">+</button>${liveBtn}<button onclick="openLightbox('${unitFull}')" style="width:auto;padding:0 10px">⤢ Full</button></div>`
       +`<div id="csPane" role="tabpanel" style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ground);max-height:70vh;overflow:auto"><div id="drawerZoomImg" style="transition:transform .2s cubic-bezier(.16,1,.3,1);transform-origin:top center"><div style="display:grid">${stack.join('')}</div></div></div>`;
   }
-  const rail = u[0].kind==='page' ? 'Funnel pages' : 'Page sections';
+  const rail = u[0].kind==='page' ? 'Funnel pages' : (u[0].kind==='skin' ? 'Design systems' : 'Page sections');
   return `<div class="cs-folders-host"><div class="cs-folders" role="tablist" aria-label="${rail}" onkeydown="csTabKey(event)">${tabs}</div>${body}</div>`;
 }
 function drawerPage(i){
