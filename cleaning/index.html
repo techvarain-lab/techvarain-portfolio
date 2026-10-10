@@ -116,10 +116,8 @@
     .benefit-icon{width:46px;height:46px;display:grid;place-items:center;background:var(--green-wash);color:var(--green);border-radius:50%;font-weight:800}.benefit-card h3{font-size:1.55rem}.benefit-card p{color:var(--muted);margin:0}
 
     .demo{padding-top:60px}.video-shell{border:1px solid var(--line-strong);border-radius:var(--radius);background:#dfe7e1;padding:16px;box-shadow:var(--shadow)}
-    .video-placeholder{aspect-ratio:16/9;background:var(--dark);color:white;border-radius:11px;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background-image:radial-gradient(circle at 20% 20%,rgba(90,166,130,.24),transparent 38%),linear-gradient(135deg,#202823,#17201b)}
-    .video-placeholder::before{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.12);border-radius:5px}
-    .play{width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.65);display:grid;place-items:center;margin:0 auto 18px;font-size:1.25rem;padding-left:4px}
-    .video-placeholder h3{font-size:clamp(1.65rem,3vw,2.4rem);margin-bottom:8px}.video-placeholder p{color:rgba(255,255,255,.63);margin:0;font-size:.86rem}.video-caption{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:15px 4px 2px;color:var(--muted);font-size:.78rem}.video-caption b{color:var(--ink);font-weight:500}
+    .video-embed{aspect-ratio:16/9;background:var(--dark);border-radius:11px;overflow:hidden}.video-embed iframe{width:100%;height:100%;border:0;display:block}
+    .video-caption{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:15px 4px 2px;color:var(--muted);font-size:.78rem}.video-caption b{color:var(--ink);font-weight:500}
 
     .offer{background:var(--green-wash)}
     .offer-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:70px;align-items:start}
@@ -263,13 +261,13 @@
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow mono">System walkthrough</p>
-          <div><h2>See the lead flow before we talk.</h2><p class="lead">This space is reserved for Rainier’s existing demo video. Replace the placeholder with the final Loom, YouTube, or privacy-enhanced embed URL when ready.</p></div>
+          <div><h2>See the lead flow before we talk.</h2><p class="lead">Watch how a cleaning inquiry moves from first contact into a structured response, follow-up, and team handoff.</p></div>
         </div>
         <div class="video-shell">
-          <div class="video-placeholder" role="img" aria-label="Placeholder for cleaning lead automation demo video">
-            <div><div class="play" aria-hidden="true">▶</div><h3>Cleaning Lead System Demo</h3><p>Video embed placeholder · 16:9</p></div>
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/ZGSWorxyJKg?rel=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2Frainierdimasacat.cc.cd&amp;widget_referrer=https%3A%2F%2Frainierdimasacat.cc.cd%2Fcleaning%2F" title="Cleaning lead system demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-          <div class="video-caption"><b>Suggested walkthrough: inquiry → instant reply → pipeline → follow-up task</b><span class="mono">Replace with existing demo embed</span></div>
+          <div class="video-caption"><b>Walkthrough: inquiry → instant reply → pipeline → follow-up task</b><span class="mono">Cleaning lead system demo</span></div>
         </div>
       </div>
     </section>
