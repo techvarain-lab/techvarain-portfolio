@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#f3ede2">
+  <meta name="theme-color" content="#f6faf8">
   <title>Cleaning Business Lead Follow-Up Systems — Rainier Dimasacat</title>
   <meta name="description" content="A focused lead capture and follow-up system for cleaning businesses—built to turn more inquiries into clear, bookable conversations.">
   <link rel="canonical" href="https://rainierdimasacat.cc.cd/cleaning/">
@@ -14,75 +14,86 @@
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fragment+Mono&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --ground:#f3ede2;
-      --paper:#fffaf1;
-      --ink:#1d211f;
-      --ink-2:#494d49;
-      --muted:#716f69;
-      --line:#d9cdbb;
-      --line-strong:#c7b79e;
-      --green:#1f6a56;
-      --green-2:#155343;
-      --green-wash:#e2eee7;
-      --amber:#b45309;
-      --amber-wash:#fff3df;
-      --dark:#202823;
-      --white:#fffdf8;
-      --shadow:0 24px 70px rgba(50,42,30,.12);
-      --radius:18px;
+      --ground:#f6faf8;
+      --paper:#ffffff;
+      --ink:#122721;
+      --ink-2:#40534d;
+      --muted:#687a74;
+      --line:#d7e4df;
+      --line-strong:#b9cec6;
+      --green:#176b54;
+      --green-2:#0f523f;
+      --green-wash:#dff3ea;
+      --citrus:#f2c94c;
+      --citrus-wash:#fff6d7;
+      --blue:#d9eef1;
+      --dark:#17352d;
+      --white:#fbfffd;
+      --shadow:0 24px 70px rgba(19,65,52,.12);
+      --radius:16px;
+      --ease-out:cubic-bezier(.23,1,.32,1);
+      --ease-in-out:cubic-bezier(.77,0,.175,1);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--ground);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.55;overflow-x:hidden}
-    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.34;background-image:linear-gradient(rgba(70,84,75,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(70,84,75,.055) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,#000,transparent 82%)}
+    body{margin:0;background:var(--ground);color:var(--ink);font-family:"Manrope",sans-serif;line-height:1.55;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.48;background-image:radial-gradient(circle at 1px 1px,rgba(23,107,84,.09) 1px,transparent 0);background-size:28px 28px;mask-image:linear-gradient(to bottom,#000,transparent 72%)}
     a{color:inherit}
     button,input,textarea,select{font:inherit}
     img{max-width:100%;display:block}
     .skip{position:fixed;left:12px;top:-60px;background:var(--dark);color:white;padding:10px 14px;z-index:100;border-radius:6px}.skip:focus{top:12px}
     .wrap{width:min(1180px,calc(100% - 40px));margin-inline:auto;position:relative}
-    .mono{font-family:"Fragment Mono",monospace;text-transform:uppercase;letter-spacing:.09em;font-size:.72rem}
-    .eyebrow{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:600}.eyebrow::before{content:"";width:30px;height:1px;background:currentColor}
+    .mono{font-family:"Manrope",sans-serif;letter-spacing:.015em;font-size:.74rem;font-weight:700}
+    .eyebrow{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:700}.eyebrow::before{content:"";width:20px;height:6px;border-radius:99px;background:var(--citrus)}
     h1,h2,h3,p{margin-top:0}
-    h1,h2,h3{font-family:"Instrument Serif",serif;font-weight:400;letter-spacing:-.025em;line-height:.98}
-    h1{font-size:clamp(3.4rem,7.2vw,6.7rem);max-width:900px;margin-bottom:24px}
-    h2{font-size:clamp(2.55rem,5vw,4.7rem);margin-bottom:18px}
+    h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;letter-spacing:-.045em;line-height:.98}
+    h1{font-size:clamp(3.25rem,7vw,6.6rem);max-width:920px;margin-bottom:24px;font-variation-settings:"wdth" 82}
+    h2{font-size:clamp(2.45rem,5vw,4.65rem);margin-bottom:18px;font-variation-settings:"wdth" 86}
     h3{font-size:1.75rem;line-height:1.05;margin-bottom:12px}
-    .serif-i{font-style:italic;color:var(--green)}
+    .serif-i{font-style:normal;color:var(--green)}
     .lead{font-size:clamp(1.05rem,1.7vw,1.25rem);line-height:1.65;color:var(--ink-2);max-width:690px}
-    .btn{min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 20px;border:1px solid var(--ink);border-radius:7px;text-decoration:none;font-weight:600;transition:.2s ease;cursor:pointer}
+    .btn{min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 20px;border:1px solid var(--ink);border-radius:8px;text-decoration:none;font-weight:700;transition:transform 160ms var(--ease-out),background-color 160ms ease,border-color 160ms ease;cursor:pointer}
     .btn-primary{background:var(--green);border-color:var(--green);color:white;box-shadow:0 10px 26px rgba(31,106,86,.2)}
     .btn-primary:hover,.btn-primary:focus-visible{background:var(--green-2);transform:translateY(-2px)}
-    .btn-secondary{background:rgba(255,250,241,.64)}
+    .btn-secondary{background:rgba(255,255,255,.74)}
     .btn-secondary:hover,.btn-secondary:focus-visible{background:var(--paper);transform:translateY(-2px)}
     .btn-light{background:var(--white);border-color:var(--white);color:var(--dark)}
-    .btn-light:hover,.btn-light:focus-visible{background:var(--amber-wash);transform:translateY(-2px)}
-    .btn:focus-visible,.nav-link:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid rgba(180,83,9,.28);outline-offset:3px}
+    .btn-light:hover,.btn-light:focus-visible{background:var(--citrus-wash);transform:translateY(-2px)}
+    .btn:focus-visible,.nav-link:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid rgba(242,201,76,.48);outline-offset:3px}
 
-    header{height:78px;border-bottom:1px solid var(--line);background:rgba(243,237,226,.86);backdrop-filter:blur(16px);position:sticky;top:0;z-index:50}
+    header{height:78px;border-bottom:1px solid var(--line);background:rgba(246,250,248,.88);backdrop-filter:blur(16px);position:sticky;top:0;z-index:50}
     .nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .brand-mark{width:38px;height:38px;border:1px solid var(--ink);display:grid;place-items:center;font-family:"Instrument Serif",serif;font-size:1.15rem;border-radius:50%}
-    .brand-copy{display:grid;line-height:1.15}.brand-copy b{font-size:.92rem}.brand-copy span{font-size:.63rem;color:var(--muted);font-family:"Fragment Mono",monospace;text-transform:uppercase;letter-spacing:.08em}
+    .brand-mark{width:38px;height:38px;border:1px solid var(--ink);display:grid;place-items:center;font-family:"Bricolage Grotesque",sans-serif;font-size:1rem;font-weight:700;border-radius:50%}
+    .brand-copy{display:grid;line-height:1.15}.brand-copy b{font-size:.92rem}.brand-copy span{font-size:.63rem;color:var(--muted);font-weight:600;letter-spacing:.02em}
     .nav-links{display:flex;align-items:center;gap:24px}.nav-link{font-size:.86rem;text-decoration:none;color:var(--ink-2)}.nav-link:hover{color:var(--green)}
     .nav-cta{min-height:40px;padding:0 15px;font-size:.82rem}
 
-    .hero{padding:clamp(72px,10vw,132px) 0 82px;position:relative}
-    .hero::after{content:"";position:absolute;width:430px;height:430px;border-radius:50%;background:rgba(80,140,111,.13);filter:blur(4px);right:-180px;top:40px;z-index:-1}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1.28fr) minmax(340px,.72fr);gap:64px;align-items:end}
+    .hero{padding:clamp(72px,9vw,118px) 0 82px;position:relative}
+    .hero::after{content:"";position:absolute;width:430px;height:430px;border-radius:50%;background:rgba(217,238,241,.7);filter:blur(4px);right:-180px;top:40px;z-index:-1}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(460px,1.08fr);gap:54px;align-items:center}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
     .hero-note{display:flex;gap:24px;flex-wrap:wrap;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.83rem}
     .hero-note span{display:flex;align-items:center;gap:8px}.hero-note i{width:7px;height:7px;background:var(--green);border-radius:50%}
-    .inquiry-card{background:var(--paper);border:1px solid var(--line-strong);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transform:rotate(1.2deg)}
-    .inquiry-top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);background:rgba(226,238,231,.7)}
-    .status{display:inline-flex;align-items:center;gap:7px;color:var(--green);font-size:.68rem}.status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(31,106,86,.12)}
-    .inquiry-body{padding:24px}
-    .profile{display:flex;align-items:center;gap:12px;margin-bottom:22px}.avatar{width:42px;height:42px;border-radius:50%;background:var(--amber-wash);display:grid;place-items:center;font-family:"Instrument Serif";font-size:1.2rem}.profile small{display:block;color:var(--muted)}
-    .message{background:#fff;border:1px solid var(--line);padding:16px;border-radius:4px 14px 14px 14px;color:var(--ink-2);font-size:.92rem}
-    .auto-reply{margin:14px 0 0 28px;background:var(--green);color:white;padding:16px;border-radius:14px 4px 14px 14px;font-size:.9rem}
-    .card-footer{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin:24px -24px -24px}.metric{padding:14px 10px;text-align:center;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric b{display:block;font-size:.78rem}.metric span{font-size:.62rem;color:var(--muted)}
+    .reset-demo{--wipe:56%;position:relative;height:520px;border:1px solid var(--line-strong);border-radius:22px;background:var(--paper);box-shadow:var(--shadow);overflow:hidden;isolation:isolate;animation:demo-enter 700ms var(--ease-out) both}
+    @keyframes demo-enter{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+    .reset-scene{position:absolute;inset:0;padding:26px;background:#eef1ef}
+    .scene-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:17px;border-bottom:1px solid rgba(18,39,33,.13)}
+    .scene-title{font-family:"Bricolage Grotesque",sans-serif;font-weight:650;font-size:1.1rem}.scene-kicker{font-size:.7rem;color:var(--muted);font-weight:700}
+    .messy-scene{background:linear-gradient(145deg,#eef0ef,#e7eae8);color:#45514d}
+    .messy-scene::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 72% 18%,rgba(105,116,111,.18),transparent 17%),linear-gradient(115deg,transparent 55%,rgba(96,106,102,.09) 56%,transparent 58%);mix-blend-mode:multiply}
+    .messy-card{position:absolute;width:210px;background:#f9faf9;border:1px solid #cbd2cf;border-radius:10px;padding:14px;box-shadow:0 12px 28px rgba(47,57,52,.12);font-size:.76rem;color:#56625d}
+    .messy-card b{display:block;color:#33413b;margin-bottom:4px}.messy-card small{color:#88918d}.messy-card:nth-of-type(1){left:30px;top:105px;transform:rotate(-5deg)}.messy-card:nth-of-type(2){right:22px;top:154px;transform:rotate(6deg)}.messy-card:nth-of-type(3){left:85px;top:274px;transform:rotate(3deg)}.messy-card:nth-of-type(4){right:50px;bottom:34px;transform:rotate(-7deg)}
+    .lost-stamp{position:absolute;right:28px;top:91px;color:#a35353;border:2px solid #a35353;border-radius:5px;padding:5px 9px;font-size:.68rem;font-weight:800;transform:rotate(7deg)}
+    .clean-scene{background:linear-gradient(145deg,#fbfffd,#e8f7f1);clip-path:inset(0 0 0 var(--wipe));transition:clip-path 90ms linear}.reset-demo.is-dragging .clean-scene{transition:none}
+    .route-mini{display:grid;gap:11px;padding-top:22px}.route-row{display:grid;grid-template-columns:34px 1fr auto;gap:11px;align-items:center;background:white;border:1px solid var(--line);border-radius:10px;padding:11px 12px;box-shadow:0 7px 20px rgba(23,107,84,.06)}
+    .route-row i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--green-wash);color:var(--green);font-style:normal;font-weight:800;font-size:.7rem}.route-row b{font-size:.8rem}.route-row small{display:block;color:var(--muted);font-size:.66rem}.route-state{font-size:.62rem;font-weight:800;color:var(--green);background:var(--green-wash);padding:5px 7px;border-radius:99px}
+    .clean-summary{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.clean-summary div{background:var(--dark);color:white;border-radius:8px;padding:11px}.clean-summary b{font-size:.7rem;display:block}.clean-summary span{color:#a9cec0;font-size:.58rem}
+    .wipe-line{position:absolute;z-index:6;top:0;bottom:0;left:var(--wipe);width:44px;background:linear-gradient(90deg,transparent calc(50% - 2px),rgba(23,107,84,.22) calc(50% - 2px),white calc(50% - 1px),white calc(50% + 2px),rgba(23,107,84,.22) calc(50% + 2px),transparent calc(50% + 3px));filter:drop-shadow(0 0 11px rgba(23,107,84,.2));transform:translateX(-50%);cursor:ew-resize;touch-action:none;transition:left 90ms linear}.wipe-line::before{content:"CLEAN ROUTE";position:absolute;top:22px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--green);color:white;border-radius:99px;padding:7px 10px;font-size:.6rem;font-weight:800;letter-spacing:.05em}.wipe-line::after{content:"";position:absolute;left:50%;bottom:20px;width:54px;height:16px;border-radius:7px 7px 3px 3px;background:var(--citrus);border:3px solid white;transform:translateX(-50%);transition:box-shadow 160ms ease}.wipe-line:focus-visible{outline:none}.wipe-line:focus-visible::after{box-shadow:0 0 0 4px rgba(242,201,76,.5)}.wipe-line.is-dragging{transition:none}.wipe-line.is-dragging::after{box-shadow:0 0 0 4px rgba(242,201,76,.35)}
+    .wipe-instruction{position:absolute;z-index:5;left:50%;bottom:26px;transform:translateX(-50%);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:99px;padding:8px 62px 8px 12px;font-size:.68rem;font-weight:700;color:var(--ink-2);pointer-events:none;white-space:nowrap}
 
     section{padding:104px 0}
     .section-head{display:grid;grid-template-columns:.7fr 1.3fr;gap:50px;align-items:start;margin-bottom:56px}.section-head h2{max-width:760px}.section-head .lead{margin-top:8px}
@@ -92,16 +103,17 @@
     .pain-card{background:var(--dark);padding:32px;min-height:240px}.pain-n{color:#9fd0b9;margin-bottom:45px}.pain-card p{color:rgba(255,255,255,.65);margin:0}
 
     .process{background:var(--paper)}
-    .process-board{border:1px solid var(--line-strong);background:var(--ground);border-radius:var(--radius);padding:34px;box-shadow:0 16px 44px rgba(71,59,43,.08)}
-    .process-labels{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative}
-    .process-labels::before{content:"";position:absolute;height:1px;background:var(--line-strong);left:8%;right:8%;top:32px}
-    .process-step{position:relative;text-align:center}.step-icon{position:relative;z-index:1;width:64px;height:64px;margin:0 auto 18px;border:1px solid var(--line-strong);background:var(--paper);border-radius:50%;display:grid;place-items:center;color:var(--green);font-family:"Fragment Mono"}.process-step:nth-child(2) .step-icon,.process-step:nth-child(4) .step-icon{background:var(--green);color:white;border-color:var(--green)}
-    .process-step b{display:block;font-family:"Instrument Serif";font-size:1.25rem;font-weight:400}.process-step p{font-size:.76rem;color:var(--muted);max-width:150px;margin:7px auto 0}
-    .system-strip{margin-top:36px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:24px;color:var(--ink-2);font-size:.82rem}.system-strip strong{font-weight:600;color:var(--green)}
+    .process-board{border:1px solid var(--line-strong);background:var(--ground);border-radius:var(--radius);padding:28px;box-shadow:0 16px 44px rgba(19,65,52,.08)}
+    .dispatch-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 2px 20px;border-bottom:1px solid var(--line)}.dispatch-head b{font-family:"Bricolage Grotesque";font-size:1.15rem}.dispatch-head span{font-size:.7rem;color:var(--muted);font-weight:700}.live-dot{display:inline-block;width:8px;height:8px;background:#45a67c;border-radius:50%;margin-right:7px;box-shadow:0 0 0 4px rgba(69,166,124,.12)}
+    .process-labels{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative;padding-top:28px}
+    .route-track,.route-progress{position:absolute;left:9%;right:9%;top:60px;height:4px;border-radius:99px}.route-track{background:var(--line)}.route-progress{background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 900ms var(--ease-in-out)}.route-live .route-progress{transform:scaleX(1)}
+    .process-step{position:relative;text-align:left;padding:0 7px}.step-icon{position:relative;z-index:1;width:66px;height:66px;margin:0 0 20px;border:3px solid var(--ground);outline:1px solid var(--line-strong);background:var(--paper);border-radius:50%;display:grid;place-items:center;color:var(--green);font-weight:800;transition:transform 220ms var(--ease-out),background-color 220ms ease,color 220ms ease}.route-live .process-step:nth-child(3) .step-icon{transition-delay:80ms}.route-live .process-step:nth-child(4) .step-icon{transition-delay:230ms}.route-live .process-step:nth-child(5) .step-icon{transition-delay:380ms}.route-live .process-step:nth-child(6) .step-icon{transition-delay:530ms}.route-live .process-step:nth-child(7) .step-icon{transition-delay:680ms}.route-live .step-icon{background:var(--green);color:white;transform:scale(1.06)}
+    .process-step b{display:block;font-family:"Bricolage Grotesque";font-size:1.08rem;line-height:1.15}.process-step p{font-size:.74rem;color:var(--muted);max-width:160px;margin:7px 0 0}.step-owner{display:inline-block;margin-top:12px;padding:5px 7px;border-radius:5px;background:var(--blue);font-size:.58rem;font-weight:800;color:#285b61}
+    .system-strip{margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:22px;color:var(--ink-2);font-size:.82rem}.system-strip strong{font-weight:700;color:var(--green)}
 
     .benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .benefit-card{border:1px solid var(--line);border-radius:12px;padding:30px;background:rgba(255,250,241,.66);display:grid;grid-template-columns:46px 1fr;gap:18px;transition:.2s ease}.benefit-card:hover{background:var(--paper);transform:translateY(-3px);box-shadow:0 16px 38px rgba(60,51,37,.08)}
-    .benefit-icon{width:46px;height:46px;display:grid;place-items:center;background:var(--green-wash);color:var(--green);border-radius:50%;font-family:"Fragment Mono"}.benefit-card h3{font-size:1.55rem}.benefit-card p{color:var(--muted);margin:0}
+    .benefit-card{border:1px solid var(--line);border-radius:12px;padding:30px;background:rgba(255,255,255,.72);display:grid;grid-template-columns:46px 1fr;gap:18px}
+    .benefit-icon{width:46px;height:46px;display:grid;place-items:center;background:var(--green-wash);color:var(--green);border-radius:50%;font-weight:800}.benefit-card h3{font-size:1.55rem}.benefit-card p{color:var(--muted);margin:0}
 
     .demo{padding-top:60px}.video-shell{border:1px solid var(--line-strong);border-radius:var(--radius);background:#dfe7e1;padding:16px;box-shadow:var(--shadow)}
     .video-placeholder{aspect-ratio:16/9;background:var(--dark);color:white;border-radius:11px;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background-image:radial-gradient(circle at 20% 20%,rgba(90,166,130,.24),transparent 38%),linear-gradient(135deg,#202823,#17201b)}
@@ -114,28 +126,28 @@
     .offer-aside{position:sticky;top:112px}.offer-aside p{color:var(--ink-2)}
     .deliverables{border-top:1px solid var(--line-strong)}
     .deliverable{display:grid;grid-template-columns:54px 1fr auto;gap:20px;align-items:center;padding:25px 0;border-bottom:1px solid var(--line-strong)}
-    .deliverable .n{font-family:"Fragment Mono";font-size:.72rem;color:var(--green)}.deliverable h3{font-family:"DM Sans";font-size:1rem;font-weight:600;letter-spacing:0;line-height:1.3;margin:0 0 5px}.deliverable p{font-size:.82rem;color:var(--muted);margin:0}.check{width:28px;height:28px;border:1px solid var(--green);color:var(--green);border-radius:50%;display:grid;place-items:center;font-size:.78rem}
+    .deliverable .n{font-size:.72rem;color:var(--green);font-weight:800}.deliverable h3{font-family:"Manrope";font-size:1rem;font-weight:700;letter-spacing:0;line-height:1.3;margin:0 0 5px}.deliverable p{font-size:.82rem;color:var(--muted);margin:0}.check{width:28px;height:28px;border:1px solid var(--green);color:var(--green);border-radius:50%;display:grid;place-items:center;font-size:.78rem}
     .scope-note{margin-top:22px;padding:16px 18px;border:1px solid rgba(31,106,86,.25);background:rgba(255,255,255,.38);color:var(--ink-2);font-size:.8rem}
 
     .cta{padding:112px 0;background:var(--ground)}
     .cta-panel{background:var(--dark);color:white;border-radius:22px;display:grid;grid-template-columns:1fr .82fr;gap:60px;padding:clamp(34px,6vw,72px);box-shadow:var(--shadow)}
     .cta-panel .eyebrow{color:#9fd0b9}.cta-panel h2{max-width:650px}.cta-panel p{color:rgba(255,255,255,.68);max-width:600px}
     .contact-card{background:var(--paper);color:var(--ink);padding:26px;border-radius:12px}
-    .contact-card label{display:block;font-family:"Fragment Mono";text-transform:uppercase;letter-spacing:.07em;font-size:.64rem;margin:0 0 7px;color:var(--muted)}
-    .field{width:100%;border:1px solid var(--line-strong);background:#fffdf8;padding:12px 13px;border-radius:6px;margin-bottom:13px;color:var(--ink)}textarea.field{resize:vertical;min-height:82px}
+    .contact-card label{display:block;font-weight:700;font-size:.68rem;margin:0 0 7px;color:var(--muted)}
+    .field{width:100%;border:1px solid var(--line-strong);background:#fbfffd;padding:12px 13px;border-radius:6px;margin-bottom:13px;color:var(--ink)}textarea.field{resize:vertical;min-height:82px}
     .contact-card .btn{width:100%;border:0}
     .privacy{font-size:.67rem!important;color:var(--muted)!important;margin:12px 0 0!important;text-align:center}
 
     footer{border-top:1px solid var(--line);padding:30px 0}.footer-row{display:flex;justify-content:space-between;gap:24px;align-items:center;font-size:.76rem;color:var(--muted)}.footer-row a{text-decoration:none}.footer-row a:hover{color:var(--green)}
 
-    [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}[data-reveal].seen{opacity:1;transform:none}
     @media(max-width:900px){
-      .nav-links .nav-link{display:none}.hero-grid,.section-head,.offer-grid,.cta-panel{grid-template-columns:1fr}.hero-grid{gap:52px}.inquiry-card{max-width:580px;transform:none}.pain-grid{grid-template-columns:1fr}.pain-card{min-height:auto}.pain-n{margin-bottom:20px}.process-labels{grid-template-columns:1fr}.process-labels::before{left:31px;right:auto;top:32px;bottom:32px;width:1px;height:auto}.process-step{text-align:left;display:grid;grid-template-columns:64px 1fr;column-gap:20px;align-items:center}.step-icon{margin:0;grid-row:1/3}.process-step p{max-width:none;margin:3px 0 18px}.system-strip{align-items:flex-start;flex-direction:column}.offer-aside{position:static}.benefit-grid{grid-template-columns:1fr}.cta-panel{gap:36px}
+      .nav-links .nav-link{display:none}.hero-grid,.section-head,.offer-grid,.cta-panel{grid-template-columns:1fr}.hero-grid{gap:52px}.reset-demo{max-width:680px}.pain-grid{grid-template-columns:1fr}.pain-card{min-height:auto}.pain-n{margin-bottom:20px}.process-labels{grid-template-columns:1fr;padding-left:0}.route-track,.route-progress{left:34px;right:auto;top:36px;bottom:38px;width:4px;height:auto}.route-progress{transform:scaleY(0);transform-origin:top}.route-live .route-progress{transform:scaleY(1)}.process-step{text-align:left;display:grid;grid-template-columns:66px 1fr;column-gap:20px;align-items:center;padding:0}.step-icon{margin:0;grid-row:1/4}.process-step p{max-width:none;margin:3px 0 0}.step-owner{margin:8px 0 20px;width:max-content}.system-strip{align-items:flex-start;flex-direction:column}.offer-aside{position:static}.benefit-grid{grid-template-columns:1fr}.cta-panel{gap:36px}
     }
     @media(max-width:560px){
-      .wrap{width:min(100% - 28px,1180px)}header{height:68px}.brand-copy span{display:none}.nav-cta{font-size:0;min-width:42px;padding:0}.nav-cta::after{content:"→";font-size:1rem}.hero{padding:64px 0 70px}.hero-actions{display:grid}.hero-actions .btn{width:100%}.hero-note{gap:12px;display:grid}.card-footer{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)}.metric:last-child{border-bottom:0}section{padding:78px 0}.section-head{gap:16px;margin-bottom:38px}.process-board{padding:24px 18px}.benefit-card{grid-template-columns:1fr}.video-shell{padding:8px}.video-caption{align-items:flex-start;flex-direction:column}.deliverable{grid-template-columns:38px 1fr}.deliverable .check{display:none}.cta-panel{padding:32px 20px;border-radius:14px}.footer-row{align-items:flex-start;flex-direction:column}
+      .wrap{width:min(100% - 28px,1180px)}header{height:68px}.brand-copy span{display:none}.nav-cta{font-size:0;min-width:42px;padding:0}.nav-cta::after{content:"→";font-size:1rem}.hero{padding:64px 0 70px}.hero-actions{display:grid}.hero-actions .btn{width:100%}.hero-note{gap:12px;display:grid}.reset-demo{height:500px}.messy-card{width:172px}.messy-card:nth-of-type(3){left:28px}.clean-scene{padding:18px}.route-row{grid-template-columns:30px 1fr}.route-state{display:none}.wipe-instruction{font-size:0;padding:10px 50px 10px 12px}.wipe-instruction::before{content:"Drag to reset";font-size:.68rem}section{padding:78px 0}.section-head{gap:16px;margin-bottom:38px}.process-board{padding:22px 16px}.dispatch-head{align-items:flex-start;flex-direction:column}.benefit-card{grid-template-columns:1fr}.video-shell{padding:8px}.video-caption{align-items:flex-start;flex-direction:column}.deliverable{grid-template-columns:38px 1fr}.deliverable .check{display:none}.cta-panel{padding:32px 20px;border-radius:14px}.footer-row{align-items:flex-start;flex-direction:column}
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+    @media (hover:hover) and (pointer:fine){.btn:hover{transform:translateY(-2px)}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reset-demo{animation:fade-in 200ms ease both}.route-progress,.step-icon,.clean-scene,.wipe-line{transition:none!important}@keyframes fade-in{from{opacity:0}to{opacity:1}}}
   </style>
 </head>
 <body>
@@ -158,8 +170,8 @@
   <main id="main">
     <section class="hero">
       <div class="wrap hero-grid">
-        <div data-reveal>
-          <p class="eyebrow mono">Lead capture + follow-up automation</p>
+        <div>
+          <p class="eyebrow mono">A cleaner path from inquiry to booking</p>
           <h1>Turn More Cleaning Inquiries Into <span class="serif-i">Booked Jobs</span></h1>
           <p class="lead">A focused follow-up system for residential and commercial cleaning businesses—so every new inquiry gets a quick response, a clear next step, and a visible place in your pipeline.</p>
           <div class="hero-actions">
@@ -172,29 +184,38 @@
             <span><i></i> No new subscription resold by me</span>
           </div>
         </div>
-        <aside class="inquiry-card" data-reveal aria-label="Illustration of an automated cleaning inquiry response">
-          <div class="inquiry-top"><span class="mono">New cleaning inquiry</span><span class="status mono">Captured</span></div>
-          <div class="inquiry-body">
-            <div class="profile"><div class="avatar">JM</div><div><b>Jamie M.</b><small>Move-out cleaning · 3 bed / 2 bath</small></div></div>
-            <div class="message">Hi! Could I get a quote for a move-out clean next Friday?</div>
-            <div class="auto-reply">Thanks, Jamie—yes. A few quick details will help us prepare an accurate estimate. You can send them here:</div>
-            <div class="card-footer">
-              <div class="metric"><b>Contact saved</b><span>Lead record</span></div>
-              <div class="metric"><b>Reply started</b><span>Follow-up</span></div>
-              <div class="metric"><b>Team alerted</b><span>Handoff</span></div>
-            </div>
+        <aside class="reset-demo" id="resetDemo" aria-label="Interactive comparison of scattered cleaning inquiries and an organized lead route">
+          <div class="reset-scene messy-scene" aria-hidden="true">
+            <div class="scene-head"><span class="scene-title">Scattered inquiries</span><span class="scene-kicker">Before</span></div>
+            <div class="messy-card"><b>Facebook message</b>“How much for a deep clean?”<small>Seen 3 hours ago</small></div>
+            <div class="messy-card"><b>Missed call</b>New voicemail from Jamie M.<small>No owner assigned</small></div>
+            <div class="messy-card"><b>Website form</b>Move-out clean · next Friday<small>Still in inbox</small></div>
+            <div class="messy-card"><b>Text message</b>“Just following up on the quote.”<small>Needs response</small></div>
+            <span class="lost-stamp">FOLLOW-UP?</span>
           </div>
+          <div class="reset-scene clean-scene" aria-hidden="true">
+            <div class="scene-head"><span class="scene-title">One clean lead route</span><span class="scene-kicker">After</span></div>
+            <div class="route-mini">
+              <div class="route-row"><i>1</i><div><b>Inquiry captured</b><small>Move-out clean · Jamie M.</small></div><span class="route-state">Saved</span></div>
+              <div class="route-row"><i>2</i><div><b>First reply sent</b><small>Details requested automatically</small></div><span class="route-state">Sent</span></div>
+              <div class="route-row"><i>3</i><div><b>Follow-up assigned</b><small>Call task · today at 2:00</small></div><span class="route-state">Ready</span></div>
+              <div class="route-row"><i>4</i><div><b>Estimate stage</b><small>Visible to the whole team</small></div><span class="route-state">Active</span></div>
+            </div>
+            <div class="clean-summary"><div><b>Contact saved</b><span>Lead record</span></div><div><b>Reply started</b><span>Follow-up</span></div><div><b>Owner assigned</b><span>Handoff</span></div></div>
+          </div>
+          <div class="wipe-line" id="wipeLine" role="slider" tabindex="0" aria-label="Compare messy and organized lead flow" aria-valuemin="12" aria-valuemax="88" aria-valuenow="56" aria-valuetext="56 percent scattered, 44 percent organized"></div>
+          <span class="wipe-instruction">Drag the squeegee to clean up the lead flow</span>
         </aside>
       </div>
     </section>
 
     <section class="pain">
       <div class="wrap">
-        <div class="section-head" data-reveal>
+        <div class="section-head">
           <p class="eyebrow mono">Where good leads disappear</p>
           <div><h2>The leak usually happens <span class="serif-i">after</span> the inquiry.</h2><p class="lead">Marketing can bring attention. The next few minutes—and the follow-up after that—decide whether the inquiry becomes a real sales conversation.</p></div>
         </div>
-        <div class="pain-grid" data-reveal>
+        <div class="pain-grid">
           <article class="pain-card"><div class="pain-n mono">01 · Response</div><h3>Replies depend on who is free</h3><p>Website forms, Facebook messages, texts, and calls land in different places. Busy days turn a fast response into “we’ll get back to them later.”</p></article>
           <article class="pain-card"><div class="pain-n mono">02 · Follow-up</div><h3>One message becomes the whole sequence</h3><p>A prospect asks for a quote, goes quiet, and disappears because there is no consistent second or third touchpoint.</p></article>
           <article class="pain-card"><div class="pain-n mono">03 · Visibility</div><h3>No one knows what happens next</h3><p>Without a clear pipeline, it is hard to see which leads need a quote, a reminder, a call, or a final decision.</p></article>
@@ -204,17 +225,19 @@
 
     <section class="process" id="system">
       <div class="wrap">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow mono">The lead journey</p>
+        <div class="section-head">
+          <p class="eyebrow mono">The cleaning route</p>
           <div><h2>One connected path from “I’m interested” to the next clear action.</h2><p class="lead">The exact tools and messages depend on your business. The structure stays simple enough for your team to understand and use.</p></div>
         </div>
-        <div class="process-board" data-reveal>
+        <div class="process-board" id="routeBoard">
+          <div class="dispatch-head"><b>New inquiry dispatch</b><span><i class="live-dot"></i>Every stage has a next action and an owner</span></div>
           <div class="process-labels" aria-label="Lead capture and automation process">
-            <div class="process-step"><div class="step-icon">01</div><b>Inquiry arrives</b><p>Form, call, ad, message, or referral</p></div>
-            <div class="process-step"><div class="step-icon">02</div><b>Lead is captured</b><p>Contact details and service needs saved</p></div>
-            <div class="process-step"><div class="step-icon">03</div><b>Response begins</b><p>Confirmation and qualification sent</p></div>
-            <div class="process-step"><div class="step-icon">04</div><b>Team follows up</b><p>Tasks, alerts, and reminders stay visible</p></div>
-            <div class="process-step"><div class="step-icon">05</div><b>Job moves forward</b><p>Estimate, booking, nurture, or close</p></div>
+            <div class="route-track" aria-hidden="true"></div><div class="route-progress" aria-hidden="true"></div>
+            <div class="process-step"><div class="step-icon">01</div><b>Inquiry arrives</b><p>Form, call, ad, message, or referral</p><span class="step-owner">System</span></div>
+            <div class="process-step"><div class="step-icon">02</div><b>Lead is captured</b><p>Contact details and service needs saved</p><span class="step-owner">System</span></div>
+            <div class="process-step"><div class="step-icon">03</div><b>Response begins</b><p>Confirmation and qualification sent</p><span class="step-owner">Automation</span></div>
+            <div class="process-step"><div class="step-icon">04</div><b>Team follows up</b><p>Tasks, alerts, and reminders stay visible</p><span class="step-owner">Team</span></div>
+            <div class="process-step"><div class="step-icon">05</div><b>Job moves forward</b><p>Estimate, booking, nurture, or close</p><span class="step-owner">Owner</span></div>
           </div>
           <div class="system-strip"><span><strong>Built for the real handoff:</strong> automation handles the repetitive steps; your team handles the conversation.</span><span class="mono">Capture → qualify → follow up → book</span></div>
         </div>
@@ -223,26 +246,26 @@
 
     <section>
       <div class="wrap">
-        <div class="section-head" data-reveal>
+        <div class="section-head">
           <p class="eyebrow mono">What improves</p>
           <div><h2>A calmer way to manage every new opportunity.</h2><p class="lead">The goal is not automation for its own sake. It is a reliable process your team can follow without searching across inboxes and spreadsheets.</p></div>
         </div>
         <div class="benefit-grid">
-          <article class="benefit-card" data-reveal><div class="benefit-icon">↗</div><div><h3>Faster first response</h3><p>Acknowledge new inquiries promptly and give prospects a useful next step while your team prepares to follow up.</p></div></article>
-          <article class="benefit-card" data-reveal><div class="benefit-icon">◎</div><div><h3>Cleaner lead records</h3><p>Keep the contact, service type, source, and current stage together instead of scattered across channels.</p></div></article>
-          <article class="benefit-card" data-reveal><div class="benefit-icon">↺</div><div><h3>Consistent follow-up</h3><p>Set thoughtful reminders and messages for prospects who need time, without relying on memory alone.</p></div></article>
-          <article class="benefit-card" data-reveal><div class="benefit-icon">✓</div><div><h3>Clearer team handoffs</h3><p>Make it obvious who should call, quote, confirm, or close—and what information they already have.</p></div></article>
+          <article class="benefit-card"><div class="benefit-icon">↗</div><div><h3>Faster first response</h3><p>Acknowledge new inquiries promptly and give prospects a useful next step while your team prepares to follow up.</p></div></article>
+          <article class="benefit-card"><div class="benefit-icon">◎</div><div><h3>Cleaner lead records</h3><p>Keep the contact, service type, source, and current stage together instead of scattered across channels.</p></div></article>
+          <article class="benefit-card"><div class="benefit-icon">↺</div><div><h3>Consistent follow-up</h3><p>Set thoughtful reminders and messages for prospects who need time, without relying on memory alone.</p></div></article>
+          <article class="benefit-card"><div class="benefit-icon">✓</div><div><h3>Clearer team handoffs</h3><p>Make it obvious who should call, quote, confirm, or close—and what information they already have.</p></div></article>
         </div>
       </div>
     </section>
 
     <section class="demo" id="demo">
       <div class="wrap">
-        <div class="section-head" data-reveal>
+        <div class="section-head">
           <p class="eyebrow mono">System walkthrough</p>
           <div><h2>See the lead flow before we talk.</h2><p class="lead">This space is reserved for Rainier’s existing demo video. Replace the placeholder with the final Loom, YouTube, or privacy-enhanced embed URL when ready.</p></div>
         </div>
-        <div class="video-shell" data-reveal>
+        <div class="video-shell">
           <div class="video-placeholder" role="img" aria-label="Placeholder for cleaning lead automation demo video">
             <div><div class="play" aria-hidden="true">▶</div><h3>Cleaning Lead System Demo</h3><p>Video embed placeholder · 16:9</p></div>
           </div>
@@ -253,13 +276,13 @@
 
     <section class="offer" id="included">
       <div class="wrap offer-grid">
-        <div class="offer-aside" data-reveal>
+        <div class="offer-aside">
           <p class="eyebrow mono">The build</p>
           <h2>A practical system, documented for your team.</h2>
           <p>I map the workflow around how you currently receive, qualify, estimate, and book cleaning jobs. Then I build the agreed pieces inside your own tools and hand over a process you can operate.</p>
           <a class="btn btn-primary" href="#contact">Discuss your setup <span aria-hidden="true">→</span></a>
         </div>
-        <div data-reveal>
+        <div>
           <div class="deliverables">
             <div class="deliverable"><span class="n">01</span><div><h3>Lead-flow map</h3><p>Your current journey, gaps, triggers, and next-step logic documented before the build.</p></div><span class="check">✓</span></div>
             <div class="deliverable"><span class="n">02</span><div><h3>Capture and qualification</h3><p>A focused form or intake path that records the details your team needs to respond.</p></div><span class="check">✓</span></div>
@@ -273,7 +296,7 @@
     </section>
 
     <section class="cta" id="contact">
-      <div class="wrap cta-panel" data-reveal>
+      <div class="wrap cta-panel">
         <div>
           <p class="eyebrow mono">Discovery</p>
           <h2>Let’s map where your cleaning leads get stuck.</h2>
@@ -300,13 +323,57 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    const items = document.querySelectorAll('[data-reveal]');
+    const resetDemo = document.getElementById('resetDemo');
+    const wipeLine = document.getElementById('wipeLine');
+    let wipeValue = 56;
+    let isDragging = false;
+    const setWipe = (value) => {
+      wipeValue = Math.max(12, Math.min(88, Math.round(value)));
+      resetDemo.style.setProperty('--wipe', `${wipeValue}%`);
+      wipeLine.setAttribute('aria-valuenow', String(wipeValue));
+      wipeLine.setAttribute('aria-valuetext', `${wipeValue} percent scattered, ${100 - wipeValue} percent organized`);
+    };
+    const wipeFromPointer = (clientX) => {
+      const rect = resetDemo.getBoundingClientRect();
+      setWipe(((clientX - rect.left) / rect.width) * 100);
+    };
+    wipeLine.addEventListener('pointerdown', (event) => {
+      if (isDragging) return;
+      isDragging = true;
+      resetDemo.classList.add('is-dragging');
+      wipeLine.classList.add('is-dragging');
+      wipeLine.setPointerCapture(event.pointerId);
+      wipeFromPointer(event.clientX);
+    });
+    wipeLine.addEventListener('pointermove', (event) => {
+      if (isDragging && wipeLine.hasPointerCapture(event.pointerId)) wipeFromPointer(event.clientX);
+    });
+    const endWipeDrag = (event) => {
+      if (!isDragging) return;
+      isDragging = false;
+      resetDemo.classList.remove('is-dragging');
+      wipeLine.classList.remove('is-dragging');
+      if (wipeLine.hasPointerCapture(event.pointerId)) wipeLine.releasePointerCapture(event.pointerId);
+    };
+    wipeLine.addEventListener('pointerup', endWipeDrag);
+    wipeLine.addEventListener('pointercancel', endWipeDrag);
+    wipeLine.addEventListener('keydown', (event) => {
+      const keys = { ArrowLeft: wipeValue - 2, ArrowDown: wipeValue - 2, ArrowRight: wipeValue + 2, ArrowUp: wipeValue + 2, Home: 12, End: 88 };
+      if (!(event.key in keys)) return;
+      event.preventDefault();
+      setWipe(keys[event.key]);
+    });
+
+    const routeBoard = document.getElementById('routeBoard');
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) { entry.target.classList.add('seen'); observer.unobserve(entry.target); }
-      }), { threshold: 0.12 });
-      items.forEach((item) => observer.observe(item));
-    } else { items.forEach((item) => item.classList.add('seen')); }
+      const routeObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          routeBoard.classList.add('route-live');
+          routeObserver.disconnect();
+        }
+      }, { threshold: 0.42 });
+      routeObserver.observe(routeBoard);
+    } else { routeBoard.classList.add('route-live'); }
 
     document.getElementById('discoveryForm').addEventListener('submit', (event) => {
       event.preventDefault();
