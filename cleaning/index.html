@@ -104,9 +104,14 @@
     .process-step b{display:block;font-family:"Bricolage Grotesque";font-size:1.08rem;line-height:1.15}.process-step p{font-size:.78rem;color:var(--muted);max-width:160px;margin:7px 0 0}.step-owner{display:inline-block;margin-top:12px;padding:5px 7px;border-radius:5px;background:var(--blue);font-size:.7rem;font-weight:800;color:#285b61}
     .system-strip{margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:22px;color:var(--ink-2);font-size:.82rem}.system-strip strong{font-weight:700;color:var(--green)}
 
-    .benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .benefit-card{border:1px solid var(--line);border-radius:12px;padding:30px;background:rgba(255,255,255,.72);display:grid;grid-template-columns:46px 1fr;gap:18px}
-    .benefit-icon{width:46px;height:46px;display:grid;place-items:center;background:var(--green-wash);color:var(--green);border-radius:50%;font-weight:800}.benefit-card h3{font-size:1.55rem}.benefit-card p{color:var(--muted);margin:0}
+    .automation-intro{max-width:760px;margin-bottom:48px}
+    .automation-list{border-top:1px solid var(--line-strong)}
+    .automation-row{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;padding:34px 0;border-bottom:1px solid var(--line-strong)}
+    .automation-row h3{font-size:clamp(1.65rem,3vw,2.2rem);line-height:1.15;letter-spacing:-.03em;margin:10px 0 0}
+    .automation-trigger{font-size:.85rem;color:var(--green);font-weight:700;margin:0}
+    .automation-action p{color:var(--ink-2);margin:0 0 14px;max-width:65ch}
+    .automation-action .automation-payoff{color:var(--green);font-weight:700;font-size:.9rem;margin-bottom:0}
+    @media(max-width:700px){.automation-row{grid-template-columns:1fr;gap:18px;padding:28px 0}.automation-intro{margin-bottom:32px}}
 
     .demo{padding-top:60px}.video-shell{border:1px solid var(--line-strong);border-radius:var(--radius);background:#dfe7e1;padding:16px;box-shadow:var(--shadow)}
     .video-embed{aspect-ratio:16/9;background:var(--dark);border-radius:11px;overflow:hidden}.video-embed iframe{width:100%;height:100%;border:0;display:block}
@@ -128,6 +133,11 @@
     .contact-card label{display:block;font-weight:700;font-size:.75rem;margin:0 0 7px;color:var(--muted)}
     .field{width:100%;border:1px solid var(--line-strong);background:#fbfffd;padding:12px 13px;border-radius:6px;margin-bottom:13px;color:var(--ink)}textarea.field{resize:vertical;min-height:82px}
     .contact-card .btn{width:100%;border:0}
+    .contact-card > [hidden]{display:none!important}
+    .contact-card.is-submitted{display:flex;align-items:center;min-height:280px}
+    .form-confirmation{padding:16px 0;outline:none}
+    .form-confirmation h3{font-size:clamp(1.8rem,3vw,2.4rem);line-height:1.15;letter-spacing:-.03em;margin:0 0 16px}
+    .cta-panel .form-confirmation p{color:var(--ink-2);font-size:1rem;margin:0;line-height:1.65}
     .privacy{font-size:.75rem!important;color:var(--muted)!important;margin:12px 0 0!important;text-align:center}
 
     footer{border-top:1px solid var(--line);padding:30px 0}.footer-row{display:flex;justify-content:space-between;gap:24px;align-items:center;font-size:.76rem;color:var(--muted)}.footer-row a{text-decoration:none}.footer-row a:hover{color:var(--green)}
@@ -165,7 +175,7 @@
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <h1>Keep Cleaning. <span class="serif-i">We’ll Keep Leads Moving.</span></h1>
-          <p class="lead">I build and connect your landing page, CRM pipeline, and automated follow-up—so inquiries stay organized and your team always knows the next step.</p>
+          <p class="lead">Give every inquiry a quick reply, every quote a follow-up, and every customer a reason to book again—without adding more to your team’s plate.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">Request a lead-flow review <span aria-hidden="true">→</span></a>
             <a class="btn btn-secondary" href="#system">See how the system works</a>
@@ -175,6 +185,33 @@
             <span><i></i> Tested from inquiry to handoff</span>
             <span><i></i> Documented for your team</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="automations" aria-labelledby="automations-heading">
+      <div class="wrap">
+        <div class="automation-intro">
+          <h2 id="automations-heading">Four things your team can stop chasing.</h2>
+          <p class="lead">From the first inquiry to the next review. These four automations keep customers moving while your team focuses on the cleaning.</p>
+        </div>
+        <div class="automation-list">
+          <article class="automation-row">
+            <div><p class="automation-trigger">When a new quote request comes in</p><h3>Reply in under a minute.</h3></div>
+            <div class="automation-action"><p>Even at 9pm, the customer gets a friendly response and a link to schedule an estimate. No one has to be at a desk.</p><p class="automation-payoff">Respond while the customer is still interested.</p></div>
+          </article>
+          <article class="automation-row">
+            <div><p class="automation-trigger">When a quote goes quiet</p><h3>Follow up automatically.</h3></div>
+            <div class="automation-action"><p>A gentle check-in goes out a day or two later, followed by another at the agreed time. The sequence stops as soon as the customer replies.</p><p class="automation-payoff">Fewer forgotten quotes. Less chasing for your team.</p></div>
+          </article>
+          <article class="automation-row">
+            <div><p class="automation-trigger">When an estimate or call is booked</p><h3>Send the reminders.</h3></div>
+            <div class="automation-action"><p>Customers get a text or email before their appointment. If they miss it, a follow-up message gives them a simple way to rebook.</p><p class="automation-payoff">Help prevent wasted trips and empty time slots.</p></div>
+          </article>
+          <article class="automation-row">
+            <div><p class="automation-trigger">When a cleaning job is finished</p><h3>Ask for a review.</h3></div>
+            <div class="automation-action"><p>Every customer gets a short feedback request and a link to leave an honest review. If someone reports a problem, your team gets an alert to follow up personally.</p><p class="automation-payoff">More review opportunities. Problems brought to your attention early.</p></div>
+          </article>
         </div>
       </div>
     </section>
@@ -216,21 +253,6 @@
             <div class="process-step"><div class="step-icon">05</div><b>Job moves forward</b><p>Estimate, booking, nurture, or close</p><span class="step-owner">Owner</span></div>
           </div>
           <div class="system-strip"><span><strong>Built for the real handoff:</strong> automation handles the repetitive steps; your team handles the conversation.</span><span class="mono">Capture → qualify → follow up → book</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow mono">What improves</p>
-          <div><h2>Every inquiry recorded. Every next step visible.</h2><p class="lead">The goal is not automation for its own sake. It is a reliable process your team can follow without searching across inboxes and spreadsheets.</p></div>
-        </div>
-        <div class="benefit-grid">
-          <article class="benefit-card"><div class="benefit-icon">↗</div><div><h3>Response starts immediately</h3><p>Acknowledge new inquiries and request the next useful detail while your team prepares to follow up.</p></div></article>
-          <article class="benefit-card"><div class="benefit-icon">◎</div><div><h3>Cleaner lead records</h3><p>Keep the contact, service type, source, and current stage together instead of scattered across channels.</p></div></article>
-          <article class="benefit-card"><div class="benefit-icon">↺</div><div><h3>Overdue follow-up stays visible</h3><p>Use agreed reminders and messages for prospects who need time, without relying on memory alone.</p></div></article>
-          <article class="benefit-card"><div class="benefit-icon">✓</div><div><h3>Clearer team handoffs</h3><p>Make it obvious who should call, quote, confirm, or close—and what information they already have.</p></div></article>
         </div>
       </div>
     </section>
@@ -280,18 +302,23 @@
         <div>
           <p class="eyebrow mono">Remote implementation for U.S. cleaning companies</p>
           <h2>Request a focused review of your lead flow.</h2>
-          <p>Share how inquiries reach you and where they tend to stall. Your email app will open with the details filled in; send it, and I’ll reply by email to arrange the next conversation.</p>
+          <p>Share how inquiries reach you and where they tend to stall. I’ll review your details and follow up by email to discuss the next steps.</p>
           <p class="mono" style="margin-top:34px;color:#9fd0b9">Based in Cavite, PH · Building remotely in accounts you control</p>
         </div>
         <form class="contact-card" id="discoveryForm">
-          <label for="name">Your name</label>
-          <input class="field" id="name" name="name" autocomplete="name" required>
+          <label for="first_name">First name</label>
+          <input class="field" id="first_name" name="first_name" autocomplete="given-name" required>
+          <label for="last_name">Last name</label>
+          <input class="field" id="last_name" name="last_name" autocomplete="family-name" required>
+          <label for="email">Email address</label>
+          <input class="field" id="email" name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" required>
           <label for="business">Cleaning business</label>
           <input class="field" id="business" name="business" autocomplete="organization" required>
           <label for="need">Where do inquiries get stuck?</label>
           <textarea class="field" id="need" name="need" placeholder="For example: slow replies, quote follow-up, no-shows…" required></textarea>
-          <button class="btn btn-primary" type="submit">Prepare my review request <span aria-hidden="true">→</span></button>
-          <p class="privacy">This opens your email app with the details filled in. Review and send the message there; nothing is stored on this page.</p>
+          <button class="btn btn-primary" type="submit">Request my lead-flow review <span aria-hidden="true">→</span></button>
+          <p class="privacy">Your details are shared with Rainier through HighLevel to respond to your request.</p>
+          <p class="privacy" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -316,13 +343,34 @@
 
     document.getElementById('discoveryForm').addEventListener('submit', (event) => {
       event.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const business = document.getElementById('business').value.trim();
-      const need = document.getElementById('need').value.trim();
-      const subject = encodeURIComponent(`Lead-flow review request — ${business}`);
-      const body = encodeURIComponent(`Hi Rainier,\n\nI'm ${name} from ${business}.\n\nWhere our inquiries get stuck:\n${need}\n\nI'd like a focused review of our landing page, CRM, and follow-up workflow.`);
-      window.location.href = `mailto:techva.rain@gmail.com?subject=${subject}&body=${body}`;
+      const status = document.getElementById('formStatus');
+      if (!window.ghlTrackingLoaded) {
+        status.textContent = 'The form connection could not load. Please refresh and try again, or email techva.rain@gmail.com.';
+        return;
+      }
+      const form = event.currentTarget;
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      status.textContent = 'Preparing your request…';
+      // Leave the submitted fields intact while HighLevel captures the event.
+      window.setTimeout(() => {
+        Array.from(form.children).forEach((element) => { element.hidden = true; });
+        const confirmation = document.createElement('div');
+        confirmation.className = 'form-confirmation';
+        confirmation.setAttribute('role', 'status');
+        confirmation.tabIndex = -1;
+        const heading = document.createElement('h3');
+        heading.textContent = 'Thanks! Your request is in.';
+        const message = document.createElement('p');
+        message.textContent = 'I’ll review your details and follow up by email.';
+        message.style.color = 'var(--ink-2)';
+        confirmation.append(heading, message);
+        form.append(confirmation);
+        form.classList.add('is-submitted');
+        confirmation.focus();
+      }, 1800);
     });
   </script>
+  <script src="https://link.msgsndr.com/js/external-tracking.js" data-tracking-id="tk_910733ebcf8e4f08bdec2c354c820f7c" onload="window.ghlTrackingLoaded = true"></script>
 </body>
 </html>
